@@ -8,7 +8,31 @@ use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * @ApiResource()
+ * @ApiResource( 
+ *  normalizationContext={"groups"={"read"}},
+ *  denormalizationContext={"groups"={"write"}},
+ *  collectionOperations={
+ *  	"get",
+ *  	"post"
+ *  },
+ * 	itemOperations={
+ *     "get"={
+ *  		"swagger_context" = {
+ *                  "parameters" = {
+ *                      {
+ *                          "name" = "extend",
+ *                          "in" = "query",
+ *                          "description" = "Add the properties of the requestType that this proces extends, requires the request type to be publicly available",
+ *                          "required" = "false",
+ *                          "type" : "boolean"
+ *                      }
+ *                  }
+ *          }        
+ *  	},
+ *     "put",
+ *     "delete"
+ *  }
+ * )
  * @ORM\Entity(repositoryClass="App\Repository\ProcesRepository")
  */
 class Proces
@@ -18,17 +42,22 @@ class Proces
      * @ORM\GeneratedValue()
      * @ORM\Column(type="integer")
      */
-    private $id;
+	private $id;
+	
+	/**
+	 * @ORM\Column(type="string", length=255)
+	 */
+	private $icon;
 
     /**
      * @ORM\Column(type="string", length=255)
      */
-    private $Title;
+    private $title;
 
     /**
      * @ORM\Column(type="text", nullable=true)
      */
-    private $Description;
+    private $description;
 
     /**
      * @ORM\Column(type="string", length=255)
@@ -46,11 +75,6 @@ class Proces
     private $stages;
 
     /**
-     * @ORM\OneToMany(targetEntity="App\Entity\Document", mappedBy="proces", orphanRemoval=true)
-     */
-    private $documents;
-
-    /**
      * @ORM\Column(type="string", length=255)
      */
     private $verzoek;
@@ -61,37 +85,49 @@ class Proces
      */
     private $type;
 
+
     public function __construct()
     {
         $this->stages = new ArrayCollection();
-        $this->documents = new ArrayCollection();
     }
 
     public function getId(): ?int
     {
         return $this->id;
     }
-
+    
+    public function getIcon(): ?string
+    {
+    	return $this->icon;
+    }
+    
+    public function setIcon(string $icon): self
+    {
+    	$this->icon = $icon;
+    	
+    	return $this;
+    }
+    
     public function getTitle(): ?string
     {
-        return $this->Title;
+        return $this->title;
     }
 
-    public function setTitle(string $Title): self
+    public function setTitle(string $title): self
     {
-        $this->Title = $Title;
+        $this->title = $title;
 
         return $this;
     }
 
     public function getDescription(): ?string
     {
-        return $this->Description;
+        return $this->description;
     }
 
     public function setDescription(?string $Description): self
     {
-        $this->Description = $Description;
+        $this->description = $description;
 
         return $this;
     }
@@ -151,37 +187,6 @@ class Proces
         return $this;
     }
 
-    /**
-     * @return Collection|Document[]
-     */
-    public function getDocuments(): Collection
-    {
-        return $this->documents;
-    }
-
-    public function addDocument(Document $document): self
-    {
-        if (!$this->documents->contains($document)) {
-            $this->documents[] = $document;
-            $document->setProces($this);
-        }
-
-        return $this;
-    }
-
-    public function removeDocument(Document $document): self
-    {
-        if ($this->documents->contains($document)) {
-            $this->documents->removeElement($document);
-            // set the owning side to null (unless already changed)
-            if ($document->getProces() === $this) {
-                $document->setProces(null);
-            }
-        }
-
-        return $this;
-    }
-
     public function getVerzoek(): ?string
     {
         return $this->verzoek;
@@ -202,6 +207,18 @@ class Proces
     public function setType(?Type $type): self
     {
         $this->type = $type;
+
+        return $this;
+    }
+
+    public function getRequest(): ?string
+    {
+        return $this->request;
+    }
+
+    public function setRequest(string $request): self
+    {
+        $this->request = $request;
 
         return $this;
     }

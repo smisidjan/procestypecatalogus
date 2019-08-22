@@ -3,13 +3,13 @@ version: '3.4'
 x-cache:
   &cache
   cache_from:
-    - ${CONTAINER_REGISTRY_BASE}/php
-    - ${CONTAINER_REGISTRY_BASE}/nginx
-    - ${CONTAINER_REGISTRY_BASE}/varnish
+    - ${CONTAINER_REGISTRY_BASE}/${CONTAINER_PROJECT_NAME}-php
+    - ${CONTAINER_REGISTRY_BASE}/${CONTAINER_PROJECT_NAME}-nginx
+    - ${CONTAINER_REGISTRY_BASE}/${CONTAINER_PROJECT_NAME}-varnish
 
 services:
-  php:
-    image: ${CONTAINER_REGISTRY_BASE}/php
+  processes-php:
+    image: ${CONTAINER_REGISTRY_BASE}/${CONTAINER_PROJECT_NAME}-php
     build:
       context: ./api
       target: api_platform_php
@@ -22,28 +22,28 @@ services:
       # If you develop on Linux, uncomment the following line to use a bind-mounted host directory instead
       # - ./api/var:/srv/api/var:rw
 
-  api:
-    image: ${CONTAINER_REGISTRY_BASE}/nginx
+  processes-api:
+    image: ${CONTAINER_REGISTRY_BASE}/${CONTAINER_PROJECT_NAME}-nginx
     build:
       context: ./api
       target: api_platform_nginx
       <<: *cache
     depends_on:
-      - php
+      - processes-php
     # Comment out this volume in production
     volumes:
       - ./api/public:/srv/api/public:ro
     ports:
       - "8080:80"
 
-  cache-proxy:
-    image: ${CONTAINER_REGISTRY_BASE}/varnish
+  processes-cache-proxy:
+    image: ${CONTAINER_REGISTRY_BASE}/${CONTAINER_PROJECT_NAME}-varnish
     build:
       context: ./api
       target: api_platform_varnish
       <<: *cache
     depends_on:
-      - api
+      - processes-api
     volumes:
       - ./api/docker/varnish/conf:/usr/local/etc/varnish:ro
     tmpfs:
@@ -82,11 +82,11 @@ services:
   client:
     # Use a static website hosting service in production
     # See https://facebook.github.io/create-react-app/docs/deployment
-    image: ${CONTAINER_REGISTRY_BASE}/client
+    image: ${CONTAINER_REGISTRY_BASE}/${CONTAINER_PROJECT_NAME}-client
     build:
       context: ./client
       cache_from:
-        - ${CONTAINER_REGISTRY_BASE}/client
+        - ${CONTAINER_REGISTRY_BASE}/${CONTAINER_PROJECT_NAME}-client
     env_file:
       - ./client/.env
     volumes:
@@ -98,11 +98,11 @@ services:
   admin:
     # Use a static website hosting service in production
     # See https://facebook.github.io/create-react-app/docs/deployment
-    image: ${CONTAINER_REGISTRY_BASE}/admin
+    image: ${CONTAINER_REGISTRY_BASE}/${CONTAINER_PROJECT_NAME}-admin
     build:
       context: ./admin
       cache_from:
-        - ${CONTAINER_REGISTRY_BASE}/admin
+        - ${CONTAINER_REGISTRY_BASE}/${CONTAINER_PROJECT_NAME}-admin
     volumes:
       - ./admin:/usr/src/admin:rw,cached
       - /usr/src/admin/node_modules
@@ -116,8 +116,8 @@ services:
     depends_on:
       - client
       - admin
-      - api
-      - cache-proxy
+      - processes-api
+      - processes-cache-proxy
     ports:
       - "443:443"
       - "444:444"

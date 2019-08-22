@@ -52,11 +52,6 @@ class Stage
     private $procceses;
 
     /**
-     * @ORM\OneToMany(targetEntity="App\Entity\Document", mappedBy="stage")
-     */
-    private $documents;
-
-    /**
      * @ORM\OneToOne(targetEntity="App\Entity\Stage", inversedBy="previous", cascade={"persist", "remove"})
      */
     private $next;
@@ -65,6 +60,11 @@ class Stage
      * @ORM\OneToOne(targetEntity="App\Entity\Stage", mappedBy="next", cascade={"persist", "remove"})
      */
     private $previous;
+
+    /**
+     * @ORM\Column(type="string", length=255)
+     */
+    private $parameter;
 
     public function __construct()
     {
@@ -147,38 +147,7 @@ class Stage
 
         return $this;
     }
-
-    /**
-     * @return Collection|Document[]
-     */
-    public function getDocuments(): Collection
-    {
-        return $this->documents;
-    }
-
-    public function addDocument(Document $document): self
-    {
-        if (!$this->documents->contains($document)) {
-            $this->documents[] = $document;
-            $document->setStage($this);
-        }
-
-        return $this;
-    }
-
-    public function removeDocument(Document $document): self
-    {
-        if ($this->documents->contains($document)) {
-            $this->documents->removeElement($document);
-            // set the owning side to null (unless already changed)
-            if ($document->getStage() === $this) {
-                $document->setStage(null);
-            }
-        }
-
-        return $this;
-    }
-
+    
     public function getNext(): ?self
     {
         return $this->next;
@@ -205,6 +174,18 @@ class Stage
         if ($newNext !== $previous->getNext()) {
             $previous->setNext($newNext);
         }
+
+        return $this;
+    }
+
+    public function getParameter(): ?string
+    {
+        return $this->parameter;
+    }
+
+    public function setParameter(string $parameter): self
+    {
+        $this->parameter = $parameter;
 
         return $this;
     }
