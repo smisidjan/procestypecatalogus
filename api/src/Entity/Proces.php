@@ -9,8 +9,6 @@ use Doctrine\ORM\Mapping as ORM;
 
 /**
  * @ApiResource( 
- *  normalizationContext={"groups"={"read"}},
- *  denormalizationContext={"groups"={"write"}},
  *  collectionOperations={
  *  	"get",
  *  	"post"
@@ -38,9 +36,12 @@ use Doctrine\ORM\Mapping as ORM;
 class Proces
 {
     /**
-     * @ORM\Id()
-     * @ORM\GeneratedValue()
-     * @ORM\Column(type="integer")
+     * @var \Ramsey\Uuid\UuidInterface
+     *
+     * @ORM\Id
+     * @ORM\Column(type="uuid", unique=true)
+     * @ORM\GeneratedValue(strategy="CUSTOM")
+     * @ORM\CustomIdGenerator(class="Ramsey\Uuid\Doctrine\UuidGenerator")
      */
 	private $id;
 	
