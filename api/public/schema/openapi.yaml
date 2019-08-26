@@ -1,0 +1,998 @@
+openapi: 3.0.2
+info:
+  title: 'Processes (Processen)'
+  version: 0.0.1
+  description: |
+    The processes component is intended to tell applications how to render a request from the request component to a user. That means that the request component tells an application WHAT data it needs. But the processes component tells an application HOW this data needs to be collected. E.g. the different stages in a form. 
+    
+paths:
+  /proces:
+    get:
+      tags:
+        - Proces
+      operationId: getProcesCollection
+      summary: 'Retrieves the collection of Proces resources.'
+      responses:
+        200:
+          description: 'Proces collection response'
+          content:
+            application/hal+json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Proces'
+            application/ld+json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Proces'
+            application/vnd.api+json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Proces'
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Proces'
+            application/xml:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Proces'
+            application/x-yaml:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Proces'
+            text/csv:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Proces'
+            text/html:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Proces'
+      parameters:
+        -
+          name: page
+          in: query
+          required: false
+          description: 'The collection page number'
+          schema:
+            type: integer
+    post:
+      tags:
+        - Proces
+      operationId: postProcesCollection
+      summary: 'Creates a Proces resource.'
+      responses:
+        201:
+          description: 'Proces resource created'
+          content:
+            application/hal+json:
+              schema:
+                $ref: '#/components/schemas/Proces'
+            application/ld+json:
+              schema:
+                $ref: '#/components/schemas/Proces'
+            application/vnd.api+json:
+              schema:
+                $ref: '#/components/schemas/Proces'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Proces'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/Proces'
+            application/x-yaml:
+              schema:
+                $ref: '#/components/schemas/Proces'
+            text/csv:
+              schema:
+                $ref: '#/components/schemas/Proces'
+            text/html:
+              schema:
+                $ref: '#/components/schemas/Proces'
+          links:
+            GetProcesItem:
+              parameters:
+                id: '$response.body#/id'
+              operationId: getProcesItem
+              description: 'The `id` value returned in the response can be used as the `id` parameter in `GET /proces/{id}`.'
+        400:
+          description: 'Invalid input'
+        404:
+          description: 'Resource not found'
+      requestBody:
+        content:
+          application/hal+json:
+            schema:
+              $ref: '#/components/schemas/Proces'
+          application/ld+json:
+            schema:
+              $ref: '#/components/schemas/Proces'
+          application/vnd.api+json:
+            schema:
+              $ref: '#/components/schemas/Proces'
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Proces'
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/Proces'
+          application/x-yaml:
+            schema:
+              $ref: '#/components/schemas/Proces'
+          text/csv:
+            schema:
+              $ref: '#/components/schemas/Proces'
+          text/html:
+            schema:
+              $ref: '#/components/schemas/Proces'
+        description: 'The new Proces resource'
+  '/proces/{id}':
+    get:
+      tags:
+        - Proces
+      operationId: getProcesItem
+      summary: 'Retrieves a Proces resource.'
+      parameters:
+        -
+          name: id
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        200:
+          description: 'Proces resource response'
+          content:
+            application/hal+json:
+              schema:
+                $ref: '#/components/schemas/Proces'
+            application/ld+json:
+              schema:
+                $ref: '#/components/schemas/Proces'
+            application/vnd.api+json:
+              schema:
+                $ref: '#/components/schemas/Proces'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Proces'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/Proces'
+            application/x-yaml:
+              schema:
+                $ref: '#/components/schemas/Proces'
+            text/csv:
+              schema:
+                $ref: '#/components/schemas/Proces'
+            text/html:
+              schema:
+                $ref: '#/components/schemas/Proces'
+        404:
+          description: 'Resource not found'
+    put:
+      tags:
+        - Proces
+      operationId: putProcesItem
+      summary: 'Replaces the Proces resource.'
+      parameters:
+        -
+          name: id
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        200:
+          description: 'Proces resource updated'
+          content:
+            application/hal+json:
+              schema:
+                $ref: '#/components/schemas/Proces'
+            application/ld+json:
+              schema:
+                $ref: '#/components/schemas/Proces'
+            application/vnd.api+json:
+              schema:
+                $ref: '#/components/schemas/Proces'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Proces'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/Proces'
+            application/x-yaml:
+              schema:
+                $ref: '#/components/schemas/Proces'
+            text/csv:
+              schema:
+                $ref: '#/components/schemas/Proces'
+            text/html:
+              schema:
+                $ref: '#/components/schemas/Proces'
+        400:
+          description: 'Invalid input'
+        404:
+          description: 'Resource not found'
+      requestBody:
+        content:
+          application/hal+json:
+            schema:
+              $ref: '#/components/schemas/Proces'
+          application/ld+json:
+            schema:
+              $ref: '#/components/schemas/Proces'
+          application/vnd.api+json:
+            schema:
+              $ref: '#/components/schemas/Proces'
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Proces'
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/Proces'
+          application/x-yaml:
+            schema:
+              $ref: '#/components/schemas/Proces'
+          text/csv:
+            schema:
+              $ref: '#/components/schemas/Proces'
+          text/html:
+            schema:
+              $ref: '#/components/schemas/Proces'
+        description: 'The updated Proces resource'
+    delete:
+      tags:
+        - Proces
+      operationId: deleteProcesItem
+      summary: 'Removes the Proces resource.'
+      responses:
+        204:
+          description: 'Proces resource deleted'
+        404:
+          description: 'Resource not found'
+      parameters:
+        -
+          name: id
+          in: path
+          required: true
+          schema:
+            type: string
+  /stages:
+    get:
+      tags:
+        - Stage
+      operationId: getStageCollection
+      summary: 'Retrieves the collection of Stage resources.'
+      responses:
+        200:
+          description: 'Stage collection response'
+          content:
+            application/hal+json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Stage'
+            application/ld+json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Stage'
+            application/vnd.api+json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Stage'
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Stage'
+            application/xml:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Stage'
+            application/x-yaml:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Stage'
+            text/csv:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Stage'
+            text/html:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Stage'
+      parameters:
+        -
+          name: page
+          in: query
+          required: false
+          description: 'The collection page number'
+          schema:
+            type: integer
+    post:
+      tags:
+        - Stage
+      operationId: postStageCollection
+      summary: 'Creates a Stage resource.'
+      responses:
+        201:
+          description: 'Stage resource created'
+          content:
+            application/hal+json:
+              schema:
+                $ref: '#/components/schemas/Stage'
+            application/ld+json:
+              schema:
+                $ref: '#/components/schemas/Stage'
+            application/vnd.api+json:
+              schema:
+                $ref: '#/components/schemas/Stage'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Stage'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/Stage'
+            application/x-yaml:
+              schema:
+                $ref: '#/components/schemas/Stage'
+            text/csv:
+              schema:
+                $ref: '#/components/schemas/Stage'
+            text/html:
+              schema:
+                $ref: '#/components/schemas/Stage'
+          links:
+            GetStageItem:
+              parameters:
+                id: '$response.body#/id'
+              operationId: getStageItem
+              description: 'The `id` value returned in the response can be used as the `id` parameter in `GET /stages/{id}`.'
+        400:
+          description: 'Invalid input'
+        404:
+          description: 'Resource not found'
+      requestBody:
+        content:
+          application/hal+json:
+            schema:
+              $ref: '#/components/schemas/Stage'
+          application/ld+json:
+            schema:
+              $ref: '#/components/schemas/Stage'
+          application/vnd.api+json:
+            schema:
+              $ref: '#/components/schemas/Stage'
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Stage'
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/Stage'
+          application/x-yaml:
+            schema:
+              $ref: '#/components/schemas/Stage'
+          text/csv:
+            schema:
+              $ref: '#/components/schemas/Stage'
+          text/html:
+            schema:
+              $ref: '#/components/schemas/Stage'
+        description: 'The new Stage resource'
+  '/stages/{id}':
+    get:
+      tags:
+        - Stage
+      operationId: getStageItem
+      summary: 'Retrieves a Stage resource.'
+      parameters:
+        -
+          name: id
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        200:
+          description: 'Stage resource response'
+          content:
+            application/hal+json:
+              schema:
+                $ref: '#/components/schemas/Stage'
+            application/ld+json:
+              schema:
+                $ref: '#/components/schemas/Stage'
+            application/vnd.api+json:
+              schema:
+                $ref: '#/components/schemas/Stage'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Stage'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/Stage'
+            application/x-yaml:
+              schema:
+                $ref: '#/components/schemas/Stage'
+            text/csv:
+              schema:
+                $ref: '#/components/schemas/Stage'
+            text/html:
+              schema:
+                $ref: '#/components/schemas/Stage'
+        404:
+          description: 'Resource not found'
+    delete:
+      tags:
+        - Stage
+      operationId: deleteStageItem
+      summary: 'Removes the Stage resource.'
+      responses:
+        204:
+          description: 'Stage resource deleted'
+        404:
+          description: 'Resource not found'
+      parameters:
+        -
+          name: id
+          in: path
+          required: true
+          schema:
+            type: string
+    put:
+      tags:
+        - Stage
+      operationId: putStageItem
+      summary: 'Replaces the Stage resource.'
+      parameters:
+        -
+          name: id
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        200:
+          description: 'Stage resource updated'
+          content:
+            application/hal+json:
+              schema:
+                $ref: '#/components/schemas/Stage'
+            application/ld+json:
+              schema:
+                $ref: '#/components/schemas/Stage'
+            application/vnd.api+json:
+              schema:
+                $ref: '#/components/schemas/Stage'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Stage'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/Stage'
+            application/x-yaml:
+              schema:
+                $ref: '#/components/schemas/Stage'
+            text/csv:
+              schema:
+                $ref: '#/components/schemas/Stage'
+            text/html:
+              schema:
+                $ref: '#/components/schemas/Stage'
+        400:
+          description: 'Invalid input'
+        404:
+          description: 'Resource not found'
+      requestBody:
+        content:
+          application/hal+json:
+            schema:
+              $ref: '#/components/schemas/Stage'
+          application/ld+json:
+            schema:
+              $ref: '#/components/schemas/Stage'
+          application/vnd.api+json:
+            schema:
+              $ref: '#/components/schemas/Stage'
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Stage'
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/Stage'
+          application/x-yaml:
+            schema:
+              $ref: '#/components/schemas/Stage'
+          text/csv:
+            schema:
+              $ref: '#/components/schemas/Stage'
+          text/html:
+            schema:
+              $ref: '#/components/schemas/Stage'
+        description: 'The updated Stage resource'
+    patch:
+      tags:
+        - Stage
+      operationId: patchStageItem
+      summary: 'Updates the Stage resource.'
+      parameters:
+        -
+          name: id
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        200:
+          description: 'Stage resource updated'
+          content:
+            application/hal+json:
+              schema:
+                $ref: '#/components/schemas/Stage'
+            application/ld+json:
+              schema:
+                $ref: '#/components/schemas/Stage'
+            application/vnd.api+json:
+              schema:
+                $ref: '#/components/schemas/Stage'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Stage'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/Stage'
+            application/x-yaml:
+              schema:
+                $ref: '#/components/schemas/Stage'
+            text/csv:
+              schema:
+                $ref: '#/components/schemas/Stage'
+            text/html:
+              schema:
+                $ref: '#/components/schemas/Stage'
+        400:
+          description: 'Invalid input'
+        404:
+          description: 'Resource not found'
+      requestBody:
+        content:
+          application/hal+json:
+            schema:
+              $ref: '#/components/schemas/Stage'
+          application/ld+json:
+            schema:
+              $ref: '#/components/schemas/Stage'
+          application/vnd.api+json:
+            schema:
+              $ref: '#/components/schemas/Stage'
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Stage'
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/Stage'
+          application/x-yaml:
+            schema:
+              $ref: '#/components/schemas/Stage'
+          text/csv:
+            schema:
+              $ref: '#/components/schemas/Stage'
+          text/html:
+            schema:
+              $ref: '#/components/schemas/Stage'
+        description: 'The updated Stage resource'
+  /types:
+    get:
+      tags:
+        - Type
+      operationId: getTypeCollection
+      summary: 'Retrieves the collection of Type resources.'
+      responses:
+        200:
+          description: 'Type collection response'
+          content:
+            application/hal+json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Type'
+            application/ld+json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Type'
+            application/vnd.api+json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Type'
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Type'
+            application/xml:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Type'
+            application/x-yaml:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Type'
+            text/csv:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Type'
+            text/html:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Type'
+      parameters:
+        -
+          name: page
+          in: query
+          required: false
+          description: 'The collection page number'
+          schema:
+            type: integer
+    post:
+      tags:
+        - Type
+      operationId: postTypeCollection
+      summary: 'Creates a Type resource.'
+      responses:
+        201:
+          description: 'Type resource created'
+          content:
+            application/hal+json:
+              schema:
+                $ref: '#/components/schemas/Type'
+            application/ld+json:
+              schema:
+                $ref: '#/components/schemas/Type'
+            application/vnd.api+json:
+              schema:
+                $ref: '#/components/schemas/Type'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Type'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/Type'
+            application/x-yaml:
+              schema:
+                $ref: '#/components/schemas/Type'
+            text/csv:
+              schema:
+                $ref: '#/components/schemas/Type'
+            text/html:
+              schema:
+                $ref: '#/components/schemas/Type'
+          links:
+            GetTypeItem:
+              parameters:
+                id: '$response.body#/id'
+              operationId: getTypeItem
+              description: 'The `id` value returned in the response can be used as the `id` parameter in `GET /types/{id}`.'
+        400:
+          description: 'Invalid input'
+        404:
+          description: 'Resource not found'
+      requestBody:
+        content:
+          application/hal+json:
+            schema:
+              $ref: '#/components/schemas/Type'
+          application/ld+json:
+            schema:
+              $ref: '#/components/schemas/Type'
+          application/vnd.api+json:
+            schema:
+              $ref: '#/components/schemas/Type'
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Type'
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/Type'
+          application/x-yaml:
+            schema:
+              $ref: '#/components/schemas/Type'
+          text/csv:
+            schema:
+              $ref: '#/components/schemas/Type'
+          text/html:
+            schema:
+              $ref: '#/components/schemas/Type'
+        description: 'The new Type resource'
+  '/types/{id}':
+    get:
+      tags:
+        - Type
+      operationId: getTypeItem
+      summary: 'Retrieves a Type resource.'
+      parameters:
+        -
+          name: id
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        200:
+          description: 'Type resource response'
+          content:
+            application/hal+json:
+              schema:
+                $ref: '#/components/schemas/Type'
+            application/ld+json:
+              schema:
+                $ref: '#/components/schemas/Type'
+            application/vnd.api+json:
+              schema:
+                $ref: '#/components/schemas/Type'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Type'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/Type'
+            application/x-yaml:
+              schema:
+                $ref: '#/components/schemas/Type'
+            text/csv:
+              schema:
+                $ref: '#/components/schemas/Type'
+            text/html:
+              schema:
+                $ref: '#/components/schemas/Type'
+        404:
+          description: 'Resource not found'
+    delete:
+      tags:
+        - Type
+      operationId: deleteTypeItem
+      summary: 'Removes the Type resource.'
+      responses:
+        204:
+          description: 'Type resource deleted'
+        404:
+          description: 'Resource not found'
+      parameters:
+        -
+          name: id
+          in: path
+          required: true
+          schema:
+            type: string
+    put:
+      tags:
+        - Type
+      operationId: putTypeItem
+      summary: 'Replaces the Type resource.'
+      parameters:
+        -
+          name: id
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        200:
+          description: 'Type resource updated'
+          content:
+            application/hal+json:
+              schema:
+                $ref: '#/components/schemas/Type'
+            application/ld+json:
+              schema:
+                $ref: '#/components/schemas/Type'
+            application/vnd.api+json:
+              schema:
+                $ref: '#/components/schemas/Type'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Type'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/Type'
+            application/x-yaml:
+              schema:
+                $ref: '#/components/schemas/Type'
+            text/csv:
+              schema:
+                $ref: '#/components/schemas/Type'
+            text/html:
+              schema:
+                $ref: '#/components/schemas/Type'
+        400:
+          description: 'Invalid input'
+        404:
+          description: 'Resource not found'
+      requestBody:
+        content:
+          application/hal+json:
+            schema:
+              $ref: '#/components/schemas/Type'
+          application/ld+json:
+            schema:
+              $ref: '#/components/schemas/Type'
+          application/vnd.api+json:
+            schema:
+              $ref: '#/components/schemas/Type'
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Type'
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/Type'
+          application/x-yaml:
+            schema:
+              $ref: '#/components/schemas/Type'
+          text/csv:
+            schema:
+              $ref: '#/components/schemas/Type'
+          text/html:
+            schema:
+              $ref: '#/components/schemas/Type'
+        description: 'The updated Type resource'
+    patch:
+      tags:
+        - Type
+      operationId: patchTypeItem
+      summary: 'Updates the Type resource.'
+      parameters:
+        -
+          name: id
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        200:
+          description: 'Type resource updated'
+          content:
+            application/hal+json:
+              schema:
+                $ref: '#/components/schemas/Type'
+            application/ld+json:
+              schema:
+                $ref: '#/components/schemas/Type'
+            application/vnd.api+json:
+              schema:
+                $ref: '#/components/schemas/Type'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Type'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/Type'
+            application/x-yaml:
+              schema:
+                $ref: '#/components/schemas/Type'
+            text/csv:
+              schema:
+                $ref: '#/components/schemas/Type'
+            text/html:
+              schema:
+                $ref: '#/components/schemas/Type'
+        400:
+          description: 'Invalid input'
+        404:
+          description: 'Resource not found'
+      requestBody:
+        content:
+          application/hal+json:
+            schema:
+              $ref: '#/components/schemas/Type'
+          application/ld+json:
+            schema:
+              $ref: '#/components/schemas/Type'
+          application/vnd.api+json:
+            schema:
+              $ref: '#/components/schemas/Type'
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Type'
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/Type'
+          application/x-yaml:
+            schema:
+              $ref: '#/components/schemas/Type'
+          text/csv:
+            schema:
+              $ref: '#/components/schemas/Type'
+          text/html:
+            schema:
+              $ref: '#/components/schemas/Type'
+        description: 'The updated Type resource'
+components:
+  schemas:
+    Proces:
+      type: object
+      description: ''
+      properties:
+        id:
+          readOnly: true
+          type: string
+        icon:
+          type: string
+        title:
+          type: string
+        description:
+          type: string
+        subtitle:
+          type: string
+        rsin:
+          type: string
+        stages:
+          type: array
+          items:
+            type: string
+        verzoek:
+          type: string
+        type:
+          type: string
+        request:
+          type: string
+    Stage:
+      type: object
+      description: ''
+      properties:
+        id:
+          readOnly: true
+          type: string
+        name:
+          type: string
+        description:
+          type: string
+        type:
+          type: string
+        options:
+          type: array
+          items:
+            type: string
+        validation:
+          type: array
+          items:
+            type: string
+        procceses:
+          type: string
+        next:
+          type: string
+        previous:
+          type: string
+        parameter:
+          type: string
+    Type:
+      type: object
+      description: ''
+      properties:
+        id:
+          readOnly: true
+          type: string
+        name:
+          type: string
+        processes:
+          type: array
+          items:
+            type: string
