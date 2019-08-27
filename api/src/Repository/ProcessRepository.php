@@ -2,25 +2,25 @@
 
 namespace App\Repository;
 
-use App\Entity\Proces;
+use App\Entity\Process;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Symfony\Bridge\Doctrine\RegistryInterface;
 
 /**
- * @method Proces|null find($id, $lockMode = null, $lockVersion = null)
- * @method Proces|null findOneBy(array $criteria, array $orderBy = null)
- * @method Proces[]    findAll()
- * @method Proces[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
+ * @method Process|null find($id, $lockMode = null, $lockVersion = null)
+ * @method Process|null findOneBy(array $criteria, array $orderBy = null)
+ * @method Process[]    findAll()
+ * @method Process[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
  */
-class ProcesRepository extends ServiceEntityRepository
+class ProcessRepository extends ServiceEntityRepository
 {
     public function __construct(RegistryInterface $registry)
     {
-        parent::__construct($registry, Proces::class);
+        parent::__construct($registry, Process::class);
     }
 
     // /**
-    //  * @return Proces[] Returns an array of Proces objects
+    //  * @return Process[] Returns an array of Proces objects
     //  */
     /*
     public function findByExampleField($value)
