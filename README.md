@@ -1,5 +1,6 @@
 # About this component
 
+Het "processen" wordt gebruikt om BPMN processen op te slaan om door een ieder andere applicatie te kunnen worden gebruikt. Door de felxibele opzet kunnen processen herbruikt en "extended" (uitgebreid) worden. Dit zorgt er voor dat er meerdere variaties mogelijk zijn van 1 basis proces. 
 
 
 
