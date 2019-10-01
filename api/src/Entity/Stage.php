@@ -34,7 +34,8 @@ use Symfony\Component\Validator\Constraints as Assert;
 class Stage
 {
     /**
-     * @var \Ramsey\Uuid\UuidInterface
+     * @var \Ramsey\Uuid\UuidInterface $id The UUID identifier of this object
+     * @example e2984465-190a-4562-829e-a8cca81aa35d
      *	 
      * @ApiProperty(
      * 	   identifier=true,
@@ -48,53 +49,94 @@ class Stage
      *     }
      * )
      *
+     * @Assert\Uuid
      * @Groups({"read"})
      * @ORM\Id
      * @ORM\Column(type="uuid", unique=true)
      * @ORM\GeneratedValue(strategy="CUSTOM")
      * @ORM\CustomIdGenerator(class="Ramsey\Uuid\Doctrine\UuidGenerator")
      */
-    private $id;
-
-    /**
-     * @param string The name of this stage
-     *     
-     * @ApiProperty(
-     *     attributes={
-     *         "swagger_context"={
- 	 *         	   "description" = "The name of this stage",
-     *             "type"="string",
-     *             "example"="The first stage",
- 	*              "maxLength"="255"
-     *         }
-     *     }
-     * )
-     * 
-     * @Groups({"read", "write"})
-     * @ORM\Column(type="string", length=255)
-     */
-    private $name;
-
-    /**
-     * @param string The description of this stage
-     *
-     * @ApiProperty(
-     *     attributes={
-     *         "swagger_context"={
-     *         	   "description" = "The description of this stage",
-     *             "type"="string",
-     *             "example"="In this stage we ask the user for an email address"
-     *         }
-     *     }
-     * )
-     * 
-     * @Groups({"read", "write"})
-     * @ORM\Column(type="text", nullable=true)
-     */
-    private $description;
+	private $id;
+	
+	/**
+	 * @var string $name The name of this stage
+	 * @example Stage 1
+	 *
+	 * @ApiProperty(
+	 * 	   iri="https://schema.org/name",
+	 *     attributes={
+	 *         "swagger_context"={
+	 *         	   "description" = "The name of this stage",
+	 *             "type"="string",
+	 *             "example"="Stage 1",
+	 *             "maxLength"="255",
+	 *             "required" = true
+	 *         }
+	 *     }
+	 * )
+	 *
+	 * @Assert\NotNull
+	 * @Assert\Length(
+	 *      max = 255
+	 * )
+	 * @Groups({"read"})
+	 * @ORM\Column(type="string", length=255)
+	 */
+	private $name;
+	
+	/**
+	 * @var string $description An short description of this stage
+	 * @example Please enter your email adres
+	 *
+	 * @ApiProperty(
+	 * 	   iri="https://schema.org/description",
+	 *     attributes={
+	 *         "swagger_context"={
+	 *         	   "description" = "An short description of this stage",
+	 *             "type"="string",
+	 *             "example"="Please enter your email adres",
+	 *             "maxLength"="2550,
+	 *         }
+	 *     }
+	 * )
+	 *
+	 * @Assert\Length(
+	 *      max = 2550
+	 * )
+	 * @Groups({"read"})
+	 * @ORM\Column(type="text", nullable=true)
+	 */
+	private $description;
     
     /**
-     * @param string The task type of the stage
+     * @var string $logo The logo for this stage
+     * @example https://www.my-organisation.com/logo.png
+     *
+     * @ApiProperty(
+     * 	   iri="https://schema.org/logo",
+     *     attributes={
+     *         "swagger_context"={
+     *         	   "description" = "The logo for this stage",
+     *             "type"="string",
+     *             "format"="url",
+     *             "example"="https://www.my-organisation.com/logo.png",
+     *             "maxLength"="255"
+     *         }
+     *     }
+     * )
+     *
+     * @Assert\Url
+     * @Assert\Length(
+     *      max = 255
+     * )
+     * @Groups({"read"})
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $logo;
+    
+    /**
+     * @var string The task type of the stage
+     * @example my-organisation
      *     
      * @ApiProperty(
      *     attributes={
@@ -113,7 +155,8 @@ class Stage
     private $type = "user";
 
     /**
-     * @param object The options or configuration for this stage
+     * @var object The options or configuration for this stage
+     * @example my-organisation
      * 
      * @ApiProperty(
      *     attributes={
@@ -132,7 +175,8 @@ class Stage
     private $options = [];
 
     /**
-     * @param object The validation rules that this stage adheres to
+     * @var object The validation rules that this stage adheres to
+     * @example my-organisation
      * 
      * @ApiProperty(
      *     attributes={
@@ -156,7 +200,7 @@ class Stage
     private $validation = [];
 
     /**
-     * @param object The process that this stage belongs to
+     * @var object The process that this stage belongs to
      * 
      * @Assert\NotBlank
      * @ORM\ManyToOne(targetEntity="App\Entity\Process", inversedBy="stages")
@@ -226,6 +270,18 @@ class Stage
         $this->description = $description;
 
         return $this;
+    }
+    
+    public function getLogo(): ?string
+    {
+    	return $this->logo;
+    }
+    
+    public function setLogo(?string $logo): self
+    {
+    	$this->logo = $logo;
+    	
+    	return $this;
     }
 
     public function getType(): ?string

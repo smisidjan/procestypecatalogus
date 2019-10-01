@@ -51,10 +51,11 @@ use Symfony\Component\Serializer\Annotation\Groups;
  * )
  * @ORM\Entity(repositoryClass="App\Repository\ProcessRepository")
  */
-class Process
+class ProcessType
 {
 	/**
-	 * @var \Ramsey\Uuid\UuidInterface
+     * @var \Ramsey\Uuid\UuidInterface $id The UUID identifier of this object
+     * @example e2984465-190a-4562-829e-a8cca81aa35d
 	 *
 	 * @ApiProperty(
 	 * 	   identifier=true,
@@ -68,6 +69,7 @@ class Process
 	 *     }
 	 * )
 	 *
+     * @Assert\Uuid
 	 * @Groups({"read"})
 	 * @ORM\Id
 	 * @ORM\Column(type="uuid", unique=true)
@@ -77,46 +79,34 @@ class Process
 	private $id;
 	
 	/**
-	 * @param string An icon representing this process
+	 * @var string $name The name of this process
+     * @example My process
 	 *
 	 * @ApiProperty(
-	 *     attributes={
-	 *         "swagger_context"={
-	 *         	   "description" = "An icon reprecenting this process",
-	 *             "type"="string",
-	 *             "format"="url",
-	 *             "example"="https://imbag.github.io/praktijkhandleiding/assets/img/vng.svg",
-	 *              "maxLength"="255"
-	 *         }
-	 *     }
-	 * )
-	 *
-	 * @Groups({"read", "write"})
-	 * @ORM\Column(type="string", length=255, nullable=true)
-	 */
-	private $icon;
-	
-	/**
-	 * @param string The name of this process
-	 *
-	 * @ApiProperty(
+     * 	   iri="http://schema.org/name",
 	 *     attributes={
 	 *         "swagger_context"={
 	 *         	   "description" = "The name of this process",
 	 *             "type"="string",
 	 *             "example"="My process",
-	 *              "maxLength"="255"
+	 *             "maxLength"="255",
+	 *             "required" = true
 	 *         }
 	 *     }
 	 * )
-	 *
-	 * @Groups({"read", "write"})
-	 * @ORM\Column(type="string", length=255)
+	 * 
+     * @Assert\NotNull
+     * @Assert\Length(
+     *      max = 255
+     * )
+	 * @Groups({"read"})
+     * @ORM\Column(type="string", length=255)
 	 */
 	private $name;
 	
 	/**
-	 * @param string The subtitle of this process
+	 * @var string $subtitle The subtitle of this process
+     * @example"An example process
 	 *
 	 * @ApiProperty(
 	 *     attributes={
@@ -129,31 +119,68 @@ class Process
 	 *     }
 	 * )
 	 *
+     * @Assert\NotNull
+     * @Assert\Length(
+     *      max = 255
+     * )
 	 * @Groups({"read", "write"})
 	 * @ORM\Column(type="string", length=255)
 	 */
 	private $subtitle;
 	
 	/**
-	 * @param string The description of this process
+	 * @var string $description An short description of this process
+     * @example This is the best process ever
 	 *
 	 * @ApiProperty(
+     * 	   iri="https://schema.org/description",
 	 *     attributes={
 	 *         "swagger_context"={
-	 *         	   "description" = "The description of this process",
+	 *         	   "description" = "An short description of this process",
 	 *             "type"="string",
-	 *             "example"="This process is used to give an idea into the inner workings of processes"
+	 *             "example"="This is the best component process",
+	 *             "maxLength"="2550"
 	 *         }
 	 *     }
 	 * )
-	 *
-	 * @Groups({"read", "write"})
-	 * @ORM\Column(type="text", nullable=true)
+	 * 
+     * @Assert\Length(
+     *      max = 2550
+     * )
+	 * @Groups({"read"})
+     * @ORM\Column(type="text", nullable=true)
 	 */
 	private $description;
 	
 	/**
-	 * @param string The RSIN of the organization that owns this process
+	 * @var string $logo The logo for this process
+	 * @example https://www.my-organisation.com/logo.png
+	 *
+	 * @ApiProperty(
+	 * 	   iri="https://schema.org/logo",
+	 *     attributes={
+	 *         "swagger_context"={
+	 *         	   "description" = "The logo for this process",
+	 *             "type"="string",
+	 *             "format"="url",
+	 *             "example"="https://www.my-organisation.com/logo.png",
+	 *             "maxLength"="255"
+	 *         }
+	 *     }
+	 * )
+	 *
+	 * @Assert\Url
+	 * @Assert\Length(
+	 *      max = 255
+	 * )
+	 * @Groups({"read"})
+	 * @ORM\Column(type="string", length=255, nullable=true)
+	 */
+	private $logo;
+	
+	/**
+	 * @var string $rsin The RSIN of the organization that owns this process
+	 * @example 002851234
 	 *
 	 * @ApiProperty(
 	 *     attributes={
@@ -161,11 +188,16 @@ class Process
 	 *         	   "description" = "The RSIN of the organisation that ownes this process",
 	 *             "type"="string",
 	 *             "example"="002851234",
-	 *              "maxLength"="255"
+	 *             "maxLength"="11"
 	 *         }
 	 *     }
 	 * )
 	 *
+	 * @Assert\Url
+	 * @Assert\Length(
+	 *      max = 8,
+	 *      max = 11
+	 * )
 	 * @Groups({"read", "write"})
 	 * @ORM\Column(type="string", length=255)
 	 * @ApiFilter(SearchFilter::class, strategy="exact")
@@ -173,7 +205,7 @@ class Process
 	private $rsin;
 	
 	/**
-	 * @param array The stages of this process
+	 * @var array $stages The stages of this process
 	 *
 	 * @Groups({"read", "write"})
 	 * @ORM\OneToMany(targetEntity="App\Entity\Stage", mappedBy="process", orphanRemoval=true, fetch="EAGER", cascade={"persist"})
@@ -181,7 +213,8 @@ class Process
 	private $stages;
 	
 	/**
-	 * @param string The request that is used for this process
+	 * @var string $request The request that is used for this process
+	 * @example http://rtc.zaakonline.nl/9bd169ef-bc8c-4422-86ce-a0e7679ab67a
 	 *
 	 * @ApiProperty(
 	 *     attributes={
@@ -189,19 +222,23 @@ class Process
 	 *         	   "description" = "The request that is used for this process",
 	 *             "type"="string",
 	 *             "format"="uri",
-	 *             "example"="http://requests.zaakonline.nl/properties/9bd169ef-bc8c-4422-86ce-a0e7679ab67a",
+	 *             "example"="http://rtc.zaakonline.nl/9bd169ef-bc8c-4422-86ce-a0e7679ab67a",
 	 *              "maxLength"="255"
 	 *         }
 	 *     }
 	 * )
 	 *
+     * @Assert\Url
+     * @Assert\Length(
+     *      max = 255
+     * )
 	 * @Groups({"read", "write"})
 	 * @ORM\Column(type="string", length=255)
 	 */
 	private $request;
 	
 	/**
-	 * @param object The process that this process extends
+	 * @var object $extends The process that this process extends
 	 *
 	 * @Groups({"write"})
 	 * @ORM\ManyToOne(targetEntity="App\Entity\Process", inversedBy="extendedBy", fetch="EAGER")
@@ -209,12 +246,14 @@ class Process
 	private $extends;
 	
 	/**
+	 * @var object $extendedBy The processs that extend this process
+	 * 
 	 * @ORM\OneToMany(targetEntity="App\Entity\Process", mappedBy="extends")
 	 */
 	private $extendedBy;
 	
 	/**
-	 * @param array The properties property is used for validation and extending and serves as an array of property UUID's against which can be checked for double properties
+	 * @param array The properties property is used internally for validation and extending and serves as an array of property UUID's against which can be checked for double properties
 	 */
 	private $properties;
 	
@@ -228,18 +267,6 @@ class Process
 	public function getId()
 	{
 		return $this->id;
-	}
-	
-	public function getIcon(): ?string
-	{
-		return $this->icon;
-	}
-	
-	public function setIcon(string $icon): self
-	{
-		$this->icon = $icon;
-		
-		return $this;
 	}
 	
 	public function getName(): ?string
@@ -262,6 +289,18 @@ class Process
 	public function setDescription(?string $description): self
 	{
 		$this->description = $description;
+		
+		return $this;
+	}
+	
+	public function getLogo(): ?string
+	{
+		return $this->logo;
+	}
+	
+	public function setLogo(?string $logo): self
+	{
+		$this->logo = $logo;
 		
 		return $this;
 	}
