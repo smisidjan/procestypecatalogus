@@ -10,6 +10,7 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Serializer\Annotation\Groups;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * A process
@@ -88,9 +89,9 @@ class ProcessType
 	 *         "swagger_context"={
 	 *         	   "description" = "The name of this process",
 	 *             "type"="string",
-	 *             "example"="My process",
-	 *             "maxLength"="255",
-	 *             "required" = true
+	 *             "format"="url",
+	 *             "example"="https://imbag.github.io/praktijkhandleiding/assets/img/vng.svg",
+	 *              "maxLength"=255
 	 *         }
 	 *     }
 	 * )
@@ -113,8 +114,8 @@ class ProcessType
 	 *         "swagger_context"={
 	 *         	   "description" = "The subtitle of this process",
 	 *             "type"="string",
-	 *             "example"="An example process",
-	 *              "maxLength"="255"
+	 *             "example"="My process",
+	 *              "maxLength"=255
 	 *         }
 	 *     }
 	 * )
@@ -138,8 +139,8 @@ class ProcessType
 	 *         "swagger_context"={
 	 *         	   "description" = "An short description of this process",
 	 *             "type"="string",
-	 *             "example"="This is the best component process",
-	 *             "maxLength"="2550"
+	 *             "example"="An example process",
+	 *              "maxLength"=255
 	 *         }
 	 *     }
 	 * )
@@ -188,7 +189,7 @@ class ProcessType
 	 *         	   "description" = "The RSIN of the organisation that ownes this process",
 	 *             "type"="string",
 	 *             "example"="002851234",
-	 *             "maxLength"="11"
+	 *              "maxLength"=255
 	 *         }
 	 *     }
 	 * )
@@ -222,8 +223,8 @@ class ProcessType
 	 *         	   "description" = "The request that is used for this process",
 	 *             "type"="string",
 	 *             "format"="uri",
-	 *             "example"="http://rtc.zaakonline.nl/9bd169ef-bc8c-4422-86ce-a0e7679ab67a",
-	 *              "maxLength"="255"
+	 *             "example"="http://requests.zaakonline.nl/properties/9bd169ef-bc8c-4422-86ce-a0e7679ab67a",
+	 *              "maxLength"=255
 	 *         }
 	 *     }
 	 * )

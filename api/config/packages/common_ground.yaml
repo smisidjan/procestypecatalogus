@@ -10,11 +10,11 @@ parameters:
     common_ground.oas.servers:
             -
               description: Demo Omgeving
-              url: 'http://processes.zaakonline.nl/'       
+              url: 'http://ptc.demo.common-ground.dev/'       
     common_ground.oas.externalDocs:
             -
               description: OAS Documentatie
-              url: 'http://processes.zaakonline.nl/'  
+              url: 'http://ptc.demo.common-ground.dev/'  
     common_ground.oas.developers:
             -
               name: Conduction
