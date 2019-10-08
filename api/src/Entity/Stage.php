@@ -85,7 +85,7 @@ class Stage
 	private $name;
 	
 	/**
-	 * @var string $description An short description of this stage
+	 * @var string $description An short description of this stage 
 	 * @example Please enter your email adres
 	 *
 	 * @ApiProperty(
@@ -95,7 +95,7 @@ class Stage
 	 *         	   "description" = "An short description of this stage",
 	 *             "type"="string",
 	 *             "example"="Please enter your email adres",
-	 *             "maxLength"="2550,
+	 *             "maxLength"=2550
 	 *         }
 	 *     }
 	 * )
@@ -200,10 +200,10 @@ class Stage
     private $validation = [];
 
     /**
-     * @var object The process that this stage belongs to
+     * @var object ProcessType The process that this stage belongs to
      * 
      * @Assert\NotBlank
-     * @ORM\ManyToOne(targetEntity="App\Entity\Process", inversedBy="stages")
+     * @ORM\ManyToOne(targetEntity="App\Entity\ProcessType", inversedBy="stages")
      * @ORM\JoinColumn(nullable=false)
      */
     private $process;
@@ -320,12 +320,12 @@ class Stage
         return $this;
     }
 
-    public function getProcess(): ?Process
+    public function getProcess(): ?ProcessType
     {
         return $this->process;
     }
 
-    public function setProcess(?Process $process): self
+    public function setProcess(?ProcessType $process): self
     {
         $this->process = $process;
 

@@ -242,14 +242,14 @@ class ProcessType
 	 * @var object $extends The process that this process extends
 	 *
 	 * @Groups({"write"})
-	 * @ORM\ManyToOne(targetEntity="App\Entity\Process", inversedBy="extendedBy", fetch="EAGER")
+	 * @ORM\ManyToOne(targetEntity="App\Entity\ProcessType", inversedBy="extendedBy", fetch="EAGER")
 	 */
 	private $extends;
 	
 	/**
 	 * @var object $extendedBy The processs that extend this process
 	 * 
-	 * @ORM\OneToMany(targetEntity="App\Entity\Process", mappedBy="extends")
+	 * @ORM\OneToMany(targetEntity="App\Entity\ProcessType", mappedBy="extends")
 	 */
 	private $extendedBy;
 	
