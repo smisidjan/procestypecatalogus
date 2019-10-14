@@ -2,15 +2,17 @@
 
 namespace App\Entity;
 
+use ApiPlatform\Core\Annotation\ApiProperty;
 use ApiPlatform\Core\Annotation\ApiResource;
 use ApiPlatform\Core\Annotation\ApiFilter;
-use ApiPlatform\Core\Annotation\ApiProperty;
 use ApiPlatform\Core\Bridge\Doctrine\Orm\Filter\SearchFilter;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
+use Gedmo\Mapping\Annotation as Gedmo;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Serializer\Annotation\Groups;
 use Symfony\Component\Validator\Constraints as Assert;
+use Symfony\Component\Serializer\Annotation\MaxDepth;
 
 /**
  * A process
@@ -26,8 +28,8 @@ use Symfony\Component\Validator\Constraints as Assert;
  * @subpackage  Processes
  *
  * @ApiResource(
- *  normalizationContext={"groups"={"read"}},
- *  denormalizationContext={"groups"={"write"}},
+ *  normalizationContext={"groups"={"read"}, "enable_max_depth"=true},
+ *  denormalizationContext={"groups"={"write"}, "enable_max_depth"=true},
  *  collectionOperations={
  *  	"get",
  *  	"post"
@@ -50,7 +52,7 @@ use Symfony\Component\Validator\Constraints as Assert;
  *     "delete"
  *  }
  * )
- * @ORM\Entity(repositoryClass="App\Repository\ProcessRepository")
+ * @ORM\Entity(repositoryClass="App\Repository\ProcessTypeRepository")
  */
 class ProcessType
 {
@@ -180,34 +182,35 @@ class ProcessType
 	private $logo;
 	
 	/**
-	 * @var string $rsin The RSIN of the organization that owns this process
+	 * @var string $sourceOrganization The RSIN of the organization that owns this process
 	 * @example 002851234
 	 *
 	 * @ApiProperty(
 	 *     attributes={
 	 *         "swagger_context"={
-	 *         	   "description" = "The RSIN of the organisation that ownes this process",
+	 *         	   "description" = "The RSIN of the organization that owns this process",
 	 *             "type"="string",
 	 *             "example"="002851234",
-	 *              "maxLength"=255
+	 *              "maxLength"="255"
 	 *         }
 	 *     }
 	 * )
 	 *
-	 * @Assert\Url
+	 * @Assert\NotNull
 	 * @Assert\Length(
-	 *      max = 8,
+	 *      min = 8,
 	 *      max = 11
 	 * )
 	 * @Groups({"read", "write"})
 	 * @ORM\Column(type="string", length=255)
 	 * @ApiFilter(SearchFilter::class, strategy="exact")
 	 */
-	private $rsin;
+	private $sourceOrganization;
 	
 	/**
 	 * @var array $stages The stages of this process
 	 *
+     * @MaxDepth(1)
 	 * @Groups({"read", "write"})
 	 * @ORM\OneToMany(targetEntity="App\Entity\Stage", mappedBy="process", orphanRemoval=true, fetch="EAGER", cascade={"persist"})
 	 */
@@ -241,15 +244,17 @@ class ProcessType
 	/**
 	 * @var object $extends The process that this process extends
 	 *
+     * @MaxDepth(1)
 	 * @Groups({"write"})
-	 * @ORM\ManyToOne(targetEntity="App\Entity\Process", inversedBy="extendedBy", fetch="EAGER")
+	 * @ORM\ManyToOne(targetEntity="App\Entity\ProcessType", inversedBy="extendedBy", fetch="EAGER")
 	 */
 	private $extends;
 	
 	/**
 	 * @var object $extendedBy The processs that extend this process
 	 * 
-	 * @ORM\OneToMany(targetEntity="App\Entity\Process", mappedBy="extends")
+     * @MaxDepth(1)
+	 * @ORM\OneToMany(targetEntity="App\Entity\ProcessType", mappedBy="extends")
 	 */
 	private $extendedBy;
 	
@@ -325,14 +330,14 @@ class ProcessType
 		return $this;
 	}
 	
-	public function getRsin(): ?string
+	public function getSourceOrganization(): ?string
 	{
-		return $this->rsin;
+		return $this->sourceOrganization;
 	}
 	
-	public function setRsin(string $rsin): self
+	public function setSourceOrganization(string $sourceOrganization): self
 	{
-		$this->rsin = $rsin;
+		$this->sourceOrganization = $sourceOrganization;
 		
 		return $this;
 	}
