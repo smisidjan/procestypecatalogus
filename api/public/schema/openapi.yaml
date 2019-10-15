@@ -58,13 +58,13 @@ paths:
                   $ref: '#/components/schemas/ProcessType-read'
       parameters:
         -
-          name: rsin
+          name: sourceOrganization
           in: query
           required: false
           schema:
             type: string
         -
-          name: 'rsin[]'
+          name: 'sourceOrganization[]'
           in: query
           required: false
           schema:
@@ -633,7 +633,7 @@ components:
           readOnly: true
           description: 'The logo for this process'
           type: string
-        rsin:
+        source_organization:
           description: 'The RSIN of the organization that owns this process'
           type: string
         stages:
@@ -644,11 +644,15 @@ components:
         request:
           description: 'The request that is used for this process'
           type: string
+      required:
+        - source_organization
     ProcessType-write:
       type: object
       description: 'A process'
+      required:
+        - source_organization
       properties:
-        rsin:
+        source_organization:
           description: 'The RSIN of the organization that owns this process'
           type: string
         stages:

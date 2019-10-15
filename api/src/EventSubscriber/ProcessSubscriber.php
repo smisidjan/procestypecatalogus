@@ -39,16 +39,16 @@ class ProcessSubscriber implements EventSubscriberInterface
 	
 	public function getProcess(GetResponseForControllerResultEvent $event)
 	{
-		$process = $event->getControllerResult();
+		$processType = $event->getControllerResult();
 		$route =  $event->getRequest()->get('_route');
 		$method = $event->getRequest()->getMethod();
 		$extend = $event->getRequest()->query->get('extend');
-		
-		if ( $extend != "true" || $route !='api_processes_get_item') {
+				
+		if ( $extend != "true" || $route !='api_process_types_get_item') {
 			return;
 		}
 		
-		$process = $this->processService->extendProcess($process);
+		$process = $this->processService->extendProcess($processType);
 		
 		return $process;
 	}	

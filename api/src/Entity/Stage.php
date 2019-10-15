@@ -211,11 +211,19 @@ class Stage
     private $process;
 
     /**
+     * @param Stage $next The next stage from this one
+     * 
+     * @MaxDepth(1)
+     * @Groups({"read","write"})
      * @ORM\OneToOne(targetEntity="App\Entity\Stage", inversedBy="previous", cascade={"persist", "remove"})
      */
     private $next;
 
     /**
+     * @param Stage $previous The previues stage from this one
+     * 
+     * @MaxDepth(1)
+     * @Groups({"read","write"})
      * @ORM\OneToOne(targetEntity="App\Entity\Stage", mappedBy="next", cascade={"persist", "remove"})
      */
     private $previous;

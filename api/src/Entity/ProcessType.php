@@ -354,7 +354,7 @@ class ProcessType
 	{
 		if (!$this->stages->contains($stage)) {
 			$this->stages[] = $stage;
-			$stage->setProcceses($this);
+			$stage->setProcess($this);
 		}
 		
 		return $this;
@@ -365,8 +365,8 @@ class ProcessType
 		if ($this->stages->contains($stage)) {
 			$this->stages->removeElement($stage);
 			// set the owning side to null (unless already changed)
-			if ($stage->getProcceses() === $this) {
-				$stage->setProcceses(null);
+			if ($stage->setProcess() === $this) {
+				$stage->setProcess(null);
 			}
 		}
 		
