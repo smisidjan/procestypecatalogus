@@ -1,9 +1,21 @@
 openapi: 3.0.2
 info:
-  title: 'ProcesTypeCatalogus (PTC)'
-  version: 0.0.1
+  title: 'Proto Component'
+  version: V.0.1
   description: |
-    The processes component is intended to tell applications how to render a request from the request component to a user. That means that the request component tells an application WHAT data it needs. But the processes component tells an application HOW this data needs to be collected. E.g. the different stages in a form. 
+    API Details
+    - Component: Proto Component
+    - Reference: pc
+    - Enviroment: dev
+    - Version: V.0.1
+    - Repository: []() / [zip](/archive/master.zip)
+    - Datamodel: [postman](/schema/openapi.postman_collection) / [oas](/schema/openapi.yaml) / [pdf](/schema/datamodel.pdf) / [mwb](/schema/datamodel.mwb) 
+    
+    Naast deze JSON rest API is er ook een [graphql](/graphql) interface beschikbaar. 
+                             
+    Voor het gebruik van deze applicatie is een JWT Token nodig, deze hangt altijd vast aan een applicatie, ofwel user. Geldige JWT Tokens worden aangemaakt bij het registreren van een applicatie en kennen een beperkte houdbaarheid. 
+    JWT Tokens kunnen zowel worden verlengd, als opnieuw worden aangevraagd, dit aan de hand van de applicatie id en sleutel.
+    Let er bij het meegeven van JWT tokens op dat deze moet worden voorafgegaan door een Bearer en een spatie, onder de header Authorization. De volledig naam wordt daarmee: 'Authorization: Bearer [TOKEN]'.
     
 paths:
   /process_types:
@@ -606,8 +618,8 @@ paths:
               $ref: '#/components/schemas/Stage-write'
           text/html:
             schema:
-              $ref: '#/components/schemas/Stage-write'
-        description: 'The new Stage resource'
+              $ref: '#/components/schemas/ExampleEntity'
+        description: 'The new ExampleEntity resource'
       parameters:
         -
           name: API-Version
@@ -642,7 +654,7 @@ paths:
           name: X-Audit-Clarification
           description: 'A clarification as to why a request has been made  (doelbinding)'
           in: header
-  '/stages/{id}':
+  '/example_entities/{id}':
     get:
       tags:
         - Stage
@@ -994,95 +1006,8 @@ components:
           readOnly: true
           description: 'An short description of this process'
           type: string
-        logo:
-          readOnly: true
-          description: 'The logo for this process'
-          type: string
-        source_organization:
-          description: 'The RSIN of the organization that owns this process'
-          type: string
-        stages:
-          description: 'The stages of this process'
-          type: array
-          items:
-            $ref: '#/components/schemas/Stage-read'
-        request:
-          description: 'The request that is used for this process'
-          type: string
-      required:
-        - source_organization
-    ProcessType-write:
-      type: object
-      description: 'A process'
-      required:
-        - source_organization
-      properties:
-        source_organization:
-          description: 'The RSIN of the organization that owns this process'
-          type: string
-        stages:
-          description: 'The stages of this process'
-          type: array
-          items:
-            $ref: '#/components/schemas/Stage-write'
-        request:
-          description: 'The request that is used for this process'
-          type: string
-        extends:
-          description: 'The process that this process extends'
-          $ref: '#/components/schemas/ProcessType-write'
-    Stage-read:
-      type: object
-      description: 'A single stage within a process'
-      properties:
-        id:
-          readOnly: true
-          description: 'The UUID identifier of this object'
-          type: string
-        name:
-          readOnly: true
-          description: 'The name of this stage'
-          type: string
-        description:
-          readOnly: true
-          description: 'An short description of this stage'
-          type: string
-        logo:
-          readOnly: true
-          description: 'The logo for this stage'
-          type: string
-        type:
-          description: 'The task type of the stage'
-          type: string
-        options:
-          description: 'The options or configuration for this stage'
-          type: string
-        validation:
-          readOnly: true
-          description: 'The validation rules that this stage adheres to'
-          type: string
-        next:
-          $ref: '#/components/schemas/Stage-read'
-        previous:
-          $ref: '#/components/schemas/Stage-read'
-        property:
-          type: string
-    Stage-write:
-      type: object
-      description: 'A single stage within a process'
-      properties:
-        type:
-          description: 'The task type of the stage'
-          type: string
-        options:
-          description: 'The options or configuration for this stage'
-          type: string
-        next:
-          $ref: '#/components/schemas/Stage-write'
-        previous:
-          $ref: '#/components/schemas/Stage-write'
-        property:
-          type: string
+        in_onderzoek: {  }
+        ingangs_datum: {  }
 host: pc.zaakonline.nl
 servers:
   -
