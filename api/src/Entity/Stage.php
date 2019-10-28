@@ -2,15 +2,17 @@
 
 namespace App\Entity;
 
+use ApiPlatform\Core\Annotation\ApiProperty;
 use ApiPlatform\Core\Annotation\ApiResource;
 use ApiPlatform\Core\Annotation\ApiFilter;
-use ApiPlatform\Core\Annotation\ApiProperty;
 use ApiPlatform\Core\Bridge\Doctrine\Orm\Filter\SearchFilter;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
+use Gedmo\Mapping\Annotation as Gedmo;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Serializer\Annotation\Groups;
 use Symfony\Component\Validator\Constraints as Assert;
+use Symfony\Component\Serializer\Annotation\MaxDepth;
 
 /**
  * A single stage within a process
@@ -26,8 +28,8 @@ use Symfony\Component\Validator\Constraints as Assert;
  * @subpackage  Processes
  * 
  * @ApiResource(
- *     normalizationContext={"groups"={"read"}},
- *     denormalizationContext={"groups"={"write"}}
+ *     normalizationContext={"groups"={"read"}, "enable_max_depth"=true},
+ *     denormalizationContext={"groups"={"write"}, "enable_max_depth"=true}
  * )
  * @ORM\Entity(repositoryClass="App\Repository\StageRepository")
  */
@@ -85,7 +87,7 @@ class Stage
 	private $name;
 	
 	/**
-	 * @var string $description An short description of this stage
+	 * @var string $description An short description of this stage 
 	 * @example Please enter your email adres
 	 *
 	 * @ApiProperty(
@@ -95,7 +97,7 @@ class Stage
 	 *         	   "description" = "An short description of this stage",
 	 *             "type"="string",
 	 *             "example"="Please enter your email adres",
-	 *             "maxLength"="2550,
+	 *             "maxLength"=2550
 	 *         }
 	 *     }
 	 * )
@@ -200,26 +202,34 @@ class Stage
     private $validation = [];
 
     /**
-     * @var object The process that this stage belongs to
+     * @var object ProcessType The process that this stage belongs to
      * 
      * @Assert\NotBlank
-     * @ORM\ManyToOne(targetEntity="App\Entity\Process", inversedBy="stages")
+     * @ORM\ManyToOne(targetEntity="App\Entity\ProcessType", inversedBy="stages")
      * @ORM\JoinColumn(nullable=false)
      */
     private $process;
 
     /**
+     * @param Stage $next The next stage from this one
+     * 
+     * @MaxDepth(1)
+     * @Groups({"read","write"})
      * @ORM\OneToOne(targetEntity="App\Entity\Stage", inversedBy="previous", cascade={"persist", "remove"})
      */
     private $next;
 
     /**
+     * @param Stage $previous The previues stage from this one
+     * 
+     * @MaxDepth(1)
+     * @Groups({"read","write"})
      * @ORM\OneToOne(targetEntity="App\Entity\Stage", mappedBy="next", cascade={"persist", "remove"})
      */
     private $previous;
 
     /**
-     * @param string The property that is used for this stage
+     * @param string The request property that is used for this stage
      * 
      * @ApiProperty(
      *     attributes={
@@ -234,7 +244,7 @@ class Stage
      * )
      * 
      * @Groups({"read", "write"})
-     * @ORM\Column(type="string", length=255)
+     * @ORM\Column(type="string", length=255, nullable=true)
      */
     private $property;
 
@@ -320,12 +330,12 @@ class Stage
         return $this;
     }
 
-    public function getProcess(): ?Process
+    public function getProcess(): ?ProcessType
     {
         return $this->process;
     }
 
-    public function setProcess(?Process $process): self
+    public function setProcess(?ProcessType $process): self
     {
         $this->process = $process;
 

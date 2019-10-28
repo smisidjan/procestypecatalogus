@@ -32,7 +32,8 @@ class PropertyService
 	public function getProperty($property)
 	{
 		$item = $this->cash->getItem('property_'.md5($property));
-		if ($item->isHit()) {
+		if ($item->isHit()) {		
+						
 			return $item->get();
 		}		
 		
@@ -41,9 +42,22 @@ class PropertyService
 				'timeout'  => 4000.0,
 		]);
 		
-		$response = $client->request('GET',$property);
+		$response = $client->request('GET', $property);
 		
 		$value = json_decode($response->getBody(), true);
+		
+		// We dont want to much relational information
+		if(array_key_exists ('_links', $value)){ unset($value['_links']);}
+		if(array_key_exists ('_embedded' ,$value)){ unset($value['_embedded']);}
+		
+		// Lets also strip empty values for easy reading
+		
+		// We dont want to much relational information
+		if(array_key_exists ('_links', $value)){ unset($value['_links']);}
+		if(array_key_exists ('_embedded' ,$value)){ unset($value['_embedded']);}
+		
+		// Lets also strip empty values for easy reading
+		$value = array_filter($value, function($test) { return !is_null($test) && $test!== ''; });
 		
 		$item->set($value);
 		$item->expiresAt(new \DateTime('tomorrow'));

@@ -6,7 +6,7 @@ docker:
   containerProjectName: processes
 
 php:
-  repository: docker.io/conduction/processes-php
+  repository: docker.io/conduction/ptc-php
   tag: latest
   pullPolicy: Always
   replicaCount: 1
@@ -23,15 +23,15 @@ php:
     - 192.168.0.0/16
 
 nginx:
-  repository: docker.io/conduction/processes-nginx
+  repository: docker.io/conduction/ptc-nginx
   tag: latest
   pullPolicy: Always
   replicaCount: 1
 
 varnish:
   enabled: true
-  #url: https://zaakonline.nl
-  repository: docker.io/conduction/processes-varnish
+  url: https://ptc-varnish
+  repository: docker.io/conduction/ptc-varnish
   tag: latest
   pullPolicy: Always
   replicaCount: 1

@@ -13,7 +13,7 @@ namespace App\Service;
 
 use Doctrine\ORM\EntityManagerInterface;
 
-use App\Entity\Process;
+use App\Entity\ProcessType;
 use App\Service\PropertyService;
 use App\Service\RequestTypeService;
 
@@ -30,13 +30,12 @@ class ProcessService
 		$this->requestTypeService = $requestTypeService;
 	}
 	
-	public function extendProcess(Process $process)
+	public function extendProcess(ProcessType $process)
 	{
 		$processesProcessed = [(string) $process->getId()];
 		$extendedProces= $process->getExtends();
 		$properties = [];
 		
-		/*
 		// Let loop this for as long as we can extend requests
 		while($extendedProces){
 			// But kill it the moment we spot an invinate loop
@@ -48,27 +47,29 @@ class ProcessService
 			$processesProcessed[(string) $extendedProces->getId()] = true;
 			
 			// Then we need to do the actual extending
-			foreach ($extendedProces->getStages() as $stage){
-				
-				
+			foreach ($extendedProces->getStages() as $stage){	
+				/*
 				if(in_array($stage->getProperty(), $properties)){
 					throw new \Exception('There property titled '.$stage->getProperty().'is used more then once this extention');
 				}
-				
-				
+				*/
+				/*
 				$properties[$stage->getProperty()] = true;
-				$proces->addProperty($property);
+				*/
+				
+				/* @todo deze is levens gevaarlijk */
+				$process->addStage($stage);
 			}
 			
-			$proces = $extendedProces->getExtends();
+			$extendedProces = $extendedProces->getExtends();
 		}
-		*/
+		
 		$process = $this->getProcessProperties($process);
 		
 		return $process;
 	}
 	
-	public function getProcessProperties(Process $process)
+	public function getProcessProperties(ProcessType $process)
 	{
 		
 		// Then we need to do the actual extending
@@ -80,7 +81,7 @@ class ProcessService
 		return $process;
 	}
 	
-	public function validateProcess(Process $process)
+	public function validateProcess(ProcessType $process)
 	{
 	
 	}
