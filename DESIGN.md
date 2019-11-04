@@ -2,6 +2,29 @@
 
 This component was designed inline with the [NL API Strategie](https://docs.geostandaarden.nl/api/API-Strategie) and [https://www.noraonline.nl/wiki/Standaarden](NORA).
 
+Domain Build-up and routing
+-------
+By convention the component assumes that you follow the common ground domain name build up, meaning {enviroment}.{component}.{rest of domain}. That means that only the first two url parts are used for routin. E.g. a propper domain for the production API of the verzoeken registratie component would be api.vrc.zaakonline.nl
+
+Enviroments and namespacing
+-------
+We assume that for that you want to run several enviroments for development purposes. We identify the following namespaces for support.
+- prod (Production)
+- acce (Acceptation)
+- stag (Staging)
+- test (Testing)
+- dev (Development)
+
+Becouse we base the commonground infastructure on kubernetes, and we want to keep a hard sepperation between enviroment we als assume that you are using your enviroment as a namespace
+
+Symfony libary managment gies us the optoin to define the libbarys on a per envirmoent base, you can find that definition in the [bundle config](api/config/bundles.php)
+
+Besides the API envormiments the component also ships with
+- client (An react client frontend)
+- admin ( An read admin interface)
+
+If no enviroment is supplied to the load balancer then trafic is routed to the client interface.
+
 Loging Headers (NLX Audit trail)
 -------
 We inherit a couple of headers from the transaction logging within the [NLX schema](https://docs.nlx.io/further-reading/transaction-logs/), there does however see to be on ongoing discussion on how headers are supposed to be interpreted. The NLX schema states 
@@ -72,6 +95,10 @@ It is perceivable that in future iterations we would like to use indexed array i
 __solution__
 We support both comma and bracket notation on array's, but only document bracket notation since it is preferred.
 
+
+Container Setup
+-------
+ https://medium.com/shiphp/building-a-custom-nginx-docker-image-with-environment-variables-in-the-config-4a0c36c4a617
  
 
 Filtering
@@ -95,6 +122,13 @@ LIKE pattern matching always covers the entire string. Therefore, if it's desire
 
 To match a literal underscore or percent sign without matching other characters, the respective character in pattern must be preceded by a backlash. 
 
+## Kubernetes
+
+### Loadbalancers
+We no longer provide a load balancer per component, since this would require a ip per component. Draining ip's on mult component kubernetes clusters. In stead we make componentes available as an interner service
+
+### server naming
+A component is (speaking in kubernetes terms) a service that is available at 
 
 ## Data types
 
