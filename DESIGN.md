@@ -6,14 +6,18 @@ Domain Build-up and routing
 -------
 By convention the component assumes that you follow the common ground domain name build up, meaning {enviroment}.{component}.{rest of domain}. That means that only the first two url parts are used for routin. E.g. a propper domain for the production API of the verzoeken registratie component would be api.vrc.zaakonline.nl
 
-Enviroments
+Enviroments and namespacing
 -------
-By default the component assumes that you want to run several enviroments for development purposes, these are provided by the buildin NLX load balancer. The default API enviroments are
-- api /prod (Production)
+We assume that for that you want to run several enviroments for development purposes. We identify the following namespaces for support.
+- prod (Production)
 - acce (Acceptation)
 - stag (Staging)
 - test (Testing)
 - dev (Development)
+
+Becouse we base the commonground infastructure on kubernetes, and we want to keep a hard sepperation between enviroment we als assume that you are using your enviroment as a namespace
+
+Symfony libary managment gies us the optoin to define the libbarys on a per envirmoent base, you can find that definition in the [bundle config](api/config/bundles.php)
 
 Besides the API envormiments the component also ships with
 - client (An react client frontend)
@@ -118,6 +122,13 @@ LIKE pattern matching always covers the entire string. Therefore, if it's desire
 
 To match a literal underscore or percent sign without matching other characters, the respective character in pattern must be preceded by a backlash. 
 
+## Kubernetes
+
+### Loadbalancers
+We no longer provide a load balancer per component, since this would require a ip per component. Draining ip's on mult component kubernetes clusters. In stead we make componentes available as an interner service
+
+### server naming
+A component is (speaking in kubernetes terms) a service that is available at 
 
 ## Data types
 
