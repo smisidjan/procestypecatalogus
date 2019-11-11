@@ -24,7 +24,7 @@ use Symfony\Component\Serializer\Annotation\MaxDepth;
  * @license    	EUPL 1.2 https://opensource.org/licenses/EUPL-1.2 *
  * @version    	1.0
  *
- * @link   		http//:www.conduction.nl
+ * @link   		http://www.conduction.nl
  * @package		Common Ground Component
  * @subpackage  Processes
  *
