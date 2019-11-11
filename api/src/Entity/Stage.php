@@ -140,7 +140,7 @@ class Stage
     /**
      * @var string The task type of the stage
      * @example my-organisation
-     *
+     * @Assert\Choice({"service","send","receive","user","manual","business rule","script"})
      * @ApiProperty(
      *     attributes={
      *         "swagger_context"={
@@ -180,7 +180,9 @@ class Stage
     /**
      * @var object The validation rules that this stage adheres to
      * @example my-organisation
-     *
+     * @Assert\Length(
+     *     max=255
+     * )
      * @ApiProperty(
      *     attributes={
      *         "swagger_context"={
