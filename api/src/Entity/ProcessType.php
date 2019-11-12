@@ -10,6 +10,7 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Gedmo\Mapping\Annotation as Gedmo;
 use Doctrine\ORM\Mapping as ORM;
+use Ramsey\Uuid\UuidInterface;
 use Symfony\Component\Serializer\Annotation\Groups;
 use Symfony\Component\Validator\Constraints as Assert;
 use Symfony\Component\Serializer\Annotation\MaxDepth;
@@ -23,7 +24,7 @@ use Symfony\Component\Serializer\Annotation\MaxDepth;
  * @license    	EUPL 1.2 https://opensource.org/licenses/EUPL-1.2 *
  * @version    	1.0
  *
- * @link   		http//:www.conduction.nl
+ * @link   		http://www.conduction.nl
  * @package		Common Ground Component
  * @subpackage  Processes
  *
@@ -57,7 +58,7 @@ use Symfony\Component\Serializer\Annotation\MaxDepth;
 class ProcessType
 {
 	/**
-     * @var \Ramsey\Uuid\UuidInterface $id The UUID identifier of this object
+     * @var UuidInterface $id The UUID identifier of this object
      * @example e2984465-190a-4562-829e-a8cca81aa35d
 	 *
 	 * @ApiProperty(
@@ -80,7 +81,7 @@ class ProcessType
 	 * @ORM\CustomIdGenerator(class="Ramsey\Uuid\Doctrine\UuidGenerator")
 	 */
 	private $id;
-	
+
 	/**
 	 * @var string $name The name of this process
      * @example My process
@@ -97,7 +98,7 @@ class ProcessType
 	 *         }
 	 *     }
 	 * )
-	 * 
+	 *
      * @Assert\NotNull
      * @Assert\Length(
      *      max = 255
@@ -106,7 +107,7 @@ class ProcessType
      * @ORM\Column(type="string", length=255)
 	 */
 	private $name;
-	
+
 	/**
 	 * @var string $subtitle The subtitle of this process
      * @example"An example process
@@ -130,7 +131,7 @@ class ProcessType
 	 * @ORM\Column(type="string", length=255)
 	 */
 	private $subtitle;
-	
+
 	/**
 	 * @var string $description An short description of this process
      * @example This is the best process ever
@@ -146,7 +147,7 @@ class ProcessType
 	 *         }
 	 *     }
 	 * )
-	 * 
+	 *
      * @Assert\Length(
      *      max = 2550
      * )
@@ -154,7 +155,7 @@ class ProcessType
      * @ORM\Column(type="text", nullable=true)
 	 */
 	private $description;
-	
+
 	/**
 	 * @var string $logo The logo for this process
 	 * @example https://www.my-organisation.com/logo.png
@@ -180,7 +181,7 @@ class ProcessType
 	 * @ORM\Column(type="string", length=255, nullable=true)
 	 */
 	private $logo;
-	
+
 	/**
 	 * @var string $sourceOrganization The RSIN of the organization that owns this process
 	 * @example 002851234
@@ -206,16 +207,17 @@ class ProcessType
 	 * @ApiFilter(SearchFilter::class, strategy="exact")
 	 */
 	private $sourceOrganization;
-	
+
 	/**
 	 * @var array $stages The stages of this process
 	 *
      * @MaxDepth(1)
 	 * @Groups({"read", "write"})
+     * @Assert\Valid
 	 * @ORM\OneToMany(targetEntity="App\Entity\Stage", mappedBy="process", orphanRemoval=true, fetch="EAGER", cascade={"persist"})
 	 */
 	private $stages;
-	
+
 	/**
 	 * @var string $request The request that is used for this process
 	 * @example http://rtc.zaakonline.nl/9bd169ef-bc8c-4422-86ce-a0e7679ab67a
@@ -240,7 +242,7 @@ class ProcessType
 	 * @ORM\Column(type="string", length=255)
 	 */
 	private $request;
-	
+
 	/**
 	 * @var object $extends The process that this process extends
 	 *
@@ -249,99 +251,99 @@ class ProcessType
 	 * @ORM\ManyToOne(targetEntity="App\Entity\ProcessType", inversedBy="extendedBy", fetch="EAGER")
 	 */
 	private $extends;
-	
+
 	/**
 	 * @var object $extendedBy The processs that extend this process
-	 * 
+	 *
      * @MaxDepth(1)
 	 * @ORM\OneToMany(targetEntity="App\Entity\ProcessType", mappedBy="extends")
 	 */
 	private $extendedBy;
-	
+
 	/**
 	 * @param array The properties property is used internally for validation and extending and serves as an array of property UUID's against which can be checked for double properties
 	 */
 	private $properties;
-	
-	
+
+
 	public function __construct()
 	{
 		$this->stages = new ArrayCollection();
 		$this->extendedBy = new ArrayCollection();
 	}
-	
+
 	public function getId()
 	{
 		return $this->id;
 	}
-	
+
 	public function setId(string $id): self
 	{
 		$this->id = $id;
-		
+
 		return $this;
 	}
-	
+
 	public function getName(): ?string
 	{
 		return $this->name;
 	}
-	
+
 	public function setName(string $name): self
 	{
 		$this->name = $name;
-		
+
 		return $this;
 	}
-	
+
 	public function getDescription(): ?string
 	{
 		return $this->description;
 	}
-	
+
 	public function setDescription(?string $description): self
 	{
 		$this->description = $description;
-		
+
 		return $this;
 	}
-	
+
 	public function getLogo(): ?string
 	{
 		return $this->logo;
 	}
-	
+
 	public function setLogo(?string $logo): self
 	{
 		$this->logo = $logo;
-		
+
 		return $this;
 	}
-	
+
 	public function getSubtitle(): ?string
 	{
 		return $this->subtitle;
 	}
-	
+
 	public function setSubtitle(string $subtitle): self
 	{
 		$this->subtitle = $subtitle;
-		
+
 		return $this;
 	}
-	
+
 	public function getSourceOrganization(): ?string
 	{
 		return $this->sourceOrganization;
 	}
-	
+
 	public function setSourceOrganization(string $sourceOrganization): self
 	{
 		$this->sourceOrganization = $sourceOrganization;
-		
+
 		return $this;
 	}
-	
+
 	/**
 	 * @return Collection|Stage[]
 	 */
@@ -349,17 +351,17 @@ class ProcessType
 	{
 		return $this->stages;
 	}
-	
+
 	public function addStage(Stage $stage): self
 	{
 		if (!$this->stages->contains($stage)) {
 			$this->stages[] = $stage;
 			$stage->setProcess($this);
 		}
-		
+
 		return $this;
 	}
-	
+
 	public function removeStage(Stage $stage): self
 	{
 		if ($this->stages->contains($stage)) {
@@ -369,34 +371,34 @@ class ProcessType
 				$stage->setProcess(null);
 			}
 		}
-		
+
 		return $this;
 	}
-	
+
 	public function getRequest(): ?string
 	{
 		return $this->request;
 	}
-	
+
 	public function setRequest(string $request): self
 	{
 		$this->request = $request;
-		
+
 		return $this;
 	}
-	
+
 	public function getExtends(): ?self
 	{
 		return $this->extends;
 	}
-	
+
 	public function setExtends(?self $extends): self
 	{
 		$this->extends = $extends;
-		
+
 		return $this;
 	}
-	
+
 	/**
 	 * @return Collection|self[]
 	 */
@@ -404,17 +406,17 @@ class ProcessType
 	{
 		return $this->extendedBy;
 	}
-	
+
 	public function addExtendedBy(self $extendedBy): self
 	{
 		if (!$this->extendedBy->contains($extendedBy)) {
 			$this->extendedBy[] = $extendedBy;
 			$extendedBy->setExtends($this);
 		}
-		
+
 		return $this;
 	}
-	
+
 	public function removeExtendedBy(self $extendedBy): self
 	{
 		if ($this->extendedBy->contains($extendedBy)) {
@@ -424,30 +426,30 @@ class ProcessType
 				$extendedBy->setExtends(null);
 			}
 		}
-		
+
 		return $this;
 	}
-	
+
 	public function getProperties()
 	{
 		return $this->properties;
 	}
-	
+
 	public function addProperty(string $property): self
 	{
 		if (!in_array($property, $this->properties)) {
 			$this->properties[] = $property;
 		}
-		
+
 		return $this;
 	}
-	
+
 	public function removeProperty(string $property): self
 	{
 		if (in_array($property, $this->properties)) {
 			unset($this->properties[$property]);
 		}
-		
+
 		return $this;
 	}
 }
