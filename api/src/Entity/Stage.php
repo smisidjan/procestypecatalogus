@@ -2,15 +2,18 @@
 
 namespace App\Entity;
 
+use ApiPlatform\Core\Annotation\ApiProperty;
 use ApiPlatform\Core\Annotation\ApiResource;
 use ApiPlatform\Core\Annotation\ApiFilter;
-use ApiPlatform\Core\Annotation\ApiProperty;
 use ApiPlatform\Core\Bridge\Doctrine\Orm\Filter\SearchFilter;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
+use Gedmo\Mapping\Annotation as Gedmo;
 use Doctrine\ORM\Mapping as ORM;
+use Ramsey\Uuid\UuidInterface;
 use Symfony\Component\Serializer\Annotation\Groups;
 use Symfony\Component\Validator\Constraints as Assert;
+use Symfony\Component\Serializer\Annotation\MaxDepth;
 
 /**
  * A single stage within a process
@@ -21,22 +24,22 @@ use Symfony\Component\Validator\Constraints as Assert;
  * @license    	EUPL 1.2 https://opensource.org/licenses/EUPL-1.2 *
  * @version    	1.0
  *
- * @link   		http//:www.conduction.nl
+ * @link   		http://www.conduction.nl
  * @package		Common Ground Component
  * @subpackage  Processes
- * 
+ *
  * @ApiResource(
- *     normalizationContext={"groups"={"read"}},
- *     denormalizationContext={"groups"={"write"}}
+ *     normalizationContext={"groups"={"read"}, "enable_max_depth"=true},
+ *     denormalizationContext={"groups"={"write"}, "enable_max_depth"=true}
  * )
  * @ORM\Entity(repositoryClass="App\Repository\StageRepository")
  */
 class Stage
 {
     /**
-     * @var \Ramsey\Uuid\UuidInterface $id The UUID identifier of this object
+     * @var UuidInterface $id The UUID identifier of this object
      * @example e2984465-190a-4562-829e-a8cca81aa35d
-     *	 
+     *
      * @ApiProperty(
      * 	   identifier=true,
      *     attributes={
@@ -57,7 +60,7 @@ class Stage
      * @ORM\CustomIdGenerator(class="Ramsey\Uuid\Doctrine\UuidGenerator")
      */
 	private $id;
-	
+
 	/**
 	 * @var string $name The name of this stage
 	 * @example Stage 1
@@ -83,7 +86,7 @@ class Stage
 	 * @ORM\Column(type="string", length=255)
 	 */
 	private $name;
-	
+
 	/**
 	 * @var string $description An short description of this stage
 	 * @example Please enter your email adres
@@ -95,7 +98,7 @@ class Stage
 	 *         	   "description" = "An short description of this stage",
 	 *             "type"="string",
 	 *             "example"="Please enter your email adres",
-	 *             "maxLength"="2550,
+	 *             "maxLength"=2550
 	 *         }
 	 *     }
 	 * )
@@ -107,7 +110,7 @@ class Stage
 	 * @ORM\Column(type="text", nullable=true)
 	 */
 	private $description;
-    
+
     /**
      * @var string $logo The logo for this stage
      * @example https://www.my-organisation.com/logo.png
@@ -133,11 +136,11 @@ class Stage
      * @ORM\Column(type="string", length=255, nullable=true)
      */
     private $logo;
-    
+
     /**
      * @var string The task type of the stage
      * @example my-organisation
-     *     
+     * @Assert\Choice({"service","send","receive","user","manual","business rule","script"})
      * @ApiProperty(
      *     attributes={
      *         "swagger_context"={
@@ -148,7 +151,7 @@ class Stage
      *             "default"="user"
      *         }
      *     }
-     * )      
+     * )
      * @Groups({"read", "write"})
      * @ORM\Column(type="string", length=255)
      */
@@ -157,7 +160,7 @@ class Stage
     /**
      * @var object The options or configuration for this stage
      * @example my-organisation
-     * 
+     *
      * @ApiProperty(
      *     attributes={
      *         "swagger_context"={
@@ -168,7 +171,7 @@ class Stage
      *         }
      *     }
      * )
-     * 
+     *
      * @Groups({"read", "write"})
      * @ORM\Column(type="json", nullable=true)
      */
@@ -177,7 +180,9 @@ class Stage
     /**
      * @var object The validation rules that this stage adheres to
      * @example my-organisation
-     * 
+     * @Assert\Length(
+     *     max=255
+     * )
      * @ApiProperty(
      *     attributes={
      *         "swagger_context"={
@@ -193,34 +198,44 @@ class Stage
      *         }
      *     }
      * )
-     * 
+     *
      * @Groups({"read"})
      * @ORM\Column(type="json", nullable=true)
      */
     private $validation = [];
 
     /**
-     * @var object The process that this stage belongs to
-     * 
+     * @var object ProcessType The process that this stage belongs to
+     *
      * @Assert\NotBlank
-     * @ORM\ManyToOne(targetEntity="App\Entity\Process", inversedBy="stages")
+     * @ORM\ManyToOne(targetEntity="App\Entity\ProcessType", inversedBy="stages")
      * @ORM\JoinColumn(nullable=false)
      */
     private $process;
 
     /**
+     * @param Stage $next The next stage from this one
+     *
+     * @MaxDepth(1)
+     * @Groups({"read","write"})
+     * @Asert\Valid
      * @ORM\OneToOne(targetEntity="App\Entity\Stage", inversedBy="previous", cascade={"persist", "remove"})
      */
     private $next;
 
     /**
+     * @param Stage $previous The previues stage from this one
+     *
+     * @MaxDepth(1)
+     * @Groups({"read","write"})
+     * @Asert\Valid
      * @ORM\OneToOne(targetEntity="App\Entity\Stage", mappedBy="next", cascade={"persist", "remove"})
      */
     private $previous;
 
     /**
-     * @param string The property that is used for this stage
-     * 
+     * @param string The request property that is used for this stage
+     *
      * @ApiProperty(
      *     attributes={
      *         "swagger_context"={
@@ -232,9 +247,9 @@ class Stage
      *         }
      *     }
      * )
-     * 
+     *
      * @Groups({"read", "write"})
-     * @ORM\Column(type="string", length=255)
+     * @ORM\Column(type="string", length=255, nullable=true)
      */
     private $property;
 
@@ -271,16 +286,16 @@ class Stage
 
         return $this;
     }
-    
+
     public function getLogo(): ?string
     {
     	return $this->logo;
     }
-    
+
     public function setLogo(?string $logo): self
     {
     	$this->logo = $logo;
-    	
+
     	return $this;
     }
 
@@ -320,18 +335,18 @@ class Stage
         return $this;
     }
 
-    public function getProcess(): ?Process
+    public function getProcess(): ?ProcessType
     {
         return $this->process;
     }
 
-    public function setProcess(?Process $process): self
+    public function setProcess(?ProcessType $process): self
     {
         $this->process = $process;
 
         return $this;
     }
-    
+
     public function getNext(): ?self
     {
         return $this->next;

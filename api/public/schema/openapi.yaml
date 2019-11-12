@@ -1,70 +1,87 @@
 openapi: 3.0.2
 info:
-  title: 'Processes (Processen)'
-  version: 0.0.1
+  title: 'Proces Registratie Component'
+  version: V.0.1
   description: |
-    The processes component is intended to tell applications how to render a request from the request component to a user. That means that the request component tells an application WHAT data it needs. But the processes component tells an application HOW this data needs to be collected. E.g. the different stages in a form. 
+    API Details
+    - Component: Proces Registratie Component
+    - Reference: prc
+    - Enviroment: dev
+    - Version: V.0.1
+    - Repository: []() / [zip](/archive/master.zip)
+    - Datamodel: [postman](/schema/openapi.postman_collection) / [oas](/schema/openapi.yaml) / [pdf](/schema/datamodel.pdf) / [mwb](/schema/datamodel.mwb) 
+    
+    Naast deze JSON rest API is er ook een [graphql](/graphql) interface beschikbaar. 
+                             
+    Voor het gebruik van deze applicatie is een JWT Token nodig, deze hangt altijd vast aan een applicatie, ofwel user. Geldige JWT Tokens worden aangemaakt bij het registreren van een applicatie en kennen een beperkte houdbaarheid. 
+    JWT Tokens kunnen zowel worden verlengd, als opnieuw worden aangevraagd, dit aan de hand van de applicatie id en sleutel.
+    Let er bij het meegeven van JWT tokens op dat deze moet worden voorafgegaan door een Bearer en een spatie, onder de header Authorization. De volledig naam wordt daarmee: 'Authorization: Bearer [TOKEN]'.
     
 paths:
-  /processes:
+  /process_types:
     get:
       tags:
-        - Process
-      operationId: getProcessCollection
-      summary: 'Retrieves the collection of Process resources.'
+        - ProcessType
+      operationId: getProcessTypeCollection
+      summary: 'Retrieves the collection of ProcessType resources.'
       responses:
         200:
-          description: 'Process collection response'
+          description: 'ProcessType collection response'
           content:
             application/hal+json:
               schema:
                 type: array
                 items:
-                  $ref: '#/components/schemas/Process-read'
+                  $ref: '#/components/schemas/ProcessType-read'
             application/ld+json:
               schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/Process-read'
+                type: object
+                properties:
+                  'hydra:member': { type: array, items: { $ref: '#/components/schemas/ProcessType:jsonld-read' } }
+                  'hydra:totalItems': { type: integer, minimum: 0 }
+                  'hydra:view': { type: object, properties: { '@id': { type: string, format: iri-reference }, '@type': { type: string }, 'hydra:first': { type: string, format: iri-reference }, 'hydra:last': { type: string, format: iri-reference }, 'hydra:next': { type: string, format: iri-reference } } }
+                  'hydra:search': { type: object, properties: { '@type': { type: string }, 'hydra:template': { type: string }, 'hydra:variableRepresentation': { type: string }, 'hydra:mapping': { type: array, items: { type: object, properties: { '@type': { type: string }, variable: { type: string }, property: { type: string }, required: { type: boolean } } } } } }
+                required:
+                  - 'hydra:member'
             application/vnd.api+json:
               schema:
                 type: array
                 items:
-                  $ref: '#/components/schemas/Process-read'
+                  $ref: '#/components/schemas/ProcessType-read'
             application/json:
               schema:
                 type: array
                 items:
-                  $ref: '#/components/schemas/Process-read'
+                  $ref: '#/components/schemas/ProcessType-read'
             application/xml:
               schema:
                 type: array
                 items:
-                  $ref: '#/components/schemas/Process-read'
+                  $ref: '#/components/schemas/ProcessType-read'
             application/x-yaml:
               schema:
                 type: array
                 items:
-                  $ref: '#/components/schemas/Process-read'
+                  $ref: '#/components/schemas/ProcessType-read'
             text/csv:
               schema:
                 type: array
                 items:
-                  $ref: '#/components/schemas/Process-read'
+                  $ref: '#/components/schemas/ProcessType-read'
             text/html:
               schema:
                 type: array
                 items:
-                  $ref: '#/components/schemas/Process-read'
+                  $ref: '#/components/schemas/ProcessType-read'
       parameters:
         -
-          name: rsin
+          name: source_organization
           in: query
           required: false
           schema:
             type: string
         -
-          name: 'rsin[]'
+          name: 'source_organization[]'
           in: query
           required: false
           schema:
@@ -80,45 +97,113 @@ paths:
           description: 'The collection page number'
           schema:
             type: integer
+            default: 1
+        -
+          name: Authorization
+          description: 'The JWT of the entity performing the request'
+          in: header
+        -
+          name: API-Version
+          description: 'The version of the API conform [Landelijke API-strategie.](https://geonovum.github.io/KP-APIs/#versioning)'
+          example: 1.0.1
+          in: header
+        -
+          name: X-NLX-Logrecord-ID
+          description: 'A  globally unique id of the request, which makes a request traceable throughout the network.'
+          in: header
+        -
+          name: X-NLX-Request-Process-Id
+          description: 'A process id for purpose registration (doelbinding)'
+          in: header
+        -
+          name: X-NLX-Request-Data-Elements
+          description: 'A list of requested data elements'
+          in: header
+        -
+          name: X-NLX-Request-Data-Subject
+          description: 'A key-value list of data subjects related to this request. e.g. `bsn=12345678, kenteken=ab-12-fg`'
+          in: header
+        -
+          name: X-Audit-Clarification
+          description: 'A clarification as to why a request has been made  (doelbinding)'
+          in: header
+        -
+          name: 'extend[]'
+          required: false
+          description: 'An array of nested objects to include in the return object'
+          in: query
+          schema:
+            type: array
+        -
+          name: 'fields[]'
+          required: false
+          description: 'An array of fields to return in output, wil return all fields is not supplied'
+          in: query
+          schema:
+            type: array
+        -
+          name: validOn
+          required: false
+          description: 'Returns object as valid on a given date time'
+          schema:
+            type: string
+            format: date-time
+          in: query
+        -
+          name: validFrom
+          required: false
+          description: 'Returns objects valid from a given date time'
+          schema:
+            type: string
+            format: date-time
+          in: query
+        -
+          name: validUntil
+          required: false
+          description: 'Returns objects valid until a given date time'
+          schema:
+            type: string
+            format: date-time
+          in: query
     post:
       tags:
-        - Process
-      operationId: postProcessCollection
-      summary: 'Creates a Process resource.'
+        - ProcessType
+      operationId: postProcessTypeCollection
+      summary: 'Creates a ProcessType resource.'
       responses:
         201:
-          description: 'Process resource created'
+          description: 'ProcessType resource created'
           content:
             application/hal+json:
               schema:
-                $ref: '#/components/schemas/Process-read'
+                $ref: '#/components/schemas/ProcessType-read'
             application/ld+json:
               schema:
-                $ref: '#/components/schemas/Process-read'
+                $ref: '#/components/schemas/ProcessType:jsonld-read'
             application/vnd.api+json:
               schema:
-                $ref: '#/components/schemas/Process-read'
+                $ref: '#/components/schemas/ProcessType-read'
             application/json:
               schema:
-                $ref: '#/components/schemas/Process-read'
+                $ref: '#/components/schemas/ProcessType-read'
             application/xml:
               schema:
-                $ref: '#/components/schemas/Process-read'
+                $ref: '#/components/schemas/ProcessType-read'
             application/x-yaml:
               schema:
-                $ref: '#/components/schemas/Process-read'
+                $ref: '#/components/schemas/ProcessType-read'
             text/csv:
               schema:
-                $ref: '#/components/schemas/Process-read'
+                $ref: '#/components/schemas/ProcessType-read'
             text/html:
               schema:
-                $ref: '#/components/schemas/Process-read'
+                $ref: '#/components/schemas/ProcessType-read'
           links:
-            GetProcessItem:
+            GetProcessTypeItem:
               parameters:
                 id: '$response.body#/id'
-              operationId: getProcessItem
-              description: 'The `id` value returned in the response can be used as the `id` parameter in `GET /processes/{id}`.'
+              operationId: getProcessTypeItem
+              description: 'The `id` value returned in the response can be used as the `id` parameter in `GET /process_types/{id}`.'
         400:
           description: 'Invalid input'
         404:
@@ -127,35 +212,65 @@ paths:
         content:
           application/hal+json:
             schema:
-              $ref: '#/components/schemas/Process-write'
+              $ref: '#/components/schemas/ProcessType-write'
           application/ld+json:
             schema:
-              $ref: '#/components/schemas/Process-write'
+              $ref: '#/components/schemas/ProcessType:jsonld-write'
           application/vnd.api+json:
             schema:
-              $ref: '#/components/schemas/Process-write'
+              $ref: '#/components/schemas/ProcessType-write'
           application/json:
             schema:
-              $ref: '#/components/schemas/Process-write'
+              $ref: '#/components/schemas/ProcessType-write'
           application/xml:
             schema:
-              $ref: '#/components/schemas/Process-write'
+              $ref: '#/components/schemas/ProcessType-write'
           application/x-yaml:
             schema:
-              $ref: '#/components/schemas/Process-write'
+              $ref: '#/components/schemas/ProcessType-write'
           text/csv:
             schema:
-              $ref: '#/components/schemas/Process-write'
+              $ref: '#/components/schemas/ProcessType-write'
           text/html:
             schema:
-              $ref: '#/components/schemas/Process-write'
-        description: 'The new Process resource'
-  '/processes/{id}':
+              $ref: '#/components/schemas/ProcessType-write'
+        description: 'The new ProcessType resource'
+      parameters:
+        -
+          name: Authorization
+          description: 'The JWT of the entity performing the request'
+          in: header
+        -
+          name: API-Version
+          description: 'The version of the API conform [Landelijke API-strategie.](https://geonovum.github.io/KP-APIs/#versioning)'
+          example: 1.0.1
+          in: header
+        -
+          name: X-NLX-Logrecord-ID
+          description: 'A  globally unique id of the request, which makes a request traceable throughout the network.'
+          in: header
+        -
+          name: X-NLX-Request-Process-Id
+          description: 'A process id for purpose registration (doelbinding)'
+          in: header
+        -
+          name: X-NLX-Request-Data-Elements
+          description: 'A list of requested data elements'
+          in: header
+        -
+          name: X-NLX-Request-Data-Subject
+          description: 'A key-value list of data subjects related to this request. e.g. `bsn=12345678, kenteken=ab-12-fg`'
+          in: header
+        -
+          name: X-Audit-Clarification
+          description: 'A clarification as to why a request has been made  (doelbinding)'
+          in: header
+  '/process_types/{id}':
     get:
       tags:
-        - Process
-      operationId: getProcessItem
-      summary: 'Retrieves a Process resource.'
+        - ProcessType
+      operationId: getProcessTypeItem
+      summary: 'Retrieves a ProcessType resource.'
       parameters:
         -
           name: id
@@ -163,41 +278,108 @@ paths:
           required: true
           schema:
             type: string
+        -
+          name: Authorization
+          description: 'The JWT of the entity performing the request'
+          in: header
+        -
+          name: API-Version
+          description: 'The version of the API conform [Landelijke API-strategie.](https://geonovum.github.io/KP-APIs/#versioning)'
+          example: 1.0.1
+          in: header
+        -
+          name: X-NLX-Logrecord-ID
+          description: 'A  globally unique id of the request, which makes a request traceable throughout the network.'
+          in: header
+        -
+          name: X-NLX-Request-Process-Id
+          description: 'A process id for purpose registration (doelbinding)'
+          in: header
+        -
+          name: X-NLX-Request-Data-Elements
+          description: 'A list of requested data elements'
+          in: header
+        -
+          name: X-NLX-Request-Data-Subject
+          description: 'A key-value list of data subjects related to this request. e.g. `bsn=12345678, kenteken=ab-12-fg`'
+          in: header
+        -
+          name: X-Audit-Clarification
+          description: 'A clarification as to why a request has been made  (doelbinding)'
+          in: header
+        -
+          name: 'extend[]'
+          required: false
+          description: 'An array of nested objects to include in the return object'
+          in: query
+          schema:
+            type: array
+        -
+          name: 'fields[]'
+          required: false
+          description: 'An array of fields to return in output, wil return all fields is not supplied'
+          in: query
+          schema:
+            type: array
+        -
+          name: validOn
+          required: false
+          description: 'Returns object as valid on a given date time'
+          schema:
+            type: string
+            format: date-time
+          in: query
+        -
+          name: validFrom
+          required: false
+          description: 'Returns objects valid from a given date time'
+          schema:
+            type: string
+            format: date-time
+          in: query
+        -
+          name: validUntil
+          required: false
+          description: 'Returns objects valid until a given date time'
+          schema:
+            type: string
+            format: date-time
+          in: query
       responses:
         200:
-          description: 'Process resource response'
+          description: 'ProcessType resource response'
           content:
             application/hal+json:
               schema:
-                $ref: '#/components/schemas/Process-read'
+                $ref: '#/components/schemas/ProcessType-read'
             application/ld+json:
               schema:
-                $ref: '#/components/schemas/Process-read'
+                $ref: '#/components/schemas/ProcessType:jsonld-read'
             application/vnd.api+json:
               schema:
-                $ref: '#/components/schemas/Process-read'
+                $ref: '#/components/schemas/ProcessType-read'
             application/json:
               schema:
-                $ref: '#/components/schemas/Process-read'
+                $ref: '#/components/schemas/ProcessType-read'
             application/xml:
               schema:
-                $ref: '#/components/schemas/Process-read'
+                $ref: '#/components/schemas/ProcessType-read'
             application/x-yaml:
               schema:
-                $ref: '#/components/schemas/Process-read'
+                $ref: '#/components/schemas/ProcessType-read'
             text/csv:
               schema:
-                $ref: '#/components/schemas/Process-read'
+                $ref: '#/components/schemas/ProcessType-read'
             text/html:
               schema:
-                $ref: '#/components/schemas/Process-read'
+                $ref: '#/components/schemas/ProcessType-read'
         404:
           description: 'Resource not found'
     put:
       tags:
-        - Process
-      operationId: putProcessItem
-      summary: 'Replaces the Process resource.'
+        - ProcessType
+      operationId: putProcessTypeItem
+      summary: 'Replaces the ProcessType resource.'
       parameters:
         -
           name: id
@@ -205,34 +387,63 @@ paths:
           required: true
           schema:
             type: string
+        -
+          name: Authorization
+          description: 'The JWT of the entity performing the request'
+          in: header
+        -
+          name: API-Version
+          description: 'The version of the API conform [Landelijke API-strategie.](https://geonovum.github.io/KP-APIs/#versioning)'
+          example: 1.0.1
+          in: header
+        -
+          name: X-NLX-Logrecord-ID
+          description: 'A  globally unique id of the request, which makes a request traceable throughout the network.'
+          in: header
+        -
+          name: X-NLX-Request-Process-Id
+          description: 'A process id for purpose registration (doelbinding)'
+          in: header
+        -
+          name: X-NLX-Request-Data-Elements
+          description: 'A list of requested data elements'
+          in: header
+        -
+          name: X-NLX-Request-Data-Subject
+          description: 'A key-value list of data subjects related to this request. e.g. `bsn=12345678, kenteken=ab-12-fg`'
+          in: header
+        -
+          name: X-Audit-Clarification
+          description: 'A clarification as to why a request has been made  (doelbinding)'
+          in: header
       responses:
         200:
-          description: 'Process resource updated'
+          description: 'ProcessType resource updated'
           content:
             application/hal+json:
               schema:
-                $ref: '#/components/schemas/Process-read'
+                $ref: '#/components/schemas/ProcessType-read'
             application/ld+json:
               schema:
-                $ref: '#/components/schemas/Process-read'
+                $ref: '#/components/schemas/ProcessType:jsonld-read'
             application/vnd.api+json:
               schema:
-                $ref: '#/components/schemas/Process-read'
+                $ref: '#/components/schemas/ProcessType-read'
             application/json:
               schema:
-                $ref: '#/components/schemas/Process-read'
+                $ref: '#/components/schemas/ProcessType-read'
             application/xml:
               schema:
-                $ref: '#/components/schemas/Process-read'
+                $ref: '#/components/schemas/ProcessType-read'
             application/x-yaml:
               schema:
-                $ref: '#/components/schemas/Process-read'
+                $ref: '#/components/schemas/ProcessType-read'
             text/csv:
               schema:
-                $ref: '#/components/schemas/Process-read'
+                $ref: '#/components/schemas/ProcessType-read'
             text/html:
               schema:
-                $ref: '#/components/schemas/Process-read'
+                $ref: '#/components/schemas/ProcessType-read'
         400:
           description: 'Invalid input'
         404:
@@ -241,37 +452,37 @@ paths:
         content:
           application/hal+json:
             schema:
-              $ref: '#/components/schemas/Process-write'
+              $ref: '#/components/schemas/ProcessType-write'
           application/ld+json:
             schema:
-              $ref: '#/components/schemas/Process-write'
+              $ref: '#/components/schemas/ProcessType:jsonld-write'
           application/vnd.api+json:
             schema:
-              $ref: '#/components/schemas/Process-write'
+              $ref: '#/components/schemas/ProcessType-write'
           application/json:
             schema:
-              $ref: '#/components/schemas/Process-write'
+              $ref: '#/components/schemas/ProcessType-write'
           application/xml:
             schema:
-              $ref: '#/components/schemas/Process-write'
+              $ref: '#/components/schemas/ProcessType-write'
           application/x-yaml:
             schema:
-              $ref: '#/components/schemas/Process-write'
+              $ref: '#/components/schemas/ProcessType-write'
           text/csv:
             schema:
-              $ref: '#/components/schemas/Process-write'
+              $ref: '#/components/schemas/ProcessType-write'
           text/html:
             schema:
-              $ref: '#/components/schemas/Process-write'
-        description: 'The updated Process resource'
+              $ref: '#/components/schemas/ProcessType-write'
+        description: 'The updated ProcessType resource'
     delete:
       tags:
-        - Process
-      operationId: deleteProcessItem
-      summary: 'Removes the Process resource.'
+        - ProcessType
+      operationId: deleteProcessTypeItem
+      summary: 'Removes the ProcessType resource.'
       responses:
         204:
-          description: 'Process resource deleted'
+          description: 'ProcessType resource deleted'
         404:
           description: 'Resource not found'
       parameters:
@@ -281,6 +492,35 @@ paths:
           required: true
           schema:
             type: string
+        -
+          name: Authorization
+          description: 'The JWT of the entity performing the request'
+          in: header
+        -
+          name: API-Version
+          description: 'The version of the API conform [Landelijke API-strategie.](https://geonovum.github.io/KP-APIs/#versioning)'
+          example: 1.0.1
+          in: header
+        -
+          name: X-NLX-Logrecord-ID
+          description: 'A  globally unique id of the request, which makes a request traceable throughout the network.'
+          in: header
+        -
+          name: X-NLX-Request-Process-Id
+          description: 'A process id for purpose registration (doelbinding)'
+          in: header
+        -
+          name: X-NLX-Request-Data-Elements
+          description: 'A list of requested data elements'
+          in: header
+        -
+          name: X-NLX-Request-Data-Subject
+          description: 'A key-value list of data subjects related to this request. e.g. `bsn=12345678, kenteken=ab-12-fg`'
+          in: header
+        -
+          name: X-Audit-Clarification
+          description: 'A clarification as to why a request has been made  (doelbinding)'
+          in: header
   /stages:
     get:
       tags:
@@ -298,9 +538,14 @@ paths:
                   $ref: '#/components/schemas/Stage-read'
             application/ld+json:
               schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/Stage-read'
+                type: object
+                properties:
+                  'hydra:member': { type: array, items: { $ref: '#/components/schemas/Stage:jsonld-read' } }
+                  'hydra:totalItems': { type: integer, minimum: 0 }
+                  'hydra:view': { type: object, properties: { '@id': { type: string, format: iri-reference }, '@type': { type: string }, 'hydra:first': { type: string, format: iri-reference }, 'hydra:last': { type: string, format: iri-reference }, 'hydra:next': { type: string, format: iri-reference } } }
+                  'hydra:search': { type: object, properties: { '@type': { type: string }, 'hydra:template': { type: string }, 'hydra:variableRepresentation': { type: string }, 'hydra:mapping': { type: array, items: { type: object, properties: { '@type': { type: string }, variable: { type: string }, property: { type: string }, required: { type: boolean } } } } } }
+                required:
+                  - 'hydra:member'
             application/vnd.api+json:
               schema:
                 type: array
@@ -339,6 +584,74 @@ paths:
           description: 'The collection page number'
           schema:
             type: integer
+            default: 1
+        -
+          name: Authorization
+          description: 'The JWT of the entity performing the request'
+          in: header
+        -
+          name: API-Version
+          description: 'The version of the API conform [Landelijke API-strategie.](https://geonovum.github.io/KP-APIs/#versioning)'
+          example: 1.0.1
+          in: header
+        -
+          name: X-NLX-Logrecord-ID
+          description: 'A  globally unique id of the request, which makes a request traceable throughout the network.'
+          in: header
+        -
+          name: X-NLX-Request-Process-Id
+          description: 'A process id for purpose registration (doelbinding)'
+          in: header
+        -
+          name: X-NLX-Request-Data-Elements
+          description: 'A list of requested data elements'
+          in: header
+        -
+          name: X-NLX-Request-Data-Subject
+          description: 'A key-value list of data subjects related to this request. e.g. `bsn=12345678, kenteken=ab-12-fg`'
+          in: header
+        -
+          name: X-Audit-Clarification
+          description: 'A clarification as to why a request has been made  (doelbinding)'
+          in: header
+        -
+          name: 'extend[]'
+          required: false
+          description: 'An array of nested objects to include in the return object'
+          in: query
+          schema:
+            type: array
+        -
+          name: 'fields[]'
+          required: false
+          description: 'An array of fields to return in output, wil return all fields is not supplied'
+          in: query
+          schema:
+            type: array
+        -
+          name: validOn
+          required: false
+          description: 'Returns object as valid on a given date time'
+          schema:
+            type: string
+            format: date-time
+          in: query
+        -
+          name: validFrom
+          required: false
+          description: 'Returns objects valid from a given date time'
+          schema:
+            type: string
+            format: date-time
+          in: query
+        -
+          name: validUntil
+          required: false
+          description: 'Returns objects valid until a given date time'
+          schema:
+            type: string
+            format: date-time
+          in: query
     post:
       tags:
         - Stage
@@ -353,7 +666,7 @@ paths:
                 $ref: '#/components/schemas/Stage-read'
             application/ld+json:
               schema:
-                $ref: '#/components/schemas/Stage-read'
+                $ref: '#/components/schemas/Stage:jsonld-read'
             application/vnd.api+json:
               schema:
                 $ref: '#/components/schemas/Stage-read'
@@ -389,7 +702,7 @@ paths:
               $ref: '#/components/schemas/Stage-write'
           application/ld+json:
             schema:
-              $ref: '#/components/schemas/Stage-write'
+              $ref: '#/components/schemas/Stage:jsonld-write'
           application/vnd.api+json:
             schema:
               $ref: '#/components/schemas/Stage-write'
@@ -409,6 +722,36 @@ paths:
             schema:
               $ref: '#/components/schemas/Stage-write'
         description: 'The new Stage resource'
+      parameters:
+        -
+          name: Authorization
+          description: 'The JWT of the entity performing the request'
+          in: header
+        -
+          name: API-Version
+          description: 'The version of the API conform [Landelijke API-strategie.](https://geonovum.github.io/KP-APIs/#versioning)'
+          example: 1.0.1
+          in: header
+        -
+          name: X-NLX-Logrecord-ID
+          description: 'A  globally unique id of the request, which makes a request traceable throughout the network.'
+          in: header
+        -
+          name: X-NLX-Request-Process-Id
+          description: 'A process id for purpose registration (doelbinding)'
+          in: header
+        -
+          name: X-NLX-Request-Data-Elements
+          description: 'A list of requested data elements'
+          in: header
+        -
+          name: X-NLX-Request-Data-Subject
+          description: 'A key-value list of data subjects related to this request. e.g. `bsn=12345678, kenteken=ab-12-fg`'
+          in: header
+        -
+          name: X-Audit-Clarification
+          description: 'A clarification as to why a request has been made  (doelbinding)'
+          in: header
   '/stages/{id}':
     get:
       tags:
@@ -422,6 +765,73 @@ paths:
           required: true
           schema:
             type: string
+        -
+          name: Authorization
+          description: 'The JWT of the entity performing the request'
+          in: header
+        -
+          name: API-Version
+          description: 'The version of the API conform [Landelijke API-strategie.](https://geonovum.github.io/KP-APIs/#versioning)'
+          example: 1.0.1
+          in: header
+        -
+          name: X-NLX-Logrecord-ID
+          description: 'A  globally unique id of the request, which makes a request traceable throughout the network.'
+          in: header
+        -
+          name: X-NLX-Request-Process-Id
+          description: 'A process id for purpose registration (doelbinding)'
+          in: header
+        -
+          name: X-NLX-Request-Data-Elements
+          description: 'A list of requested data elements'
+          in: header
+        -
+          name: X-NLX-Request-Data-Subject
+          description: 'A key-value list of data subjects related to this request. e.g. `bsn=12345678, kenteken=ab-12-fg`'
+          in: header
+        -
+          name: X-Audit-Clarification
+          description: 'A clarification as to why a request has been made  (doelbinding)'
+          in: header
+        -
+          name: 'extend[]'
+          required: false
+          description: 'An array of nested objects to include in the return object'
+          in: query
+          schema:
+            type: array
+        -
+          name: 'fields[]'
+          required: false
+          description: 'An array of fields to return in output, wil return all fields is not supplied'
+          in: query
+          schema:
+            type: array
+        -
+          name: validOn
+          required: false
+          description: 'Returns object as valid on a given date time'
+          schema:
+            type: string
+            format: date-time
+          in: query
+        -
+          name: validFrom
+          required: false
+          description: 'Returns objects valid from a given date time'
+          schema:
+            type: string
+            format: date-time
+          in: query
+        -
+          name: validUntil
+          required: false
+          description: 'Returns objects valid until a given date time'
+          schema:
+            type: string
+            format: date-time
+          in: query
       responses:
         200:
           description: 'Stage resource response'
@@ -431,7 +841,7 @@ paths:
                 $ref: '#/components/schemas/Stage-read'
             application/ld+json:
               schema:
-                $ref: '#/components/schemas/Stage-read'
+                $ref: '#/components/schemas/Stage:jsonld-read'
             application/vnd.api+json:
               schema:
                 $ref: '#/components/schemas/Stage-read'
@@ -469,6 +879,35 @@ paths:
           required: true
           schema:
             type: string
+        -
+          name: Authorization
+          description: 'The JWT of the entity performing the request'
+          in: header
+        -
+          name: API-Version
+          description: 'The version of the API conform [Landelijke API-strategie.](https://geonovum.github.io/KP-APIs/#versioning)'
+          example: 1.0.1
+          in: header
+        -
+          name: X-NLX-Logrecord-ID
+          description: 'A  globally unique id of the request, which makes a request traceable throughout the network.'
+          in: header
+        -
+          name: X-NLX-Request-Process-Id
+          description: 'A process id for purpose registration (doelbinding)'
+          in: header
+        -
+          name: X-NLX-Request-Data-Elements
+          description: 'A list of requested data elements'
+          in: header
+        -
+          name: X-NLX-Request-Data-Subject
+          description: 'A key-value list of data subjects related to this request. e.g. `bsn=12345678, kenteken=ab-12-fg`'
+          in: header
+        -
+          name: X-Audit-Clarification
+          description: 'A clarification as to why a request has been made  (doelbinding)'
+          in: header
     put:
       tags:
         - Stage
@@ -481,6 +920,35 @@ paths:
           required: true
           schema:
             type: string
+        -
+          name: Authorization
+          description: 'The JWT of the entity performing the request'
+          in: header
+        -
+          name: API-Version
+          description: 'The version of the API conform [Landelijke API-strategie.](https://geonovum.github.io/KP-APIs/#versioning)'
+          example: 1.0.1
+          in: header
+        -
+          name: X-NLX-Logrecord-ID
+          description: 'A  globally unique id of the request, which makes a request traceable throughout the network.'
+          in: header
+        -
+          name: X-NLX-Request-Process-Id
+          description: 'A process id for purpose registration (doelbinding)'
+          in: header
+        -
+          name: X-NLX-Request-Data-Elements
+          description: 'A list of requested data elements'
+          in: header
+        -
+          name: X-NLX-Request-Data-Subject
+          description: 'A key-value list of data subjects related to this request. e.g. `bsn=12345678, kenteken=ab-12-fg`'
+          in: header
+        -
+          name: X-Audit-Clarification
+          description: 'A clarification as to why a request has been made  (doelbinding)'
+          in: header
       responses:
         200:
           description: 'Stage resource updated'
@@ -490,7 +958,7 @@ paths:
                 $ref: '#/components/schemas/Stage-read'
             application/ld+json:
               schema:
-                $ref: '#/components/schemas/Stage-read'
+                $ref: '#/components/schemas/Stage:jsonld-read'
             application/vnd.api+json:
               schema:
                 $ref: '#/components/schemas/Stage-read'
@@ -520,7 +988,7 @@ paths:
               $ref: '#/components/schemas/Stage-write'
           application/ld+json:
             schema:
-              $ref: '#/components/schemas/Stage-write'
+              $ref: '#/components/schemas/Stage:jsonld-write'
           application/vnd.api+json:
             schema:
               $ref: '#/components/schemas/Stage-write'
@@ -552,6 +1020,35 @@ paths:
           required: true
           schema:
             type: string
+        -
+          name: Authorization
+          description: 'The JWT of the entity performing the request'
+          in: header
+        -
+          name: API-Version
+          description: 'The version of the API conform [Landelijke API-strategie.](https://geonovum.github.io/KP-APIs/#versioning)'
+          example: 1.0.1
+          in: header
+        -
+          name: X-NLX-Logrecord-ID
+          description: 'A  globally unique id of the request, which makes a request traceable throughout the network.'
+          in: header
+        -
+          name: X-NLX-Request-Process-Id
+          description: 'A process id for purpose registration (doelbinding)'
+          in: header
+        -
+          name: X-NLX-Request-Data-Elements
+          description: 'A list of requested data elements'
+          in: header
+        -
+          name: X-NLX-Request-Data-Subject
+          description: 'A key-value list of data subjects related to this request. e.g. `bsn=12345678, kenteken=ab-12-fg`'
+          in: header
+        -
+          name: X-Audit-Clarification
+          description: 'A clarification as to why a request has been made  (doelbinding)'
+          in: header
       responses:
         200:
           description: 'Stage resource updated'
@@ -561,7 +1058,7 @@ paths:
                 $ref: '#/components/schemas/Stage-read'
             application/ld+json:
               schema:
-                $ref: '#/components/schemas/Stage-read'
+                $ref: '#/components/schemas/Stage:jsonld-read'
             application/vnd.api+json:
               schema:
                 $ref: '#/components/schemas/Stage-read'
@@ -586,115 +1083,338 @@ paths:
           description: 'Resource not found'
       requestBody:
         content:
-          application/hal+json:
-            schema:
-              $ref: '#/components/schemas/Stage-write'
-          application/ld+json:
-            schema:
-              $ref: '#/components/schemas/Stage-write'
           application/vnd.api+json:
-            schema:
-              $ref: '#/components/schemas/Stage-write'
-          application/json:
-            schema:
-              $ref: '#/components/schemas/Stage-write'
-          application/xml:
-            schema:
-              $ref: '#/components/schemas/Stage-write'
-          application/x-yaml:
-            schema:
-              $ref: '#/components/schemas/Stage-write'
-          text/csv:
-            schema:
-              $ref: '#/components/schemas/Stage-write'
-          text/html:
             schema:
               $ref: '#/components/schemas/Stage-write'
         description: 'The updated Stage resource'
 components:
   schemas:
-    Process-read:
+    ProcessType-read:
       type: object
       description: 'A process'
       properties:
         id:
           readOnly: true
-          type: string
-        icon:
+          description: 'The UUID identifier of this object'
+          externalDocs:
+            url: 'http://schema.org/identifier'
           type: string
         name:
-          type: string
-        subtitle:
+          readOnly: true
+          description: 'The name of this process'
+          externalDocs:
+            url: 'http://schema.org/name'
           type: string
         description:
+          readOnly: true
+          description: 'An short description of this process'
+          externalDocs:
+            url: 'https://schema.org/description'
           type: string
-        rsin:
+        logo:
+          readOnly: true
+          description: 'The logo for this process'
+          externalDocs:
+            url: 'https://schema.org/logo'
+          type: string
+        source_organization:
+          description: 'The RSIN of the organization that owns this process'
           type: string
         stages:
+          description: 'The stages of this process'
           type: array
           items:
             $ref: '#/components/schemas/Stage-read'
         request:
+          description: 'The request that is used for this process'
+          externalDocs:
+            url: 'http://schema.org/url'
           type: string
-    Process-write:
+      required:
+        - source_organization
+    ProcessType-write:
       type: object
       description: 'A process'
+      required:
+        - source_organization
       properties:
-        icon:
-          type: string
-        name:
-          type: string
-        subtitle:
-          type: string
-        description:
-          type: string
-        rsin:
+        source_organization:
+          description: 'The RSIN of the organization that owns this process'
           type: string
         stages:
+          description: 'The stages of this process'
           type: array
           items:
             $ref: '#/components/schemas/Stage-write'
         request:
+          description: 'The request that is used for this process'
+          externalDocs:
+            url: 'http://schema.org/url'
           type: string
         extends:
-          $ref: '#/components/schemas/Process-write'
+          writeOnly: true
+          description: 'The process that this process extends'
+          $ref: '#/components/schemas/ProcessType-write'
+    'ProcessType:jsonld-read':
+      type: object
+      description: 'A process'
+      properties:
+        '@context':
+          readOnly: true
+          type: string
+        '@id':
+          readOnly: true
+          type: string
+        '@type':
+          readOnly: true
+          type: string
+        id:
+          readOnly: true
+          description: 'The UUID identifier of this object'
+          externalDocs:
+            url: 'http://schema.org/identifier'
+          type: string
+        name:
+          readOnly: true
+          description: 'The name of this process'
+          externalDocs:
+            url: 'http://schema.org/name'
+          type: string
+        description:
+          readOnly: true
+          description: 'An short description of this process'
+          externalDocs:
+            url: 'https://schema.org/description'
+          type: string
+        logo:
+          readOnly: true
+          description: 'The logo for this process'
+          externalDocs:
+            url: 'https://schema.org/logo'
+          type: string
+        source_organization:
+          description: 'The RSIN of the organization that owns this process'
+          type: string
+        stages:
+          description: 'The stages of this process'
+          type: array
+          items:
+            $ref: '#/components/schemas/Stage:jsonld-read'
+        request:
+          description: 'The request that is used for this process'
+          externalDocs:
+            url: 'http://schema.org/url'
+          type: string
+      required:
+        - source_organization
+    'ProcessType:jsonld-write':
+      type: object
+      description: 'A process'
+      required:
+        - source_organization
+      properties:
+        '@context':
+          readOnly: true
+          type: string
+        '@id':
+          readOnly: true
+          type: string
+        '@type':
+          readOnly: true
+          type: string
+        source_organization:
+          description: 'The RSIN of the organization that owns this process'
+          type: string
+        stages:
+          description: 'The stages of this process'
+          type: array
+          items:
+            $ref: '#/components/schemas/Stage:jsonld-write'
+        request:
+          description: 'The request that is used for this process'
+          externalDocs:
+            url: 'http://schema.org/url'
+          type: string
+        extends:
+          writeOnly: true
+          description: 'The process that this process extends'
+          $ref: '#/components/schemas/ProcessType:jsonld-write'
     Stage-read:
       type: object
       description: 'A single stage within a process'
       properties:
         id:
           readOnly: true
+          description: 'The UUID identifier of this object'
+          externalDocs:
+            url: 'http://schema.org/identifier'
           type: string
         name:
+          readOnly: true
+          description: 'The name of this stage'
+          externalDocs:
+            url: 'https://schema.org/name'
           type: string
         description:
+          readOnly: true
+          description: 'An short description of this stage'
+          externalDocs:
+            url: 'https://schema.org/description'
+          type: string
+        logo:
+          readOnly: true
+          description: 'The logo for this stage'
+          externalDocs:
+            url: 'https://schema.org/logo'
           type: string
         type:
+          description: 'The task type of the stage'
           type: string
         options:
-          type: array
-          items:
-            type: string
+          description: 'The options or configuration for this stage'
+          type: string
         validation:
           readOnly: true
-          type: array
-          items:
-            type: string
+          description: 'The validation rules that this stage adheres to'
+          type: string
+        next:
+          $ref: '#/components/schemas/Stage-read'
+        previous:
+          $ref: '#/components/schemas/Stage-read'
         property:
           type: string
     Stage-write:
       type: object
       description: 'A single stage within a process'
       properties:
-        name:
-          type: string
-        description:
-          type: string
         type:
+          description: 'The task type of the stage'
           type: string
         options:
-          type: array
-          items:
-            type: string
+          description: 'The options or configuration for this stage'
+          type: string
+        next:
+          $ref: '#/components/schemas/Stage-write'
+        previous:
+          $ref: '#/components/schemas/Stage-write'
         property:
           type: string
+    'Stage:jsonld-read':
+      type: object
+      description: 'A single stage within a process'
+      properties:
+        '@context':
+          readOnly: true
+          type: string
+        '@id':
+          readOnly: true
+          type: string
+        '@type':
+          readOnly: true
+          type: string
+        id:
+          readOnly: true
+          description: 'The UUID identifier of this object'
+          externalDocs:
+            url: 'http://schema.org/identifier'
+          type: string
+        name:
+          readOnly: true
+          description: 'The name of this stage'
+          externalDocs:
+            url: 'https://schema.org/name'
+          type: string
+        description:
+          readOnly: true
+          description: 'An short description of this stage'
+          externalDocs:
+            url: 'https://schema.org/description'
+          type: string
+        logo:
+          readOnly: true
+          description: 'The logo for this stage'
+          externalDocs:
+            url: 'https://schema.org/logo'
+          type: string
+        type:
+          description: 'The task type of the stage'
+          type: string
+        options:
+          description: 'The options or configuration for this stage'
+          type: string
+        validation:
+          readOnly: true
+          description: 'The validation rules that this stage adheres to'
+          type: string
+        next:
+          $ref: '#/components/schemas/Stage:jsonld-read'
+        previous:
+          $ref: '#/components/schemas/Stage:jsonld-read'
+        property:
+          type: string
+    'Stage:jsonld-write':
+      type: object
+      description: 'A single stage within a process'
+      properties:
+        '@context':
+          readOnly: true
+          type: string
+        '@id':
+          readOnly: true
+          type: string
+        '@type':
+          readOnly: true
+          type: string
+        type:
+          description: 'The task type of the stage'
+          type: string
+        options:
+          description: 'The options or configuration for this stage'
+          type: string
+        next:
+          $ref: '#/components/schemas/Stage:jsonld-write'
+        previous:
+          $ref: '#/components/schemas/Stage:jsonld-write'
+        property:
+          type: string
+host: irc.zaakonline.nl
+servers:
+  -
+    description: 'Demo Omgeving'
+    url: 'http://ptc.demo.common-ground.dev/'
+externalDocs:
+  -
+    description: 'OAS Documentatie'
+    url: 'http://ptc.demo.common-ground.dev/'
+x-commonground:
+  type: service
+  developers:
+    -
+      name: Conduction
+      url: 'https://github.com/ConductionNL'
+      email: info@conduction.nl
+    -
+      name: 'Gemeente ''s-Hertogenbosch'
+      url: 'https://github.com/gemeenteshertogenbosch'
+      email: info@s-hertogenbosch.nl/
+  builds:
+    -
+      name: travis
+      logo: 'https://travis-ci.org/api-platform/core.svg?branch=master'
+      url: 'https://travis-ci.org/api-platform/core'
+    -
+      name: appveyor
+      logo: 'https://ci.appveyor.com/api/projects/status/grwuyprts3wdqx5l?svg=true'
+      url: 'https://ci.appveyor.com/project/dunglas/dunglasapibundle'
+    -
+      name: codecov
+      logo: 'https://codecov.io/gh/api-platform/core/branch/master/graph/badge.svg'
+      url: 'https://codecov.io/gh/api-platform/core'
+    -
+      name: SensioLabsInsight
+      logo: 'https://insight.sensiolabs.com/projects/92d78899-946c-4282-89a3-ac92344f9a93/mini.png'
+      url: 'https://insight.sensiolabs.com/projects/92d78899-946c-4282-89a3-ac92344f9a93'
+    -
+      name: 'Scrutinizer Code Quality'
+      logo: 'https://scrutinizer-ci.com/g/api-platform/core/badges/quality-score.png?b=master'
+      url: 'https://scrutinizer-ci.com/g/api-platform/core/?branch=master'

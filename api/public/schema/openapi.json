@@ -1,0 +1,1631 @@
+{
+    "openapi": "3.0.2",
+    "info": {
+        "title": "ProcesTypeCatalogus (PTC)",
+        "version": "0.0.1",
+        "description": "The processes component is intended to tell applications how to render a request from the request component to a user. That means that the request component tells an application WHAT data it needs. But the processes component tells an application HOW this data needs to be collected. E.g. the different stages in a form. \n"
+    },
+    "paths": {
+        "\/process_types": {
+            "get": {
+                "tags": [
+                    "ProcessType"
+                ],
+                "operationId": "getProcessTypeCollection",
+                "summary": "Retrieves the collection of ProcessType resources.",
+                "responses": {
+                    "200": {
+                        "description": "ProcessType collection response",
+                        "content": {
+                            "application\/hal+json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#\/components\/schemas\/ProcessType-read"
+                                    }
+                                }
+                            },
+                            "application\/ld+json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#\/components\/schemas\/ProcessType-read"
+                                    }
+                                }
+                            },
+                            "application\/vnd.api+json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#\/components\/schemas\/ProcessType-read"
+                                    }
+                                }
+                            },
+                            "application\/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#\/components\/schemas\/ProcessType-read"
+                                    }
+                                }
+                            },
+                            "application\/xml": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#\/components\/schemas\/ProcessType-read"
+                                    }
+                                }
+                            },
+                            "application\/x-yaml": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#\/components\/schemas\/ProcessType-read"
+                                    }
+                                }
+                            },
+                            "text\/csv": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#\/components\/schemas\/ProcessType-read"
+                                    }
+                                }
+                            },
+                            "text\/html": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#\/components\/schemas\/ProcessType-read"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "parameters": [
+                    {
+                        "name": "sourceOrganization",
+                        "in": "query",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "sourceOrganization[]",
+                        "in": "query",
+                        "required": false,
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "type": "string"
+                            }
+                        },
+                        "style": "form",
+                        "explode": true
+                    },
+                    {
+                        "name": "page",
+                        "in": "query",
+                        "required": false,
+                        "description": "The collection page number",
+                        "schema": {
+                            "type": "integer"
+                        }
+                    },
+                    {
+                        "name": "API-Version",
+                        "description": "The version of the API conform [Landelijke API-strategie.](https:\/\/geonovum.github.io\/KP-APIs\/#versioning)",
+                        "example": "1.0.1",
+                        "in": "header"
+                    },
+                    {
+                        "name": "X-NLX-Request-User-Id",
+                        "description": "The id of the user performing the request",
+                        "in": "header"
+                    },
+                    {
+                        "name": "X-NLX-Request-Application-Id",
+                        "description": "The id of the application performing the request",
+                        "in": "header"
+                    },
+                    {
+                        "name": "X-NLX-Request-Subject-Identifier",
+                        "description": "An subject identifier for purpose registration (doelbinding)",
+                        "in": "header"
+                    },
+                    {
+                        "name": "X-NLX-Request-Process-Id",
+                        "description": "A process id for purpose registration (doelbinding)",
+                        "in": "header"
+                    },
+                    {
+                        "name": "X-NLX-Request-Data-Elements",
+                        "description": "A list of requested data elements",
+                        "in": "header"
+                    },
+                    {
+                        "name": "X-NLX-Request-Data-Subject",
+                        "description": "A key-value list of data subjects related to this request. e.g. `bsn=12345678,kenteken=ab-12-fg`",
+                        "in": "header"
+                    },
+                    {
+                        "name": "X-Audit-Clarification",
+                        "description": "A clarification as to why a request has been made  (doelbinding)",
+                        "in": "header"
+                    }
+                ]
+            },
+            "post": {
+                "tags": [
+                    "ProcessType"
+                ],
+                "operationId": "postProcessTypeCollection",
+                "summary": "Creates a ProcessType resource.",
+                "responses": {
+                    "201": {
+                        "description": "ProcessType resource created",
+                        "content": {
+                            "application\/hal+json": {
+                                "schema": {
+                                    "$ref": "#\/components\/schemas\/ProcessType-read"
+                                }
+                            },
+                            "application\/ld+json": {
+                                "schema": {
+                                    "$ref": "#\/components\/schemas\/ProcessType-read"
+                                }
+                            },
+                            "application\/vnd.api+json": {
+                                "schema": {
+                                    "$ref": "#\/components\/schemas\/ProcessType-read"
+                                }
+                            },
+                            "application\/json": {
+                                "schema": {
+                                    "$ref": "#\/components\/schemas\/ProcessType-read"
+                                }
+                            },
+                            "application\/xml": {
+                                "schema": {
+                                    "$ref": "#\/components\/schemas\/ProcessType-read"
+                                }
+                            },
+                            "application\/x-yaml": {
+                                "schema": {
+                                    "$ref": "#\/components\/schemas\/ProcessType-read"
+                                }
+                            },
+                            "text\/csv": {
+                                "schema": {
+                                    "$ref": "#\/components\/schemas\/ProcessType-read"
+                                }
+                            },
+                            "text\/html": {
+                                "schema": {
+                                    "$ref": "#\/components\/schemas\/ProcessType-read"
+                                }
+                            }
+                        },
+                        "links": {
+                            "GetProcessTypeItem": {
+                                "parameters": {
+                                    "id": "$response.body#\/id"
+                                },
+                                "operationId": "getProcessTypeItem",
+                                "description": "The `id` value returned in the response can be used as the `id` parameter in `GET \/process_types\/{id}`."
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Invalid input"
+                    },
+                    "404": {
+                        "description": "Resource not found"
+                    }
+                },
+                "requestBody": {
+                    "content": {
+                        "application\/hal+json": {
+                            "schema": {
+                                "$ref": "#\/components\/schemas\/ProcessType-write"
+                            }
+                        },
+                        "application\/ld+json": {
+                            "schema": {
+                                "$ref": "#\/components\/schemas\/ProcessType-write"
+                            }
+                        },
+                        "application\/vnd.api+json": {
+                            "schema": {
+                                "$ref": "#\/components\/schemas\/ProcessType-write"
+                            }
+                        },
+                        "application\/json": {
+                            "schema": {
+                                "$ref": "#\/components\/schemas\/ProcessType-write"
+                            }
+                        },
+                        "application\/xml": {
+                            "schema": {
+                                "$ref": "#\/components\/schemas\/ProcessType-write"
+                            }
+                        },
+                        "application\/x-yaml": {
+                            "schema": {
+                                "$ref": "#\/components\/schemas\/ProcessType-write"
+                            }
+                        },
+                        "text\/csv": {
+                            "schema": {
+                                "$ref": "#\/components\/schemas\/ProcessType-write"
+                            }
+                        },
+                        "text\/html": {
+                            "schema": {
+                                "$ref": "#\/components\/schemas\/ProcessType-write"
+                            }
+                        }
+                    },
+                    "description": "The new ProcessType resource"
+                },
+                "parameters": [
+                    {
+                        "name": "API-Version",
+                        "description": "The version of the API conform [Landelijke API-strategie.](https:\/\/geonovum.github.io\/KP-APIs\/#versioning)",
+                        "example": "1.0.1",
+                        "in": "header"
+                    },
+                    {
+                        "name": "X-NLX-Request-User-Id",
+                        "description": "The id of the user performing the request",
+                        "in": "header"
+                    },
+                    {
+                        "name": "X-NLX-Request-Application-Id",
+                        "description": "The id of the application performing the request",
+                        "in": "header"
+                    },
+                    {
+                        "name": "X-NLX-Request-Subject-Identifier",
+                        "description": "An subject identifier for purpose registration (doelbinding)",
+                        "in": "header"
+                    },
+                    {
+                        "name": "X-NLX-Request-Process-Id",
+                        "description": "A process id for purpose registration (doelbinding)",
+                        "in": "header"
+                    },
+                    {
+                        "name": "X-NLX-Request-Data-Elements",
+                        "description": "A list of requested data elements",
+                        "in": "header"
+                    },
+                    {
+                        "name": "X-NLX-Request-Data-Subject",
+                        "description": "A key-value list of data subjects related to this request. e.g. `bsn=12345678,kenteken=ab-12-fg`",
+                        "in": "header"
+                    },
+                    {
+                        "name": "X-Audit-Clarification",
+                        "description": "A clarification as to why a request has been made  (doelbinding)",
+                        "in": "header"
+                    }
+                ]
+            }
+        },
+        "\/process_types\/{id}": {
+            "get": {
+                "tags": [
+                    "ProcessType"
+                ],
+                "operationId": "getProcessTypeItem",
+                "summary": "Retrieves a ProcessType resource.",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "API-Version",
+                        "description": "The version of the API conform [Landelijke API-strategie.](https:\/\/geonovum.github.io\/KP-APIs\/#versioning)",
+                        "example": "1.0.1",
+                        "in": "header"
+                    },
+                    {
+                        "name": "X-NLX-Request-User-Id",
+                        "description": "The id of the user performing the request",
+                        "in": "header"
+                    },
+                    {
+                        "name": "X-NLX-Request-Application-Id",
+                        "description": "The id of the application performing the request",
+                        "in": "header"
+                    },
+                    {
+                        "name": "X-NLX-Request-Subject-Identifier",
+                        "description": "An subject identifier for purpose registration (doelbinding)",
+                        "in": "header"
+                    },
+                    {
+                        "name": "X-NLX-Request-Process-Id",
+                        "description": "A process id for purpose registration (doelbinding)",
+                        "in": "header"
+                    },
+                    {
+                        "name": "X-NLX-Request-Data-Elements",
+                        "description": "A list of requested data elements",
+                        "in": "header"
+                    },
+                    {
+                        "name": "X-NLX-Request-Data-Subject",
+                        "description": "A key-value list of data subjects related to this request. e.g. `bsn=12345678,kenteken=ab-12-fg`",
+                        "in": "header"
+                    },
+                    {
+                        "name": "X-Audit-Clarification",
+                        "description": "A clarification as to why a request has been made  (doelbinding)",
+                        "in": "header"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "ProcessType resource response",
+                        "content": {
+                            "application\/hal+json": {
+                                "schema": {
+                                    "$ref": "#\/components\/schemas\/ProcessType-read"
+                                }
+                            },
+                            "application\/ld+json": {
+                                "schema": {
+                                    "$ref": "#\/components\/schemas\/ProcessType-read"
+                                }
+                            },
+                            "application\/vnd.api+json": {
+                                "schema": {
+                                    "$ref": "#\/components\/schemas\/ProcessType-read"
+                                }
+                            },
+                            "application\/json": {
+                                "schema": {
+                                    "$ref": "#\/components\/schemas\/ProcessType-read"
+                                }
+                            },
+                            "application\/xml": {
+                                "schema": {
+                                    "$ref": "#\/components\/schemas\/ProcessType-read"
+                                }
+                            },
+                            "application\/x-yaml": {
+                                "schema": {
+                                    "$ref": "#\/components\/schemas\/ProcessType-read"
+                                }
+                            },
+                            "text\/csv": {
+                                "schema": {
+                                    "$ref": "#\/components\/schemas\/ProcessType-read"
+                                }
+                            },
+                            "text\/html": {
+                                "schema": {
+                                    "$ref": "#\/components\/schemas\/ProcessType-read"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Resource not found"
+                    }
+                }
+            },
+            "put": {
+                "tags": [
+                    "ProcessType"
+                ],
+                "operationId": "putProcessTypeItem",
+                "summary": "Replaces the ProcessType resource.",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "API-Version",
+                        "description": "The version of the API conform [Landelijke API-strategie.](https:\/\/geonovum.github.io\/KP-APIs\/#versioning)",
+                        "example": "1.0.1",
+                        "in": "header"
+                    },
+                    {
+                        "name": "X-NLX-Request-User-Id",
+                        "description": "The id of the user performing the request",
+                        "in": "header"
+                    },
+                    {
+                        "name": "X-NLX-Request-Application-Id",
+                        "description": "The id of the application performing the request",
+                        "in": "header"
+                    },
+                    {
+                        "name": "X-NLX-Request-Subject-Identifier",
+                        "description": "An subject identifier for purpose registration (doelbinding)",
+                        "in": "header"
+                    },
+                    {
+                        "name": "X-NLX-Request-Process-Id",
+                        "description": "A process id for purpose registration (doelbinding)",
+                        "in": "header"
+                    },
+                    {
+                        "name": "X-NLX-Request-Data-Elements",
+                        "description": "A list of requested data elements",
+                        "in": "header"
+                    },
+                    {
+                        "name": "X-NLX-Request-Data-Subject",
+                        "description": "A key-value list of data subjects related to this request. e.g. `bsn=12345678,kenteken=ab-12-fg`",
+                        "in": "header"
+                    },
+                    {
+                        "name": "X-Audit-Clarification",
+                        "description": "A clarification as to why a request has been made  (doelbinding)",
+                        "in": "header"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "ProcessType resource updated",
+                        "content": {
+                            "application\/hal+json": {
+                                "schema": {
+                                    "$ref": "#\/components\/schemas\/ProcessType-read"
+                                }
+                            },
+                            "application\/ld+json": {
+                                "schema": {
+                                    "$ref": "#\/components\/schemas\/ProcessType-read"
+                                }
+                            },
+                            "application\/vnd.api+json": {
+                                "schema": {
+                                    "$ref": "#\/components\/schemas\/ProcessType-read"
+                                }
+                            },
+                            "application\/json": {
+                                "schema": {
+                                    "$ref": "#\/components\/schemas\/ProcessType-read"
+                                }
+                            },
+                            "application\/xml": {
+                                "schema": {
+                                    "$ref": "#\/components\/schemas\/ProcessType-read"
+                                }
+                            },
+                            "application\/x-yaml": {
+                                "schema": {
+                                    "$ref": "#\/components\/schemas\/ProcessType-read"
+                                }
+                            },
+                            "text\/csv": {
+                                "schema": {
+                                    "$ref": "#\/components\/schemas\/ProcessType-read"
+                                }
+                            },
+                            "text\/html": {
+                                "schema": {
+                                    "$ref": "#\/components\/schemas\/ProcessType-read"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Invalid input"
+                    },
+                    "404": {
+                        "description": "Resource not found"
+                    }
+                },
+                "requestBody": {
+                    "content": {
+                        "application\/hal+json": {
+                            "schema": {
+                                "$ref": "#\/components\/schemas\/ProcessType-write"
+                            }
+                        },
+                        "application\/ld+json": {
+                            "schema": {
+                                "$ref": "#\/components\/schemas\/ProcessType-write"
+                            }
+                        },
+                        "application\/vnd.api+json": {
+                            "schema": {
+                                "$ref": "#\/components\/schemas\/ProcessType-write"
+                            }
+                        },
+                        "application\/json": {
+                            "schema": {
+                                "$ref": "#\/components\/schemas\/ProcessType-write"
+                            }
+                        },
+                        "application\/xml": {
+                            "schema": {
+                                "$ref": "#\/components\/schemas\/ProcessType-write"
+                            }
+                        },
+                        "application\/x-yaml": {
+                            "schema": {
+                                "$ref": "#\/components\/schemas\/ProcessType-write"
+                            }
+                        },
+                        "text\/csv": {
+                            "schema": {
+                                "$ref": "#\/components\/schemas\/ProcessType-write"
+                            }
+                        },
+                        "text\/html": {
+                            "schema": {
+                                "$ref": "#\/components\/schemas\/ProcessType-write"
+                            }
+                        }
+                    },
+                    "description": "The updated ProcessType resource"
+                }
+            },
+            "delete": {
+                "tags": [
+                    "ProcessType"
+                ],
+                "operationId": "deleteProcessTypeItem",
+                "summary": "Removes the ProcessType resource.",
+                "responses": {
+                    "204": {
+                        "description": "ProcessType resource deleted"
+                    },
+                    "404": {
+                        "description": "Resource not found"
+                    }
+                },
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "API-Version",
+                        "description": "The version of the API conform [Landelijke API-strategie.](https:\/\/geonovum.github.io\/KP-APIs\/#versioning)",
+                        "example": "1.0.1",
+                        "in": "header"
+                    },
+                    {
+                        "name": "X-NLX-Request-User-Id",
+                        "description": "The id of the user performing the request",
+                        "in": "header"
+                    },
+                    {
+                        "name": "X-NLX-Request-Application-Id",
+                        "description": "The id of the application performing the request",
+                        "in": "header"
+                    },
+                    {
+                        "name": "X-NLX-Request-Subject-Identifier",
+                        "description": "An subject identifier for purpose registration (doelbinding)",
+                        "in": "header"
+                    },
+                    {
+                        "name": "X-NLX-Request-Process-Id",
+                        "description": "A process id for purpose registration (doelbinding)",
+                        "in": "header"
+                    },
+                    {
+                        "name": "X-NLX-Request-Data-Elements",
+                        "description": "A list of requested data elements",
+                        "in": "header"
+                    },
+                    {
+                        "name": "X-NLX-Request-Data-Subject",
+                        "description": "A key-value list of data subjects related to this request. e.g. `bsn=12345678,kenteken=ab-12-fg`",
+                        "in": "header"
+                    },
+                    {
+                        "name": "X-Audit-Clarification",
+                        "description": "A clarification as to why a request has been made  (doelbinding)",
+                        "in": "header"
+                    }
+                ]
+            }
+        },
+        "\/stages": {
+            "get": {
+                "tags": [
+                    "Stage"
+                ],
+                "operationId": "getStageCollection",
+                "summary": "Retrieves the collection of Stage resources.",
+                "responses": {
+                    "200": {
+                        "description": "Stage collection response",
+                        "content": {
+                            "application\/hal+json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#\/components\/schemas\/Stage-read"
+                                    }
+                                }
+                            },
+                            "application\/ld+json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#\/components\/schemas\/Stage-read"
+                                    }
+                                }
+                            },
+                            "application\/vnd.api+json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#\/components\/schemas\/Stage-read"
+                                    }
+                                }
+                            },
+                            "application\/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#\/components\/schemas\/Stage-read"
+                                    }
+                                }
+                            },
+                            "application\/xml": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#\/components\/schemas\/Stage-read"
+                                    }
+                                }
+                            },
+                            "application\/x-yaml": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#\/components\/schemas\/Stage-read"
+                                    }
+                                }
+                            },
+                            "text\/csv": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#\/components\/schemas\/Stage-read"
+                                    }
+                                }
+                            },
+                            "text\/html": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#\/components\/schemas\/Stage-read"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "parameters": [
+                    {
+                        "name": "page",
+                        "in": "query",
+                        "required": false,
+                        "description": "The collection page number",
+                        "schema": {
+                            "type": "integer"
+                        }
+                    },
+                    {
+                        "name": "API-Version",
+                        "description": "The version of the API conform [Landelijke API-strategie.](https:\/\/geonovum.github.io\/KP-APIs\/#versioning)",
+                        "example": "1.0.1",
+                        "in": "header"
+                    },
+                    {
+                        "name": "X-NLX-Request-User-Id",
+                        "description": "The id of the user performing the request",
+                        "in": "header"
+                    },
+                    {
+                        "name": "X-NLX-Request-Application-Id",
+                        "description": "The id of the application performing the request",
+                        "in": "header"
+                    },
+                    {
+                        "name": "X-NLX-Request-Subject-Identifier",
+                        "description": "An subject identifier for purpose registration (doelbinding)",
+                        "in": "header"
+                    },
+                    {
+                        "name": "X-NLX-Request-Process-Id",
+                        "description": "A process id for purpose registration (doelbinding)",
+                        "in": "header"
+                    },
+                    {
+                        "name": "X-NLX-Request-Data-Elements",
+                        "description": "A list of requested data elements",
+                        "in": "header"
+                    },
+                    {
+                        "name": "X-NLX-Request-Data-Subject",
+                        "description": "A key-value list of data subjects related to this request. e.g. `bsn=12345678,kenteken=ab-12-fg`",
+                        "in": "header"
+                    },
+                    {
+                        "name": "X-Audit-Clarification",
+                        "description": "A clarification as to why a request has been made  (doelbinding)",
+                        "in": "header"
+                    }
+                ]
+            },
+            "post": {
+                "tags": [
+                    "Stage"
+                ],
+                "operationId": "postStageCollection",
+                "summary": "Creates a Stage resource.",
+                "responses": {
+                    "201": {
+                        "description": "Stage resource created",
+                        "content": {
+                            "application\/hal+json": {
+                                "schema": {
+                                    "$ref": "#\/components\/schemas\/Stage-read"
+                                }
+                            },
+                            "application\/ld+json": {
+                                "schema": {
+                                    "$ref": "#\/components\/schemas\/Stage-read"
+                                }
+                            },
+                            "application\/vnd.api+json": {
+                                "schema": {
+                                    "$ref": "#\/components\/schemas\/Stage-read"
+                                }
+                            },
+                            "application\/json": {
+                                "schema": {
+                                    "$ref": "#\/components\/schemas\/Stage-read"
+                                }
+                            },
+                            "application\/xml": {
+                                "schema": {
+                                    "$ref": "#\/components\/schemas\/Stage-read"
+                                }
+                            },
+                            "application\/x-yaml": {
+                                "schema": {
+                                    "$ref": "#\/components\/schemas\/Stage-read"
+                                }
+                            },
+                            "text\/csv": {
+                                "schema": {
+                                    "$ref": "#\/components\/schemas\/Stage-read"
+                                }
+                            },
+                            "text\/html": {
+                                "schema": {
+                                    "$ref": "#\/components\/schemas\/Stage-read"
+                                }
+                            }
+                        },
+                        "links": {
+                            "GetStageItem": {
+                                "parameters": {
+                                    "id": "$response.body#\/id"
+                                },
+                                "operationId": "getStageItem",
+                                "description": "The `id` value returned in the response can be used as the `id` parameter in `GET \/stages\/{id}`."
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Invalid input"
+                    },
+                    "404": {
+                        "description": "Resource not found"
+                    }
+                },
+                "requestBody": {
+                    "content": {
+                        "application\/hal+json": {
+                            "schema": {
+                                "$ref": "#\/components\/schemas\/Stage-write"
+                            }
+                        },
+                        "application\/ld+json": {
+                            "schema": {
+                                "$ref": "#\/components\/schemas\/Stage-write"
+                            }
+                        },
+                        "application\/vnd.api+json": {
+                            "schema": {
+                                "$ref": "#\/components\/schemas\/Stage-write"
+                            }
+                        },
+                        "application\/json": {
+                            "schema": {
+                                "$ref": "#\/components\/schemas\/Stage-write"
+                            }
+                        },
+                        "application\/xml": {
+                            "schema": {
+                                "$ref": "#\/components\/schemas\/Stage-write"
+                            }
+                        },
+                        "application\/x-yaml": {
+                            "schema": {
+                                "$ref": "#\/components\/schemas\/Stage-write"
+                            }
+                        },
+                        "text\/csv": {
+                            "schema": {
+                                "$ref": "#\/components\/schemas\/Stage-write"
+                            }
+                        },
+                        "text\/html": {
+                            "schema": {
+                                "$ref": "#\/components\/schemas\/Stage-write"
+                            }
+                        }
+                    },
+                    "description": "The new Stage resource"
+                },
+                "parameters": [
+                    {
+                        "name": "API-Version",
+                        "description": "The version of the API conform [Landelijke API-strategie.](https:\/\/geonovum.github.io\/KP-APIs\/#versioning)",
+                        "example": "1.0.1",
+                        "in": "header"
+                    },
+                    {
+                        "name": "X-NLX-Request-User-Id",
+                        "description": "The id of the user performing the request",
+                        "in": "header"
+                    },
+                    {
+                        "name": "X-NLX-Request-Application-Id",
+                        "description": "The id of the application performing the request",
+                        "in": "header"
+                    },
+                    {
+                        "name": "X-NLX-Request-Subject-Identifier",
+                        "description": "An subject identifier for purpose registration (doelbinding)",
+                        "in": "header"
+                    },
+                    {
+                        "name": "X-NLX-Request-Process-Id",
+                        "description": "A process id for purpose registration (doelbinding)",
+                        "in": "header"
+                    },
+                    {
+                        "name": "X-NLX-Request-Data-Elements",
+                        "description": "A list of requested data elements",
+                        "in": "header"
+                    },
+                    {
+                        "name": "X-NLX-Request-Data-Subject",
+                        "description": "A key-value list of data subjects related to this request. e.g. `bsn=12345678,kenteken=ab-12-fg`",
+                        "in": "header"
+                    },
+                    {
+                        "name": "X-Audit-Clarification",
+                        "description": "A clarification as to why a request has been made  (doelbinding)",
+                        "in": "header"
+                    }
+                ]
+            }
+        },
+        "\/stages\/{id}": {
+            "get": {
+                "tags": [
+                    "Stage"
+                ],
+                "operationId": "getStageItem",
+                "summary": "Retrieves a Stage resource.",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "API-Version",
+                        "description": "The version of the API conform [Landelijke API-strategie.](https:\/\/geonovum.github.io\/KP-APIs\/#versioning)",
+                        "example": "1.0.1",
+                        "in": "header"
+                    },
+                    {
+                        "name": "X-NLX-Request-User-Id",
+                        "description": "The id of the user performing the request",
+                        "in": "header"
+                    },
+                    {
+                        "name": "X-NLX-Request-Application-Id",
+                        "description": "The id of the application performing the request",
+                        "in": "header"
+                    },
+                    {
+                        "name": "X-NLX-Request-Subject-Identifier",
+                        "description": "An subject identifier for purpose registration (doelbinding)",
+                        "in": "header"
+                    },
+                    {
+                        "name": "X-NLX-Request-Process-Id",
+                        "description": "A process id for purpose registration (doelbinding)",
+                        "in": "header"
+                    },
+                    {
+                        "name": "X-NLX-Request-Data-Elements",
+                        "description": "A list of requested data elements",
+                        "in": "header"
+                    },
+                    {
+                        "name": "X-NLX-Request-Data-Subject",
+                        "description": "A key-value list of data subjects related to this request. e.g. `bsn=12345678,kenteken=ab-12-fg`",
+                        "in": "header"
+                    },
+                    {
+                        "name": "X-Audit-Clarification",
+                        "description": "A clarification as to why a request has been made  (doelbinding)",
+                        "in": "header"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Stage resource response",
+                        "content": {
+                            "application\/hal+json": {
+                                "schema": {
+                                    "$ref": "#\/components\/schemas\/Stage-read"
+                                }
+                            },
+                            "application\/ld+json": {
+                                "schema": {
+                                    "$ref": "#\/components\/schemas\/Stage-read"
+                                }
+                            },
+                            "application\/vnd.api+json": {
+                                "schema": {
+                                    "$ref": "#\/components\/schemas\/Stage-read"
+                                }
+                            },
+                            "application\/json": {
+                                "schema": {
+                                    "$ref": "#\/components\/schemas\/Stage-read"
+                                }
+                            },
+                            "application\/xml": {
+                                "schema": {
+                                    "$ref": "#\/components\/schemas\/Stage-read"
+                                }
+                            },
+                            "application\/x-yaml": {
+                                "schema": {
+                                    "$ref": "#\/components\/schemas\/Stage-read"
+                                }
+                            },
+                            "text\/csv": {
+                                "schema": {
+                                    "$ref": "#\/components\/schemas\/Stage-read"
+                                }
+                            },
+                            "text\/html": {
+                                "schema": {
+                                    "$ref": "#\/components\/schemas\/Stage-read"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Resource not found"
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "Stage"
+                ],
+                "operationId": "deleteStageItem",
+                "summary": "Removes the Stage resource.",
+                "responses": {
+                    "204": {
+                        "description": "Stage resource deleted"
+                    },
+                    "404": {
+                        "description": "Resource not found"
+                    }
+                },
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "API-Version",
+                        "description": "The version of the API conform [Landelijke API-strategie.](https:\/\/geonovum.github.io\/KP-APIs\/#versioning)",
+                        "example": "1.0.1",
+                        "in": "header"
+                    },
+                    {
+                        "name": "X-NLX-Request-User-Id",
+                        "description": "The id of the user performing the request",
+                        "in": "header"
+                    },
+                    {
+                        "name": "X-NLX-Request-Application-Id",
+                        "description": "The id of the application performing the request",
+                        "in": "header"
+                    },
+                    {
+                        "name": "X-NLX-Request-Subject-Identifier",
+                        "description": "An subject identifier for purpose registration (doelbinding)",
+                        "in": "header"
+                    },
+                    {
+                        "name": "X-NLX-Request-Process-Id",
+                        "description": "A process id for purpose registration (doelbinding)",
+                        "in": "header"
+                    },
+                    {
+                        "name": "X-NLX-Request-Data-Elements",
+                        "description": "A list of requested data elements",
+                        "in": "header"
+                    },
+                    {
+                        "name": "X-NLX-Request-Data-Subject",
+                        "description": "A key-value list of data subjects related to this request. e.g. `bsn=12345678,kenteken=ab-12-fg`",
+                        "in": "header"
+                    },
+                    {
+                        "name": "X-Audit-Clarification",
+                        "description": "A clarification as to why a request has been made  (doelbinding)",
+                        "in": "header"
+                    }
+                ]
+            },
+            "put": {
+                "tags": [
+                    "Stage"
+                ],
+                "operationId": "putStageItem",
+                "summary": "Replaces the Stage resource.",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "API-Version",
+                        "description": "The version of the API conform [Landelijke API-strategie.](https:\/\/geonovum.github.io\/KP-APIs\/#versioning)",
+                        "example": "1.0.1",
+                        "in": "header"
+                    },
+                    {
+                        "name": "X-NLX-Request-User-Id",
+                        "description": "The id of the user performing the request",
+                        "in": "header"
+                    },
+                    {
+                        "name": "X-NLX-Request-Application-Id",
+                        "description": "The id of the application performing the request",
+                        "in": "header"
+                    },
+                    {
+                        "name": "X-NLX-Request-Subject-Identifier",
+                        "description": "An subject identifier for purpose registration (doelbinding)",
+                        "in": "header"
+                    },
+                    {
+                        "name": "X-NLX-Request-Process-Id",
+                        "description": "A process id for purpose registration (doelbinding)",
+                        "in": "header"
+                    },
+                    {
+                        "name": "X-NLX-Request-Data-Elements",
+                        "description": "A list of requested data elements",
+                        "in": "header"
+                    },
+                    {
+                        "name": "X-NLX-Request-Data-Subject",
+                        "description": "A key-value list of data subjects related to this request. e.g. `bsn=12345678,kenteken=ab-12-fg`",
+                        "in": "header"
+                    },
+                    {
+                        "name": "X-Audit-Clarification",
+                        "description": "A clarification as to why a request has been made  (doelbinding)",
+                        "in": "header"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Stage resource updated",
+                        "content": {
+                            "application\/hal+json": {
+                                "schema": {
+                                    "$ref": "#\/components\/schemas\/Stage-read"
+                                }
+                            },
+                            "application\/ld+json": {
+                                "schema": {
+                                    "$ref": "#\/components\/schemas\/Stage-read"
+                                }
+                            },
+                            "application\/vnd.api+json": {
+                                "schema": {
+                                    "$ref": "#\/components\/schemas\/Stage-read"
+                                }
+                            },
+                            "application\/json": {
+                                "schema": {
+                                    "$ref": "#\/components\/schemas\/Stage-read"
+                                }
+                            },
+                            "application\/xml": {
+                                "schema": {
+                                    "$ref": "#\/components\/schemas\/Stage-read"
+                                }
+                            },
+                            "application\/x-yaml": {
+                                "schema": {
+                                    "$ref": "#\/components\/schemas\/Stage-read"
+                                }
+                            },
+                            "text\/csv": {
+                                "schema": {
+                                    "$ref": "#\/components\/schemas\/Stage-read"
+                                }
+                            },
+                            "text\/html": {
+                                "schema": {
+                                    "$ref": "#\/components\/schemas\/Stage-read"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Invalid input"
+                    },
+                    "404": {
+                        "description": "Resource not found"
+                    }
+                },
+                "requestBody": {
+                    "content": {
+                        "application\/hal+json": {
+                            "schema": {
+                                "$ref": "#\/components\/schemas\/Stage-write"
+                            }
+                        },
+                        "application\/ld+json": {
+                            "schema": {
+                                "$ref": "#\/components\/schemas\/Stage-write"
+                            }
+                        },
+                        "application\/vnd.api+json": {
+                            "schema": {
+                                "$ref": "#\/components\/schemas\/Stage-write"
+                            }
+                        },
+                        "application\/json": {
+                            "schema": {
+                                "$ref": "#\/components\/schemas\/Stage-write"
+                            }
+                        },
+                        "application\/xml": {
+                            "schema": {
+                                "$ref": "#\/components\/schemas\/Stage-write"
+                            }
+                        },
+                        "application\/x-yaml": {
+                            "schema": {
+                                "$ref": "#\/components\/schemas\/Stage-write"
+                            }
+                        },
+                        "text\/csv": {
+                            "schema": {
+                                "$ref": "#\/components\/schemas\/Stage-write"
+                            }
+                        },
+                        "text\/html": {
+                            "schema": {
+                                "$ref": "#\/components\/schemas\/Stage-write"
+                            }
+                        }
+                    },
+                    "description": "The updated Stage resource"
+                }
+            },
+            "patch": {
+                "tags": [
+                    "Stage"
+                ],
+                "operationId": "patchStageItem",
+                "summary": "Updates the Stage resource.",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "API-Version",
+                        "description": "The version of the API conform [Landelijke API-strategie.](https:\/\/geonovum.github.io\/KP-APIs\/#versioning)",
+                        "example": "1.0.1",
+                        "in": "header"
+                    },
+                    {
+                        "name": "X-NLX-Request-User-Id",
+                        "description": "The id of the user performing the request",
+                        "in": "header"
+                    },
+                    {
+                        "name": "X-NLX-Request-Application-Id",
+                        "description": "The id of the application performing the request",
+                        "in": "header"
+                    },
+                    {
+                        "name": "X-NLX-Request-Subject-Identifier",
+                        "description": "An subject identifier for purpose registration (doelbinding)",
+                        "in": "header"
+                    },
+                    {
+                        "name": "X-NLX-Request-Process-Id",
+                        "description": "A process id for purpose registration (doelbinding)",
+                        "in": "header"
+                    },
+                    {
+                        "name": "X-NLX-Request-Data-Elements",
+                        "description": "A list of requested data elements",
+                        "in": "header"
+                    },
+                    {
+                        "name": "X-NLX-Request-Data-Subject",
+                        "description": "A key-value list of data subjects related to this request. e.g. `bsn=12345678,kenteken=ab-12-fg`",
+                        "in": "header"
+                    },
+                    {
+                        "name": "X-Audit-Clarification",
+                        "description": "A clarification as to why a request has been made  (doelbinding)",
+                        "in": "header"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Stage resource updated",
+                        "content": {
+                            "application\/hal+json": {
+                                "schema": {
+                                    "$ref": "#\/components\/schemas\/Stage-read"
+                                }
+                            },
+                            "application\/ld+json": {
+                                "schema": {
+                                    "$ref": "#\/components\/schemas\/Stage-read"
+                                }
+                            },
+                            "application\/vnd.api+json": {
+                                "schema": {
+                                    "$ref": "#\/components\/schemas\/Stage-read"
+                                }
+                            },
+                            "application\/json": {
+                                "schema": {
+                                    "$ref": "#\/components\/schemas\/Stage-read"
+                                }
+                            },
+                            "application\/xml": {
+                                "schema": {
+                                    "$ref": "#\/components\/schemas\/Stage-read"
+                                }
+                            },
+                            "application\/x-yaml": {
+                                "schema": {
+                                    "$ref": "#\/components\/schemas\/Stage-read"
+                                }
+                            },
+                            "text\/csv": {
+                                "schema": {
+                                    "$ref": "#\/components\/schemas\/Stage-read"
+                                }
+                            },
+                            "text\/html": {
+                                "schema": {
+                                    "$ref": "#\/components\/schemas\/Stage-read"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Invalid input"
+                    },
+                    "404": {
+                        "description": "Resource not found"
+                    }
+                },
+                "requestBody": {
+                    "content": {
+                        "application\/hal+json": {
+                            "schema": {
+                                "$ref": "#\/components\/schemas\/Stage-write"
+                            }
+                        },
+                        "application\/ld+json": {
+                            "schema": {
+                                "$ref": "#\/components\/schemas\/Stage-write"
+                            }
+                        },
+                        "application\/vnd.api+json": {
+                            "schema": {
+                                "$ref": "#\/components\/schemas\/Stage-write"
+                            }
+                        },
+                        "application\/json": {
+                            "schema": {
+                                "$ref": "#\/components\/schemas\/Stage-write"
+                            }
+                        },
+                        "application\/xml": {
+                            "schema": {
+                                "$ref": "#\/components\/schemas\/Stage-write"
+                            }
+                        },
+                        "application\/x-yaml": {
+                            "schema": {
+                                "$ref": "#\/components\/schemas\/Stage-write"
+                            }
+                        },
+                        "text\/csv": {
+                            "schema": {
+                                "$ref": "#\/components\/schemas\/Stage-write"
+                            }
+                        },
+                        "text\/html": {
+                            "schema": {
+                                "$ref": "#\/components\/schemas\/Stage-write"
+                            }
+                        }
+                    },
+                    "description": "The updated Stage resource"
+                }
+            }
+        }
+    },
+    "components": {
+        "schemas": {
+            "ProcessType-read": {
+                "type": "object",
+                "description": "A process",
+                "properties": {
+                    "id": {
+                        "readOnly": true,
+                        "description": "The UUID identifier of this object",
+                        "type": "string"
+                    },
+                    "name": {
+                        "readOnly": true,
+                        "description": "The name of this process",
+                        "type": "string"
+                    },
+                    "description": {
+                        "readOnly": true,
+                        "description": "An short description of this process",
+                        "type": "string"
+                    },
+                    "logo": {
+                        "readOnly": true,
+                        "description": "The logo for this process",
+                        "type": "string"
+                    },
+                    "source_organization": {
+                        "description": "The RSIN of the organization that owns this process",
+                        "type": "string"
+                    },
+                    "stages": {
+                        "description": "The stages of this process",
+                        "type": "array",
+                        "items": {
+                            "$ref": "#\/components\/schemas\/Stage-read"
+                        }
+                    },
+                    "request": {
+                        "description": "The request that is used for this process",
+                        "type": "string"
+                    }
+                },
+                "required": [
+                    "source_organization"
+                ]
+            },
+            "ProcessType-write": {
+                "type": "object",
+                "description": "A process",
+                "required": [
+                    "source_organization"
+                ],
+                "properties": {
+                    "source_organization": {
+                        "description": "The RSIN of the organization that owns this process",
+                        "type": "string"
+                    },
+                    "stages": {
+                        "description": "The stages of this process",
+                        "type": "array",
+                        "items": {
+                            "$ref": "#\/components\/schemas\/Stage-write"
+                        }
+                    },
+                    "request": {
+                        "description": "The request that is used for this process",
+                        "type": "string"
+                    },
+                    "extends": {
+                        "description": "The process that this process extends",
+                        "$ref": "#\/components\/schemas\/ProcessType-write"
+                    }
+                }
+            },
+            "Stage-read": {
+                "type": "object",
+                "description": "A single stage within a process",
+                "properties": {
+                    "id": {
+                        "readOnly": true,
+                        "description": "The UUID identifier of this object",
+                        "type": "string"
+                    },
+                    "name": {
+                        "readOnly": true,
+                        "description": "The name of this stage",
+                        "type": "string"
+                    },
+                    "description": {
+                        "readOnly": true,
+                        "description": "An short description of this stage",
+                        "type": "string"
+                    },
+                    "logo": {
+                        "readOnly": true,
+                        "description": "The logo for this stage",
+                        "type": "string"
+                    },
+                    "type": {
+                        "description": "The task type of the stage",
+                        "type": "string"
+                    },
+                    "options": {
+                        "description": "The options or configuration for this stage",
+                        "type": "string"
+                    },
+                    "validation": {
+                        "readOnly": true,
+                        "description": "The validation rules that this stage adheres to",
+                        "type": "string"
+                    },
+                    "next": {
+                        "$ref": "#\/components\/schemas\/Stage-read"
+                    },
+                    "previous": {
+                        "$ref": "#\/components\/schemas\/Stage-read"
+                    },
+                    "property": {
+                        "type": "string"
+                    }
+                }
+            },
+            "Stage-write": {
+                "type": "object",
+                "description": "A single stage within a process",
+                "properties": {
+                    "type": {
+                        "description": "The task type of the stage",
+                        "type": "string"
+                    },
+                    "options": {
+                        "description": "The options or configuration for this stage",
+                        "type": "string"
+                    },
+                    "next": {
+                        "$ref": "#\/components\/schemas\/Stage-write"
+                    },
+                    "previous": {
+                        "$ref": "#\/components\/schemas\/Stage-write"
+                    },
+                    "property": {
+                        "type": "string"
+                    }
+                }
+            }
+        }
+    },
+    "host": "pc.zaakonline.nl",
+    "servers": [
+        {
+            "description": "Demo Omgeving",
+            "url": "http:\/\/ptc.demo.common-ground.dev\/"
+        }
+    ],
+    "externalDocs": [
+        {
+            "description": "OAS Documentatie",
+            "url": "http:\/\/ptc.demo.common-ground.dev\/"
+        }
+    ],
+    "x-commonground": {
+        "type": "tool",
+        "developers": [
+            {
+                "name": "Conduction",
+                "url": "https:\/\/github.com\/ConductionNL",
+                "email": "info@conduction.nl"
+            },
+            {
+                "name": "Gemeente 's-Hertogenbosch",
+                "url": "https:\/\/github.com\/gemeenteshertogenbosch",
+                "email": "info@s-hertogenbosch.nl\/"
+            }
+        ],
+        "builds": [
+            {
+                "name": "travis",
+                "logo": "https:\/\/travis-ci.org\/api-platform\/core.svg?branch=master",
+                "url": "https:\/\/travis-ci.org\/api-platform\/core"
+            },
+            {
+                "name": "appveyor",
+                "logo": "https:\/\/ci.appveyor.com\/api\/projects\/status\/grwuyprts3wdqx5l?svg=true",
+                "url": "https:\/\/ci.appveyor.com\/project\/dunglas\/dunglasapibundle"
+            },
+            {
+                "name": "codecov",
+                "logo": "https:\/\/codecov.io\/gh\/api-platform\/core\/branch\/master\/graph\/badge.svg",
+                "url": "https:\/\/codecov.io\/gh\/api-platform\/core"
+            },
+            {
+                "name": "SensioLabsInsight",
+                "logo": "https:\/\/insight.sensiolabs.com\/projects\/92d78899-946c-4282-89a3-ac92344f9a93\/mini.png",
+                "url": "https:\/\/insight.sensiolabs.com\/projects\/92d78899-946c-4282-89a3-ac92344f9a93"
+            },
+            {
+                "name": "Scrutinizer Code Quality",
+                "logo": "https:\/\/scrutinizer-ci.com\/g\/api-platform\/core\/badges\/quality-score.png?b=master",
+                "url": "https:\/\/scrutinizer-ci.com\/g\/api-platform\/core\/?branch=master"
+            }
+        ]
+    }
+}
