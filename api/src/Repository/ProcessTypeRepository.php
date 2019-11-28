@@ -16,7 +16,7 @@ class ProcessTypeRepository extends ServiceEntityRepository
 {
     public function __construct(RegistryInterface $registry)
     {
-    	parent::__construct($registry, ProcessType::class);
+        parent::__construct($registry, ProcessType::class);
     }
 
     // /**

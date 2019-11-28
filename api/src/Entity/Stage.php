@@ -4,29 +4,24 @@ namespace App\Entity;
 
 use ApiPlatform\Core\Annotation\ApiProperty;
 use ApiPlatform\Core\Annotation\ApiResource;
-use ApiPlatform\Core\Annotation\ApiFilter;
-use ApiPlatform\Core\Bridge\Doctrine\Orm\Filter\SearchFilter;
 use Doctrine\Common\Collections\ArrayCollection;
-use Doctrine\Common\Collections\Collection;
-use Gedmo\Mapping\Annotation as Gedmo;
 use Doctrine\ORM\Mapping as ORM;
 use Ramsey\Uuid\UuidInterface;
 use Symfony\Component\Serializer\Annotation\Groups;
-use Symfony\Component\Validator\Constraints as Assert;
 use Symfony\Component\Serializer\Annotation\MaxDepth;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
- * A single stage within a process
+ * A single stage within a process.
  *
  * @category   	Entity
  *
  * @author     	Ruben van der Linde <ruben@conduction.nl>
  * @license    	EUPL 1.2 https://opensource.org/licenses/EUPL-1.2 *
+ *
  * @version    	1.0
  *
  * @link   		http://www.conduction.nl
- * @package		Common Ground Component
- * @subpackage  Processes
  *
  * @ApiResource(
  *     normalizationContext={"groups"={"read"}, "enable_max_depth"=true},
@@ -37,14 +32,15 @@ use Symfony\Component\Serializer\Annotation\MaxDepth;
 class Stage
 {
     /**
-     * @var UuidInterface $id The UUID identifier of this object
+     * @var UuidInterface The UUID identifier of this object
+     *
      * @example e2984465-190a-4562-829e-a8cca81aa35d
      *
      * @ApiProperty(
      * 	   identifier=true,
      *     attributes={
      *         "swagger_context"={
-	 *         	   "description" = "The UUID identifier of this object",
+     *         	   "description" = "The UUID identifier of this object",
      *             "type"="string",
      *             "format"="uuid",
      *             "example"="e2984465-190a-4562-829e-a8cca81aa35d"
@@ -59,60 +55,63 @@ class Stage
      * @ORM\GeneratedValue(strategy="CUSTOM")
      * @ORM\CustomIdGenerator(class="Ramsey\Uuid\Doctrine\UuidGenerator")
      */
-	private $id;
-
-	/**
-	 * @var string $name The name of this stage
-	 * @example Stage 1
-	 *
-	 * @ApiProperty(
-	 * 	   iri="https://schema.org/name",
-	 *     attributes={
-	 *         "swagger_context"={
-	 *         	   "description" = "The name of this stage",
-	 *             "type"="string",
-	 *             "example"="Stage 1",
-	 *             "maxLength"="255",
-	 *             "required" = true
-	 *         }
-	 *     }
-	 * )
-	 *
-	 * @Assert\NotNull
-	 * @Assert\Length(
-	 *      max = 255
-	 * )
-	 * @Groups({"read"})
-	 * @ORM\Column(type="string", length=255)
-	 */
-	private $name;
-
-	/**
-	 * @var string $description An short description of this stage
-	 * @example Please enter your email adres
-	 *
-	 * @ApiProperty(
-	 * 	   iri="https://schema.org/description",
-	 *     attributes={
-	 *         "swagger_context"={
-	 *         	   "description" = "An short description of this stage",
-	 *             "type"="string",
-	 *             "example"="Please enter your email adres",
-	 *             "maxLength"=2550
-	 *         }
-	 *     }
-	 * )
-	 *
-	 * @Assert\Length(
-	 *      max = 2550
-	 * )
-	 * @Groups({"read"})
-	 * @ORM\Column(type="text", nullable=true)
-	 */
-	private $description;
+    private $id;
 
     /**
-     * @var string $logo The logo for this stage
+     * @var string The name of this stage
+     *
+     * @example Stage 1
+     *
+     * @ApiProperty(
+     * 	   iri="https://schema.org/name",
+     *     attributes={
+     *         "swagger_context"={
+     *         	   "description" = "The name of this stage",
+     *             "type"="string",
+     *             "example"="Stage 1",
+     *             "maxLength"="255",
+     *             "required" = true
+     *         }
+     *     }
+     * )
+     *
+     * @Assert\NotNull
+     * @Assert\Length(
+     *      max = 255
+     * )
+     * @Groups({"read"})
+     * @ORM\Column(type="string", length=255)
+     */
+    private $name;
+
+    /**
+     * @var string An short description of this stage
+     *
+     * @example Please enter your email adres
+     *
+     * @ApiProperty(
+     * 	   iri="https://schema.org/description",
+     *     attributes={
+     *         "swagger_context"={
+     *         	   "description" = "An short description of this stage",
+     *             "type"="string",
+     *             "example"="Please enter your email adres",
+     *             "maxLength"=2550
+     *         }
+     *     }
+     * )
+     *
+     * @Assert\Length(
+     *      max = 2550
+     * )
+     * @Groups({"read"})
+     * @ORM\Column(type="text", nullable=true)
+     */
+    private $description;
+
+    /**
+     * @var string The logo for this stage
+     *
      * @example https://www.my-organisation.com/logo.png
      *
      * @ApiProperty(
@@ -139,12 +138,13 @@ class Stage
 
     /**
      * @var string The task type of the stage
+     *
      * @example my-organisation
      * @Assert\Choice({"service","send","receive","user","manual","business rule","script"})
      * @ApiProperty(
      *     attributes={
      *         "swagger_context"={
- 	 *         	   "description" = "The task type of the stage",
+     *         	   "description" = "The task type of the stage",
      *             "type"="string",
      *             "enum"={"service", "send", "receive","user","manual","business rule","script"},
      *             "example"="user",
@@ -155,16 +155,17 @@ class Stage
      * @Groups({"read", "write"})
      * @ORM\Column(type="string", length=255)
      */
-    private $type = "user";
+    private $type = 'user';
 
     /**
      * @var object The options or configuration for this stage
+     *
      * @example my-organisation
      *
      * @ApiProperty(
      *     attributes={
      *         "swagger_context"={
- 	 *         	   "description" = "The options or configuration for this stage",
+     *         	   "description" = "The options or configuration for this stage",
      *             "type"="object",
      *             "example"={
      *             }
@@ -179,6 +180,7 @@ class Stage
 
     /**
      * @var object The validation rules that this stage adheres to
+     *
      * @example my-organisation
      * @Assert\Length(
      *     max=255
@@ -186,7 +188,7 @@ class Stage
      * @ApiProperty(
      *     attributes={
      *         "swagger_context"={
- 	 *         	   "description" = "The validation rules that this stage adhers to",
+     *         	   "description" = "The validation rules that this stage adhers to",
      *             "type"="object",
      *             "example"={
      *             		"title":"user_email",
@@ -239,11 +241,11 @@ class Stage
      * @ApiProperty(
      *     attributes={
      *         "swagger_context"={
- 	 *         	   "description" = "The property that is used for this stage",
+     *         	   "description" = "The property that is used for this stage",
      *             "type"="string",
      *             "format"="uri",
      *             "example"="http://requests.zaakonline.nl/properties/9bd169ef-bc8c-4422-86ce-a0e7679ab67a",
- 	*              "maxLength"="255"
+     *              "maxLength"="255"
      *         }
      *     }
      * )
@@ -289,14 +291,14 @@ class Stage
 
     public function getLogo(): ?string
     {
-    	return $this->logo;
+        return $this->logo;
     }
 
     public function setLogo(?string $logo): self
     {
-    	$this->logo = $logo;
+        $this->logo = $logo;
 
-    	return $this;
+        return $this;
     }
 
     public function getType(): ?string
@@ -384,7 +386,7 @@ class Stage
 
     public function setProperty(string $property): self
     {
-    	$this->property = $property;
+        $this->property = $property;
 
         return $this;
     }
