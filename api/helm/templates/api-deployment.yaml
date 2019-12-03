@@ -27,11 +27,23 @@ spec:
             - containerPort: 80
           env:
             - name: PHP_SERVICE
+<<<<<<< HEAD
               value: {{ include "name" . }}-php
             - name: NGINX_HOST
               value: {{ include "name" . }}-php
             - name: BACKENDS
               value: {{ include "name" . }}-php
+=======
+              valueFrom:
+                configMapKeyRef:
+                  name: {{ template "fullname" . }}
+                  key: php-service
+            - name: NGINX_HOST
+              valueFrom:
+                configMapKeyRef:
+                  name: {{ template "fullname" . }}
+                  key: php-service
+>>>>>>> security-http-4.3.9
           resources:
 {{ toYaml .Values.resources | indent 12 }}
     {{- if .Values.nodeSelector }}

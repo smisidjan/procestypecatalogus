@@ -1,7 +1,13 @@
 apiVersion: v1
+<<<<<<< HEAD
 appVersion: V.0.1
 description: Naast deze JSON rest API is er ook een [graphql](/graphql) interface beschikbaar.
 name: procestypecatalogus
+=======
+appVersion: 0.1.0
+description: A Helm chart for an API Platform API
+name: ptc
+>>>>>>> security-http-4.3.9
 version: 0.1.0
-home: https://common-ground.dev
-icon: https://common-ground.dev/logo-250x250.png
+home: https://api-platform.com
+icon: https://api-platform.com/logo-250x250.png
