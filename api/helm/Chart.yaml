@@ -1,7 +1,15 @@
 apiVersion: v1
+<<<<<<<<< Temporary merge branch 1
+appVersion: 0.1.0
+description: A Helm chart for an API Platform API
+name: ptc
+=========
 appVersion: V.0.1
 description: Naast deze JSON rest API is er ook een [graphql](/graphql) interface beschikbaar.
 name: procestypecatalogus
+appVersion: 0.1.0
+description: A Helm chart for an API Platform API
+name: ptc
 version: 0.1.0
 home: https://api-platform.com
 icon: https://api-platform.com/logo-250x250.png
