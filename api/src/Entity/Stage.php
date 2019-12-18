@@ -33,20 +33,7 @@ class Stage
 {
     /**
      * @var UuidInterface The UUID identifier of this object
-     *
      * @example e2984465-190a-4562-829e-a8cca81aa35d
-     *
-     * @ApiProperty(
-     * 	   identifier=true,
-     *     attributes={
-     *         "swagger_context"={
-     *         	   "description" = "The UUID identifier of this object",
-     *             "type"="string",
-     *             "format"="uuid",
-     *             "example"="e2984465-190a-4562-829e-a8cca81aa35d"
-     *         }
-     *     }
-     * )
      *
      * @Assert\Uuid
      * @Groups({"read"})
@@ -59,21 +46,7 @@ class Stage
 
     /**
      * @var string The name of this stage
-     *
      * @example Stage 1
-     *
-     * @ApiProperty(
-     * 	   iri="https://schema.org/name",
-     *     attributes={
-     *         "swagger_context"={
-     *         	   "description" = "The name of this stage",
-     *             "type"="string",
-     *             "example"="Stage 1",
-     *             "maxLength"="255",
-     *             "required" = true
-     *         }
-     *     }
-     * )
      *
      * @Assert\NotNull
      * @Assert\Length(
@@ -86,20 +59,7 @@ class Stage
 
     /**
      * @var string An short description of this stage
-     *
      * @example Please enter your email adres
-     *
-     * @ApiProperty(
-     * 	   iri="https://schema.org/description",
-     *     attributes={
-     *         "swagger_context"={
-     *         	   "description" = "An short description of this stage",
-     *             "type"="string",
-     *             "example"="Please enter your email adres",
-     *             "maxLength"=2550
-     *         }
-     *     }
-     * )
      *
      * @Assert\Length(
      *      max = 2550
@@ -111,21 +71,7 @@ class Stage
 
     /**
      * @var string The logo for this stage
-     *
      * @example https://www.my-organisation.com/logo.png
-     *
-     * @ApiProperty(
-     * 	   iri="https://schema.org/logo",
-     *     attributes={
-     *         "swagger_context"={
-     *         	   "description" = "The logo for this stage",
-     *             "type"="string",
-     *             "format"="url",
-     *             "example"="https://www.my-organisation.com/logo.png",
-     *             "maxLength"="255"
-     *         }
-     *     }
-     * )
      *
      * @Assert\Url
      * @Assert\Length(
@@ -138,20 +84,9 @@ class Stage
 
     /**
      * @var string The task type of the stage
-     *
      * @example my-organisation
+     *
      * @Assert\Choice({"service","send","receive","user","manual","business rule","script"})
-     * @ApiProperty(
-     *     attributes={
-     *         "swagger_context"={
-     *         	   "description" = "The task type of the stage",
-     *             "type"="string",
-     *             "enum"={"service", "send", "receive","user","manual","business rule","script"},
-     *             "example"="user",
-     *             "default"="user"
-     *         }
-     *     }
-     * )
      * @Groups({"read", "write"})
      * @ORM\Column(type="string", length=255)
      */
@@ -159,19 +94,7 @@ class Stage
 
     /**
      * @var object The options or configuration for this stage
-     *
      * @example my-organisation
-     *
-     * @ApiProperty(
-     *     attributes={
-     *         "swagger_context"={
-     *         	   "description" = "The options or configuration for this stage",
-     *             "type"="object",
-     *             "example"={
-     *             }
-     *         }
-     *     }
-     * )
      *
      * @Groups({"read", "write"})
      * @ORM\Column(type="json", nullable=true)
@@ -180,27 +103,11 @@ class Stage
 
     /**
      * @var object The validation rules that this stage adheres to
-     *
      * @example my-organisation
+     *
      * @Assert\Length(
      *     max=255
      * )
-     * @ApiProperty(
-     *     attributes={
-     *         "swagger_context"={
-     *         	   "description" = "The validation rules that this stage adhers to",
-     *             "type"="object",
-     *             "example"={
-     *             		"title":"user_email",
-     *             		"type":"string",
-     *             		"format":"email",
-     *             		"maxLength":255,
-     *             		"required":true
-     *             }
-     *         }
-     *     }
-     * )
-     *
      * @Groups({"read"})
      * @ORM\Column(type="json", nullable=true)
      */
@@ -237,18 +144,6 @@ class Stage
 
     /**
      * @param string The request property that is used for this stage
-     *
-     * @ApiProperty(
-     *     attributes={
-     *         "swagger_context"={
-     *         	   "description" = "The property that is used for this stage",
-     *             "type"="string",
-     *             "format"="uri",
-     *             "example"="http://requests.zaakonline.nl/properties/9bd169ef-bc8c-4422-86ce-a0e7679ab67a",
-     *              "maxLength"="255"
-     *         }
-     *     }
-     * )
      *
      * @Groups({"read", "write"})
      * @ORM\Column(type="string", length=255, nullable=true)
