@@ -57,20 +57,7 @@ class ProcessType
 {
     /**
      * @var UuidInterface The UUID identifier of this object
-     *
      * @example e2984465-190a-4562-829e-a8cca81aa35d
-     *
-     * @ApiProperty(
-     * 	   identifier=true,
-     *     attributes={
-     *         "swagger_context"={
-     *         	   "description" = "The UUID identifier of this object",
-     *             "type"="string",
-     *             "format"="uuid",
-     *             "example"="e2984465-190a-4562-829e-a8cca81aa35d"
-     *         }
-     *     }
-     * )
      *
      * @Assert\Uuid
      * @Groups({"read"})
@@ -83,21 +70,7 @@ class ProcessType
 
     /**
      * @var string The name of this process
-     *
      * @example My process
-     *
-     * @ApiProperty(
-     * 	   iri="http://schema.org/name",
-     *     attributes={
-     *         "swagger_context"={
-     *         	   "description" = "The name of this process",
-     *             "type"="string",
-     *             "format"="url",
-     *             "example"="https://imbag.github.io/praktijkhandleiding/assets/img/vng.svg",
-     *              "maxLength"=255
-     *         }
-     *     }
-     * )
      *
      * @Assert\NotNull
      * @Assert\Length(
@@ -112,17 +85,6 @@ class ProcessType
      * @var string The subtitle of this process
      * @example"An example process
      *
-     * @ApiProperty(
-     *     attributes={
-     *         "swagger_context"={
-     *         	   "description" = "The subtitle of this process",
-     *             "type"="string",
-     *             "example"="My process",
-     *              "maxLength"=255
-     *         }
-     *     }
-     * )
-     *
      * @Assert\NotNull
      * @Assert\Length(
      *      max = 255
@@ -134,20 +96,7 @@ class ProcessType
 
     /**
      * @var string An short description of this process
-     *
      * @example This is the best process ever
-     *
-     * @ApiProperty(
-     * 	   iri="https://schema.org/description",
-     *     attributes={
-     *         "swagger_context"={
-     *         	   "description" = "An short description of this process",
-     *             "type"="string",
-     *             "example"="An example process",
-     *              "maxLength"=255
-     *         }
-     *     }
-     * )
      *
      * @Assert\Length(
      *      max = 2550
@@ -159,21 +108,7 @@ class ProcessType
 
     /**
      * @var string The logo for this process
-     *
      * @example https://www.my-organisation.com/logo.png
-     *
-     * @ApiProperty(
-     * 	   iri="https://schema.org/logo",
-     *     attributes={
-     *         "swagger_context"={
-     *         	   "description" = "The logo for this process",
-     *             "type"="string",
-     *             "format"="url",
-     *             "example"="https://www.my-organisation.com/logo.png",
-     *             "maxLength"="255"
-     *         }
-     *     }
-     * )
      *
      * @Assert\Url
      * @Assert\Length(
@@ -186,19 +121,7 @@ class ProcessType
 
     /**
      * @var string The RSIN of the organization that owns this process
-     *
      * @example 002851234
-     *
-     * @ApiProperty(
-     *     attributes={
-     *         "swagger_context"={
-     *         	   "description" = "The RSIN of the organization that owns this process",
-     *             "type"="string",
-     *             "example"="002851234",
-     *              "maxLength"="255"
-     *         }
-     *     }
-     * )
      *
      * @Assert\NotNull
      * @Assert\Length(
@@ -223,20 +146,7 @@ class ProcessType
 
     /**
      * @var string The request that is used for this process
-     *
      * @example http://rtc.zaakonline.nl/9bd169ef-bc8c-4422-86ce-a0e7679ab67a
-     *
-     * @ApiProperty(
-     *     attributes={
-     *         "swagger_context"={
-     *         	   "description" = "The request that is used for this process",
-     *             "type"="string",
-     *             "format"="uri",
-     *             "example"="http://requests.zaakonline.nl/properties/9bd169ef-bc8c-4422-86ce-a0e7679ab67a",
-     *              "maxLength"=255
-     *         }
-     *     }
-     * )
      *
      * @Assert\Url
      * @Assert\Length(
