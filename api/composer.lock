@@ -7110,6 +7110,7 @@
         {
             "name": "symfony/var-exporter",
             "version": "v4.4.2",
+
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/var-exporter.git",

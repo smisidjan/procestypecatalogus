@@ -111,28 +111,16 @@ $ helm install --name ptc-prod ./api/helm --kubeconfig="api/helm/kubeconfig.yaml
 
 Or update if you want to update an existing one
 ```CLI
-<<<<<<< HEAD
 $ helm upgrade prc-dev ./api/helm  --kubeconfig="api/helm/kubeconfig.yaml" --namespace=dev  --set settings.env=dev,settings.debug=1 
 $ helm upgrade prc-stag ./api/helm --kubeconfig="api/helm/kubeconfig.yaml" --namespace=stag --set settings.env=stag,settings.debug=0 
 $ helm upgrade prc-prod ./api/helm --kubeconfig="api/helm/kubeconfig.yaml" --namespace=prod --set settings.env=prod,settings.debug=0 
-=======
-$ helm upgrade ptc-dev ./api/helm  --kubeconfig="api/helm/kubeconfig.yaml --namespace=dev  --set settings.env=dev, settings.debug=1" 
-$ helm upgrade ptc-stag ./api/helm --kubeconfig="api/helm/kubeconfig.yaml --namespace=stag --set settings.env=stag, settings.debug=0" 
-$ helm upgrade ptc-prod ./api/helm --kubeconfig="api/helm/kubeconfig.yaml --namespace=prod --set settings.env=prod, settings.debug=0" 
->>>>>>> security-http-4.3.9
 ```
 
 Or del if you want to delete an existing  one
 ```CLI
-<<<<<<< HEAD
 $ helm del prc-dev  --purge --kubeconfig="api/helm/kubeconfig.yaml" --namespace=dev
 $ helm del prc-stag --purge --kubeconfig="api/helm/kubeconfig.yaml" --namespace=stag
 $ helm del prc-prod --purge --kubeconfig="api/helm/kubeconfig.yaml" --namespace=prod
-=======
-$ helm del ptc-dev  --purge --kubeconfig="api/helm/kubeconfig.yaml --namespace=dev" 
-$ helm del ptc-stag --purge --kubeconfig="api/helm/kubeconfig.yaml --namespace=stag" 
-$ helm del ptc-prod --purge --kubeconfig="api/helm/kubeconfig.yaml --namespace=prod" 
->>>>>>> security-http-4.3.9
 ```
 
 ## Making your app known on NLX
