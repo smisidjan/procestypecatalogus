@@ -3,7 +3,6 @@
 namespace App\Entity;
 
 use ApiPlatform\Core\Annotation\ApiFilter;
-use ApiPlatform\Core\Annotation\ApiProperty;
 use ApiPlatform\Core\Annotation\ApiResource;
 use ApiPlatform\Core\Bridge\Doctrine\Orm\Filter\SearchFilter;
 use Doctrine\Common\Collections\ArrayCollection;
@@ -57,6 +56,7 @@ class ProcessType
 {
     /**
      * @var UuidInterface The UUID identifier of this object
+     *
      * @example e2984465-190a-4562-829e-a8cca81aa35d
      *
      * @Assert\Uuid
@@ -70,6 +70,7 @@ class ProcessType
 
     /**
      * @var string The name of this process
+     *
      * @example My process
      *
      * @Assert\NotNull
@@ -96,6 +97,7 @@ class ProcessType
 
     /**
      * @var string An short description of this process
+     *
      * @example This is the best process ever
      *
      * @Assert\Length(
@@ -108,6 +110,7 @@ class ProcessType
 
     /**
      * @var string The logo for this process
+     *
      * @example https://www.my-organisation.com/logo.png
      *
      * @Assert\Url
@@ -121,6 +124,7 @@ class ProcessType
 
     /**
      * @var string The RSIN of the organization that owns this process
+     *
      * @example 002851234
      *
      * @Assert\NotNull
@@ -146,6 +150,7 @@ class ProcessType
 
     /**
      * @var string The request that is used for this process
+     *
      * @example http://rtc.zaakonline.nl/9bd169ef-bc8c-4422-86ce-a0e7679ab67a
      *
      * @Assert\Url
