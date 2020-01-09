@@ -127,7 +127,7 @@ class Stage
      *
      * @MaxDepth(1)
      * @Groups({"read","write"})
-     * @Asert\Valid
+     * @Assert\Valid
      * @ORM\OneToOne(targetEntity="App\Entity\Stage", inversedBy="previous", cascade={"persist", "remove"})
      */
     private $next;
@@ -137,7 +137,7 @@ class Stage
      *
      * @MaxDepth(1)
      * @Groups({"read","write"})
-     * @Asert\Valid
+     * @Assert\Valid
      * @ORM\OneToOne(targetEntity="App\Entity\Stage", mappedBy="next", cascade={"persist", "remove"})
      */
     private $previous;
