@@ -175,9 +175,12 @@ class ProcessType
     private $extendedBy;
 
     /**
-     * @param array The properties property is used internally for validation and extending and serves as an array of property UUID's against which can be checked for double properties
+     * @param array|string[] The request properties that are used for this process
+     *
+     * @Groups({"read", "write"})
+     * @ORM\Column(type="array", length=255, nullable=true)
      */
-    private $properties;
+    private $properties = [];
 
     public function __construct()
     {
