@@ -38,8 +38,8 @@ class PropertyService
         }
 
         $client = new Client([
-                // You can set any number of default request options.
-                'timeout'  => 4000.0,
+            // You can set any number of default request options.
+            'timeout'  => 4000.0,
         ]);
 
         $response = $client->request('GET', $property);
