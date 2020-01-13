@@ -26,7 +26,7 @@ class ProcessSubscriber implements EventSubscriberInterface
     public static function getSubscribedEvents()
     {
         return [
-                KernelEvents::VIEW => ['getProcess', EventPriorities::PRE_VALIDATE],
+            KernelEvents::VIEW => ['getProcess', EventPriorities::PRE_VALIDATE],
         ];
     }
 

@@ -2,7 +2,6 @@
 
 namespace App\Entity;
 
-use ApiPlatform\Core\Annotation\ApiProperty;
 use ApiPlatform\Core\Annotation\ApiResource;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
@@ -33,6 +32,7 @@ class Stage
 {
     /**
      * @var UuidInterface The UUID identifier of this object
+     *
      * @example e2984465-190a-4562-829e-a8cca81aa35d
      *
      * @Assert\Uuid
@@ -46,6 +46,7 @@ class Stage
 
     /**
      * @var string The name of this stage
+     *
      * @example Stage 1
      *
      * @Assert\NotNull
@@ -59,6 +60,7 @@ class Stage
 
     /**
      * @var string An short description of this stage
+     *
      * @example Please enter your email adres
      *
      * @Assert\Length(
@@ -71,6 +73,7 @@ class Stage
 
     /**
      * @var string The logo for this stage
+     *
      * @example https://www.my-organisation.com/logo.png
      *
      * @Assert\Url
@@ -84,6 +87,7 @@ class Stage
 
     /**
      * @var string The task type of the stage
+     *
      * @example my-organisation
      *
      * @Assert\Choice({"service","send","receive","user","manual","business rule","script"})
@@ -94,6 +98,7 @@ class Stage
 
     /**
      * @var object The options or configuration for this stage
+     *
      * @example my-organisation
      *
      * @Groups({"read", "write"})
@@ -103,6 +108,7 @@ class Stage
 
     /**
      * @var object The validation rules that this stage adheres to
+     *
      * @example my-organisation
      *
      * @Assert\Length(
@@ -127,7 +133,7 @@ class Stage
      *
      * @MaxDepth(1)
      * @Groups({"read","write"})
-     * @Asert\Valid
+     * @Assert\Valid
      * @ORM\OneToOne(targetEntity="App\Entity\Stage", inversedBy="previous", cascade={"persist", "remove"})
      */
     private $next;
@@ -137,7 +143,7 @@ class Stage
      *
      * @MaxDepth(1)
      * @Groups({"read","write"})
-     * @Asert\Valid
+     * @Assert\Valid
      * @ORM\OneToOne(targetEntity="App\Entity\Stage", mappedBy="next", cascade={"persist", "remove"})
      */
     private $previous;

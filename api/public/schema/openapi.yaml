@@ -1,16 +1,16 @@
 openapi: 3.0.2
 info:
-  title: 'Proces Registratie Component'
+  title: 'Proto Component'
   version: V.0.1
   description: |
     API Details
-    - Component: Proces Registratie Component
-    - Reference: prc
+    - Component: Proto Component
+    - Reference: ptc
     - Enviroment: dev
     - Version: V.0.1
     - Repository: [online](https://github.com/ConductionNL/Proto-component-commonground) / [zip](https://github.com/ConductionNL/Proto-component-commonground/archive/master.zip)
-    - Docker Image: [online](https://hub.docker.com/repository/docker/conduction/pc-php) 
-    - Datamodel: [postman](/schema/pc.postman_collection.json) / [oas](/schema/openapi.yaml) / [pdf](/schema/datamodel.pdf) / [mwb](/schema/datamodel.mwb) 
+    - Docker Image: [online](https://hub.docker.com/repository/docker/conduction/ptc-php) 
+    - Datamodel: [postman](/schema/ptc.postman_collection.json) / [oas](/schema/openapi.yaml) / [pdf](/schema/datamodel.pdf) / [mwb](/schema/datamodel.mwb) 
     
     'Naast deze JSON rest API is er ook een [graphql](/graphql) interface beschikbaar.'         
     
@@ -72,13 +72,13 @@ paths:
                   $ref: '#/components/schemas/ProcessType-read'
       parameters:
         -
-          name: source_organization
+          name: sourceOrganization
           in: query
           required: false
           schema:
             type: string
         -
-          name: 'source_organization[]'
+          name: 'sourceOrganization[]'
           in: query
           required: false
           schema:
@@ -382,6 +382,8 @@ paths:
                 $ref: '#/components/schemas/ProcessType-read'
         404:
           description: 'Resource not found'
+      produces:
+        - application/health+json
     put:
       tags:
         - ProcessType
@@ -420,7 +422,7 @@ paths:
           description: 'A key-value list of data subjects related to this request. e.g. `bsn=12345678, kenteken=ab-12-fg`'
           in: header
         -
-          name: X-Audit-Clarification
+          name: X-NLX-Audit-Clarification
           description: 'A clarification as to why a request has been made  (doelbinding)'
           in: header
       responses:
@@ -618,8 +620,12 @@ paths:
           description: 'A key-value list of data subjects related to this request. e.g. `bsn=12345678, kenteken=ab-12-fg`'
           in: header
         -
-          name: X-Audit-Clarification
+          name: X-NLX-Audit-Clarification
           description: 'A clarification as to why a request has been made  (doelbinding)'
+          in: header
+        -
+          name: Link
+          description: 'A [websub](https://www.w3.org/TR/websub/#discovery) header like <https://hub.example.com/>; rel="hub"'
           in: header
         -
           name: 'extend[]'
@@ -659,6 +665,8 @@ paths:
             type: string
             format: date-time
           in: query
+      produces:
+        - application/health+json
     post:
       tags:
         - Stage
@@ -756,7 +764,7 @@ paths:
           description: 'A key-value list of data subjects related to this request. e.g. `bsn=12345678, kenteken=ab-12-fg`'
           in: header
         -
-          name: X-Audit-Clarification
+          name: X-NLX-Audit-Clarification
           description: 'A clarification as to why a request has been made  (doelbinding)'
           in: header
   '/stages/{id}':
@@ -800,6 +808,10 @@ paths:
         -
           name: X-NLX-Audit-Clarification
           description: 'A clarification as to why a request has been made  (doelbinding)'
+          in: header
+        -
+          name: Link
+          description: 'A [websub](https://www.w3.org/TR/websub/#discovery) header like <https://hub.example.com/>; rel="hub"'
           in: header
         -
           name: 'extend[]'
@@ -869,6 +881,8 @@ paths:
                 $ref: '#/components/schemas/Stage-read'
         404:
           description: 'Resource not found'
+      produces:
+        - application/health+json
     delete:
       tags:
         - Stage
@@ -912,7 +926,7 @@ paths:
           description: 'A key-value list of data subjects related to this request. e.g. `bsn=12345678, kenteken=ab-12-fg`'
           in: header
         -
-          name: X-Audit-Clarification
+          name: X-NLX-Audit-Clarification
           description: 'A clarification as to why a request has been made  (doelbinding)'
           in: header
     put:
@@ -953,7 +967,7 @@ paths:
           description: 'A key-value list of data subjects related to this request. e.g. `bsn=12345678, kenteken=ab-12-fg`'
           in: header
         -
-          name: X-Audit-Clarification
+          name: X-NLX-Audit-Clarification
           description: 'A clarification as to why a request has been made  (doelbinding)'
           in: header
       responses:
@@ -1053,7 +1067,7 @@ paths:
           description: 'A key-value list of data subjects related to this request. e.g. `bsn=12345678, kenteken=ab-12-fg`'
           in: header
         -
-          name: X-Audit-Clarification
+          name: X-NLX-Audit-Clarification
           description: 'A clarification as to why a request has been made  (doelbinding)'
           in: header
       responses:
@@ -1098,7 +1112,7 @@ components:
   schemas:
     ProcessType-read:
       type: object
-      description: 'A process'
+      description: 'A process.'
       properties:
         id:
           readOnly: true
@@ -1109,22 +1123,18 @@ components:
         name:
           readOnly: true
           description: 'The name of this process'
-          externalDocs:
-            url: 'http://schema.org/name'
           type: string
         description:
           readOnly: true
           description: 'An short description of this process'
-          externalDocs:
-            url: 'https://schema.org/description'
           type: string
         logo:
           readOnly: true
           description: 'The logo for this process'
           externalDocs:
-            url: 'https://schema.org/logo'
+            url: 'http://schema.org/url'
           type: string
-        source_organization:
+        sourceOrganization:
           description: 'The RSIN of the organization that owns this process'
           type: string
         stages:
@@ -1137,15 +1147,19 @@ components:
           externalDocs:
             url: 'http://schema.org/url'
           type: string
+        properties:
+          type: array
+          items:
+            type: string
       required:
-        - source_organization
+        - sourceOrganization
     ProcessType-write:
       type: object
-      description: 'A process'
+      description: 'A process.'
       required:
-        - source_organization
+        - sourceOrganization
       properties:
-        source_organization:
+        sourceOrganization:
           description: 'The RSIN of the organization that owns this process'
           type: string
         stages:
@@ -1162,9 +1176,13 @@ components:
           writeOnly: true
           description: 'The process that this process extends'
           $ref: '#/components/schemas/ProcessType-write'
+        properties:
+          type: array
+          items:
+            type: string
     'ProcessType:jsonld-read':
       type: object
-      description: 'A process'
+      description: 'A process.'
       properties:
         '@context':
           readOnly: true
@@ -1184,22 +1202,18 @@ components:
         name:
           readOnly: true
           description: 'The name of this process'
-          externalDocs:
-            url: 'http://schema.org/name'
           type: string
         description:
           readOnly: true
           description: 'An short description of this process'
-          externalDocs:
-            url: 'https://schema.org/description'
           type: string
         logo:
           readOnly: true
           description: 'The logo for this process'
           externalDocs:
-            url: 'https://schema.org/logo'
+            url: 'http://schema.org/url'
           type: string
-        source_organization:
+        sourceOrganization:
           description: 'The RSIN of the organization that owns this process'
           type: string
         stages:
@@ -1212,13 +1226,17 @@ components:
           externalDocs:
             url: 'http://schema.org/url'
           type: string
+        properties:
+          type: array
+          items:
+            type: string
       required:
-        - source_organization
+        - sourceOrganization
     'ProcessType:jsonld-write':
       type: object
-      description: 'A process'
+      description: 'A process.'
       required:
-        - source_organization
+        - sourceOrganization
       properties:
         '@context':
           readOnly: true
@@ -1229,7 +1247,7 @@ components:
         '@type':
           readOnly: true
           type: string
-        source_organization:
+        sourceOrganization:
           description: 'The RSIN of the organization that owns this process'
           type: string
         stages:
@@ -1246,9 +1264,13 @@ components:
           writeOnly: true
           description: 'The process that this process extends'
           $ref: '#/components/schemas/ProcessType:jsonld-write'
+        properties:
+          type: array
+          items:
+            type: string
     Stage-read:
       type: object
-      description: 'A single stage within a process'
+      description: 'A single stage within a process.'
       properties:
         id:
           readOnly: true
@@ -1259,20 +1281,16 @@ components:
         name:
           readOnly: true
           description: 'The name of this stage'
-          externalDocs:
-            url: 'https://schema.org/name'
           type: string
         description:
           readOnly: true
           description: 'An short description of this stage'
-          externalDocs:
-            url: 'https://schema.org/description'
           type: string
         logo:
           readOnly: true
           description: 'The logo for this stage'
           externalDocs:
-            url: 'https://schema.org/logo'
+            url: 'http://schema.org/url'
           type: string
         type:
           description: 'The task type of the stage'
@@ -1292,7 +1310,7 @@ components:
           type: string
     Stage-write:
       type: object
-      description: 'A single stage within a process'
+      description: 'A single stage within a process.'
       properties:
         type:
           description: 'The task type of the stage'
@@ -1308,7 +1326,7 @@ components:
           type: string
     'Stage:jsonld-read':
       type: object
-      description: 'A single stage within a process'
+      description: 'A single stage within a process.'
       properties:
         '@context':
           readOnly: true
@@ -1328,20 +1346,16 @@ components:
         name:
           readOnly: true
           description: 'The name of this stage'
-          externalDocs:
-            url: 'https://schema.org/name'
           type: string
         description:
           readOnly: true
           description: 'An short description of this stage'
-          externalDocs:
-            url: 'https://schema.org/description'
           type: string
         logo:
           readOnly: true
           description: 'The logo for this stage'
           externalDocs:
-            url: 'https://schema.org/logo'
+            url: 'http://schema.org/url'
           type: string
         type:
           description: 'The task type of the stage'
@@ -1361,7 +1375,7 @@ components:
           type: string
     'Stage:jsonld-write':
       type: object
-      description: 'A single stage within a process'
+      description: 'A single stage within a process.'
       properties:
         '@context':
           readOnly: true
@@ -1384,6 +1398,117 @@ components:
           $ref: '#/components/schemas/Stage:jsonld-write'
         property:
           type: string
+definitions:
+  ProcessType-read:
+    properties:
+      id:
+        example: e2984465-190a-4562-829e-a8cca81aa35d
+        format: uuid
+      name:
+        example: 'My process'
+        maxLength: 255
+      description:
+        example: 'This is the best process ever'
+        maxLength: 2550
+      logo:
+        example: 'https://www.my-organisation.com/logo.png'
+        format: url
+        maxLength: 255
+      sourceOrganization:
+        example: '002851234'
+        maxLength: 11
+        minLength: 8
+      request:
+        example: 'http://rtc.zaakonline.nl/9bd169ef-bc8c-4422-86ce-a0e7679ab67a'
+        format: url
+        maxLength: 255
+      properties: []
+      stages: []
+    required:
+      - name
+      - sourceOrganization
+  ProcessType-write:
+    properties:
+      sourceOrganization:
+        example: '002851234'
+        maxLength: 11
+        minLength: 8
+      request:
+        example: 'http://rtc.zaakonline.nl/9bd169ef-bc8c-4422-86ce-a0e7679ab67a'
+        format: url
+        maxLength: 255
+      properties: []
+      stages: []
+      extends: []
+    required:
+      - name
+      - sourceOrganization
+  Stage-read:
+    properties:
+      id:
+        example: e2984465-190a-4562-829e-a8cca81aa35d
+        format: uuid
+      name:
+        example: 'Stage 1'
+        maxLength: 255
+      description:
+        example: 'Please enter your email adres'
+        maxLength: 2550
+      logo:
+        example: 'https://www.my-organisation.com/logo.png'
+        format: url
+        maxLength: 255
+      type:
+        example: my-organisation
+      options:
+        example: my-organisation
+      validation:
+        example: my-organisation
+        maxLength: 255
+      property: []
+      next: []
+      previous: []
+    required:
+      - name
+  Stage-write:
+    properties:
+      type:
+        example: my-organisation
+      options:
+        example: my-organisation
+      property: []
+      next: []
+      previous: []
+    required:
+      - name
+tags:
+  -
+    name: ProcessType
+    description: |
+      A process.
+      
+      
+  -
+    name: Stage
+    description: |
+      A single stage within a process.
+      
+      
+securityDefinitions:
+  JWT-Oauth:
+    type: oauth2
+    authorizationUrl: 'http://petstore.swagger.io/api/oauth/dialog'
+    flow: implicit
+    scopes:
+      read: 'read right to the Stage resource'
+      write: 'write right to the Stage resource'
+  JWT-Token:
+    type: apiKey
+    in: header
+    name: Authorization
+    scopes:
+      read: 'read right to the Stage resource'
+      write: 'write right to the Stage resource'
 host: irc.zaakonline.nl
 servers:
   -
