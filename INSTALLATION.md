@@ -118,9 +118,9 @@ $ helm upgrade prc-prod ./api/helm --kubeconfig="api/helm/kubeconfig.yaml" --nam
 
 Or del if you want to delete an existing  one
 ```CLI
-$ helm del prc-dev  --purge --kubeconfig="api/helm/kubeconfig.yaml" --namespace=dev
-$ helm del prc-stag --purge --kubeconfig="api/helm/kubeconfig.yaml" --namespace=stag
-$ helm del prc-prod --purge --kubeconfig="api/helm/kubeconfig.yaml" --namespace=prod
+$ helm del ptc-dev  --purge --kubeconfig="api/helm/kubeconfig.yaml" 
+$ helm del ptc-stag --purge --kubeconfig="api/helm/kubeconfig.yaml" 
+$ helm del ptc-prod --purge --kubeconfig="api/helm/kubeconfig.yaml" 
 ```
 
 ## Making your app known on NLX
