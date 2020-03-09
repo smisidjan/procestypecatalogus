@@ -7,6 +7,7 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 use Ramsey\Uuid\UuidInterface;
 use Symfony\Component\Serializer\Annotation\Groups;
+use Gedmo\Mapping\Annotation as Gedmo;
 use Symfony\Component\Serializer\Annotation\MaxDepth;
 use Symfony\Component\Validator\Constraints as Assert;
 
@@ -152,7 +153,7 @@ class Stage
      * @ORM\Column(type="string", length=255, nullable=true)
      */
     private $property;
-    
+
     /**
      * @var string The slug of this property
      *
@@ -163,7 +164,7 @@ class Stage
      * @ORM\Column(type="string", length=255, nullable=true)
      */
     private $slug;
-    
+
     /**
      * @var string Whether or not this proerty is the starting oint of a process
      *
@@ -173,7 +174,7 @@ class Stage
      * @ORM\Column(type="boolean", nullable=true)
      */
     private $start = false;
-    
+
     /**
      * @var Datetime $dateCreated The moment this request was created
      *
@@ -182,7 +183,7 @@ class Stage
      * @ORM\Column(type="datetime", nullable=true)
      */
     private $dateCreated;
-    
+
     /**
      * @var Datetime $dateModified  The moment this request last Modified
      *
@@ -225,16 +226,16 @@ class Stage
 
         return $this;
     }
-    
+
     public function getIcon(): ?string
     {
     	return $this->icon;
     }
-    
+
     public function setIcon(?string $icon): self
     {
     	$this->icon = $icon;
-    	
+
     	return $this;
     }
 
@@ -327,47 +328,47 @@ class Stage
 
         return $this;
     }
-    
+
     public function getSlug(): ?string
     {
     	return $this->slug;
     }
-    
+
     public function setSlug(?string $slug): self
     {
     	$this->slug = $slug;
-    	
+
     	return $this;
     }
-    
+
     public function getStart(): ?bool
     {
     	return $this->start;
     }
-    
+
     public function setStart(bool $start): self
     {
     	$this->start = $start;
-    	
+
     	return $this;
     }
-    
+
     public function setDateCreated(\DateTimeInterface $dateCreated): self
     {
     	$this->dateCreated= $dateCreated;
-    	
+
     	return $this;
     }
-    
+
     public function getDateModified(): ?\DateTimeInterface
     {
     	return $this->dateModified;
     }
-    
+
     public function setDateModified(\DateTimeInterface $dateModified): self
     {
     	$this->dateModified = $dateModified;
-    	
+
     	return $this;
     }
 }
