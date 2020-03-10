@@ -3,12 +3,19 @@
 namespace App\Entity;
 
 use ApiPlatform\Core\Annotation\ApiResource;
+use ApiPlatform\Core\Annotation\ApiFilter;
+use ApiPlatform\Core\Bridge\Doctrine\Orm\Filter\BooleanFilter;
+use ApiPlatform\Core\Bridge\Doctrine\Orm\Filter\OrderFilter;
+use ApiPlatform\Core\Bridge\Doctrine\Orm\Filter\SearchFilter;
+use ApiPlatform\Core\Bridge\Doctrine\Orm\Filter\DateFilter;
+
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 use Ramsey\Uuid\UuidInterface;
 use Symfony\Component\Serializer\Annotation\Groups;
 use Symfony\Component\Serializer\Annotation\MaxDepth;
 use Symfony\Component\Validator\Constraints as Assert;
+use Gedmo\Mapping\Annotation as Gedmo;
 
 /**
  * A single stage within a process.
@@ -24,9 +31,36 @@ use Symfony\Component\Validator\Constraints as Assert;
  *
  * @ApiResource(
  *     normalizationContext={"groups"={"read"}, "enable_max_depth"=true},
- *     denormalizationContext={"groups"={"write"}, "enable_max_depth"=true}
+ *     denormalizationContext={"groups"={"write"}, "enable_max_depth"=true},
+ *     itemOperations={
+ *          "get",
+ *          "put",
+ *          "delete",
+ *          "get_change_logs"={
+ *              "path"="/stages/{id}/change_log",
+ *              "method"="get",
+ *              "swagger_context" = {
+ *                  "summary"="Changelogs",
+ *                  "description"="Gets al the change logs for this resource"
+ *              }
+ *          },
+ *          "get_audit_trail"={
+ *              "path"="/stages/{id}/audit_trail",
+ *              "method"="get",
+ *              "swagger_context" = {
+ *                  "summary"="Audittrail",
+ *                  "description"="Gets the audit trail for this resource"
+ *              }
+ *          }
+ *     },
  * )
  * @ORM\Entity(repositoryClass="App\Repository\StageRepository")
+ * @Gedmo\Loggable(logEntryClass="App\Entity\ChangeLog")
+ * 
+ * @ApiFilter(BooleanFilter::class)
+ * @ApiFilter(OrderFilter::class)
+ * @ApiFilter(DateFilter::class, strategy=DateFilter::EXCLUDE_NULL)
+ * @ApiFilter(SearchFilter::class)
  */
 class Stage
 {
@@ -49,6 +83,7 @@ class Stage
      *
      * @example Stage 1
      *
+     * @Gedmo\Versioned
      * @Assert\NotNull
      * @Assert\Length(
      *      max = 255
@@ -63,6 +98,7 @@ class Stage
      *
      * @example Please enter your email adres
      *
+     * @Gedmo\Versioned
      * @Assert\Length(
      *      max = 2550
      * )
@@ -76,6 +112,7 @@ class Stage
      *
      * @example My Property
      *
+     * @Gedmo\Versioned
      * @Assert\Length(min = 15, max = 255)
      * @Groups({"read", "write"})
      * @ORM\Column(type="string", length=255, nullable=true)
@@ -87,6 +124,7 @@ class Stage
      *
      * @example my-organisation
      *
+     * @Gedmo\Versioned
      * @Assert\Choice({"service","send","receive","user","manual","business rule","script"})
      * @Groups({"read", "write"})
      * @ORM\Column(type="string", length=255)
@@ -98,6 +136,7 @@ class Stage
      *
      * @example my-organisation
      *
+     * @Gedmo\Versioned
      * @Groups({"read", "write"})
      * @ORM\Column(type="json", nullable=true)
      */
@@ -108,6 +147,7 @@ class Stage
      *
      * @example my-organisation
      *
+     * @Gedmo\Versioned
      * @Assert\Length(
      *     max=255
      * )
@@ -148,6 +188,7 @@ class Stage
     /**
      * @param string The request property that is used for this stage
      *
+     * @Gedmo\Versioned
      * @Groups({"read", "write"})
      * @ORM\Column(type="string", length=255, nullable=true)
      */
@@ -158,6 +199,7 @@ class Stage
      *
      * @example my-slug
      *
+     * @Gedmo\Versioned
      * @Assert\Length(min = 15, max = 255)
      * @Groups({"read", "write"})
      * @ORM\Column(type="string", length=255, nullable=true)
@@ -169,6 +211,7 @@ class Stage
      *
      * @example true
      *
+     * @Gedmo\Versioned
      * @Groups({"read", "write"})
      * @ORM\Column(type="boolean", nullable=true)
      */
@@ -350,6 +393,11 @@ class Stage
     	$this->start = $start;
     	
     	return $this;
+    }
+    
+    public function getDateCreated(): ?\DateTimeInterface
+    {
+    	return $this->dateModified;
     }
     
     public function setDateCreated(\DateTimeInterface $dateCreated): self
