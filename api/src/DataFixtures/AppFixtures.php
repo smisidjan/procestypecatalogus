@@ -387,12 +387,12 @@ class AppFixtures extends Fixture
 		$manager->persist($stage3);
 
         $id = Uuid::fromString('690cbb51-50b8-4714-b45b-2dba696b1216');
-		$processType->setRequestType('https://vtc.zaakonline.nl/requestType/690cbb51-50b8-4714-b45b-2dba696b1216');
-		$processType= new ProcessType();
-		$processType->setSourceOrganization('0000');
-		$processType->setName('Vermissing Reisdocument');
-		$processType->setDescription('Het aanvragen van een reisdocument');
-		$manager->persist($processType);
+        $processType= new ProcessType();
+        $processType->setSourceOrganization('0000');
+        $processType->setName('Vermissing Reisdocument');
+        $processType->setDescription('Het aanvragen van een reisdocument');
+        $processType->setRequestType('https://vtc.zaakonline.nl/requestType/690cbb51-50b8-4714-b45b-2dba696b1216');
+        $manager->persist($processType);
 		$processType->setId($id);
 		$manager->persist($processType);
 		$manager->flush();
@@ -720,13 +720,14 @@ class AppFixtures extends Fixture
 		$stage4->setProcess($processType);
 		$manager->persist($stage4);
 
-		$processType->setRequestType('https://vtc.zaakonline.nl/requestType/432d3e81-5930-4c21-ab7f-c5541c948525');
-		$processType= new ProcessType();
-		$processType->setIcon('fal fa-rings-wedding');
-		$processType->setSourceOrganization('0000');
-		$processType->setName('Omzetting');
-		$processType->setDescription('Het omzetten van een bestaand partnerschap in een huwelijk.');
-		$manager->persist($processType);
+        $id = Uuid::fromString('432d3e81-5930-4c21-ab7f-c5541c948525');
+        $processType= new ProcessType();
+        $processType->setIcon('fal fa-rings-wedding');
+        $processType->setSourceOrganization('0000');
+        $processType->setName('Omzetting');
+        $processType->setDescription('Het omzetten van een bestaand partnerschap in een huwelijk.');
+        $processType->setRequestType('https://vtc.zaakonline.nl/requestType/432d3e81-5930-4c21-ab7f-c5541c948525');
+        $manager->persist($processType);
 		$processType->setId($id);
 		$manager->persist($processType);
 		$manager->flush();
@@ -761,13 +762,14 @@ class AppFixtures extends Fixture
 		$stage3->setProcess($processType);
 		$manager->persist($stage3);
 
-		$processType->setRequestType('https://vtc.zaakonline.nl/requestType/5b10c1d6-7121-4be2-b479-7523f1b625f1');
-		$processType= new ProcessType();
-		$processType->setIcon('fal fa-rings-wedding');
-		$processType->setSourceOrganization('000');
-		$processType->setName('Huwelijk / Partnerschap');
-		$processType->setDescription('Huwelijk / Partnerschap');
-		$manager->persist($processType);
+        $id = Uuid::fromString('5b10c1d6-7121-4be2-b479-7523f1b625f1');
+        $processType= new ProcessType();
+        $processType->setIcon('fal fa-rings-wedding');
+        $processType->setSourceOrganization('000');
+        $processType->setName('Huwelijk / Partnerschap');
+        $processType->setDescription('Huwelijk / Partnerschap');
+        $processType->setRequestType('https://vtc.zaakonline.nl/requestType/5b10c1d6-7121-4be2-b479-7523f1b625f1');
+        $manager->persist($processType);
 		$processType->setId($id);
 		$manager->persist($processType);
 		$manager->flush();
