@@ -12,6 +12,7 @@ use ApiPlatform\Core\Bridge\Doctrine\Orm\Filter\DateFilter;
 use ApiPlatform\Core\Bridge\Doctrine\Orm\Filter\SearchFilter;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
+use Gedmo\Mapping\Annotation as Gedmo;
 use Doctrine\ORM\Mapping as ORM;
 use Ramsey\Uuid\UuidInterface;
 use Symfony\Component\Serializer\Annotation\Groups;
@@ -122,7 +123,7 @@ class ProcessType
      * @ORM\Column(type="text", nullable=true)
      */
     private $description;
-    
+
     /**
      * @var string The icon of this property
      *
@@ -202,7 +203,7 @@ class ProcessType
      * @ORM\Column(type="array", length=255, nullable=true)
      */
     private $properties = [];
-    
+
     /**
      * @param array|string[] The documents that are required for this proces
      *
@@ -211,7 +212,7 @@ class ProcessType
      * @ORM\Column(type="array", length=255, nullable=true)
      */
     private $documents = [];
-    
+
     /**
      * @var Datetime $dateCreated The moment this request was created
      *
@@ -220,7 +221,7 @@ class ProcessType
      * @ORM\Column(type="datetime", nullable=true)
      */
     private $dateCreated;
-    
+
     /**
      * @var Datetime $dateModified  The moment this request last Modified
      *
@@ -271,16 +272,16 @@ class ProcessType
 
         return $this;
     }
-    
+
     public function getIcon(): ?string
     {
     	return $this->icon;
     }
-    
+
     public function setIcon(?string $icon): self
     {
     	$this->icon = $icon;
-    	
+
     	return $this;
     }
 
@@ -416,27 +417,27 @@ class ProcessType
 
         return $this;
     }
-    
+
     public function getDocuments()
     {
     	return $this->documents;
     }
-    
+
     public function addDocument(string $documents): self
     {
     	if (!in_array($documents, $this->documents)) {
     		$this->documents[] = $documents;
     	}
-    	
+
     	return $this;
     }
-    
+
     public function removeDocument(string $documents): self
     {
     	if (in_array($documents, $this->documents)) {
     		unset($this->documents[$documents]);
     	}
-    	
+
     	return $this;
     }
     
@@ -448,19 +449,19 @@ class ProcessType
     public function setDateCreated(\DateTimeInterface $dateCreated): self
     {
     	$this->dateCreated= $dateCreated;
-    	
+
     	return $this;
     }
-    
+
     public function getDateModified(): ?\DateTimeInterface
     {
     	return $this->dateModified;
     }
-    
+
     public function setDateModified(\DateTimeInterface $dateModified): self
     {
     	$this->dateModified = $dateModified;
-    	
+
     	return $this;
     }
 }
