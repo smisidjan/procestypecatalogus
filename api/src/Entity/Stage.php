@@ -7,6 +7,7 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 use Ramsey\Uuid\UuidInterface;
 use Symfony\Component\Serializer\Annotation\Groups;
+use Gedmo\Mapping\Annotation as Gedmo;
 use Symfony\Component\Serializer\Annotation\MaxDepth;
 use Symfony\Component\Validator\Constraints as Assert;
 
@@ -72,18 +73,15 @@ class Stage
     private $description;
 
     /**
-     * @var string The logo for this stage
+     * @var string The icon of this property
      *
-     * @example https://www.my-organisation.com/logo.png
+     * @example My Property
      *
-     * @Assert\Url
-     * @Assert\Length(
-     *      max = 255
-     * )
-     * @Groups({"read"})
+     * @Assert\Length(min = 15, max = 255)
+     * @Groups({"read", "write"})
      * @ORM\Column(type="string", length=255, nullable=true)
      */
-    private $logo;
+    private $icon;
 
     /**
      * @var string The task type of the stage
@@ -156,6 +154,45 @@ class Stage
      */
     private $property;
 
+    /**
+     * @var string The slug of this property
+     *
+     * @example my-slug
+     *
+     * @Assert\Length(min = 15, max = 255)
+     * @Groups({"read", "write"})
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $slug;
+
+    /**
+     * @var string Whether or not this proerty is the starting oint of a process
+     *
+     * @example true
+     *
+     * @Groups({"read", "write"})
+     * @ORM\Column(type="boolean", nullable=true)
+     */
+    private $start = false;
+
+    /**
+     * @var Datetime $dateCreated The moment this request was created
+     *
+     * @Groups({"read"})
+     * @Gedmo\Timestampable(on="create")
+     * @ORM\Column(type="datetime", nullable=true)
+     */
+    private $dateCreated;
+
+    /**
+     * @var Datetime $dateModified  The moment this request last Modified
+     *
+     * @Groups({"read"})
+     * @Gedmo\Timestampable(on="create")
+     * @ORM\Column(type="datetime", nullable=true)
+     */
+    private $dateModified;
+
     public function __construct()
     {
         $this->documents = new ArrayCollection();
@@ -190,16 +227,16 @@ class Stage
         return $this;
     }
 
-    public function getLogo(): ?string
+    public function getIcon(): ?string
     {
-        return $this->logo;
+    	return $this->icon;
     }
 
-    public function setLogo(?string $logo): self
+    public function setIcon(?string $icon): self
     {
-        $this->logo = $logo;
+    	$this->icon = $icon;
 
-        return $this;
+    	return $this;
     }
 
     public function getType(): ?string
@@ -290,5 +327,48 @@ class Stage
         $this->property = $property;
 
         return $this;
+    }
+
+    public function getSlug(): ?string
+    {
+    	return $this->slug;
+    }
+
+    public function setSlug(?string $slug): self
+    {
+    	$this->slug = $slug;
+
+    	return $this;
+    }
+
+    public function getStart(): ?bool
+    {
+    	return $this->start;
+    }
+
+    public function setStart(bool $start): self
+    {
+    	$this->start = $start;
+
+    	return $this;
+    }
+
+    public function setDateCreated(\DateTimeInterface $dateCreated): self
+    {
+    	$this->dateCreated= $dateCreated;
+
+    	return $this;
+    }
+
+    public function getDateModified(): ?\DateTimeInterface
+    {
+    	return $this->dateModified;
+    }
+
+    public function setDateModified(\DateTimeInterface $dateModified): self
+    {
+    	$this->dateModified = $dateModified;
+
+    	return $this;
     }
 }

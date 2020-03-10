@@ -1,10 +1,10 @@
 openapi: 3.0.2
 info:
-  title: 'Proto Component'
+  title: 'Proces Type Catalogus'
   version: V.0.1
   description: |
     API Details
-    - Component: Proto Component
+    - Component: Proces Type Catalogus
     - Reference: ptc
     - Enviroment: dev
     - Version: V.0.1
@@ -1128,11 +1128,8 @@ components:
           readOnly: true
           description: 'An short description of this process'
           type: string
-        logo:
-          readOnly: true
-          description: 'The logo for this process'
-          externalDocs:
-            url: 'http://schema.org/url'
+        icon:
+          description: 'The icon of this property'
           type: string
         sourceOrganization:
           description: 'The RSIN of the organization that owns this process'
@@ -1142,7 +1139,7 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/Stage-read'
-        request:
+        requestType:
           description: 'The request that is used for this process'
           externalDocs:
             url: 'http://schema.org/url'
@@ -1151,14 +1148,24 @@ components:
           type: array
           items:
             type: string
+        documents:
+          type: array
+          items:
+            type: string
+        dateModified:
+          readOnly: true
+          description: 'The moment this request last Modified'
+          type: string
+          format: date-time
       required:
         - sourceOrganization
     ProcessType-write:
       type: object
       description: 'A process.'
-      required:
-        - sourceOrganization
       properties:
+        icon:
+          description: 'The icon of this property'
+          type: string
         sourceOrganization:
           description: 'The RSIN of the organization that owns this process'
           type: string
@@ -1167,7 +1174,7 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/Stage-write'
-        request:
+        requestType:
           description: 'The request that is used for this process'
           externalDocs:
             url: 'http://schema.org/url'
@@ -1180,6 +1187,12 @@ components:
           type: array
           items:
             type: string
+        documents:
+          type: array
+          items:
+            type: string
+      required:
+        - sourceOrganization
     'ProcessType:jsonld-read':
       type: object
       description: 'A process.'
@@ -1207,11 +1220,8 @@ components:
           readOnly: true
           description: 'An short description of this process'
           type: string
-        logo:
-          readOnly: true
-          description: 'The logo for this process'
-          externalDocs:
-            url: 'http://schema.org/url'
+        icon:
+          description: 'The icon of this property'
           type: string
         sourceOrganization:
           description: 'The RSIN of the organization that owns this process'
@@ -1221,7 +1231,7 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/Stage:jsonld-read'
-        request:
+        requestType:
           description: 'The request that is used for this process'
           externalDocs:
             url: 'http://schema.org/url'
@@ -1230,13 +1240,20 @@ components:
           type: array
           items:
             type: string
+        documents:
+          type: array
+          items:
+            type: string
+        dateModified:
+          readOnly: true
+          description: 'The moment this request last Modified'
+          type: string
+          format: date-time
       required:
         - sourceOrganization
     'ProcessType:jsonld-write':
       type: object
       description: 'A process.'
-      required:
-        - sourceOrganization
       properties:
         '@context':
           readOnly: true
@@ -1247,6 +1264,9 @@ components:
         '@type':
           readOnly: true
           type: string
+        icon:
+          description: 'The icon of this property'
+          type: string
         sourceOrganization:
           description: 'The RSIN of the organization that owns this process'
           type: string
@@ -1255,7 +1275,7 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/Stage:jsonld-write'
-        request:
+        requestType:
           description: 'The request that is used for this process'
           externalDocs:
             url: 'http://schema.org/url'
@@ -1268,6 +1288,12 @@ components:
           type: array
           items:
             type: string
+        documents:
+          type: array
+          items:
+            type: string
+      required:
+        - sourceOrganization
     Stage-read:
       type: object
       description: 'A single stage within a process.'
@@ -1286,11 +1312,8 @@ components:
           readOnly: true
           description: 'An short description of this stage'
           type: string
-        logo:
-          readOnly: true
-          description: 'The logo for this stage'
-          externalDocs:
-            url: 'http://schema.org/url'
+        icon:
+          description: 'The icon of this property'
           type: string
         type:
           description: 'The task type of the stage'
@@ -1308,10 +1331,24 @@ components:
           $ref: '#/components/schemas/Stage-read'
         property:
           type: string
+        slug:
+          description: 'The slug of this property'
+          type: string
+        start:
+          description: 'Whether or not this proerty is the starting oint of a process'
+          type: boolean
+        dateModified:
+          readOnly: true
+          description: 'The moment this request last Modified'
+          type: string
+          format: date-time
     Stage-write:
       type: object
       description: 'A single stage within a process.'
       properties:
+        icon:
+          description: 'The icon of this property'
+          type: string
         type:
           description: 'The task type of the stage'
           type: string
@@ -1324,6 +1361,12 @@ components:
           $ref: '#/components/schemas/Stage-write'
         property:
           type: string
+        slug:
+          description: 'The slug of this property'
+          type: string
+        start:
+          description: 'Whether or not this proerty is the starting oint of a process'
+          type: boolean
     'Stage:jsonld-read':
       type: object
       description: 'A single stage within a process.'
@@ -1351,11 +1394,8 @@ components:
           readOnly: true
           description: 'An short description of this stage'
           type: string
-        logo:
-          readOnly: true
-          description: 'The logo for this stage'
-          externalDocs:
-            url: 'http://schema.org/url'
+        icon:
+          description: 'The icon of this property'
           type: string
         type:
           description: 'The task type of the stage'
@@ -1373,6 +1413,17 @@ components:
           $ref: '#/components/schemas/Stage:jsonld-read'
         property:
           type: string
+        slug:
+          description: 'The slug of this property'
+          type: string
+        start:
+          description: 'Whether or not this proerty is the starting oint of a process'
+          type: boolean
+        dateModified:
+          readOnly: true
+          description: 'The moment this request last Modified'
+          type: string
+          format: date-time
     'Stage:jsonld-write':
       type: object
       description: 'A single stage within a process.'
@@ -1386,6 +1437,9 @@ components:
         '@type':
           readOnly: true
           type: string
+        icon:
+          description: 'The icon of this property'
+          type: string
         type:
           description: 'The task type of the stage'
           type: string
@@ -1398,85 +1452,177 @@ components:
           $ref: '#/components/schemas/Stage:jsonld-write'
         property:
           type: string
+        slug:
+          description: 'The slug of this property'
+          type: string
+        start:
+          description: 'Whether or not this proerty is the starting oint of a process'
+          type: boolean
 definitions:
   ProcessType-read:
     properties:
       id:
+        description: 'The UUID identifier of this object'
+        type: string
         example: e2984465-190a-4562-829e-a8cca81aa35d
         format: uuid
       name:
+        description: 'The name of this process'
+        type: string
         example: 'My process'
         maxLength: 255
       description:
+        description: 'An short description of this process'
+        type: string
         example: 'This is the best process ever'
         maxLength: 2550
-      logo:
-        example: 'https://www.my-organisation.com/logo.png'
-        format: url
+      icon:
+        description: 'The icon of this property'
+        type: string
+        example: 'My Property'
         maxLength: 255
+        minLength: 15
       sourceOrganization:
+        description: 'The RSIN of the organization that owns this process'
+        type: string
         example: '002851234'
         maxLength: 11
         minLength: 8
-      request:
+      requestType:
+        description: 'The request that is used for this process'
+        type: string
         example: 'http://rtc.zaakonline.nl/9bd169ef-bc8c-4422-86ce-a0e7679ab67a'
         format: url
         maxLength: 255
       properties: []
-      stages: []
+      documents: []
+      dateCreated:
+        description: 'The moment this request was created'
+        type: \Datetime
+      dateModified:
+        description: 'The moment this request last Modified'
+        type: \Datetime
+      stages:
+        description: 'The stages of this process'
+        type: array
     required:
       - name
       - sourceOrganization
   ProcessType-write:
     properties:
+      icon:
+        description: 'The icon of this property'
+        type: string
+        example: 'My Property'
+        maxLength: 255
+        minLength: 15
       sourceOrganization:
+        description: 'The RSIN of the organization that owns this process'
+        type: string
         example: '002851234'
         maxLength: 11
         minLength: 8
-      request:
+      requestType:
+        description: 'The request that is used for this process'
+        type: string
         example: 'http://rtc.zaakonline.nl/9bd169ef-bc8c-4422-86ce-a0e7679ab67a'
         format: url
         maxLength: 255
       properties: []
-      stages: []
-      extends: []
+      documents: []
+      stages:
+        description: 'The stages of this process'
+        type: array
+      extends:
+        description: 'The process that this process extends'
+        type: object
     required:
       - name
       - sourceOrganization
   Stage-read:
     properties:
       id:
+        description: 'The UUID identifier of this object'
+        type: string
         example: e2984465-190a-4562-829e-a8cca81aa35d
         format: uuid
       name:
+        description: 'The name of this stage'
+        type: string
         example: 'Stage 1'
         maxLength: 255
       description:
+        description: 'An short description of this stage'
+        type: string
         example: 'Please enter your email adres'
         maxLength: 2550
-      logo:
-        example: 'https://www.my-organisation.com/logo.png'
-        format: url
+      icon:
+        description: 'The icon of this property'
+        type: string
+        example: 'My Property'
         maxLength: 255
+        minLength: 15
       type:
+        description: 'The task type of the stage'
+        type: string
         example: my-organisation
       options:
+        description: 'The options or configuration for this stage'
+        type: object
         example: my-organisation
       validation:
+        description: 'The validation rules that this stage adheres to'
+        type: object
         example: my-organisation
         maxLength: 255
       property: []
+      slug:
+        description: 'The slug of this property'
+        type: string
+        example: my-slug
+        maxLength: 255
+        minLength: 15
+      start:
+        description: 'Whether or not this proerty is the starting oint of a process'
+        type: string
+        example: 'true'
+      dateCreated:
+        description: 'The moment this request was created'
+        type: \Datetime
+      dateModified:
+        description: 'The moment this request last Modified'
+        type: \Datetime
       next: []
       previous: []
     required:
       - name
   Stage-write:
     properties:
+      icon:
+        description: 'The icon of this property'
+        type: string
+        example: 'My Property'
+        maxLength: 255
+        minLength: 15
       type:
+        description: 'The task type of the stage'
+        type: string
         example: my-organisation
       options:
+        description: 'The options or configuration for this stage'
+        type: object
         example: my-organisation
       property: []
+      slug:
+        description: 'The slug of this property'
+        type: string
+        example: my-slug
+        maxLength: 255
+        minLength: 15
+      start:
+        description: 'Whether or not this proerty is the starting oint of a process'
+        type: string
+        example: 'true'
       next: []
       previous: []
     required:

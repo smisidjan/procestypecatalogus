@@ -7,6 +7,7 @@ use ApiPlatform\Core\Annotation\ApiResource;
 use ApiPlatform\Core\Bridge\Doctrine\Orm\Filter\SearchFilter;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
+use Gedmo\Mapping\Annotation as Gedmo;
 use Doctrine\ORM\Mapping as ORM;
 use Ramsey\Uuid\UuidInterface;
 use Symfony\Component\Serializer\Annotation\Groups;
@@ -109,18 +110,15 @@ class ProcessType
     private $description;
 
     /**
-     * @var string The logo for this process
+     * @var string The icon of this property
      *
-     * @example https://www.my-organisation.com/logo.png
+     * @example My Property
      *
-     * @Assert\Url
-     * @Assert\Length(
-     *      max = 255
-     * )
-     * @Groups({"read"})
+     * @Assert\Length(min = 15, max = 255)
+     * @Groups({"read", "write"})
      * @ORM\Column(type="string", length=255, nullable=true)
      */
-    private $logo;
+    private $icon;
 
     /**
      * @var string The RSIN of the organization that owns this process
@@ -160,7 +158,7 @@ class ProcessType
      * @Groups({"read", "write"})
      * @ORM\Column(type="string", length=255)
      */
-    private $request;
+    private $requestType;
 
     /**
      * @var object The process that this process extends
@@ -186,6 +184,32 @@ class ProcessType
      * @ORM\Column(type="array", length=255, nullable=true)
      */
     private $properties = [];
+
+    /**
+     * @param array|string[] The documents that are required for this proces
+     *
+     * @Groups({"read", "write"})
+     * @ORM\Column(type="array", length=255, nullable=true)
+     */
+    private $documents = [];
+
+    /**
+     * @var Datetime $dateCreated The moment this request was created
+     *
+     * @Groups({"read"})
+     * @Gedmo\Timestampable(on="create")
+     * @ORM\Column(type="datetime", nullable=true)
+     */
+    private $dateCreated;
+
+    /**
+     * @var Datetime $dateModified  The moment this request last Modified
+     *
+     * @Groups({"read"})
+     * @Gedmo\Timestampable(on="create")
+     * @ORM\Column(type="datetime", nullable=true)
+     */
+    private $dateModified;
 
     public function __construct()
     {
@@ -229,16 +253,16 @@ class ProcessType
         return $this;
     }
 
-    public function getLogo(): ?string
+    public function getIcon(): ?string
     {
-        return $this->logo;
+    	return $this->icon;
     }
 
-    public function setLogo(?string $logo): self
+    public function setIcon(?string $icon): self
     {
-        $this->logo = $logo;
+    	$this->icon = $icon;
 
-        return $this;
+    	return $this;
     }
 
     public function getSubtitle(): ?string
@@ -296,14 +320,14 @@ class ProcessType
         return $this;
     }
 
-    public function getRequest(): ?string
+    public function getRequestType(): ?string
     {
-        return $this->request;
+    	return $this->requestType;
     }
 
-    public function setRequest(string $request): self
+    public function setRequestType(string $requestType): self
     {
-        $this->request = $request;
+    	$this->requestType= $requestType;
 
         return $this;
     }
@@ -372,5 +396,47 @@ class ProcessType
         }
 
         return $this;
+    }
+
+    public function getDocuments()
+    {
+    	return $this->documents;
+    }
+
+    public function addDocument(string $documents): self
+    {
+    	if (!in_array($documents, $this->documents)) {
+    		$this->documents[] = $documents;
+    	}
+
+    	return $this;
+    }
+
+    public function removeDocument(string $documents): self
+    {
+    	if (in_array($documents, $this->documents)) {
+    		unset($this->documents[$documents]);
+    	}
+
+    	return $this;
+    }
+
+    public function setDateCreated(\DateTimeInterface $dateCreated): self
+    {
+    	$this->dateCreated= $dateCreated;
+
+    	return $this;
+    }
+
+    public function getDateModified(): ?\DateTimeInterface
+    {
+    	return $this->dateModified;
+    }
+
+    public function setDateModified(\DateTimeInterface $dateModified): self
+    {
+    	$this->dateModified = $dateModified;
+
+    	return $this;
     }
 }
