@@ -3906,6 +3906,7 @@ components:
           externalDocs:
             url: 'http://schema.org/identifier'
           type: string
+          format: uuid
         request:
           readOnly: true
           description: 'The id of the request within that application'
@@ -4036,6 +4037,7 @@ components:
           externalDocs:
             url: 'http://schema.org/identifier'
           type: string
+          format: uuid
         request:
           readOnly: true
           description: 'The id of the request within that application'
@@ -4167,6 +4169,7 @@ components:
           externalDocs:
             url: 'http://schema.org/identifier'
           type: string
+          format: uuid
         action:
           readOnly: true
           type: string
@@ -4227,6 +4230,7 @@ components:
           externalDocs:
             url: 'http://schema.org/identifier'
           type: string
+          format: uuid
         action:
           readOnly: true
           type: string
@@ -4288,6 +4292,7 @@ components:
           externalDocs:
             url: 'http://schema.org/identifier'
           type: string
+          format: uuid
         name:
           readOnly: true
           description: 'The name of this process'
@@ -4385,6 +4390,7 @@ components:
           externalDocs:
             url: 'http://schema.org/identifier'
           type: string
+          format: uuid
         name:
           readOnly: true
           description: 'The name of this process'
@@ -4482,6 +4488,7 @@ components:
           externalDocs:
             url: 'http://schema.org/identifier'
           type: string
+          format: uuid
         name:
           readOnly: true
           description: 'The name of this stage'
@@ -4569,6 +4576,7 @@ components:
           externalDocs:
             url: 'http://schema.org/identifier'
           type: string
+          format: uuid
         name:
           readOnly: true
           description: 'The name of this stage'
@@ -4751,12 +4759,12 @@ definitions:
         description: 'The moment this request was created'
         type: string
         format: date-time
-        example: '2020-03-11 09:05:55'
+        example: '2020-04-23 07:07:03'
       dateModified:
         description: 'The moment this request last Modified'
         type: string
         format: date-time
-        example: '2020-03-11 09:05:55'
+        example: '2020-04-23 07:07:03'
     required: []
   AuditTrail-write:
     properties:
@@ -4804,12 +4812,12 @@ definitions:
         description: 'The moment this request was created'
         type: string
         format: date-time
-        example: '2020-03-11 09:05:55'
+        example: '2020-04-23 07:07:03'
       dateModified:
         description: 'The moment this request last Modified'
         type: string
         format: date-time
-        example: '2020-03-11 09:05:55'
+        example: '2020-04-23 07:07:03'
     required: []
   ChangeLog-write:
     properties:
@@ -5030,8 +5038,8 @@ securityDefinitions:
 host: irc.zaakonline.nl
 servers:
   -
-    description: 'Demo Omgeving'
-    url: 'http://ptc.demo.common-ground.dev/'
+    name: conduction.nl
+    url: ptc.dev.conduction.nl
 externalDocs:
   -
     description: 'OAS Documentatie'
