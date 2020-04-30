@@ -47,7 +47,7 @@ class Logo
 	 * @var Datetime $dateModified  The moment this request last Modified
 	 *
 	 * @Groups({"read"})
-	 * @Gedmo\Timestampable(on="create")
+	 * @Gedmo\Timestampable(on="update")
 	 * @ORM\Column(type="datetime", nullable=true)
 	 */
 	private $dateModified;
