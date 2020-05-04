@@ -115,6 +115,7 @@ class AuditTrail
 
     /**
      * @var sting The user on behalf of wich the request was made
+
      *
      * @Assert\Url
      * @Assert\Length(
@@ -336,7 +337,7 @@ class AuditTrail
      *
      * @Assert\DateTime
      * @Groups({"read"})
-     * @Gedmo\Timestampable(on="create")
+     * @Gedmo\Timestampable(on="update")
      * @ORM\Column(type="datetime", nullable=true)
      */
     private $dateModified;
@@ -351,6 +352,7 @@ class AuditTrail
         $this->id = $id;
 
         return $this;
+
     }
 
     public function setApplication(?string $application): self
@@ -583,9 +585,9 @@ class AuditTrail
 
     public function setNotFound(?bool $notFound): self
     {
-        $this->notFound = $notFound;
+    	$this->notFound = $notFound;
 
-        return $this;
+    	return $this;
     }
 
     public function getForbidden(): ?bool
@@ -595,6 +597,7 @@ class AuditTrail
 
     public function setForbidden(?bool $forbidden): self
     {
+
         $this->forbidden = $forbidden;
 
         return $this;
