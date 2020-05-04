@@ -3,9 +3,19 @@
 namespace App\Entity;
 
 use ApiPlatform\Core\Annotation\ApiResource;
+use ApiPlatform\Core\Annotation\ApiFilter;
+use ApiPlatform\Core\Bridge\Doctrine\Orm\Filter\BooleanFilter;
+use ApiPlatform\Core\Bridge\Doctrine\Orm\Filter\OrderFilter;
+use ApiPlatform\Core\Bridge\Doctrine\Orm\Filter\SearchFilter;
+use ApiPlatform\Core\Bridge\Doctrine\Orm\Filter\DateFilter;
+
 use Doctrine\ORM\Mapping as ORM;
 use Ramsey\Uuid\Uuid;
 use Ramsey\Uuid\UuidInterface;
+use Symfony\Component\Serializer\Annotation\Groups;
+use Symfony\Component\Serializer\Annotation\MaxDepth;
+use Symfony\Component\Validator\Constraints as Assert;
+use Gedmo\Mapping\Annotation as Gedmo;
 
 /**
  * @ApiResource(
@@ -58,6 +68,31 @@ class Section
     private $id;
 
     /**
+     * @var string the name of this Section
+     *
+     * @example Section 1
+     * @Groups({"read","write"})
+     * @Gedmo\Versioned
+     * @Assert\Length(
+     *     max=255
+     * )
+     * @Assert\NotNull
+     * @ORM\Column(type="string", length=255)
+     */
+    private $name;
+
+    /**
+     * @var string the description for this section
+     *
+     * @example this section is for the personal data of the client
+     *
+     * @Groups({"read","write"})
+     * @Gedmo\Versioned
+     * @ORM\Column(type="text", nullable=true)
+     */
+    private $description;
+
+    /**
      * @var array The properties that are treated in this section, as references to the VTC component
      *
      * @example https://vtc.processen.zaakonline.nl/properties/1
@@ -67,15 +102,16 @@ class Section
      * @ORM\Column(type="array", nullable=true)
      */
     private $properties = [];
-
     /**
      * @var Stage the stage this section belongs to
      *
      * @MaxDepth(1)
      * @Groups({"read","write"}))
+     * @ORM\ManyToOne(targetEntity="App\Entity\Stage", inversedBy="sections")
      * @ORM\JoinColumn(nullable=false)
      */
     private $stage;
+
     /**
      * @var DateTime $dateCreated The moment this request was created
      *
@@ -94,9 +130,61 @@ class Section
      */
     private $dateModified;
 
+    /**
+     * @var bool Denotes if this section is the first section of the stage
+     *
+     * @Groups({"read","write"}))
+     * @ORM\Column(type="boolean")
+     */
+    private $start = false;
+
+    /**
+     * @var Section the next Section in the stage
+     *
+     * @MaxDepth(1)
+     * @Groups({"write"}))
+     * @ORM\OneToOne(targetEntity="App\Entity\Section", inversedBy="previous", cascade={"persist", "remove"})
+     */
+    private $next;
+
+    /**
+     * @var Section the previous Section in the stage
+     *
+     * @MaxDepth(1)
+     * @Groups({"write"}))
+     * @ORM\OneToOne(targetEntity="App\Entity\Section", mappedBy="next", cascade={"persist", "remove"})
+     */
+    private $previous;
+
+
+
     public function getId(): ?Uuid
     {
         return $this->id;
+    }
+
+    public function getName(): ?string
+    {
+        return $this->name;
+    }
+
+    public function setName(string $name): self
+    {
+        $this->name = $name;
+
+        return $this;
+    }
+
+    public function getDescription(): ?string
+    {
+        return $this->description;
+    }
+
+    public function setDescription(?string $description): self
+    {
+        $this->description = $description;
+
+        return $this;
     }
 
     public function getProperties(): ?array
@@ -145,4 +233,48 @@ class Section
 
         return $this;
     }
+
+    public function getStart(): ?bool
+    {
+        return $this->start;
+    }
+
+    public function setStart(bool $start): self
+    {
+        $this->start = $start;
+
+        return $this;
+    }
+
+    public function getNext(): ?self
+    {
+        return $this->next;
+    }
+
+    public function setNext(?self $next): self
+    {
+        $this->next = $next;
+
+        return $this;
+    }
+
+    public function getPrevious(): ?self
+    {
+        return $this->previous;
+    }
+
+    public function setPrevious(?self $previous): self
+    {
+        $this->previous = $previous;
+
+        // set (or unset) the owning side of the relation if necessary
+        $newNext = null === $previous ? null : $this;
+        if ($previous->getNext() !== $newNext) {
+            $previous->setNext($newNext);
+        }
+
+        return $this;
+    }
+
+
 }

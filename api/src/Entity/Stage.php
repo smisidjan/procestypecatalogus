@@ -120,17 +120,17 @@ class Stage
      */
     private $icon;
 
-    /**
-     * @var string The task type of the stage
-     *
-     * @example my-organisation
-     *
-     * @Gedmo\Versioned
-     * @Assert\Choice({"service","send","receive","user","manual","business rule","script"})
-     * @Groups({"read", "write"})
-     * @ORM\Column(type="string", length=255)
-     */
-    private $type = 'user';
+//    /**
+//     * @var string The task type of the stage
+//     *
+//     * @example my-organisation
+//     *
+//     * @Gedmo\Versioned
+//     * @Assert\Choice({"service","send","receive","user","manual","business rule","script"})
+//     * @Groups({"read", "write"})
+//     * @ORM\Column(type="string", length=255)
+//     */
+//    private $type = 'user';
 
     /**
      * @var object The options or configuration for this stage
@@ -238,6 +238,10 @@ class Stage
     private $dateModified;
 
     /**
+     * @var ArrayCollection the sections of this stage
+     *
+     * @Groups({"read","write"})
+     * @MaxDepth(1)
      * @ORM\OneToMany(targetEntity="App\Entity\Section", mappedBy="stage", orphanRemoval=true)
      */
     private $sections;
@@ -289,17 +293,17 @@ class Stage
     	return $this;
     }
 
-    public function getType(): ?string
-    {
-        return $this->type;
-    }
-
-    public function setType(string $type): self
-    {
-        $this->type = $type;
-
-        return $this;
-    }
+//    public function getType(): ?string
+//    {
+//        return $this->type;
+//    }
+//
+//    public function setType(string $type): self
+//    {
+//        $this->type = $type;
+//
+//        return $this;
+//    }
 
     public function getOptions(): ?array
     {
