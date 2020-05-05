@@ -552,12 +552,12 @@ class AppFixtures extends Fixture
 //		$manager->persist($stage3);
 
 		$stage4= new Stage();
-		$stage4->setPrevious($stage3);
+		$stage4->setPrevious($stage2);
 		$stage4->setName('Indienen');
 		$stage4->setIcon('fal fa-paper-plane');
 		$stage4->setSlug('indienen');
 		$stage4->setDescription('Dien uw aanvraag in');
-		$stage4->setProcess($processType);
+		$stage4->setProcess($verhuizen);
 		$manager->persist($stage4);
 
 		$manager->flush();
