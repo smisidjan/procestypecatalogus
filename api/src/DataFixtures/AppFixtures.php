@@ -482,7 +482,7 @@ class AppFixtures extends Fixture
         $verhuizen->setSourceOrganization('0000');
         $verhuizen->setName('Verhuizen');
         $verhuizen->setDescription('Het doorgeven van een verhuizing aan een gemeente');
-        $verhuizen->setRequestType("{$this->commonGroundService->getComponent('vtc')['location']}/requestType/2bfb3cea-b5b5-459c-b3e0-e1100089a11a");
+        $verhuizen->setRequestType("{$this->commonGroundService->getComponent('vtc')['location']}/request_types/2bfb3cea-b5b5-459c-b3e0-e1100089a11a");
         $manager->persist($verhuizen);
 		$verhuizen->setId($id);
 		$manager->persist($verhuizen);
