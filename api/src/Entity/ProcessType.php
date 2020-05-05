@@ -56,7 +56,7 @@ use Symfony\Component\Validator\Constraints as Assert;
  *     },
  * )
  * @ORM\Entity(repositoryClass="App\Repository\ProcessTypeRepository")
- * @Gedmo\Loggable(logEntryClass="App\Entity\ChangeLog")
+ * @Gedmo\Loggable(logEntryClass="Conduction\CommonGroundBundle\Entity\ChangeLog")
  *
  * @ApiFilter(BooleanFilter::class)
  * @ApiFilter(OrderFilter::class)
@@ -212,7 +212,7 @@ class ProcessType
     private $documents = [];
 
     /**
-     * @var Datetime $dateCreated The moment this request was created
+     * @var DateTime $dateCreated The moment this request was created
      *
      * @Groups({"read"})
      * @Gedmo\Timestampable(on="create")
@@ -221,7 +221,7 @@ class ProcessType
     private $dateCreated;
 
     /**
-     * @var Datetime $dateModified  The moment this request last Modified
+     * @var DateTime $dateModified  The moment this request last Modified
      *
      * @Groups({"read"})
      * @Gedmo\Timestampable(on="update")

@@ -10,6 +10,7 @@ use ApiPlatform\Core\Bridge\Doctrine\Orm\Filter\SearchFilter;
 use ApiPlatform\Core\Bridge\Doctrine\Orm\Filter\DateFilter;
 
 use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Ramsey\Uuid\UuidInterface;
 use Symfony\Component\Serializer\Annotation\Groups;
@@ -55,7 +56,7 @@ use Gedmo\Mapping\Annotation as Gedmo;
  *     },
  * )
  * @ORM\Entity(repositoryClass="App\Repository\StageRepository")
- * @Gedmo\Loggable(logEntryClass="App\Entity\ChangeLog")
+ * @Gedmo\Loggable(logEntryClass="Conduction\CommonGroundBundle\Entity\ChangeLog")
  *
  * @ApiFilter(BooleanFilter::class)
  * @ApiFilter(OrderFilter::class)
@@ -119,17 +120,17 @@ class Stage
      */
     private $icon;
 
-    /**
-     * @var string The task type of the stage
-     *
-     * @example my-organisation
-     *
-     * @Gedmo\Versioned
-     * @Assert\Choice({"service","send","receive","user","manual","business rule","script"})
-     * @Groups({"read", "write"})
-     * @ORM\Column(type="string", length=255)
-     */
-    private $type = 'user';
+//    /**
+//     * @var string The task type of the stage
+//     *
+//     * @example my-organisation
+//     *
+//     * @Gedmo\Versioned
+//     * @Assert\Choice({"service","send","receive","user","manual","business rule","script"})
+//     * @Groups({"read", "write"})
+//     * @ORM\Column(type="string", length=255)
+//     */
+//    private $type = 'user';
 
     /**
      * @var object The options or configuration for this stage
@@ -157,8 +158,9 @@ class Stage
     private $validation = [];
 
     /**
-     * @var object ProcessType The process that this stage belongs to
+     * @var ProcessType ProcessType The process that this stage belongs to
      *
+     * @MaxDepth(1)
      * @Assert\NotBlank
      * @ORM\ManyToOne(targetEntity="App\Entity\ProcessType", inversedBy="stages")
      * @ORM\JoinColumn(nullable=false)
@@ -235,9 +237,19 @@ class Stage
      */
     private $dateModified;
 
+    /**
+     * @var ArrayCollection the sections of this stage
+     *
+     * @Groups({"read","write"})
+     * @MaxDepth(1)
+     * @ORM\OneToMany(targetEntity="App\Entity\Section", mappedBy="stage", orphanRemoval=true)
+     */
+    private $sections;
+
     public function __construct()
     {
         $this->documents = new ArrayCollection();
+        $this->sections = new ArrayCollection();
     }
 
     public function getId()
@@ -281,17 +293,17 @@ class Stage
     	return $this;
     }
 
-    public function getType(): ?string
-    {
-        return $this->type;
-    }
-
-    public function setType(string $type): self
-    {
-        $this->type = $type;
-
-        return $this;
-    }
+//    public function getType(): ?string
+//    {
+//        return $this->type;
+//    }
+//
+//    public function setType(string $type): self
+//    {
+//        $this->type = $type;
+//
+//        return $this;
+//    }
 
     public function getOptions(): ?array
     {
@@ -417,5 +429,36 @@ class Stage
     	$this->dateModified = $dateModified;
 
     	return $this;
+    }
+
+    /**
+     * @return Collection|Section[]
+     */
+    public function getSections(): Collection
+    {
+        return $this->sections;
+    }
+
+    public function addSection(Section $section): self
+    {
+        if (!$this->sections->contains($section)) {
+            $this->sections[] = $section;
+            $section->setStage($this);
+        }
+
+        return $this;
+    }
+
+    public function removeSection(Section $section): self
+    {
+        if ($this->sections->contains($section)) {
+            $this->sections->removeElement($section);
+            // set the owning side to null (unless already changed)
+            if ($section->getStage() === $this) {
+                $section->setStage(null);
+            }
+        }
+
+        return $this;
     }
 }
