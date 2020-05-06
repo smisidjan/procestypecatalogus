@@ -520,6 +520,7 @@ class AppFixtures extends Fixture
 		$stage2->setIcon('fal fa-users');
 		$stage2->setSlug('verhuizenden');
 		$stage2->setProcess($verhuizen);
+		$stage2->setPrevious($stage1);
 		$manager->persist($stage2);
 
 		$section1 = new Section();
