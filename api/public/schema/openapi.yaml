@@ -2682,6 +2682,831 @@ paths:
           name: X-NLX-Audit-Clarification
           description: 'A clarification as to why a request has been made  (doelbinding)'
           in: header
+  /sections:
+    get:
+      tags:
+        - Section
+      operationId: getSectionCollection
+      summary: 'Retrieves the collection of Section resources.'
+      responses:
+        200:
+          description: 'Section collection response'
+          content:
+            application/ld+json:
+              schema:
+                type: object
+                properties:
+                  'hydra:member': { type: array, items: { $ref: '#/components/schemas/Section:jsonld-read' } }
+                  'hydra:totalItems': { type: integer, minimum: 0 }
+                  'hydra:view': { type: object, properties: { '@id': { type: string, format: iri-reference }, '@type': { type: string }, 'hydra:first': { type: string, format: iri-reference }, 'hydra:last': { type: string, format: iri-reference }, 'hydra:next': { type: string, format: iri-reference } } }
+                  'hydra:search': { type: object, properties: { '@type': { type: string }, 'hydra:template': { type: string }, 'hydra:variableRepresentation': { type: string }, 'hydra:mapping': { type: array, items: { type: object, properties: { '@type': { type: string }, variable: { type: string }, property: { type: string }, required: { type: boolean } } } } } }
+                required:
+                  - 'hydra:member'
+            application/json+ld:
+              schema:
+                type: object
+                properties:
+                  'hydra:member': { type: array, items: { $ref: '#/components/schemas/Section:jsonld-read' } }
+                  'hydra:totalItems': { type: integer, minimum: 0 }
+                  'hydra:view': { type: object, properties: { '@id': { type: string, format: iri-reference }, '@type': { type: string }, 'hydra:first': { type: string, format: iri-reference }, 'hydra:last': { type: string, format: iri-reference }, 'hydra:next': { type: string, format: iri-reference } } }
+                  'hydra:search': { type: object, properties: { '@type': { type: string }, 'hydra:template': { type: string }, 'hydra:variableRepresentation': { type: string }, 'hydra:mapping': { type: array, items: { type: object, properties: { '@type': { type: string }, variable: { type: string }, property: { type: string }, required: { type: boolean } } } } } }
+                required:
+                  - 'hydra:member'
+            application/hal+json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Section-read'
+            application/json+hal:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Section-read'
+            application/vnd.api+json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Section-read'
+            application/json+vnd.api:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Section-read'
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Section-read'
+            application/health+json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Section-read'
+            application/json+health:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Section-read'
+            application/xml:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Section-read'
+            application/x-yaml:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Section-read'
+            text/csv:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Section-read'
+            text/html:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Section-read'
+      parameters:
+        -
+          name: start
+          in: query
+          required: false
+          schema:
+            type: boolean
+        -
+          name: 'order[id]'
+          in: query
+          required: false
+          schema:
+            type: string
+            enum:
+              - asc
+              - desc
+        -
+          name: 'order[name]'
+          in: query
+          required: false
+          schema:
+            type: string
+            enum:
+              - asc
+              - desc
+        -
+          name: 'order[description]'
+          in: query
+          required: false
+          schema:
+            type: string
+            enum:
+              - asc
+              - desc
+        -
+          name: 'order[properties]'
+          in: query
+          required: false
+          schema:
+            type: string
+            enum:
+              - asc
+              - desc
+        -
+          name: 'order[dateCreated]'
+          in: query
+          required: false
+          schema:
+            type: string
+            enum:
+              - asc
+              - desc
+        -
+          name: 'order[dateModified]'
+          in: query
+          required: false
+          schema:
+            type: string
+            enum:
+              - asc
+              - desc
+        -
+          name: 'order[start]'
+          in: query
+          required: false
+          schema:
+            type: string
+            enum:
+              - asc
+              - desc
+        -
+          name: 'dateCreated[before]'
+          in: query
+          required: false
+          schema:
+            type: string
+        -
+          name: 'dateCreated[strictly_before]'
+          in: query
+          required: false
+          schema:
+            type: string
+        -
+          name: 'dateCreated[after]'
+          in: query
+          required: false
+          schema:
+            type: string
+        -
+          name: 'dateCreated[strictly_after]'
+          in: query
+          required: false
+          schema:
+            type: string
+        -
+          name: 'dateModified[before]'
+          in: query
+          required: false
+          schema:
+            type: string
+        -
+          name: 'dateModified[strictly_before]'
+          in: query
+          required: false
+          schema:
+            type: string
+        -
+          name: 'dateModified[after]'
+          in: query
+          required: false
+          schema:
+            type: string
+        -
+          name: 'dateModified[strictly_after]'
+          in: query
+          required: false
+          schema:
+            type: string
+        -
+          name: id
+          in: query
+          required: false
+          schema:
+            type: string
+        -
+          name: 'id[]'
+          in: query
+          required: false
+          schema:
+            type: array
+            items:
+              type: string
+          style: form
+          explode: true
+        -
+          name: name
+          in: query
+          required: false
+          schema:
+            type: string
+        -
+          name: 'name[]'
+          in: query
+          required: false
+          schema:
+            type: array
+            items:
+              type: string
+          style: form
+          explode: true
+        -
+          name: description
+          in: query
+          required: false
+          schema:
+            type: string
+        -
+          name: 'description[]'
+          in: query
+          required: false
+          schema:
+            type: array
+            items:
+              type: string
+          style: form
+          explode: true
+        -
+          name: properties
+          in: query
+          required: false
+          schema:
+            type: string
+        -
+          name: 'properties[]'
+          in: query
+          required: false
+          schema:
+            type: array
+            items:
+              type: string
+          style: deepObject
+          explode: true
+        -
+          name: dateCreated
+          in: query
+          required: false
+          schema:
+            type: string
+        -
+          name: 'dateCreated[]'
+          in: query
+          required: false
+          schema:
+            type: string
+        -
+          name: dateModified
+          in: query
+          required: false
+          schema:
+            type: string
+        -
+          name: 'dateModified[]'
+          in: query
+          required: false
+          schema:
+            type: string
+        -
+          name: start
+          in: query
+          required: false
+          schema:
+            type: boolean
+        -
+          name: 'start[]'
+          in: query
+          required: false
+          schema:
+            type: array
+            items:
+              type: boolean
+          style: form
+          explode: true
+        -
+          name: page
+          in: query
+          required: false
+          description: 'The collection page number'
+          schema:
+            type: integer
+            default: 1
+        -
+          name: Authorization
+          description: 'The JWT of the entity performing the request'
+          in: header
+        -
+          name: API-Version
+          description: 'The version of the API conform [Landelijke API-strategie.](https://geonovum.github.io/KP-APIs/#versioning)'
+          example: 1.0.1
+          in: header
+        -
+          name: X-NLX-Logrecord-ID
+          description: 'A  globally unique id of the request, which makes a request traceable throughout the network.'
+          in: header
+        -
+          name: X-NLX-Request-Process-Id
+          description: 'A process id for purpose registration (doelbinding)'
+          in: header
+        -
+          name: X-NLX-Request-Data-Elements
+          description: 'A list of requested data elements'
+          in: header
+        -
+          name: X-NLX-Request-Data-Subject
+          description: 'A key-value list of data subjects related to this request. e.g. `bsn=12345678, kenteken=ab-12-fg`'
+          in: header
+        -
+          name: X-NLX-Audit-Clarification
+          description: 'A clarification as to why a request has been made  (doelbinding)'
+          in: header
+        -
+          name: Link
+          description: 'A [websub](https://www.w3.org/TR/websub/#discovery) header like <https://hub.example.com/>; rel="hub"'
+          in: header
+        -
+          name: 'extend[]'
+          required: false
+          description: 'An array of nested objects to include in the return object'
+          in: query
+          schema:
+            type: array
+        -
+          name: 'fields[]'
+          required: false
+          description: 'An array of fields to return in output, wil return all fields is not supplied'
+          in: query
+          schema:
+            type: array
+        -
+          name: validOn
+          required: false
+          description: 'Returns object as valid on a given date time'
+          schema:
+            type: string
+            format: date-time
+          in: query
+        -
+          name: validFrom
+          required: false
+          description: 'Returns objects valid from a given date time'
+          schema:
+            type: string
+            format: date-time
+          in: query
+        -
+          name: validUntil
+          required: false
+          description: 'Returns objects valid until a given date time'
+          schema:
+            type: string
+            format: date-time
+          in: query
+      produces:
+        - application/health+json
+    post:
+      tags:
+        - Section
+      operationId: postSectionCollection
+      summary: 'Creates a Section resource.'
+      responses:
+        201:
+          description: 'Section resource created'
+          content:
+            application/ld+json:
+              schema:
+                $ref: '#/components/schemas/Section:jsonld-read'
+            application/json+ld:
+              schema:
+                $ref: '#/components/schemas/Section:jsonld-read'
+            application/hal+json:
+              schema:
+                $ref: '#/components/schemas/Section-read'
+            application/json+hal:
+              schema:
+                $ref: '#/components/schemas/Section-read'
+            application/vnd.api+json:
+              schema:
+                $ref: '#/components/schemas/Section-read'
+            application/json+vnd.api:
+              schema:
+                $ref: '#/components/schemas/Section-read'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Section-read'
+            application/health+json:
+              schema:
+                $ref: '#/components/schemas/Section-read'
+            application/json+health:
+              schema:
+                $ref: '#/components/schemas/Section-read'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/Section-read'
+            application/x-yaml:
+              schema:
+                $ref: '#/components/schemas/Section-read'
+            text/csv:
+              schema:
+                $ref: '#/components/schemas/Section-read'
+            text/html:
+              schema:
+                $ref: '#/components/schemas/Section-read'
+          links:
+            GetSectionItem:
+              parameters:
+                id: '$response.body#/id'
+              operationId: getSectionItem
+              description: 'The `id` value returned in the response can be used as the `id` parameter in `GET /sections/{id}`.'
+        400:
+          description: 'Invalid input'
+        404:
+          description: 'Resource not found'
+      requestBody:
+        content:
+          application/ld+json:
+            schema:
+              $ref: '#/components/schemas/Section:jsonld-write'
+          application/json+ld:
+            schema:
+              $ref: '#/components/schemas/Section:jsonld-write'
+          application/hal+json:
+            schema:
+              $ref: '#/components/schemas/Section-write'
+          application/json+hal:
+            schema:
+              $ref: '#/components/schemas/Section-write'
+          application/vnd.api+json:
+            schema:
+              $ref: '#/components/schemas/Section-write'
+          application/json+vnd.api:
+            schema:
+              $ref: '#/components/schemas/Section-write'
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Section-write'
+          application/health+json:
+            schema:
+              $ref: '#/components/schemas/Section-write'
+          application/json+health:
+            schema:
+              $ref: '#/components/schemas/Section-write'
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/Section-write'
+          application/x-yaml:
+            schema:
+              $ref: '#/components/schemas/Section-write'
+          text/csv:
+            schema:
+              $ref: '#/components/schemas/Section-write'
+          text/html:
+            schema:
+              $ref: '#/components/schemas/Section-write'
+        description: 'The new Section resource'
+      parameters:
+        -
+          name: Authorization
+          description: 'The JWT of the entity performing the request'
+          in: header
+        -
+          name: API-Version
+          description: 'The version of the API conform [Landelijke API-strategie.](https://geonovum.github.io/KP-APIs/#versioning)'
+          example: 1.0.1
+          in: header
+        -
+          name: X-NLX-Logrecord-ID
+          description: 'A  globally unique id of the request, which makes a request traceable throughout the network.'
+          in: header
+        -
+          name: X-NLX-Request-Process-Id
+          description: 'A process id for purpose registration (doelbinding)'
+          in: header
+        -
+          name: X-NLX-Request-Data-Elements
+          description: 'A list of requested data elements'
+          in: header
+        -
+          name: X-NLX-Request-Data-Subject
+          description: 'A key-value list of data subjects related to this request. e.g. `bsn=12345678, kenteken=ab-12-fg`'
+          in: header
+        -
+          name: X-NLX-Audit-Clarification
+          description: 'A clarification as to why a request has been made  (doelbinding)'
+          in: header
+  '/sections/{id}':
+    get:
+      tags:
+        - Section
+      operationId: getSectionItem
+      summary: 'Retrieves a Section resource.'
+      parameters:
+        -
+          name: id
+          in: path
+          required: true
+          schema:
+            type: string
+        -
+          name: Authorization
+          description: 'The JWT of the entity performing the request'
+          in: header
+        -
+          name: API-Version
+          description: 'The version of the API conform [Landelijke API-strategie.](https://geonovum.github.io/KP-APIs/#versioning)'
+          example: 1.0.1
+          in: header
+        -
+          name: X-NLX-Logrecord-ID
+          description: 'A  globally unique id of the request, which makes a request traceable throughout the network.'
+          in: header
+        -
+          name: X-NLX-Request-Process-Id
+          description: 'A process id for purpose registration (doelbinding)'
+          in: header
+        -
+          name: X-NLX-Request-Data-Elements
+          description: 'A list of requested data elements'
+          in: header
+        -
+          name: X-NLX-Request-Data-Subject
+          description: 'A key-value list of data subjects related to this request. e.g. `bsn=12345678, kenteken=ab-12-fg`'
+          in: header
+        -
+          name: X-NLX-Audit-Clarification
+          description: 'A clarification as to why a request has been made  (doelbinding)'
+          in: header
+        -
+          name: Link
+          description: 'A [websub](https://www.w3.org/TR/websub/#discovery) header like <https://hub.example.com/>; rel="hub"'
+          in: header
+        -
+          name: 'extend[]'
+          required: false
+          description: 'An array of nested objects to include in the return object'
+          in: query
+          schema:
+            type: array
+        -
+          name: 'fields[]'
+          required: false
+          description: 'An array of fields to return in output, wil return all fields is not supplied'
+          in: query
+          schema:
+            type: array
+        -
+          name: validOn
+          required: false
+          description: 'Returns object as valid on a given date time'
+          schema:
+            type: string
+            format: date-time
+          in: query
+        -
+          name: validFrom
+          required: false
+          description: 'Returns objects valid from a given date time'
+          schema:
+            type: string
+            format: date-time
+          in: query
+        -
+          name: validUntil
+          required: false
+          description: 'Returns objects valid until a given date time'
+          schema:
+            type: string
+            format: date-time
+          in: query
+      responses:
+        200:
+          description: 'Section resource response'
+          content:
+            application/ld+json:
+              schema:
+                $ref: '#/components/schemas/Section:jsonld-read'
+            application/json+ld:
+              schema:
+                $ref: '#/components/schemas/Section:jsonld-read'
+            application/hal+json:
+              schema:
+                $ref: '#/components/schemas/Section-read'
+            application/json+hal:
+              schema:
+                $ref: '#/components/schemas/Section-read'
+            application/vnd.api+json:
+              schema:
+                $ref: '#/components/schemas/Section-read'
+            application/json+vnd.api:
+              schema:
+                $ref: '#/components/schemas/Section-read'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Section-read'
+            application/health+json:
+              schema:
+                $ref: '#/components/schemas/Section-read'
+            application/json+health:
+              schema:
+                $ref: '#/components/schemas/Section-read'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/Section-read'
+            application/x-yaml:
+              schema:
+                $ref: '#/components/schemas/Section-read'
+            text/csv:
+              schema:
+                $ref: '#/components/schemas/Section-read'
+            text/html:
+              schema:
+                $ref: '#/components/schemas/Section-read'
+        404:
+          description: 'Resource not found'
+      produces:
+        - application/health+json
+    put:
+      tags:
+        - Section
+      operationId: putSectionItem
+      summary: 'Replaces the Section resource.'
+      parameters:
+        -
+          name: id
+          in: path
+          required: true
+          schema:
+            type: string
+        -
+          name: Authorization
+          description: 'The JWT of the entity performing the request'
+          in: header
+        -
+          name: API-Version
+          description: 'The version of the API conform [Landelijke API-strategie.](https://geonovum.github.io/KP-APIs/#versioning)'
+          example: 1.0.1
+          in: header
+        -
+          name: X-NLX-Logrecord-ID
+          description: 'A  globally unique id of the request, which makes a request traceable throughout the network.'
+          in: header
+        -
+          name: X-NLX-Request-Process-Id
+          description: 'A process id for purpose registration (doelbinding)'
+          in: header
+        -
+          name: X-NLX-Request-Data-Elements
+          description: 'A list of requested data elements'
+          in: header
+        -
+          name: X-NLX-Request-Data-Subject
+          description: 'A key-value list of data subjects related to this request. e.g. `bsn=12345678, kenteken=ab-12-fg`'
+          in: header
+        -
+          name: X-NLX-Audit-Clarification
+          description: 'A clarification as to why a request has been made  (doelbinding)'
+          in: header
+      responses:
+        200:
+          description: 'Section resource updated'
+          content:
+            application/ld+json:
+              schema:
+                $ref: '#/components/schemas/Section:jsonld-read'
+            application/json+ld:
+              schema:
+                $ref: '#/components/schemas/Section:jsonld-read'
+            application/hal+json:
+              schema:
+                $ref: '#/components/schemas/Section-read'
+            application/json+hal:
+              schema:
+                $ref: '#/components/schemas/Section-read'
+            application/vnd.api+json:
+              schema:
+                $ref: '#/components/schemas/Section-read'
+            application/json+vnd.api:
+              schema:
+                $ref: '#/components/schemas/Section-read'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Section-read'
+            application/health+json:
+              schema:
+                $ref: '#/components/schemas/Section-read'
+            application/json+health:
+              schema:
+                $ref: '#/components/schemas/Section-read'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/Section-read'
+            application/x-yaml:
+              schema:
+                $ref: '#/components/schemas/Section-read'
+            text/csv:
+              schema:
+                $ref: '#/components/schemas/Section-read'
+            text/html:
+              schema:
+                $ref: '#/components/schemas/Section-read'
+        400:
+          description: 'Invalid input'
+        404:
+          description: 'Resource not found'
+      requestBody:
+        content:
+          application/ld+json:
+            schema:
+              $ref: '#/components/schemas/Section:jsonld-write'
+          application/json+ld:
+            schema:
+              $ref: '#/components/schemas/Section:jsonld-write'
+          application/hal+json:
+            schema:
+              $ref: '#/components/schemas/Section-write'
+          application/json+hal:
+            schema:
+              $ref: '#/components/schemas/Section-write'
+          application/vnd.api+json:
+            schema:
+              $ref: '#/components/schemas/Section-write'
+          application/json+vnd.api:
+            schema:
+              $ref: '#/components/schemas/Section-write'
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Section-write'
+          application/health+json:
+            schema:
+              $ref: '#/components/schemas/Section-write'
+          application/json+health:
+            schema:
+              $ref: '#/components/schemas/Section-write'
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/Section-write'
+          application/x-yaml:
+            schema:
+              $ref: '#/components/schemas/Section-write'
+          text/csv:
+            schema:
+              $ref: '#/components/schemas/Section-write'
+          text/html:
+            schema:
+              $ref: '#/components/schemas/Section-write'
+        description: 'The updated Section resource'
+    delete:
+      tags:
+        - Section
+      operationId: deleteSectionItem
+      summary: 'Removes the Section resource.'
+      responses:
+        204:
+          description: 'Section resource deleted'
+        404:
+          description: 'Resource not found'
+      parameters:
+        -
+          name: id
+          in: path
+          required: true
+          schema:
+            type: string
+        -
+          name: Authorization
+          description: 'The JWT of the entity performing the request'
+          in: header
+        -
+          name: API-Version
+          description: 'The version of the API conform [Landelijke API-strategie.](https://geonovum.github.io/KP-APIs/#versioning)'
+          example: 1.0.1
+          in: header
+        -
+          name: X-NLX-Logrecord-ID
+          description: 'A  globally unique id of the request, which makes a request traceable throughout the network.'
+          in: header
+        -
+          name: X-NLX-Request-Process-Id
+          description: 'A process id for purpose registration (doelbinding)'
+          in: header
+        -
+          name: X-NLX-Request-Data-Elements
+          description: 'A list of requested data elements'
+          in: header
+        -
+          name: X-NLX-Request-Data-Subject
+          description: 'A key-value list of data subjects related to this request. e.g. `bsn=12345678, kenteken=ab-12-fg`'
+          in: header
+        -
+          name: X-NLX-Audit-Clarification
+          description: 'A clarification as to why a request has been made  (doelbinding)'
+          in: header
   /stages:
     get:
       tags:
@@ -2803,15 +3628,6 @@ paths:
               - desc
         -
           name: 'order[icon]'
-          in: query
-          required: false
-          schema:
-            type: string
-            enum:
-              - asc
-              - desc
-        -
-          name: 'order[type]'
           in: query
           required: false
           schema:
@@ -2986,22 +3802,6 @@ paths:
             type: string
         -
           name: 'icon[]'
-          in: query
-          required: false
-          schema:
-            type: array
-            items:
-              type: string
-          style: form
-          explode: true
-        -
-          name: type
-          in: query
-          required: false
-          schema:
-            type: string
-        -
-          name: 'type[]'
           in: query
           required: false
           schema:
@@ -3906,114 +4706,114 @@ components:
           externalDocs:
             url: 'http://schema.org/identifier'
           type: string
+          format: uuid
+        application:
+          writeOnly: true
+          description: 'The application that made the request'
+          externalDocs:
+            url: 'http://schema.org/url'
+          type: string
+          nullable: true
         request:
-          readOnly: true
           description: 'The id of the request within that application'
           externalDocs:
             url: 'http://schema.org/url'
           type: string
+          nullable: true
         user:
-          readOnly: true
           description: 'The user on behalf of wich the request was made'
           externalDocs:
             url: 'http://schema.org/url'
           type: string
+          nullable: true
         subject:
-          readOnly: true
           description: '???'
           type: string
+          nullable: true
         process:
-          readOnly: true
           description: 'The procces on behalf of wich the request was made'
           type: string
+          nullable: true
         dataElements:
-          readOnly: true
           description: 'The moment this request was created'
           type: array
           items:
             type: string
+          nullable: true
         dataSubjects:
-          readOnly: true
           description: 'The moment this request was created'
           type: array
           items:
             type: string
+          nullable: true
         resource:
-          readOnly: true
           description: 'The resource that was requested'
           type: string
+          nullable: true
         resourceType:
-          readOnly: true
           description: 'The type of the resource that was requested'
           type: string
+          nullable: true
         route:
-          readOnly: true
           description: 'The moment this request was created'
           type: string
         endpoint:
-          readOnly: true
           description: 'The endpoint that the request was made to'
           type: string
         method:
-          readOnly: true
           description: 'The method that was used'
           type: string
         accept:
-          readOnly: true
           description: 'The contentType that was reqousted'
           type: string
         contentType:
-          readOnly: true
           description: 'The contentType that was suplieds'
           type: string
         content:
-          readOnly: true
           description: 'The moment this request was created'
           type: string
+          nullable: true
         ip:
-          readOnly: true
           description: 'The moment this request was created'
           type: string
         session:
-          readOnly: true
           description: 'The moment this request was created'
           type: string
         headers:
-          readOnly: true
           description: 'The headers supplied by client'
           type: array
           items:
             type: string
         statusCode:
-          readOnly: true
           description: 'The status code returned to client'
           type: integer
+          nullable: true
         notFound:
-          readOnly: true
           description: 'Whether or not the reqousted endpoint was found'
           type: boolean
+          nullable: true
         forbidden:
-          readOnly: true
           description: 'Whether or not the client was allowed to the reqousted endpoint'
           type: boolean
+          nullable: true
         ok:
-          readOnly: true
           description: 'Whether or not there where any problems'
           type: boolean
+          nullable: true
         dateCreated:
-          readOnly: true
           description: 'The moment this request was created'
           externalDocs:
             url: 'http://schema.org/DateTime'
           type: string
           format: date-time
+          nullable: true
         dateModified:
-          readOnly: true
           description: 'The moment this request last Modified'
           externalDocs:
             url: 'http://schema.org/DateTime'
           type: string
           format: date-time
+          nullable: true
     AuditTrail-write:
       type: object
       description: 'An resource representing a log line.'
@@ -4036,114 +4836,114 @@ components:
           externalDocs:
             url: 'http://schema.org/identifier'
           type: string
+          format: uuid
+        application:
+          writeOnly: true
+          description: 'The application that made the request'
+          externalDocs:
+            url: 'http://schema.org/url'
+          type: string
+          nullable: true
         request:
-          readOnly: true
           description: 'The id of the request within that application'
           externalDocs:
             url: 'http://schema.org/url'
           type: string
+          nullable: true
         user:
-          readOnly: true
           description: 'The user on behalf of wich the request was made'
           externalDocs:
             url: 'http://schema.org/url'
           type: string
+          nullable: true
         subject:
-          readOnly: true
           description: '???'
           type: string
+          nullable: true
         process:
-          readOnly: true
           description: 'The procces on behalf of wich the request was made'
           type: string
+          nullable: true
         dataElements:
-          readOnly: true
           description: 'The moment this request was created'
           type: array
           items:
             type: string
+          nullable: true
         dataSubjects:
-          readOnly: true
           description: 'The moment this request was created'
           type: array
           items:
             type: string
+          nullable: true
         resource:
-          readOnly: true
           description: 'The resource that was requested'
           type: string
+          nullable: true
         resourceType:
-          readOnly: true
           description: 'The type of the resource that was requested'
           type: string
+          nullable: true
         route:
-          readOnly: true
           description: 'The moment this request was created'
           type: string
         endpoint:
-          readOnly: true
           description: 'The endpoint that the request was made to'
           type: string
         method:
-          readOnly: true
           description: 'The method that was used'
           type: string
         accept:
-          readOnly: true
           description: 'The contentType that was reqousted'
           type: string
         contentType:
-          readOnly: true
           description: 'The contentType that was suplieds'
           type: string
         content:
-          readOnly: true
           description: 'The moment this request was created'
           type: string
+          nullable: true
         ip:
-          readOnly: true
           description: 'The moment this request was created'
           type: string
         session:
-          readOnly: true
           description: 'The moment this request was created'
           type: string
         headers:
-          readOnly: true
           description: 'The headers supplied by client'
           type: array
           items:
             type: string
         statusCode:
-          readOnly: true
           description: 'The status code returned to client'
           type: integer
+          nullable: true
         notFound:
-          readOnly: true
           description: 'Whether or not the reqousted endpoint was found'
           type: boolean
+          nullable: true
         forbidden:
-          readOnly: true
           description: 'Whether or not the client was allowed to the reqousted endpoint'
           type: boolean
+          nullable: true
         ok:
-          readOnly: true
           description: 'Whether or not there where any problems'
           type: boolean
+          nullable: true
         dateCreated:
-          readOnly: true
           description: 'The moment this request was created'
           externalDocs:
             url: 'http://schema.org/DateTime'
           type: string
           format: date-time
+          nullable: true
         dateModified:
-          readOnly: true
           description: 'The moment this request last Modified'
           externalDocs:
             url: 'http://schema.org/DateTime'
           type: string
           format: date-time
+          nullable: true
     'AuditTrail:jsonld-write':
       type: object
       description: 'An resource representing a log line.'
@@ -4167,44 +4967,42 @@ components:
           externalDocs:
             url: 'http://schema.org/identifier'
           type: string
+          format: uuid
         action:
-          readOnly: true
           type: string
         objectId:
-          readOnly: true
           type: string
+          nullable: true
         objectClass:
-          readOnly: true
           type: string
         version:
-          readOnly: true
           type: integer
         data:
-          readOnly: true
           type: array
           items:
             type: string
+          nullable: true
         username:
-          readOnly: true
           type: string
+          nullable: true
         session:
-          readOnly: true
           description: 'The moment this request was created'
           type: string
+          nullable: true
         dateCreated:
-          readOnly: true
           description: 'The moment this request was created'
           externalDocs:
             url: 'http://schema.org/DateTime'
           type: string
           format: date-time
+          nullable: true
         dateModified:
-          readOnly: true
           description: 'The moment this request last Modified'
           externalDocs:
             url: 'http://schema.org/DateTime'
           type: string
           format: date-time
+          nullable: true
     ChangeLog-write:
       type: object
       description: 'An resource representing a log line.'
@@ -4227,44 +5025,42 @@ components:
           externalDocs:
             url: 'http://schema.org/identifier'
           type: string
+          format: uuid
         action:
-          readOnly: true
           type: string
         objectId:
-          readOnly: true
           type: string
+          nullable: true
         objectClass:
-          readOnly: true
           type: string
         version:
-          readOnly: true
           type: integer
         data:
-          readOnly: true
           type: array
           items:
             type: string
+          nullable: true
         username:
-          readOnly: true
           type: string
+          nullable: true
         session:
-          readOnly: true
           description: 'The moment this request was created'
           type: string
+          nullable: true
         dateCreated:
-          readOnly: true
           description: 'The moment this request was created'
           externalDocs:
             url: 'http://schema.org/DateTime'
           type: string
           format: date-time
+          nullable: true
         dateModified:
-          readOnly: true
           description: 'The moment this request last Modified'
           externalDocs:
             url: 'http://schema.org/DateTime'
           type: string
           format: date-time
+          nullable: true
     'ChangeLog:jsonld-write':
       type: object
       description: 'An resource representing a log line.'
@@ -4288,17 +5084,18 @@ components:
           externalDocs:
             url: 'http://schema.org/identifier'
           type: string
+          format: uuid
         name:
-          readOnly: true
           description: 'The name of this process'
           type: string
         description:
-          readOnly: true
           description: 'An short description of this process'
           type: string
+          nullable: true
         icon:
           description: 'The icon of this property'
           type: string
+          nullable: true
         sourceOrganization:
           description: 'The RSIN of the organization that owns this process'
           type: string
@@ -4316,21 +5113,24 @@ components:
           type: array
           items:
             type: string
+          nullable: true
         documents:
           type: array
           items:
             type: string
+          nullable: true
         dateCreated:
-          readOnly: true
           description: 'The moment this request was created'
           type: string
           format: date-time
+          nullable: true
         dateModified:
-          readOnly: true
           description: 'The moment this request last Modified'
           type: string
           format: date-time
+          nullable: true
       required:
+        - name
         - sourceOrganization
     ProcessType-write:
       type: object
@@ -4339,6 +5139,7 @@ components:
         icon:
           description: 'The icon of this property'
           type: string
+          nullable: true
         sourceOrganization:
           description: 'The RSIN of the organization that owns this process'
           type: string
@@ -4353,17 +5154,21 @@ components:
             url: 'http://schema.org/url'
           type: string
         extends:
-          writeOnly: true
           description: 'The process that this process extends'
-          $ref: '#/components/schemas/ProcessType-write'
+          nullable: true
+          anyOf:
+            -
+              $ref: '#/components/schemas/ProcessType-write'
         properties:
           type: array
           items:
             type: string
+          nullable: true
         documents:
           type: array
           items:
             type: string
+          nullable: true
       required:
         - sourceOrganization
     'ProcessType:jsonld-read':
@@ -4385,17 +5190,18 @@ components:
           externalDocs:
             url: 'http://schema.org/identifier'
           type: string
+          format: uuid
         name:
-          readOnly: true
           description: 'The name of this process'
           type: string
         description:
-          readOnly: true
           description: 'An short description of this process'
           type: string
+          nullable: true
         icon:
           description: 'The icon of this property'
           type: string
+          nullable: true
         sourceOrganization:
           description: 'The RSIN of the organization that owns this process'
           type: string
@@ -4413,21 +5219,24 @@ components:
           type: array
           items:
             type: string
+          nullable: true
         documents:
           type: array
           items:
             type: string
+          nullable: true
         dateCreated:
-          readOnly: true
           description: 'The moment this request was created'
           type: string
           format: date-time
+          nullable: true
         dateModified:
-          readOnly: true
           description: 'The moment this request last Modified'
           type: string
           format: date-time
+          nullable: true
       required:
+        - name
         - sourceOrganization
     'ProcessType:jsonld-write':
       type: object
@@ -4445,6 +5254,7 @@ components:
         icon:
           description: 'The icon of this property'
           type: string
+          nullable: true
         sourceOrganization:
           description: 'The RSIN of the organization that owns this process'
           type: string
@@ -4459,19 +5269,199 @@ components:
             url: 'http://schema.org/url'
           type: string
         extends:
-          writeOnly: true
           description: 'The process that this process extends'
-          $ref: '#/components/schemas/ProcessType:jsonld-write'
+          nullable: true
+          anyOf:
+            -
+              $ref: '#/components/schemas/ProcessType:jsonld-write'
         properties:
           type: array
           items:
             type: string
+          nullable: true
         documents:
           type: array
           items:
             type: string
+          nullable: true
       required:
         - sourceOrganization
+    Section-read:
+      type: object
+      description: ''
+      properties:
+        id:
+          readOnly: true
+          description: 'The UUID identifier of this object'
+          externalDocs:
+            url: 'http://schema.org/identifier'
+          type: string
+          format: uuid
+        name:
+          description: 'the name of this Section'
+          type: string
+        description:
+          description: 'the description for this section'
+          type: string
+          nullable: true
+        properties:
+          description: 'The properties that are treated in this section, as references to the VTC component'
+          type: array
+          items:
+            type: string
+          nullable: true
+        stage:
+          description: 'the stage this section belongs to'
+          $ref: '#/components/schemas/Stage-read'
+        dateCreated:
+          description: 'The moment this request was created'
+          type: string
+          format: date-time
+          nullable: true
+        dateModified:
+          description: 'The moment this request last Modified'
+          type: string
+          format: date-time
+          nullable: true
+        start:
+          description: 'Denotes if this section is the first section of the stage'
+          type: boolean
+      required:
+        - name
+    Section-write:
+      type: object
+      description: ''
+      required:
+        - name
+      properties:
+        name:
+          description: 'the name of this Section'
+          type: string
+        description:
+          description: 'the description for this section'
+          type: string
+          nullable: true
+        properties:
+          description: 'The properties that are treated in this section, as references to the VTC component'
+          type: array
+          items:
+            type: string
+          nullable: true
+        stage:
+          description: 'the stage this section belongs to'
+          $ref: '#/components/schemas/Stage-write'
+        start:
+          description: 'Denotes if this section is the first section of the stage'
+          type: boolean
+        next:
+          description: 'the next Section in the stage'
+          nullable: true
+          anyOf:
+            -
+              $ref: '#/components/schemas/Section-write'
+        previous:
+          description: 'the previous Section in the stage'
+          nullable: true
+          anyOf:
+            -
+              $ref: '#/components/schemas/Section-write'
+    'Section:jsonld-read':
+      type: object
+      description: ''
+      properties:
+        '@context':
+          readOnly: true
+          type: string
+        '@id':
+          readOnly: true
+          type: string
+        '@type':
+          readOnly: true
+          type: string
+        id:
+          readOnly: true
+          description: 'The UUID identifier of this object'
+          externalDocs:
+            url: 'http://schema.org/identifier'
+          type: string
+          format: uuid
+        name:
+          description: 'the name of this Section'
+          type: string
+        description:
+          description: 'the description for this section'
+          type: string
+          nullable: true
+        properties:
+          description: 'The properties that are treated in this section, as references to the VTC component'
+          type: array
+          items:
+            type: string
+          nullable: true
+        stage:
+          description: 'the stage this section belongs to'
+          $ref: '#/components/schemas/Stage:jsonld-read'
+        dateCreated:
+          description: 'The moment this request was created'
+          type: string
+          format: date-time
+          nullable: true
+        dateModified:
+          description: 'The moment this request last Modified'
+          type: string
+          format: date-time
+          nullable: true
+        start:
+          description: 'Denotes if this section is the first section of the stage'
+          type: boolean
+      required:
+        - name
+    'Section:jsonld-write':
+      type: object
+      description: ''
+      required:
+        - name
+      properties:
+        '@context':
+          readOnly: true
+          type: string
+        '@id':
+          readOnly: true
+          type: string
+        '@type':
+          readOnly: true
+          type: string
+        name:
+          description: 'the name of this Section'
+          type: string
+        description:
+          description: 'the description for this section'
+          type: string
+          nullable: true
+        properties:
+          description: 'The properties that are treated in this section, as references to the VTC component'
+          type: array
+          items:
+            type: string
+          nullable: true
+        stage:
+          description: 'the stage this section belongs to'
+          $ref: '#/components/schemas/Stage:jsonld-write'
+        start:
+          description: 'Denotes if this section is the first section of the stage'
+          type: boolean
+        next:
+          description: 'the next Section in the stage'
+          nullable: true
+          anyOf:
+            -
+              $ref: '#/components/schemas/Section:jsonld-write'
+        previous:
+          description: 'the previous Section in the stage'
+          nullable: true
+          anyOf:
+            -
+              $ref: '#/components/schemas/Section:jsonld-write'
     Stage-read:
       type: object
       description: 'A single stage within a process.'
@@ -4482,49 +5472,62 @@ components:
           externalDocs:
             url: 'http://schema.org/identifier'
           type: string
+          format: uuid
         name:
-          readOnly: true
           description: 'The name of this stage'
           type: string
         description:
-          readOnly: true
           description: 'An short description of this stage'
           type: string
+          nullable: true
         icon:
           description: 'The icon of this property'
           type: string
-        type:
-          description: 'The task type of the stage'
-          type: string
+          nullable: true
         options:
           description: 'The options or configuration for this stage'
           type: string
         validation:
-          readOnly: true
           description: 'The validation rules that this stage adheres to'
           type: string
         next:
-          $ref: '#/components/schemas/Stage-read'
+          nullable: true
+          anyOf:
+            -
+              $ref: '#/components/schemas/Stage-read'
         previous:
-          $ref: '#/components/schemas/Stage-read'
+          nullable: true
+          anyOf:
+            -
+              $ref: '#/components/schemas/Stage-read'
         property:
           type: string
+          nullable: true
         slug:
           description: 'The slug of this property'
           type: string
+          nullable: true
         start:
           description: 'Whether or not this proerty is the starting oint of a process'
           type: boolean
+          nullable: true
         dateCreated:
-          readOnly: true
           description: 'The moment this request was created'
           type: string
           format: date-time
+          nullable: true
         dateModified:
-          readOnly: true
           description: 'The moment this request last Modified'
           type: string
           format: date-time
+          nullable: true
+        sections:
+          description: 'the sections of this stage'
+          type: array
+          items:
+            $ref: '#/components/schemas/Section-read'
+      required:
+        - name
     Stage-write:
       type: object
       description: 'A single stage within a process.'
@@ -4532,24 +5535,36 @@ components:
         icon:
           description: 'The icon of this property'
           type: string
-        type:
-          description: 'The task type of the stage'
-          type: string
+          nullable: true
         options:
           description: 'The options or configuration for this stage'
           type: string
         next:
-          $ref: '#/components/schemas/Stage-write'
+          nullable: true
+          anyOf:
+            -
+              $ref: '#/components/schemas/Stage-write'
         previous:
-          $ref: '#/components/schemas/Stage-write'
+          nullable: true
+          anyOf:
+            -
+              $ref: '#/components/schemas/Stage-write'
         property:
           type: string
+          nullable: true
         slug:
           description: 'The slug of this property'
           type: string
+          nullable: true
         start:
           description: 'Whether or not this proerty is the starting oint of a process'
           type: boolean
+          nullable: true
+        sections:
+          description: 'the sections of this stage'
+          type: array
+          items:
+            $ref: '#/components/schemas/Section-write'
     'Stage:jsonld-read':
       type: object
       description: 'A single stage within a process.'
@@ -4569,49 +5584,62 @@ components:
           externalDocs:
             url: 'http://schema.org/identifier'
           type: string
+          format: uuid
         name:
-          readOnly: true
           description: 'The name of this stage'
           type: string
         description:
-          readOnly: true
           description: 'An short description of this stage'
           type: string
+          nullable: true
         icon:
           description: 'The icon of this property'
           type: string
-        type:
-          description: 'The task type of the stage'
-          type: string
+          nullable: true
         options:
           description: 'The options or configuration for this stage'
           type: string
         validation:
-          readOnly: true
           description: 'The validation rules that this stage adheres to'
           type: string
         next:
-          $ref: '#/components/schemas/Stage:jsonld-read'
+          nullable: true
+          anyOf:
+            -
+              $ref: '#/components/schemas/Stage:jsonld-read'
         previous:
-          $ref: '#/components/schemas/Stage:jsonld-read'
+          nullable: true
+          anyOf:
+            -
+              $ref: '#/components/schemas/Stage:jsonld-read'
         property:
           type: string
+          nullable: true
         slug:
           description: 'The slug of this property'
           type: string
+          nullable: true
         start:
           description: 'Whether or not this proerty is the starting oint of a process'
           type: boolean
+          nullable: true
         dateCreated:
-          readOnly: true
           description: 'The moment this request was created'
           type: string
           format: date-time
+          nullable: true
         dateModified:
-          readOnly: true
           description: 'The moment this request last Modified'
           type: string
           format: date-time
+          nullable: true
+        sections:
+          description: 'the sections of this stage'
+          type: array
+          items:
+            $ref: '#/components/schemas/Section:jsonld-read'
+      required:
+        - name
     'Stage:jsonld-write':
       type: object
       description: 'A single stage within a process.'
@@ -4628,24 +5656,36 @@ components:
         icon:
           description: 'The icon of this property'
           type: string
-        type:
-          description: 'The task type of the stage'
-          type: string
+          nullable: true
         options:
           description: 'The options or configuration for this stage'
           type: string
         next:
-          $ref: '#/components/schemas/Stage:jsonld-write'
+          nullable: true
+          anyOf:
+            -
+              $ref: '#/components/schemas/Stage:jsonld-write'
         previous:
-          $ref: '#/components/schemas/Stage:jsonld-write'
+          nullable: true
+          anyOf:
+            -
+              $ref: '#/components/schemas/Stage:jsonld-write'
         property:
           type: string
+          nullable: true
         slug:
           description: 'The slug of this property'
           type: string
+          nullable: true
         start:
           description: 'Whether or not this proerty is the starting oint of a process'
           type: boolean
+          nullable: true
+        sections:
+          description: 'the sections of this stage'
+          type: array
+          items:
+            $ref: '#/components/schemas/Section:jsonld-write'
 definitions:
   AuditTrail-read:
     properties:
@@ -4751,12 +5791,12 @@ definitions:
         description: 'The moment this request was created'
         type: string
         format: date-time
-        example: '2020-03-11 09:05:55'
+        example: '2020-05-05 06:51:32'
       dateModified:
         description: 'The moment this request last Modified'
         type: string
         format: date-time
-        example: '2020-03-11 09:05:55'
+        example: '2020-05-05 06:51:32'
     required: []
   AuditTrail-write:
     properties:
@@ -4764,59 +5804,6 @@ definitions:
         description: 'A note conserning this log lin'
         type: string
         example: 'This log line looks suspicius'
-        maxLength: 2555
-    required: []
-  ChangeLog-read:
-    properties:
-      id:
-        description: 'The UUID identifier of this object'
-        type: string
-        example: e2984465-190a-4562-829e-a8cca81aa35d
-        format: uuid
-      note:
-        description: 'A note conserning this log lin'
-        type: string
-        example: 'This log line is suspicius'
-        maxLength: 2555
-      action:
-        description: ''
-        type: string
-      objectId:
-        description: ''
-        type: string
-      objectClass:
-        description: ''
-        type: string
-      version:
-        description: ''
-        type: int
-      data:
-        description: ''
-        type: array
-      username:
-        description: ''
-        type: string
-      session:
-        description: 'The moment this request was created'
-        type: \sting
-        maxLength: 255
-      dateCreated:
-        description: 'The moment this request was created'
-        type: string
-        format: date-time
-        example: '2020-03-11 09:05:55'
-      dateModified:
-        description: 'The moment this request last Modified'
-        type: string
-        format: date-time
-        example: '2020-03-11 09:05:55'
-    required: []
-  ChangeLog-write:
-    properties:
-      note:
-        description: 'A note conserning this log lin'
-        type: string
-        example: 'This log line is suspicius'
         maxLength: 2555
     required: []
   ProcessType-read:
@@ -4858,10 +5845,10 @@ definitions:
       documents: []
       dateCreated:
         description: 'The moment this request was created'
-        type: \Datetime
+        type: \DateTime
       dateModified:
         description: 'The moment this request last Modified'
-        type: \Datetime
+        type: \DateTime
       stages:
         description: 'The stages of this process'
         type: array
@@ -4922,10 +5909,6 @@ definitions:
         example: 'My Property'
         maxLength: 255
         minLength: 15
-      type:
-        description: 'The task type of the stage'
-        type: string
-        example: my-organisation
       options:
         description: 'The options or configuration for this stage'
         type: object
@@ -4954,6 +5937,9 @@ definitions:
         type: \Datetime
       next: []
       previous: []
+      sections:
+        description: 'the sections of this stage'
+        type: \ArrayCollection
     required:
       - name
   Stage-write:
@@ -4964,10 +5950,6 @@ definitions:
         example: 'My Property'
         maxLength: 255
         minLength: 15
-      type:
-        description: 'The task type of the stage'
-        type: string
-        example: my-organisation
       options:
         description: 'The options or configuration for this stage'
         type: object
@@ -4985,17 +5967,130 @@ definitions:
         example: 'true'
       next: []
       previous: []
+      sections:
+        description: 'the sections of this stage'
+        type: \ArrayCollection
     required:
       - name
+  Section-read:
+    properties:
+      id:
+        description: 'The UUID identifier of this object'
+        type: string
+        example: e2984465-190a-4562-829e-a8cca81aa35d
+        format: uuid
+      name:
+        description: 'the name of this Section'
+        type: string
+        example: 'Section 1'
+        maxLength: 255
+      description:
+        description: 'the description for this section'
+        type: string
+        example: 'this section is for the personal data of the client'
+      properties:
+        description: 'The properties that are treated in this section, as references to the VTC component'
+        type: array
+        example: 'https://vtc.processen.zaakonline.nl/properties/1'
+      dateCreated:
+        description: 'The moment this request was created'
+        type: \DateTime
+      dateModified:
+        description: 'The moment this request last Modified'
+        type: \DateTime
+      start:
+        description: 'Denotes if this section is the first section of the stage'
+        type: bool
+      stage:
+        description: 'the stage this section belongs to'
+        type: \Stage
+    required:
+      - name
+  Section-write:
+    properties:
+      name:
+        description: 'the name of this Section'
+        type: string
+        example: 'Section 1'
+        maxLength: 255
+      description:
+        description: 'the description for this section'
+        type: string
+        example: 'this section is for the personal data of the client'
+      properties:
+        description: 'The properties that are treated in this section, as references to the VTC component'
+        type: array
+        example: 'https://vtc.processen.zaakonline.nl/properties/1'
+      start:
+        description: 'Denotes if this section is the first section of the stage'
+        type: bool
+      stage:
+        description: 'the stage this section belongs to'
+        type: \Stage
+      next:
+        description: 'the next Section in the stage'
+        type: \Section
+      previous:
+        description: 'the previous Section in the stage'
+        type: \Section
+    required:
+      - name
+  ChangeLog-read:
+    properties:
+      id:
+        description: 'The UUID identifier of this object'
+        type: string
+        example: e2984465-190a-4562-829e-a8cca81aa35d
+        format: uuid
+      note:
+        description: 'A note conserning this log lin'
+        type: string
+        example: 'This log line is suspicius'
+        maxLength: 2555
+      action:
+        description: ''
+        type: string
+      objectId:
+        description: ''
+        type: string
+      objectClass:
+        description: ''
+        type: string
+      version:
+        description: ''
+        type: int
+      data:
+        description: ''
+        type: array
+      username:
+        description: ''
+        type: string
+      session:
+        description: 'The moment this request was created'
+        type: \sting
+        maxLength: 255
+      dateCreated:
+        description: 'The moment this request was created'
+        type: string
+        format: date-time
+        example: '2020-05-05 06:51:32'
+      dateModified:
+        description: 'The moment this request last Modified'
+        type: string
+        format: date-time
+        example: '2020-05-05 06:51:32'
+    required: []
+  ChangeLog-write:
+    properties:
+      note:
+        description: 'A note conserning this log lin'
+        type: string
+        example: 'This log line is suspicius'
+        maxLength: 2555
+    required: []
 tags:
   -
     name: AuditTrail
-    description: |
-      An resource representing a log line.
-      
-      This entity represents a product that can be ordered via the OrderRegistratieComponent.
-  -
-    name: ChangeLog
     description: |
       An resource representing a log line.
       
@@ -5012,26 +6107,38 @@ tags:
       A single stage within a process.
       
       
+  -
+    name: Section
+    description: |
+      
+      
+      
+  -
+    name: ChangeLog
+    description: |
+      An resource representing a log line.
+      
+      This entity represents a product that can be ordered via the OrderRegistratieComponent.
 securityDefinitions:
   JWT-Oauth:
     type: oauth2
     authorizationUrl: 'http://petstore.swagger.io/api/oauth/dialog'
     flow: implicit
     scopes:
-      read: 'read right to the Stage resource'
-      write: 'write right to the Stage resource'
+      read: 'read right to the ChangeLog resource'
+      write: 'write right to the ChangeLog resource'
   JWT-Token:
     type: apiKey
     in: header
     name: Authorization
     scopes:
-      read: 'read right to the Stage resource'
-      write: 'write right to the Stage resource'
+      read: 'read right to the ChangeLog resource'
+      write: 'write right to the ChangeLog resource'
 host: irc.zaakonline.nl
 servers:
   -
-    description: 'Demo Omgeving'
-    url: 'http://ptc.demo.common-ground.dev/'
+    name: processen.zaakonline.nl
+    url: ptc.dev.processen.zaakonline.nl
 externalDocs:
   -
     description: 'OAS Documentatie'
