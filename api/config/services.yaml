@@ -39,14 +39,14 @@ services:
     'Conduction\CommonGroundBundle\Service\NLXLogService': ~
 
     #CommonGround Subscribers
-    #    audit.subscriber:
-    #        class: Conduction\CommonGroundBundle\Subscriber\AuditSubscriber
-    #        tags:
-    #            - { name: kernel.event_subscriber, connection: default }
-    #    audit.trail.subscriber:
-    #        class: Conduction\CommonGroundBundle\Subscriber\AuditTrailSubscriber
-    #        tags:
-    #            - { name: kernel.event_subscriber, connection: default }
+    audit.subscriber:
+        class: Conduction\CommonGroundBundle\Subscriber\AuditSubscriber
+        tags:
+            - { name: kernel.event_subscriber, connection: default }
+    audit.trail.subscriber:
+        class: Conduction\CommonGroundBundle\Subscriber\AuditTrailSubscriber
+        tags:
+            - { name: kernel.event_subscriber, connection: default }
     change.log.subscriber:
         class: Conduction\CommonGroundBundle\Subscriber\ChangeLogSubscriber
         tags:
@@ -67,3 +67,5 @@ services:
         autowire: true
         tags:
             - { name: doctrine.repository_service }
+    
+    'Symfony\Component\EventDispatcher\EventDispatcher': ~
