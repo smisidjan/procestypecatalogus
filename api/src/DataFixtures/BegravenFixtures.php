@@ -12,7 +12,7 @@ use Ramsey\Uuid\Uuid;
 
 use Symfony\Component\DependencyInjection\ParameterBag\ParameterBagInterface;
 
-class AppFixtures extends Fixture
+class BegravenFixtures extends Fixture
 {
     private $commonGroundService;
     private $params;
@@ -102,7 +102,7 @@ class AppFixtures extends Fixture
 		$stage3->setSlug('artikelen');
 		$stage3->setType('string');
 		$stage3->setDescription('Wat is het nieuwe adres?');
-		$stage3->setProcess($processType);
+		$stage3->setProcess($begraven);
 		$manager->persist($stage2);
 
         $section1 = new Section();
@@ -121,7 +121,7 @@ class AppFixtures extends Fixture
 		$stage4->setSlug('overledene');
 		$stage4->setType('array');
 		$stage4->setDescription('Wie gaan er begraven?');
-		$stage4->setProcess($processType);
+		$stage4->setProcess($begraven);
 		$manager->persist($stage4);
 
         $section1 = new Section();
@@ -140,7 +140,7 @@ class AppFixtures extends Fixture
 		$stage4->setSlug('belanghebbende');
 		$stage4->setType('array');
 		$stage4->setDescription('Wie gaan er begraven?');
-		$stage4->setProcess($processType);
+		$stage4->setProcess($begraven);
 		$manager->persist($stage4);
 
         $section1 = new Section();
@@ -152,7 +152,7 @@ class AppFixtures extends Fixture
         $manager->persist($section1);
 
 		$manager->flush();
-		var_dump($processType->getId());
+		var_dump($begraven->getId());
 
 
 		$manager->flush();
