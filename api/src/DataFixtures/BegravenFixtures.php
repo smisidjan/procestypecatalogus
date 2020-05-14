@@ -32,7 +32,7 @@ class BegravenFixtures extends Fixture
 		/*
 		 *  Verhuizen
 		 */
-        $id = Uuid::fromString('2bfb3cea-b5b5-459c-b3e0-e1100089a11a');
+        $id = Uuid::fromString('a8b8ce49-d5db-4270-9e42-4b47902fc817');
         $begraven= new ProcessType();
         $begraven->setIcon('fal fa-truck-moving');
         $begraven->setSourceOrganization('0000');
