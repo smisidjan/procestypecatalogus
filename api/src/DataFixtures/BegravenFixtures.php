@@ -100,7 +100,6 @@ class BegravenFixtures extends Fixture
 		$stage3->setName('Artikelen');
 		$stage3->setIcon('fal fa-map-tasks');
 		$stage3->setSlug('artikelen');
-		$stage3->setType('string');
 		$stage3->setDescription('Wat is het nieuwe adres?');
 		$stage3->setProcess($begraven);
 		$manager->persist($stage2);
@@ -119,7 +118,6 @@ class BegravenFixtures extends Fixture
 		$stage4->setName('Overledene');
 		$stage4->setIcon('fal fa-users');
 		$stage4->setSlug('overledene');
-		$stage4->setType('array');
 		$stage4->setDescription('Wie gaan er begraven?');
 		$stage4->setProcess($begraven);
 		$manager->persist($stage4);
@@ -138,7 +136,6 @@ class BegravenFixtures extends Fixture
 		$stage4->setName('Belanghebbende');
 		$stage4->setIcon('fal fa-users');
 		$stage4->setSlug('belanghebbende');
-		$stage4->setType('array');
 		$stage4->setDescription('Wie gaan er begraven?');
 		$stage4->setProcess($begraven);
 		$manager->persist($stage4);
