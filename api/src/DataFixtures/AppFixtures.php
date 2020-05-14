@@ -25,9 +25,7 @@ class AppFixtures extends Fixture
 
     public function load(ObjectManager $manager)
 	{
-        if (strpos($this->params->get('app_domain'), "begraven.zaakonline.nl") == false && $this->params->get('app_domain') != "begraven.zaakonline.nl") {
-            return false;
-        }
+
 
 		/*
 		 *  Bezwaar
