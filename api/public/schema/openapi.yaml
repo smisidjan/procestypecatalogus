@@ -2682,6 +2682,268 @@ paths:
           name: X-NLX-Audit-Clarification
           description: 'A clarification as to why a request has been made  (doelbinding)'
           in: header
+  '/process_types/{id}/audit_trail':
+    get:
+      tags:
+        - ProcessType
+      operationId: get_audit_trailProcessTypeItem
+      summary: 'Retrieves a ProcessType resource.'
+      parameters:
+        -
+          name: id
+          in: path
+          required: true
+          schema:
+            type: string
+        -
+          name: Authorization
+          description: 'The JWT of the entity performing the request'
+          in: header
+        -
+          name: API-Version
+          description: 'The version of the API conform [Landelijke API-strategie.](https://geonovum.github.io/KP-APIs/#versioning)'
+          example: 1.0.1
+          in: header
+        -
+          name: X-NLX-Logrecord-ID
+          description: 'A  globally unique id of the request, which makes a request traceable throughout the network.'
+          in: header
+        -
+          name: X-NLX-Request-Process-Id
+          description: 'A process id for purpose registration (doelbinding)'
+          in: header
+        -
+          name: X-NLX-Request-Data-Elements
+          description: 'A list of requested data elements'
+          in: header
+        -
+          name: X-NLX-Request-Data-Subject
+          description: 'A key-value list of data subjects related to this request. e.g. `bsn=12345678, kenteken=ab-12-fg`'
+          in: header
+        -
+          name: X-NLX-Audit-Clarification
+          description: 'A clarification as to why a request has been made  (doelbinding)'
+          in: header
+        -
+          name: Link
+          description: 'A [websub](https://www.w3.org/TR/websub/#discovery) header like <https://hub.example.com/>; rel="hub"'
+          in: header
+        -
+          name: 'extend[]'
+          required: false
+          description: 'An array of nested objects to include in the return object'
+          in: query
+          schema:
+            type: array
+        -
+          name: 'fields[]'
+          required: false
+          description: 'An array of fields to return in output, wil return all fields is not supplied'
+          in: query
+          schema:
+            type: array
+        -
+          name: validOn
+          required: false
+          description: 'Returns object as valid on a given date time'
+          schema:
+            type: string
+            format: date-time
+          in: query
+        -
+          name: validFrom
+          required: false
+          description: 'Returns objects valid from a given date time'
+          schema:
+            type: string
+            format: date-time
+          in: query
+        -
+          name: validUntil
+          required: false
+          description: 'Returns objects valid until a given date time'
+          schema:
+            type: string
+            format: date-time
+          in: query
+      responses:
+        200:
+          description: 'ProcessType resource response'
+          content:
+            application/ld+json:
+              schema:
+                $ref: '#/components/schemas/ProcessType:jsonld-read'
+            application/json+ld:
+              schema:
+                $ref: '#/components/schemas/ProcessType:jsonld-read'
+            application/hal+json:
+              schema:
+                $ref: '#/components/schemas/ProcessType-read'
+            application/json+hal:
+              schema:
+                $ref: '#/components/schemas/ProcessType-read'
+            application/vnd.api+json:
+              schema:
+                $ref: '#/components/schemas/ProcessType-read'
+            application/json+vnd.api:
+              schema:
+                $ref: '#/components/schemas/ProcessType-read'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProcessType-read'
+            application/health+json:
+              schema:
+                $ref: '#/components/schemas/ProcessType-read'
+            application/json+health:
+              schema:
+                $ref: '#/components/schemas/ProcessType-read'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ProcessType-read'
+            application/x-yaml:
+              schema:
+                $ref: '#/components/schemas/ProcessType-read'
+            text/csv:
+              schema:
+                $ref: '#/components/schemas/ProcessType-read'
+            text/html:
+              schema:
+                $ref: '#/components/schemas/ProcessType-read'
+        404:
+          description: 'Resource not found'
+      produces:
+        - application/health+json
+  '/process_types/{id}/change_log':
+    get:
+      tags:
+        - ProcessType
+      operationId: get_change_logsProcessTypeItem
+      summary: 'Retrieves a ProcessType resource.'
+      parameters:
+        -
+          name: id
+          in: path
+          required: true
+          schema:
+            type: string
+        -
+          name: Authorization
+          description: 'The JWT of the entity performing the request'
+          in: header
+        -
+          name: API-Version
+          description: 'The version of the API conform [Landelijke API-strategie.](https://geonovum.github.io/KP-APIs/#versioning)'
+          example: 1.0.1
+          in: header
+        -
+          name: X-NLX-Logrecord-ID
+          description: 'A  globally unique id of the request, which makes a request traceable throughout the network.'
+          in: header
+        -
+          name: X-NLX-Request-Process-Id
+          description: 'A process id for purpose registration (doelbinding)'
+          in: header
+        -
+          name: X-NLX-Request-Data-Elements
+          description: 'A list of requested data elements'
+          in: header
+        -
+          name: X-NLX-Request-Data-Subject
+          description: 'A key-value list of data subjects related to this request. e.g. `bsn=12345678, kenteken=ab-12-fg`'
+          in: header
+        -
+          name: X-NLX-Audit-Clarification
+          description: 'A clarification as to why a request has been made  (doelbinding)'
+          in: header
+        -
+          name: Link
+          description: 'A [websub](https://www.w3.org/TR/websub/#discovery) header like <https://hub.example.com/>; rel="hub"'
+          in: header
+        -
+          name: 'extend[]'
+          required: false
+          description: 'An array of nested objects to include in the return object'
+          in: query
+          schema:
+            type: array
+        -
+          name: 'fields[]'
+          required: false
+          description: 'An array of fields to return in output, wil return all fields is not supplied'
+          in: query
+          schema:
+            type: array
+        -
+          name: validOn
+          required: false
+          description: 'Returns object as valid on a given date time'
+          schema:
+            type: string
+            format: date-time
+          in: query
+        -
+          name: validFrom
+          required: false
+          description: 'Returns objects valid from a given date time'
+          schema:
+            type: string
+            format: date-time
+          in: query
+        -
+          name: validUntil
+          required: false
+          description: 'Returns objects valid until a given date time'
+          schema:
+            type: string
+            format: date-time
+          in: query
+      responses:
+        200:
+          description: 'ProcessType resource response'
+          content:
+            application/ld+json:
+              schema:
+                $ref: '#/components/schemas/ProcessType:jsonld-read'
+            application/json+ld:
+              schema:
+                $ref: '#/components/schemas/ProcessType:jsonld-read'
+            application/hal+json:
+              schema:
+                $ref: '#/components/schemas/ProcessType-read'
+            application/json+hal:
+              schema:
+                $ref: '#/components/schemas/ProcessType-read'
+            application/vnd.api+json:
+              schema:
+                $ref: '#/components/schemas/ProcessType-read'
+            application/json+vnd.api:
+              schema:
+                $ref: '#/components/schemas/ProcessType-read'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProcessType-read'
+            application/health+json:
+              schema:
+                $ref: '#/components/schemas/ProcessType-read'
+            application/json+health:
+              schema:
+                $ref: '#/components/schemas/ProcessType-read'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ProcessType-read'
+            application/x-yaml:
+              schema:
+                $ref: '#/components/schemas/ProcessType-read'
+            text/csv:
+              schema:
+                $ref: '#/components/schemas/ProcessType-read'
+            text/html:
+              schema:
+                $ref: '#/components/schemas/ProcessType-read'
+        404:
+          description: 'Resource not found'
+      produces:
+        - application/health+json
   /sections:
     get:
       tags:
@@ -3507,6 +3769,268 @@ paths:
           name: X-NLX-Audit-Clarification
           description: 'A clarification as to why a request has been made  (doelbinding)'
           in: header
+  '/sections/{id}/audit_trail':
+    get:
+      tags:
+        - Section
+      operationId: get_audit_trailSectionItem
+      summary: 'Retrieves a Section resource.'
+      parameters:
+        -
+          name: id
+          in: path
+          required: true
+          schema:
+            type: string
+        -
+          name: Authorization
+          description: 'The JWT of the entity performing the request'
+          in: header
+        -
+          name: API-Version
+          description: 'The version of the API conform [Landelijke API-strategie.](https://geonovum.github.io/KP-APIs/#versioning)'
+          example: 1.0.1
+          in: header
+        -
+          name: X-NLX-Logrecord-ID
+          description: 'A  globally unique id of the request, which makes a request traceable throughout the network.'
+          in: header
+        -
+          name: X-NLX-Request-Process-Id
+          description: 'A process id for purpose registration (doelbinding)'
+          in: header
+        -
+          name: X-NLX-Request-Data-Elements
+          description: 'A list of requested data elements'
+          in: header
+        -
+          name: X-NLX-Request-Data-Subject
+          description: 'A key-value list of data subjects related to this request. e.g. `bsn=12345678, kenteken=ab-12-fg`'
+          in: header
+        -
+          name: X-NLX-Audit-Clarification
+          description: 'A clarification as to why a request has been made  (doelbinding)'
+          in: header
+        -
+          name: Link
+          description: 'A [websub](https://www.w3.org/TR/websub/#discovery) header like <https://hub.example.com/>; rel="hub"'
+          in: header
+        -
+          name: 'extend[]'
+          required: false
+          description: 'An array of nested objects to include in the return object'
+          in: query
+          schema:
+            type: array
+        -
+          name: 'fields[]'
+          required: false
+          description: 'An array of fields to return in output, wil return all fields is not supplied'
+          in: query
+          schema:
+            type: array
+        -
+          name: validOn
+          required: false
+          description: 'Returns object as valid on a given date time'
+          schema:
+            type: string
+            format: date-time
+          in: query
+        -
+          name: validFrom
+          required: false
+          description: 'Returns objects valid from a given date time'
+          schema:
+            type: string
+            format: date-time
+          in: query
+        -
+          name: validUntil
+          required: false
+          description: 'Returns objects valid until a given date time'
+          schema:
+            type: string
+            format: date-time
+          in: query
+      responses:
+        200:
+          description: 'Section resource response'
+          content:
+            application/ld+json:
+              schema:
+                $ref: '#/components/schemas/Section:jsonld-read'
+            application/json+ld:
+              schema:
+                $ref: '#/components/schemas/Section:jsonld-read'
+            application/hal+json:
+              schema:
+                $ref: '#/components/schemas/Section-read'
+            application/json+hal:
+              schema:
+                $ref: '#/components/schemas/Section-read'
+            application/vnd.api+json:
+              schema:
+                $ref: '#/components/schemas/Section-read'
+            application/json+vnd.api:
+              schema:
+                $ref: '#/components/schemas/Section-read'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Section-read'
+            application/health+json:
+              schema:
+                $ref: '#/components/schemas/Section-read'
+            application/json+health:
+              schema:
+                $ref: '#/components/schemas/Section-read'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/Section-read'
+            application/x-yaml:
+              schema:
+                $ref: '#/components/schemas/Section-read'
+            text/csv:
+              schema:
+                $ref: '#/components/schemas/Section-read'
+            text/html:
+              schema:
+                $ref: '#/components/schemas/Section-read'
+        404:
+          description: 'Resource not found'
+      produces:
+        - application/health+json
+  '/sections/{id}/change_log':
+    get:
+      tags:
+        - Section
+      operationId: get_change_logsSectionItem
+      summary: 'Retrieves a Section resource.'
+      parameters:
+        -
+          name: id
+          in: path
+          required: true
+          schema:
+            type: string
+        -
+          name: Authorization
+          description: 'The JWT of the entity performing the request'
+          in: header
+        -
+          name: API-Version
+          description: 'The version of the API conform [Landelijke API-strategie.](https://geonovum.github.io/KP-APIs/#versioning)'
+          example: 1.0.1
+          in: header
+        -
+          name: X-NLX-Logrecord-ID
+          description: 'A  globally unique id of the request, which makes a request traceable throughout the network.'
+          in: header
+        -
+          name: X-NLX-Request-Process-Id
+          description: 'A process id for purpose registration (doelbinding)'
+          in: header
+        -
+          name: X-NLX-Request-Data-Elements
+          description: 'A list of requested data elements'
+          in: header
+        -
+          name: X-NLX-Request-Data-Subject
+          description: 'A key-value list of data subjects related to this request. e.g. `bsn=12345678, kenteken=ab-12-fg`'
+          in: header
+        -
+          name: X-NLX-Audit-Clarification
+          description: 'A clarification as to why a request has been made  (doelbinding)'
+          in: header
+        -
+          name: Link
+          description: 'A [websub](https://www.w3.org/TR/websub/#discovery) header like <https://hub.example.com/>; rel="hub"'
+          in: header
+        -
+          name: 'extend[]'
+          required: false
+          description: 'An array of nested objects to include in the return object'
+          in: query
+          schema:
+            type: array
+        -
+          name: 'fields[]'
+          required: false
+          description: 'An array of fields to return in output, wil return all fields is not supplied'
+          in: query
+          schema:
+            type: array
+        -
+          name: validOn
+          required: false
+          description: 'Returns object as valid on a given date time'
+          schema:
+            type: string
+            format: date-time
+          in: query
+        -
+          name: validFrom
+          required: false
+          description: 'Returns objects valid from a given date time'
+          schema:
+            type: string
+            format: date-time
+          in: query
+        -
+          name: validUntil
+          required: false
+          description: 'Returns objects valid until a given date time'
+          schema:
+            type: string
+            format: date-time
+          in: query
+      responses:
+        200:
+          description: 'Section resource response'
+          content:
+            application/ld+json:
+              schema:
+                $ref: '#/components/schemas/Section:jsonld-read'
+            application/json+ld:
+              schema:
+                $ref: '#/components/schemas/Section:jsonld-read'
+            application/hal+json:
+              schema:
+                $ref: '#/components/schemas/Section-read'
+            application/json+hal:
+              schema:
+                $ref: '#/components/schemas/Section-read'
+            application/vnd.api+json:
+              schema:
+                $ref: '#/components/schemas/Section-read'
+            application/json+vnd.api:
+              schema:
+                $ref: '#/components/schemas/Section-read'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Section-read'
+            application/health+json:
+              schema:
+                $ref: '#/components/schemas/Section-read'
+            application/json+health:
+              schema:
+                $ref: '#/components/schemas/Section-read'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/Section-read'
+            application/x-yaml:
+              schema:
+                $ref: '#/components/schemas/Section-read'
+            text/csv:
+              schema:
+                $ref: '#/components/schemas/Section-read'
+            text/html:
+              schema:
+                $ref: '#/components/schemas/Section-read'
+        404:
+          description: 'Resource not found'
+      produces:
+        - application/health+json
   /stages:
     get:
       tags:
@@ -6020,12 +6544,12 @@ definitions:
         description: 'The moment this request was created'
         type: string
         format: date-time
-        example: '2020-05-14 14:35:01'
+        example: '2020-05-22 06:40:11'
       dateModified:
         description: 'The moment this request last Modified'
         type: string
         format: date-time
-        example: '2020-05-14 14:35:01'
+        example: '2020-05-22 06:40:11'
     required: []
   AuditTrail-write:
     properties:
@@ -6073,12 +6597,12 @@ definitions:
         description: 'The moment this request was created'
         type: string
         format: date-time
-        example: '2020-05-14 14:35:01'
+        example: '2020-05-22 06:40:11'
       dateModified:
         description: 'The moment this request last Modified'
         type: string
         format: date-time
-        example: '2020-05-14 14:35:01'
+        example: '2020-05-22 06:40:11'
     required: []
   ChangeLog-write:
     properties:

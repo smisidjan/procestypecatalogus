@@ -567,7 +567,6 @@ class AppFixtures extends Fixture
 		$manager->persist($stage4);
 
 		$manager->flush();
-		var_dump($processType->getId());
 
         $id = Uuid::fromString('9d76fb58-0711-4437-acc4-9f4d9d403cdf');
         $processType= new ProcessType();

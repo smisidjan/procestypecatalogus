@@ -100,7 +100,7 @@ class BegravenFixtures extends Fixture
 		$stage3->setName('Artikelen');
 		$stage3->setIcon('fal fa-map-tasks');
 		$stage3->setSlug('artikelen');
-		$stage3->setDescription('Wat is het nieuwe adres?');
+		$stage3->setDescription('Selecteer hier de artikelen voor de begrafenis.');
 		$stage3->setProcess($begraven);
 		$manager->persist($stage2);
 
@@ -123,7 +123,7 @@ class BegravenFixtures extends Fixture
 		$manager->persist($stage4);
 
         $section1 = new Section();
-        $section1->setStage($stage2);
+        $section1->setStage($stage3);
         $section1->setStart(true);
         $section1->setName('Overledene');
         $section1->setDescription('Wie is er overleden?');
@@ -136,12 +136,12 @@ class BegravenFixtures extends Fixture
 		$stage4->setName('Belanghebbende');
 		$stage4->setIcon('fal fa-users');
 		$stage4->setSlug('belanghebbende');
-		$stage4->setDescription('Wie gaan er begraven?');
+		$stage4->setDescription('Wie treed op als belanghebbende?');
 		$stage4->setProcess($begraven);
 		$manager->persist($stage4);
 
         $section1 = new Section();
-        $section1->setStage($stage2);
+        $section1->setStage($stage4);
         $section1->setStart(true);
         $section1->setName('Belanghebbende');
         $section1->setDescription('Wie treed er op als belanghebbende?');
@@ -149,7 +149,6 @@ class BegravenFixtures extends Fixture
         $manager->persist($section1);
 
 		$manager->flush();
-		var_dump($begraven->getId());
 
 
 		$manager->flush();
