@@ -26,7 +26,7 @@ use Gedmo\Mapping\Annotation as Gedmo;
  *          "put",
  *          "delete",
  *          "get_change_logs"={
- *              "path"="/stages/{id}/change_log",
+ *              "path"="/sections/{id}/change_log",
  *              "method"="get",
  *              "swagger_context" = {
  *                  "summary"="Changelogs",
@@ -34,7 +34,7 @@ use Gedmo\Mapping\Annotation as Gedmo;
  *              }
  *          },
  *          "get_audit_trail"={
- *              "path"="/stages/{id}/audit_trail",
+ *              "path"="/sections/{id}/audit_trail",
  *              "method"="get",
  *              "swagger_context" = {
  *                  "summary"="Audittrail",
