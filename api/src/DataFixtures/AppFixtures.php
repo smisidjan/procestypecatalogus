@@ -25,8 +25,11 @@ class AppFixtures extends Fixture
 
     public function load(ObjectManager $manager)
 	{
-
-
+	    if((strpos($this->params->get('app_domain'), 'zuiddrecht.nl') == false && strpos($this->params->get('app_domain'), 'zaakonline.nl') == false)
+            || ($this->params->get('app_domain') != 'zuiddrecht.nl' && $this->params->get('app_domain') != 'zaakonline.nl')
+            || $this->params->get('begraven.zaakonline.nl')){
+	        return false;
+        }
 		/*
 		 *  Bezwaar
 		 */
