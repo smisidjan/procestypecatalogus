@@ -6544,12 +6544,12 @@ definitions:
         description: 'The moment this request was created'
         type: string
         format: date-time
-        example: '2020-05-22 06:40:11'
+        example: '2020-05-22 13:43:13'
       dateModified:
         description: 'The moment this request last Modified'
         type: string
         format: date-time
-        example: '2020-05-22 06:40:11'
+        example: '2020-05-22 13:43:13'
     required: []
   AuditTrail-write:
     properties:
@@ -6597,12 +6597,12 @@ definitions:
         description: 'The moment this request was created'
         type: string
         format: date-time
-        example: '2020-05-22 06:40:11'
+        example: '2020-05-22 13:43:13'
       dateModified:
         description: 'The moment this request last Modified'
         type: string
         format: date-time
-        example: '2020-05-22 06:40:11'
+        example: '2020-05-22 13:43:13'
     required: []
   ChangeLog-write:
     properties:
@@ -6675,7 +6675,7 @@ x-commonground:
       url: 'https://github.com/ConductionNL'
       email: info@conduction.nl
     -
-      name: 'Gemeente ''s-Hertogenbosch'
+      name: 'Gemeente "s-Hertogenbosch'
       url: 'https://github.com/gemeenteshertogenbosch'
       email: info@s-hertogenbosch.nl/
   builds:
