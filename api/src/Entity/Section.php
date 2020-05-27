@@ -2,20 +2,19 @@
 
 namespace App\Entity;
 
-use ApiPlatform\Core\Annotation\ApiResource;
 use ApiPlatform\Core\Annotation\ApiFilter;
+use ApiPlatform\Core\Annotation\ApiResource;
 use ApiPlatform\Core\Bridge\Doctrine\Orm\Filter\BooleanFilter;
+use ApiPlatform\Core\Bridge\Doctrine\Orm\Filter\DateFilter;
 use ApiPlatform\Core\Bridge\Doctrine\Orm\Filter\OrderFilter;
 use ApiPlatform\Core\Bridge\Doctrine\Orm\Filter\SearchFilter;
-use ApiPlatform\Core\Bridge\Doctrine\Orm\Filter\DateFilter;
-
 use Doctrine\ORM\Mapping as ORM;
+use Gedmo\Mapping\Annotation as Gedmo;
 use Ramsey\Uuid\Uuid;
 use Ramsey\Uuid\UuidInterface;
 use Symfony\Component\Serializer\Annotation\Groups;
 use Symfony\Component\Serializer\Annotation\MaxDepth;
 use Symfony\Component\Validator\Constraints as Assert;
-use Gedmo\Mapping\Annotation as Gedmo;
 
 /**
  * @ApiResource(
@@ -113,7 +112,7 @@ class Section
     private $stage;
 
     /**
-     * @var DateTime $dateCreated The moment this request was created
+     * @var DateTime The moment this request was created
      *
      * @Groups({"read"})
      * @Gedmo\Timestampable(on="create")
@@ -122,7 +121,7 @@ class Section
     private $dateCreated;
 
     /**
-     * @var DateTime $dateModified  The moment this request last Modified
+     * @var DateTime The moment this request last Modified
      *
      * @Groups({"read"})
      * @Gedmo\Timestampable(on="update")
@@ -155,8 +154,6 @@ class Section
      * @ORM\OneToOne(targetEntity="App\Entity\Section", mappedBy="next", cascade={"persist", "remove"})
      */
     private $previous;
-
-
 
     public function getId(): ?Uuid
     {
@@ -210,6 +207,7 @@ class Section
 
         return $this;
     }
+
     public function getDateCreated(): ?\DateTimeInterface
     {
         return $this->dateModified;
@@ -217,7 +215,7 @@ class Section
 
     public function setDateCreated(\DateTimeInterface $dateCreated): self
     {
-        $this->dateCreated= $dateCreated;
+        $this->dateCreated = $dateCreated;
 
         return $this;
     }
@@ -275,6 +273,4 @@ class Section
 
         return $this;
     }
-
-
 }
