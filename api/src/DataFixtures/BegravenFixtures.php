@@ -135,7 +135,7 @@ class BegravenFixtures extends Fixture
         $manager->persist($section1);
 
         $stage4 = new Stage();
-        $stage4->setPrevious($stage3);
+        $stage4->setPrevious($stage4);
         //$property->setId('');
         $stage4->setName('Belanghebbende');
         $stage4->setIcon('fal fa-users');
