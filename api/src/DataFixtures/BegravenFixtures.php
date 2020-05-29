@@ -100,7 +100,7 @@ class BegravenFixtures extends Fixture
         $manager->persist($section1);
 
         $stage3 = new Stage();
-        $stage3->setPrevious($stage1);
+        $stage3->setPrevious($stage2);
         $stage3->setName('Artikelen');
         $stage3->setIcon('fal fa-map-tasks');
         $stage3->setSlug('artikelen');
