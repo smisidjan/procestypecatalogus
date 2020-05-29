@@ -122,30 +122,30 @@ class BegravenFixtures extends Fixture
         $stage4->setName('Overledene');
         $stage4->setIcon('fal fa-users');
         $stage4->setSlug('overledene');
-        $stage4->setDescription('Wie gaan er begraven?');
+        $stage4->setDescription('Wie wordt er begraven?');
         $stage4->setProcess($begraven);
         $manager->persist($stage4);
 
         $section1 = new Section();
-        $section1->setStage($stage3);
+        $section1->setStage($stage4);
         $section1->setStart(true);
         $section1->setName('Overledene');
         $section1->setDescription('Wie is er overleden?');
         $section1->setProperties(["{$this->commonGroundService->getComponent('vtc')['location']}/properties/db69ce35-4ae1-4aac-936f-bdb5d4d1ff18"]);
         $manager->persist($section1);
 
-        $stage4 = new Stage();
-        $stage4->setPrevious($stage4);
+        $stage5 = new Stage();
+        $stage5->setPrevious($stage4);
         //$property->setId('');
-        $stage4->setName('Belanghebbende');
-        $stage4->setIcon('fal fa-users');
-        $stage4->setSlug('belanghebbende');
-        $stage4->setDescription('Wie treed op als belanghebbende?');
-        $stage4->setProcess($begraven);
+        $stage5->setName('Belanghebbende');
+        $stage5->setIcon('fal fa-users');
+        $stage5->setSlug('belanghebbende');
+        $stage5->setDescription('Wie treed op als belanghebbende?');
+        $stage5->setProcess($begraven);
         $manager->persist($stage4);
 
         $section1 = new Section();
-        $section1->setStage($stage4);
+        $section1->setStage($stage5);
         $section1->setStart(true);
         $section1->setName('Belanghebbende');
         $section1->setDescription('Wie treed er op als belanghebbende?');
