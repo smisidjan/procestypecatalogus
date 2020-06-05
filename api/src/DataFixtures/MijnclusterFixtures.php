@@ -26,7 +26,7 @@ class MijnclusterFixtures extends Fixture
     {
         // Lets make sure we only run these fixtures on larping enviroment
         if ($this->params->get('app_domain') != "mijncluster.nl" && strpos($this->params->get('app_domain'), "mijncluster.nl") == false) {
-            return false;
+            //return false;
         }
 
         /*
@@ -54,7 +54,7 @@ class MijnclusterFixtures extends Fixture
         $manager->persist($stage);
 
         $section = new Section();
-        $section->setStage($stage2);
+        $section->setStage($stage);
         $section->setName('Datum en tijd');
         $section->setDescription('Wanneer vindt het afscheid plaats?');
         $section->setProperties([
