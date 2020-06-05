@@ -88,7 +88,7 @@ class Stage
      * @Assert\Length(
      *      max = 255
      * )
-     * @Groups({"read"})
+     * @Groups({"read", "write"})
      * @ORM\Column(type="string", length=255)
      */
     private $name;
@@ -154,7 +154,7 @@ class Stage
      * @Groups({"read"})
      * @ORM\Column(type="json", nullable=true)
      */
-    private $validation = [];
+    private $validation;
 
     /**
      * @var ProcessType ProcessType The process that this stage belongs to
