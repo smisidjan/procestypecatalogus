@@ -54,7 +54,7 @@ class BegravenFixtures extends Fixture
         $stage1->setName('Begraafplaats');
         $stage1->setIcon('fal fa-headstone');
         $stage1->setSlug('begraafplaats');
-        $stage1->setDescription('De gegevens van de verhuizing');
+        $stage1->setDescription('De gegevens van de begrafenis');
         $stage1->setProcess($begraven);
         $manager->persist($stage1);
 
@@ -64,7 +64,7 @@ class BegravenFixtures extends Fixture
         $section1->setName('Gemeente');
         $section1->setDescription('In welke gemeente wilt u iemand begraven?');
         $section1->setProperties(["{$this->commonGroundService->getComponent('vtc')['location']}/properties/72fdd281-c60d-4e2d-8b7d-d266303bdc46"]);
-        $manager->persist($section1);
+        $manager->persist($stage1);
 
         $section2 = new Section();
         $section2->setStage($stage1);
@@ -106,7 +106,7 @@ class BegravenFixtures extends Fixture
         $stage3->setSlug('artikelen');
         $stage3->setDescription('Selecteer hier de artikelen voor de begrafenis.');
         $stage3->setProcess($begraven);
-        $manager->persist($stage2);
+        $manager->persist($stage3);
 
         $section1 = new Section();
         $section1->setStage($stage2);
