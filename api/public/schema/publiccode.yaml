@@ -3,10 +3,10 @@ publiccodeYmlVersion: "0.2"
 name: ptc
 applicationSuite: commonground
 url: "https://github.com/ConductionNL/procestypecatalogus"
-landingURL: "ptc.zaakonline.nl" 
+landingURL: "pc.zaakonline.nl" 
 isBasedOn: "https://github.com/ConductionNL/Proto-component-commonground.git" 
 softwareVersion: "V.0.1"
-releaseDate: "2020-11-03"
+releaseDate: "2020-04-06"
 logo: ptc.zaakonline.nl 
 monochromeLogo: img/logo-mono.svg
 
@@ -67,7 +67,7 @@ description:
 #          is and why one should need it.
 
     documentation: "https://github.com/ConductionNL/procestypecatalogus/blob/master/README.md"
-    apiDocumentation: "ptc.zaakonline.nl"
+    apiDocumentation: "pc.zaakonline.nl"
 #
 #    features:
 #       - Very important feature

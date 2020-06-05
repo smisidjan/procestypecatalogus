@@ -2,20 +2,20 @@
 
 namespace App\Entity;
 
-use ApiPlatform\Core\Annotation\ApiResource;
 use ApiPlatform\Core\Annotation\ApiFilter;
+use ApiPlatform\Core\Annotation\ApiResource;
 use ApiPlatform\Core\Bridge\Doctrine\Orm\Filter\BooleanFilter;
+use ApiPlatform\Core\Bridge\Doctrine\Orm\Filter\DateFilter;
 use ApiPlatform\Core\Bridge\Doctrine\Orm\Filter\OrderFilter;
 use ApiPlatform\Core\Bridge\Doctrine\Orm\Filter\SearchFilter;
-use ApiPlatform\Core\Bridge\Doctrine\Orm\Filter\DateFilter;
-
 use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Gedmo\Mapping\Annotation as Gedmo;
 use Ramsey\Uuid\UuidInterface;
 use Symfony\Component\Serializer\Annotation\Groups;
 use Symfony\Component\Serializer\Annotation\MaxDepth;
 use Symfony\Component\Validator\Constraints as Assert;
-use Gedmo\Mapping\Annotation as Gedmo;
 
 /**
  * A single stage within a process.
@@ -55,8 +55,8 @@ use Gedmo\Mapping\Annotation as Gedmo;
  *     },
  * )
  * @ORM\Entity(repositoryClass="App\Repository\StageRepository")
- * @Gedmo\Loggable(logEntryClass="App\Entity\ChangeLog")
- * 
+ * @Gedmo\Loggable(logEntryClass="Conduction\CommonGroundBundle\Entity\ChangeLog")
+ *
  * @ApiFilter(BooleanFilter::class)
  * @ApiFilter(OrderFilter::class)
  * @ApiFilter(DateFilter::class, strategy=DateFilter::EXCLUDE_NULL)
@@ -119,17 +119,17 @@ class Stage
      */
     private $icon;
 
-    /**
-     * @var string The task type of the stage
-     *
-     * @example my-organisation
-     *
-     * @Gedmo\Versioned
-     * @Assert\Choice({"service","send","receive","user","manual","business rule","script"})
-     * @Groups({"read", "write"})
-     * @ORM\Column(type="string", length=255)
-     */
-    private $type = 'user';
+//    /**
+//     * @var string The task type of the stage
+//     *
+//     * @example my-organisation
+//     *
+//     * @Gedmo\Versioned
+//     * @Assert\Choice({"service","send","receive","user","manual","business rule","script"})
+//     * @Groups({"read", "write"})
+//     * @ORM\Column(type="string", length=255)
+//     */
+//    private $type = 'user';
 
     /**
      * @var object The options or configuration for this stage
@@ -157,8 +157,9 @@ class Stage
     private $validation = [];
 
     /**
-     * @var object ProcessType The process that this stage belongs to
+     * @var ProcessType ProcessType The process that this stage belongs to
      *
+     * @MaxDepth(1)
      * @Assert\NotBlank
      * @ORM\ManyToOne(targetEntity="App\Entity\ProcessType", inversedBy="stages")
      * @ORM\JoinColumn(nullable=false)
@@ -218,7 +219,7 @@ class Stage
     private $start = false;
 
     /**
-     * @var Datetime $dateCreated The moment this request was created
+     * @var Datetime The moment this request was created
      *
      * @Groups({"read"})
      * @Gedmo\Timestampable(on="create")
@@ -227,17 +228,27 @@ class Stage
     private $dateCreated;
 
     /**
-     * @var Datetime $dateModified  The moment this request last Modified
+     * @var Datetime The moment this request last Modified
      *
      * @Groups({"read"})
-     * @Gedmo\Timestampable(on="create")
+     * @Gedmo\Timestampable(on="update")
      * @ORM\Column(type="datetime", nullable=true)
      */
     private $dateModified;
 
+    /**
+     * @var ArrayCollection the sections of this stage
+     *
+     * @Groups({"read","write"})
+     * @MaxDepth(1)
+     * @ORM\OneToMany(targetEntity="App\Entity\Section", mappedBy="stage", orphanRemoval=true)
+     */
+    private $sections;
+
     public function __construct()
     {
         $this->documents = new ArrayCollection();
+        $this->sections = new ArrayCollection();
     }
 
     public function getId()
@@ -271,27 +282,27 @@ class Stage
 
     public function getIcon(): ?string
     {
-    	return $this->icon;
+        return $this->icon;
     }
 
     public function setIcon(?string $icon): self
     {
-    	$this->icon = $icon;
-
-    	return $this;
-    }
-
-    public function getType(): ?string
-    {
-        return $this->type;
-    }
-
-    public function setType(string $type): self
-    {
-        $this->type = $type;
+        $this->icon = $icon;
 
         return $this;
     }
+
+//    public function getType(): ?string
+//    {
+//        return $this->type;
+//    }
+//
+//    public function setType(string $type): self
+//    {
+//        $this->type = $type;
+//
+//        return $this;
+//    }
 
     public function getOptions(): ?array
     {
@@ -373,49 +384,80 @@ class Stage
 
     public function getSlug(): ?string
     {
-    	return $this->slug;
+        return $this->slug;
     }
 
     public function setSlug(?string $slug): self
     {
-    	$this->slug = $slug;
+        $this->slug = $slug;
 
-    	return $this;
+        return $this;
     }
 
     public function getStart(): ?bool
     {
-    	return $this->start;
+        return $this->start;
     }
 
     public function setStart(bool $start): self
     {
-    	$this->start = $start;
+        $this->start = $start;
 
-    	return $this;
+        return $this;
     }
-    
+
     public function getDateCreated(): ?\DateTimeInterface
     {
-    	return $this->dateModified;
+        return $this->dateModified;
     }
-    
+
     public function setDateCreated(\DateTimeInterface $dateCreated): self
     {
-    	$this->dateCreated= $dateCreated;
+        $this->dateCreated = $dateCreated;
 
-    	return $this;
+        return $this;
     }
 
     public function getDateModified(): ?\DateTimeInterface
     {
-    	return $this->dateModified;
+        return $this->dateModified;
     }
 
     public function setDateModified(\DateTimeInterface $dateModified): self
     {
-    	$this->dateModified = $dateModified;
+        $this->dateModified = $dateModified;
 
-    	return $this;
+        return $this;
+    }
+
+    /**
+     * @return Collection|Section[]
+     */
+    public function getSections(): Collection
+    {
+        return $this->sections;
+    }
+
+    public function addSection(Section $section): self
+    {
+        if (!$this->sections->contains($section)) {
+            $this->sections[] = $section;
+            $section->setStage($this);
+        }
+
+        return $this;
+    }
+
+    public function removeSection(Section $section): self
+    {
+        if ($this->sections->contains($section)) {
+            $this->sections->removeElement($section);
+            // set the owning side to null (unless already changed)
+            if ($section->getStage() === $this) {
+                $section->setStage(null);
+            }
+        }
+
+        return $this;
     }
 }
