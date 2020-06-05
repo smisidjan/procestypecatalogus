@@ -39,7 +39,6 @@ class MijnclusterFixtures extends Fixture
         $processType->setDescription('Het doorgeven van een verhuizing aan een gemeente ');
         $processType->setSourceOrganization('001709124');
         $processType->setRequestType("{$this->commonGroundService->getComponent('vtc')['location']}/request_types/23d4803a-67cd-4720-82d0-e1e0a776d8c4");
-        $processType->setExtends($verhuizen);
         $manager->persist($processType);
         $processType->setId($id);
         $manager->persist($processType);
@@ -55,8 +54,7 @@ class MijnclusterFixtures extends Fixture
         $manager->persist($stage);
 
         $section = new Section();
-        $section->setStage($stage2);
-        $section->setStart(true);
+        $section->setStage($stage);
         $section->setName('Datum en tijd');
         $section->setDescription('Wanneer vindt het afscheid plaats?');
         $section->setProperties([
