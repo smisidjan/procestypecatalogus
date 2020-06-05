@@ -245,6 +245,15 @@ class Stage
      */
     private $sections;
 
+    /**
+     * @var int The place in the order where the stage should be rendered
+     *
+     * @Assert\NotNull
+     * @Groups({"read","write"})
+     * @ORM\Column(type="integer")
+     */
+    private $orderNumber;
+
     public function __construct()
     {
         $this->documents = new ArrayCollection();
@@ -457,6 +466,18 @@ class Stage
                 $section->setStage(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getOrderNumber(): ?int
+    {
+        return $this->orderNumber;
+    }
+
+    public function setOrderNumber(int $orderNumber): self
+    {
+        $this->orderNumber = $orderNumber;
 
         return $this;
     }

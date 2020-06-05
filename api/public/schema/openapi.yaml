@@ -5659,7 +5659,13 @@ components:
     ProcessType-write:
       type: object
       description: 'A process.'
+      required:
+        - name
+        - sourceOrganization
       properties:
+        name:
+          description: 'The name of this process'
+          type: string
         icon:
           description: 'The icon of this property'
           type: string
@@ -5693,8 +5699,6 @@ components:
           items:
             type: string
           nullable: true
-      required:
-        - sourceOrganization
     'ProcessType:jsonld-read':
       type: object
       description: 'A process.'
@@ -5765,6 +5769,9 @@ components:
     'ProcessType:jsonld-write':
       type: object
       description: 'A process.'
+      required:
+        - name
+        - sourceOrganization
       properties:
         '@context':
           readOnly: true
@@ -5774,6 +5781,9 @@ components:
           type: string
         '@type':
           readOnly: true
+          type: string
+        name:
+          description: 'The name of this process'
           type: string
         icon:
           description: 'The icon of this property'
@@ -5808,8 +5818,6 @@ components:
           items:
             type: string
           nullable: true
-      required:
-        - sourceOrganization
     Section-read:
       type: object
       description: ''
@@ -5850,6 +5858,18 @@ components:
         start:
           description: 'Denotes if this section is the first section of the stage'
           type: boolean
+        next:
+          description: 'the next Section in the stage'
+          nullable: true
+          anyOf:
+            -
+              $ref: '#/components/schemas/Section-read'
+        previous:
+          description: 'the previous Section in the stage'
+          nullable: true
+          anyOf:
+            -
+              $ref: '#/components/schemas/Section-read'
       required:
         - name
     Section-write:
@@ -5938,6 +5958,18 @@ components:
         start:
           description: 'Denotes if this section is the first section of the stage'
           type: boolean
+        next:
+          description: 'the next Section in the stage'
+          nullable: true
+          anyOf:
+            -
+              $ref: '#/components/schemas/Section:jsonld-read'
+        previous:
+          description: 'the previous Section in the stage'
+          nullable: true
+          anyOf:
+            -
+              $ref: '#/components/schemas/Section:jsonld-read'
       required:
         - name
     'Section:jsonld-write':
@@ -6055,7 +6087,12 @@ components:
     Stage-write:
       type: object
       description: 'A single stage within a process.'
+      required:
+        - name
       properties:
+        name:
+          description: 'The name of this stage'
+          type: string
         icon:
           description: 'The icon of this property'
           type: string
@@ -6167,6 +6204,8 @@ components:
     'Stage:jsonld-write':
       type: object
       description: 'A single stage within a process.'
+      required:
+        - name
       properties:
         '@context':
           readOnly: true
@@ -6176,6 +6215,9 @@ components:
           type: string
         '@type':
           readOnly: true
+          type: string
+        name:
+          description: 'The name of this stage'
           type: string
         icon:
           description: 'The icon of this property'
@@ -6262,6 +6304,11 @@ definitions:
       - sourceOrganization
   ProcessType-write:
     properties:
+      name:
+        description: 'The name of this process'
+        type: string
+        example: 'My process'
+        maxLength: 255
       icon:
         description: 'The icon of this property'
         type: string
@@ -6323,6 +6370,12 @@ definitions:
       stage:
         description: 'the stage this section belongs to'
         type: \Stage
+      next:
+        description: 'the next Section in the stage'
+        type: \Section
+      previous:
+        description: 'the previous Section in the stage'
+        type: \Section
     required:
       - name
   Section-write:
@@ -6412,6 +6465,11 @@ definitions:
       - name
   Stage-write:
     properties:
+      name:
+        description: 'The name of this stage'
+        type: string
+        example: 'Stage 1'
+        maxLength: 255
       icon:
         description: 'The icon of this property'
         type: string
@@ -6544,12 +6602,12 @@ definitions:
         description: 'The moment this request was created'
         type: string
         format: date-time
-        example: '2020-06-05 09:40:00'
+        example: '2020-06-05 13:36:36'
       dateModified:
         description: 'The moment this request last Modified'
         type: string
         format: date-time
-        example: '2020-06-05 09:40:00'
+        example: '2020-06-05 13:36:36'
     required: []
   AuditTrail-write:
     properties:
@@ -6597,12 +6655,12 @@ definitions:
         description: 'The moment this request was created'
         type: string
         format: date-time
-        example: '2020-06-05 09:40:00'
+        example: '2020-06-05 13:36:36'
       dateModified:
         description: 'The moment this request last Modified'
         type: string
         format: date-time
-        example: '2020-06-05 09:40:00'
+        example: '2020-06-05 13:36:36'
     required: []
   ChangeLog-write:
     properties:
