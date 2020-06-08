@@ -3100,6 +3100,15 @@ paths:
               - asc
               - desc
         -
+          name: 'order[orderNumber]'
+          in: query
+          required: false
+          schema:
+            type: string
+            enum:
+              - asc
+              - desc
+        -
           name: 'dateCreated[before]'
           in: query
           required: false
@@ -3249,6 +3258,22 @@ paths:
             type: array
             items:
               type: boolean
+          style: form
+          explode: true
+        -
+          name: orderNumber
+          in: query
+          required: false
+          schema:
+            type: integer
+        -
+          name: 'orderNumber[]'
+          in: query
+          required: false
+          schema:
+            type: array
+            items:
+              type: integer
           style: form
           explode: true
         -
@@ -4223,6 +4248,15 @@ paths:
               - asc
               - desc
         -
+          name: 'order[orderNumber]'
+          in: query
+          required: false
+          schema:
+            type: string
+            enum:
+              - asc
+              - desc
+        -
           name: 'dateCreated[before]'
           in: query
           required: false
@@ -4438,6 +4472,22 @@ paths:
           required: false
           schema:
             type: string
+        -
+          name: orderNumber
+          in: query
+          required: false
+          schema:
+            type: integer
+        -
+          name: 'orderNumber[]'
+          in: query
+          required: false
+          schema:
+            type: array
+            items:
+              type: integer
+          style: form
+          explode: true
         -
           name: page
           in: query
@@ -5659,7 +5709,13 @@ components:
     ProcessType-write:
       type: object
       description: 'A process.'
+      required:
+        - name
+        - sourceOrganization
       properties:
+        name:
+          description: 'The name of this process'
+          type: string
         icon:
           description: 'The icon of this property'
           type: string
@@ -5693,8 +5749,6 @@ components:
           items:
             type: string
           nullable: true
-      required:
-        - sourceOrganization
     'ProcessType:jsonld-read':
       type: object
       description: 'A process.'
@@ -5765,6 +5819,9 @@ components:
     'ProcessType:jsonld-write':
       type: object
       description: 'A process.'
+      required:
+        - name
+        - sourceOrganization
       properties:
         '@context':
           readOnly: true
@@ -5774,6 +5831,9 @@ components:
           type: string
         '@type':
           readOnly: true
+          type: string
+        name:
+          description: 'The name of this process'
           type: string
         icon:
           description: 'The icon of this property'
@@ -5808,8 +5868,6 @@ components:
           items:
             type: string
           nullable: true
-      required:
-        - sourceOrganization
     Section-read:
       type: object
       description: ''
@@ -5850,6 +5908,18 @@ components:
         start:
           description: 'Denotes if this section is the first section of the stage'
           type: boolean
+        next:
+          description: 'the next Section in the stage'
+          nullable: true
+          anyOf:
+            -
+              $ref: '#/components/schemas/Section-read'
+        previous:
+          description: 'the previous Section in the stage'
+          nullable: true
+          anyOf:
+            -
+              $ref: '#/components/schemas/Section-read'
       required:
         - name
     Section-write:
@@ -5938,6 +6008,18 @@ components:
         start:
           description: 'Denotes if this section is the first section of the stage'
           type: boolean
+        next:
+          description: 'the next Section in the stage'
+          nullable: true
+          anyOf:
+            -
+              $ref: '#/components/schemas/Section:jsonld-read'
+        previous:
+          description: 'the previous Section in the stage'
+          nullable: true
+          anyOf:
+            -
+              $ref: '#/components/schemas/Section:jsonld-read'
       required:
         - name
     'Section:jsonld-write':
@@ -6050,12 +6132,22 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/Section-read'
+        orderNumber:
+          description: 'The place in the order where the stage should be rendered'
+          type: integer
       required:
         - name
+        - orderNumber
     Stage-write:
       type: object
       description: 'A single stage within a process.'
+      required:
+        - name
+        - orderNumber
       properties:
+        name:
+          description: 'The name of this stage'
+          type: string
         icon:
           description: 'The icon of this property'
           type: string
@@ -6089,6 +6181,9 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/Section-write'
+        orderNumber:
+          description: 'The place in the order where the stage should be rendered'
+          type: integer
     'Stage:jsonld-read':
       type: object
       description: 'A single stage within a process.'
@@ -6162,11 +6257,18 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/Section:jsonld-read'
+        orderNumber:
+          description: 'The place in the order where the stage should be rendered'
+          type: integer
       required:
         - name
+        - orderNumber
     'Stage:jsonld-write':
       type: object
       description: 'A single stage within a process.'
+      required:
+        - name
+        - orderNumber
       properties:
         '@context':
           readOnly: true
@@ -6176,6 +6278,9 @@ components:
           type: string
         '@type':
           readOnly: true
+          type: string
+        name:
+          description: 'The name of this stage'
           type: string
         icon:
           description: 'The icon of this property'
@@ -6210,6 +6315,9 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/Section:jsonld-write'
+        orderNumber:
+          description: 'The place in the order where the stage should be rendered'
+          type: integer
 definitions:
   ProcessType-read:
     properties:
@@ -6262,6 +6370,11 @@ definitions:
       - sourceOrganization
   ProcessType-write:
     properties:
+      name:
+        description: 'The name of this process'
+        type: string
+        example: 'My process'
+        maxLength: 255
       icon:
         description: 'The icon of this property'
         type: string
@@ -6323,6 +6436,12 @@ definitions:
       stage:
         description: 'the stage this section belongs to'
         type: \Stage
+      next:
+        description: 'the next Section in the stage'
+        type: \Section
+      previous:
+        description: 'the previous Section in the stage'
+        type: \Section
     required:
       - name
   Section-write:
@@ -6403,6 +6522,9 @@ definitions:
       dateModified:
         description: 'The moment this request last Modified'
         type: \Datetime
+      orderNumber:
+        description: 'The place in the order where the stage should be rendered'
+        type: int
       next: []
       previous: []
       sections:
@@ -6410,8 +6532,14 @@ definitions:
         type: \ArrayCollection
     required:
       - name
+      - orderNumber
   Stage-write:
     properties:
+      name:
+        description: 'The name of this stage'
+        type: string
+        example: 'Stage 1'
+        maxLength: 255
       icon:
         description: 'The icon of this property'
         type: string
@@ -6433,6 +6561,9 @@ definitions:
         description: 'Whether or not this proerty is the starting oint of a process'
         type: string
         example: 'true'
+      orderNumber:
+        description: 'The place in the order where the stage should be rendered'
+        type: int
       next: []
       previous: []
       sections:
@@ -6440,6 +6571,7 @@ definitions:
         type: \ArrayCollection
     required:
       - name
+      - orderNumber
   AuditTrail-read:
     properties:
       id:
@@ -6544,12 +6676,12 @@ definitions:
         description: 'The moment this request was created'
         type: string
         format: date-time
-        example: '2020-06-05 09:40:00'
+        example: '2020-06-08 06:37:37'
       dateModified:
         description: 'The moment this request last Modified'
         type: string
         format: date-time
-        example: '2020-06-05 09:40:00'
+        example: '2020-06-08 06:37:37'
     required: []
   AuditTrail-write:
     properties:
@@ -6597,12 +6729,12 @@ definitions:
         description: 'The moment this request was created'
         type: string
         format: date-time
-        example: '2020-06-05 09:40:00'
+        example: '2020-06-08 06:37:37'
       dateModified:
         description: 'The moment this request last Modified'
         type: string
         format: date-time
-        example: '2020-06-05 09:40:00'
+        example: '2020-06-08 06:37:37'
     required: []
   ChangeLog-write:
     properties:

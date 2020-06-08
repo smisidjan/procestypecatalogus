@@ -241,9 +241,19 @@ class Stage
      *
      * @Groups({"read","write"})
      * @MaxDepth(1)
-     * @ORM\OneToMany(targetEntity="App\Entity\Section", mappedBy="stage", orphanRemoval=true)
+     * @ORM\OneToMany(targetEntity="App\Entity\Section", mappedBy="stage", orphanRemoval=true, cascade={"persist"})
+     * @ORM\OrderBy({"orderNumber" = "ASC"})
      */
     private $sections;
+
+    /**
+     * @var int The place in the order where the stage should be rendered
+     *
+     * @Assert\NotNull
+     * @Groups({"read","write"})
+     * @ORM\Column(type="integer")
+     */
+    private $orderNumber;
 
     public function __construct()
     {
@@ -457,6 +467,18 @@ class Stage
                 $section->setStage(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getOrderNumber(): ?int
+    {
+        return $this->orderNumber;
+    }
+
+    public function setOrderNumber(int $orderNumber): self
+    {
+        $this->orderNumber = $orderNumber;
 
         return $this;
     }
