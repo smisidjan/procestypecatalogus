@@ -52,6 +52,7 @@ class MijnclusterFixtures extends Fixture
         $stage->setSlug('gegevens');
         $stage->setProcess($processType);
         $stage->setStart(true);
+        $stage->setOrderNumber(1);
         $manager->persist($stage);
 
         $section = new Section();
