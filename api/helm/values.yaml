@@ -14,7 +14,7 @@ settings:
   repro: https://github.com/ConductionNL/procestypecatalogus
   demo: pc.zaakonline.nl
   container: https://hub.docker.com/repository/docker/conduction/ptc-php
-  domain: processen.zaakonline.nl
+  domain: mijncluster.nl
   subdomain: ptc
   organisationName: Conduction
   email: info@conduction.nl
