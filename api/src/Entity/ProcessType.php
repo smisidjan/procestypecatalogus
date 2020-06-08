@@ -10,12 +10,14 @@ use ApiPlatform\Core\Bridge\Doctrine\Orm\Filter\OrderFilter;
 use ApiPlatform\Core\Bridge\Doctrine\Orm\Filter\SearchFilter;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
+use Doctrine\Common\Collections\Criteria;
 use Doctrine\ORM\Mapping as ORM;
 use Gedmo\Mapping\Annotation as Gedmo;
 use Ramsey\Uuid\UuidInterface;
 use Symfony\Component\Serializer\Annotation\Groups;
 use Symfony\Component\Serializer\Annotation\MaxDepth;
 use Symfony\Component\Validator\Constraints as Assert;
+
 
 /**
  * A process.
@@ -88,7 +90,7 @@ class ProcessType
      * @Assert\Length(
      *      max = 255
      * )
-     * @Groups({"read"})
+     * @Groups({"read", "write"})
      * @ORM\Column(type="string", length=255)
      */
     private $name;
@@ -157,6 +159,7 @@ class ProcessType
      * @Groups({"read", "write"})
      * @Assert\Valid
      * @ORM\OneToMany(targetEntity="App\Entity\Stage", mappedBy="process", orphanRemoval=true, fetch="EAGER", cascade={"persist"})
+     * @ORM\OrderBy({"orderNumber" = "ASC"})
      */
     private $stages;
 
@@ -329,12 +332,48 @@ class ProcessType
         if ($this->stages->contains($stage)) {
             $this->stages->removeElement($stage);
             // set the owning side to null (unless already changed)
-            if ($stage->setProcess() === $this) {
+            if ($stage->getProcess() === $this) {
                 $stage->setProcess(null);
             }
         }
 
         return $this;
+    }
+
+    // Stages logic
+
+    public function getFirstStage()
+    {
+        return $this->getStages()->first();
+    }
+
+    public function getLastStage()
+    {
+        return $this->getStages()->last();
+    }
+
+    public function getPreviousStage($stage)
+    {
+        $criteria = Criteria::create()
+            ->andWhere(Criteria::expr()->lt('orderNumber', $stage->getOrderNumber()));
+
+        return $this->getStages()->matching($criteria)->last();
+    }
+
+    public function getNextStage($stage)
+    {
+        $criteria = Criteria::create()
+            ->andWhere(Criteria::expr()->gt('orderNumber', $stage->getOrderNumber()));
+
+        return $this->getStages()->matching($criteria)->first();
+    }
+
+    public function getMaxStage()
+    {
+        if($this->getLastStage() && $this->getLastStage()->getOrderNumber()){
+            return $this->getLastStage()->getOrderNumber();
+        }
+        return 0;
     }
 
     public function getRequestType(): ?string

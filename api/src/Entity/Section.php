@@ -9,6 +9,7 @@ use ApiPlatform\Core\Bridge\Doctrine\Orm\Filter\DateFilter;
 use ApiPlatform\Core\Bridge\Doctrine\Orm\Filter\OrderFilter;
 use ApiPlatform\Core\Bridge\Doctrine\Orm\Filter\SearchFilter;
 use Doctrine\ORM\Mapping as ORM;
+use Doctrine\Common\Collections\Criteria;
 use Gedmo\Mapping\Annotation as Gedmo;
 use Ramsey\Uuid\Uuid;
 use Ramsey\Uuid\UuidInterface;
@@ -42,6 +43,7 @@ use Symfony\Component\Validator\Constraints as Assert;
  *          }
  *     },
  * )
+ * @ORM\HasLifecycleCallbacks()
  * @Gedmo\Loggable(logEntryClass="Conduction\CommonGroundBundle\Entity\ChangeLog")
  *
  * @ApiFilter(BooleanFilter::class)
@@ -132,17 +134,26 @@ class Section
     /**
      * @var bool Denotes if this section is the first section of the stage
      *
-     * @Groups({"read","write"}))
-     * @ORM\Column(type="boolean")
+     * @example true
+     *
+     * @Groups({"read"})
      */
     private $start = false;
+
+    /**
+     * @var bool Denotes if this section is the last section of the stage
+     *
+     * @example true
+     *
+     * @Groups({"read"})
+     */
+    private $end = false;
 
     /**
      * @var Section the next Section in the stage
      *
      * @MaxDepth(1)
      * @Groups({"write"}))
-     * @ORM\OneToOne(targetEntity="App\Entity\Section", inversedBy="previous", cascade={"persist", "remove"})
      */
     private $next;
 
@@ -151,9 +162,17 @@ class Section
      *
      * @MaxDepth(1)
      * @Groups({"write"}))
-     * @ORM\OneToOne(targetEntity="App\Entity\Section", mappedBy="next", cascade={"persist", "remove"})
      */
     private $previous;
+
+    /**
+     * @var int The place in the order where the section should be rendered
+     *
+     * @Assert\NotNull
+     * @Groups({"read","write"})
+     * @ORM\Column(type="integer")
+     */
+    private $orderNumber = 0;
 
     public function getId(): ?Uuid
     {
@@ -234,43 +253,53 @@ class Section
 
     public function getStart(): ?bool
     {
-        return $this->start;
-    }
-
-    public function setStart(bool $start): self
-    {
-        $this->start = $start;
-
-        return $this;
-    }
-
-    public function getNext(): ?self
-    {
-        return $this->next;
-    }
-
-    public function setNext(?self $next): self
-    {
-        $this->next = $next;
-
-        return $this;
-    }
-
-    public function getPrevious(): ?self
-    {
-        return $this->previous;
-    }
-
-    public function setPrevious(?self $previous): self
-    {
-        $this->previous = $previous;
-
-        // set (or unset) the owning side of the relation if necessary
-        $newNext = null === $previous ? null : $this;
-        if ($previous->getNext() !== $newNext) {
-            $previous->setNext($newNext);
+        if($this->getStage()->getFirstSection() == $this){
+            return true;
         }
 
+        return false;
+    }
+
+    public function getEnd(): ?bool
+    {
+        if($this->getStage()->getLastSection() == $this){
+            return true;
+        }
+
+        return false;
+    }
+
+
+    public function getPrevious()
+    {
+        return $this->getProessType()->getPreviousSection($this);
+    }
+
+    public function getNext()
+    {
+        return $this->getProessType()->getPreviousSection($this);
+    }
+
+
+    public function getOrderNumber(): ?int
+    {
+        return $this->orderNumber;
+    }
+
+    public function setOrderNumber(int $orderNumber): self
+    {
+        $this->orderNumber = $orderNumber;
+
         return $this;
+    }
+
+    /**
+     * @ORM\PrePersist
+     */
+    public function preFillOrderNumber()
+    {
+        if(!$this->orderNumber || $this->orderNumber <= 0){
+            $this->orderNumber = $this->getStage()->getSections()->indexOf($this) + 1;
+        }
     }
 }

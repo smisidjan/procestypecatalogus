@@ -3031,12 +3031,6 @@ paths:
                   $ref: '#/components/schemas/Section-read'
       parameters:
         -
-          name: start
-          in: query
-          required: false
-          schema:
-            type: boolean
-        -
           name: 'order[id]'
           in: query
           required: false
@@ -3091,7 +3085,7 @@ paths:
               - asc
               - desc
         -
-          name: 'order[start]'
+          name: 'order[orderNumber]'
           in: query
           required: false
           schema:
@@ -3236,19 +3230,19 @@ paths:
           schema:
             type: string
         -
-          name: start
+          name: orderNumber
           in: query
           required: false
           schema:
-            type: boolean
+            type: integer
         -
-          name: 'start[]'
+          name: 'orderNumber[]'
           in: query
           required: false
           schema:
             type: array
             items:
-              type: boolean
+              type: integer
           style: form
           explode: true
         -
@@ -4118,12 +4112,6 @@ paths:
                   $ref: '#/components/schemas/Stage-read'
       parameters:
         -
-          name: start
-          in: query
-          required: false
-          schema:
-            type: boolean
-        -
           name: 'order[id]'
           in: query
           required: false
@@ -4196,15 +4184,6 @@ paths:
               - asc
               - desc
         -
-          name: 'order[start]'
-          in: query
-          required: false
-          schema:
-            type: string
-            enum:
-              - asc
-              - desc
-        -
           name: 'order[dateCreated]'
           in: query
           required: false
@@ -4215,6 +4194,15 @@ paths:
               - desc
         -
           name: 'order[dateModified]'
+          in: query
+          required: false
+          schema:
+            type: string
+            enum:
+              - asc
+              - desc
+        -
+          name: 'order[orderNumber]'
           in: query
           required: false
           schema:
@@ -4399,22 +4387,6 @@ paths:
           style: form
           explode: true
         -
-          name: start
-          in: query
-          required: false
-          schema:
-            type: boolean
-        -
-          name: 'start[]'
-          in: query
-          required: false
-          schema:
-            type: array
-            items:
-              type: boolean
-          style: form
-          explode: true
-        -
           name: dateCreated
           in: query
           required: false
@@ -4438,6 +4410,22 @@ paths:
           required: false
           schema:
             type: string
+        -
+          name: orderNumber
+          in: query
+          required: false
+          schema:
+            type: integer
+        -
+          name: 'orderNumber[]'
+          in: query
+          required: false
+          schema:
+            type: array
+            items:
+              type: integer
+          style: form
+          explode: true
         -
           name: page
           in: query
@@ -5659,7 +5647,13 @@ components:
     ProcessType-write:
       type: object
       description: 'A process.'
+      required:
+        - name
+        - sourceOrganization
       properties:
+        name:
+          description: 'The name of this process'
+          type: string
         icon:
           description: 'The icon of this property'
           type: string
@@ -5693,8 +5687,6 @@ components:
           items:
             type: string
           nullable: true
-      required:
-        - sourceOrganization
     'ProcessType:jsonld-read':
       type: object
       description: 'A process.'
@@ -5765,6 +5757,9 @@ components:
     'ProcessType:jsonld-write':
       type: object
       description: 'A process.'
+      required:
+        - name
+        - sourceOrganization
       properties:
         '@context':
           readOnly: true
@@ -5774,6 +5769,9 @@ components:
           type: string
         '@type':
           readOnly: true
+          type: string
+        name:
+          description: 'The name of this process'
           type: string
         icon:
           description: 'The icon of this property'
@@ -5808,8 +5806,6 @@ components:
           items:
             type: string
           nullable: true
-      required:
-        - sourceOrganization
     Section-read:
       type: object
       description: ''
@@ -5848,15 +5844,25 @@ components:
           format: date-time
           nullable: true
         start:
+          readOnly: true
           description: 'Denotes if this section is the first section of the stage'
           type: boolean
+        end:
+          readOnly: true
+          description: 'Denotes if this section is the last section of the stage'
+          type: boolean
+        orderNumber:
+          description: 'The place in the order where the section should be rendered'
+          type: integer
       required:
         - name
+        - orderNumber
     Section-write:
       type: object
       description: ''
       required:
         - name
+        - orderNumber
       properties:
         name:
           description: 'the name of this Section'
@@ -5874,21 +5880,17 @@ components:
         stage:
           description: 'the stage this section belongs to'
           $ref: '#/components/schemas/Stage-write'
-        start:
-          description: 'Denotes if this section is the first section of the stage'
-          type: boolean
         next:
+          readOnly: true
           description: 'the next Section in the stage'
-          nullable: true
-          anyOf:
-            -
-              $ref: '#/components/schemas/Section-write'
+          $ref: '#/components/schemas/Section-write'
         previous:
+          readOnly: true
           description: 'the previous Section in the stage'
-          nullable: true
-          anyOf:
-            -
-              $ref: '#/components/schemas/Section-write'
+          $ref: '#/components/schemas/Section-write'
+        orderNumber:
+          description: 'The place in the order where the section should be rendered'
+          type: integer
     'Section:jsonld-read':
       type: object
       description: ''
@@ -5936,15 +5938,25 @@ components:
           format: date-time
           nullable: true
         start:
+          readOnly: true
           description: 'Denotes if this section is the first section of the stage'
           type: boolean
+        end:
+          readOnly: true
+          description: 'Denotes if this section is the last section of the stage'
+          type: boolean
+        orderNumber:
+          description: 'The place in the order where the section should be rendered'
+          type: integer
       required:
         - name
+        - orderNumber
     'Section:jsonld-write':
       type: object
       description: ''
       required:
         - name
+        - orderNumber
       properties:
         '@context':
           readOnly: true
@@ -5971,21 +5983,17 @@ components:
         stage:
           description: 'the stage this section belongs to'
           $ref: '#/components/schemas/Stage:jsonld-write'
-        start:
-          description: 'Denotes if this section is the first section of the stage'
-          type: boolean
         next:
+          readOnly: true
           description: 'the next Section in the stage'
-          nullable: true
-          anyOf:
-            -
-              $ref: '#/components/schemas/Section:jsonld-write'
+          $ref: '#/components/schemas/Section:jsonld-write'
         previous:
+          readOnly: true
           description: 'the previous Section in the stage'
-          nullable: true
-          anyOf:
-            -
-              $ref: '#/components/schemas/Section:jsonld-write'
+          $ref: '#/components/schemas/Section:jsonld-write'
+        orderNumber:
+          description: 'The place in the order where the section should be rendered'
+          type: integer
     Stage-read:
       type: object
       description: 'A single stage within a process.'
@@ -6015,15 +6023,9 @@ components:
           description: 'The validation rules that this stage adheres to'
           type: string
         next:
-          nullable: true
-          anyOf:
-            -
-              $ref: '#/components/schemas/Stage-read'
+          readOnly: true
         previous:
-          nullable: true
-          anyOf:
-            -
-              $ref: '#/components/schemas/Stage-read'
+          readOnly: true
         property:
           type: string
           nullable: true
@@ -6032,9 +6034,13 @@ components:
           type: string
           nullable: true
         start:
-          description: 'Whether or not this proerty is the starting oint of a process'
-          type: boolean
-          nullable: true
+          readOnly: true
+          description: 'Whether or not this proerty is the starting point of a process'
+          type: string
+        end:
+          readOnly: true
+          description: 'Whether or not this proerty is the last point of a process'
+          type: string
         dateCreated:
           description: 'The moment this request was created'
           type: string
@@ -6050,12 +6056,22 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/Section-read'
+        orderNumber:
+          description: 'The place in the order where the stage should be rendered'
+          type: integer
       required:
         - name
+        - orderNumber
     Stage-write:
       type: object
       description: 'A single stage within a process.'
+      required:
+        - name
+        - orderNumber
       properties:
+        name:
+          description: 'The name of this stage'
+          type: string
         icon:
           description: 'The icon of this property'
           type: string
@@ -6063,16 +6079,6 @@ components:
         options:
           description: 'The options or configuration for this stage'
           type: string
-        next:
-          nullable: true
-          anyOf:
-            -
-              $ref: '#/components/schemas/Stage-write'
-        previous:
-          nullable: true
-          anyOf:
-            -
-              $ref: '#/components/schemas/Stage-write'
         property:
           type: string
           nullable: true
@@ -6080,15 +6086,14 @@ components:
           description: 'The slug of this property'
           type: string
           nullable: true
-        start:
-          description: 'Whether or not this proerty is the starting oint of a process'
-          type: boolean
-          nullable: true
         sections:
           description: 'the sections of this stage'
           type: array
           items:
             $ref: '#/components/schemas/Section-write'
+        orderNumber:
+          description: 'The place in the order where the stage should be rendered'
+          type: integer
     'Stage:jsonld-read':
       type: object
       description: 'A single stage within a process.'
@@ -6127,15 +6132,9 @@ components:
           description: 'The validation rules that this stage adheres to'
           type: string
         next:
-          nullable: true
-          anyOf:
-            -
-              $ref: '#/components/schemas/Stage:jsonld-read'
+          readOnly: true
         previous:
-          nullable: true
-          anyOf:
-            -
-              $ref: '#/components/schemas/Stage:jsonld-read'
+          readOnly: true
         property:
           type: string
           nullable: true
@@ -6144,9 +6143,13 @@ components:
           type: string
           nullable: true
         start:
-          description: 'Whether or not this proerty is the starting oint of a process'
-          type: boolean
-          nullable: true
+          readOnly: true
+          description: 'Whether or not this proerty is the starting point of a process'
+          type: string
+        end:
+          readOnly: true
+          description: 'Whether or not this proerty is the last point of a process'
+          type: string
         dateCreated:
           description: 'The moment this request was created'
           type: string
@@ -6162,11 +6165,18 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/Section:jsonld-read'
+        orderNumber:
+          description: 'The place in the order where the stage should be rendered'
+          type: integer
       required:
         - name
+        - orderNumber
     'Stage:jsonld-write':
       type: object
       description: 'A single stage within a process.'
+      required:
+        - name
+        - orderNumber
       properties:
         '@context':
           readOnly: true
@@ -6177,6 +6187,9 @@ components:
         '@type':
           readOnly: true
           type: string
+        name:
+          description: 'The name of this stage'
+          type: string
         icon:
           description: 'The icon of this property'
           type: string
@@ -6184,16 +6197,6 @@ components:
         options:
           description: 'The options or configuration for this stage'
           type: string
-        next:
-          nullable: true
-          anyOf:
-            -
-              $ref: '#/components/schemas/Stage:jsonld-write'
-        previous:
-          nullable: true
-          anyOf:
-            -
-              $ref: '#/components/schemas/Stage:jsonld-write'
         property:
           type: string
           nullable: true
@@ -6201,15 +6204,14 @@ components:
           description: 'The slug of this property'
           type: string
           nullable: true
-        start:
-          description: 'Whether or not this proerty is the starting oint of a process'
-          type: boolean
-          nullable: true
         sections:
           description: 'the sections of this stage'
           type: array
           items:
             $ref: '#/components/schemas/Section:jsonld-write'
+        orderNumber:
+          description: 'The place in the order where the stage should be rendered'
+          type: integer
 definitions:
   ProcessType-read:
     properties:
@@ -6262,6 +6264,11 @@ definitions:
       - sourceOrganization
   ProcessType-write:
     properties:
+      name:
+        description: 'The name of this process'
+        type: string
+        example: 'My process'
+        maxLength: 255
       icon:
         description: 'The icon of this property'
         type: string
@@ -6291,69 +6298,6 @@ definitions:
     required:
       - name
       - sourceOrganization
-  Section-read:
-    properties:
-      id:
-        description: 'The UUID identifier of this object'
-        type: string
-        example: e2984465-190a-4562-829e-a8cca81aa35d
-        format: uuid
-      name:
-        description: 'the name of this Section'
-        type: string
-        example: 'Section 1'
-        maxLength: 255
-      description:
-        description: 'the description for this section'
-        type: string
-        example: 'this section is for the personal data of the client'
-      properties:
-        description: 'The properties that are treated in this section, as references to the VTC component'
-        type: array
-        example: 'https://vtc.processen.zaakonline.nl/properties/1'
-      dateCreated:
-        description: 'The moment this request was created'
-        type: \DateTime
-      dateModified:
-        description: 'The moment this request last Modified'
-        type: \DateTime
-      start:
-        description: 'Denotes if this section is the first section of the stage'
-        type: bool
-      stage:
-        description: 'the stage this section belongs to'
-        type: \Stage
-    required:
-      - name
-  Section-write:
-    properties:
-      name:
-        description: 'the name of this Section'
-        type: string
-        example: 'Section 1'
-        maxLength: 255
-      description:
-        description: 'the description for this section'
-        type: string
-        example: 'this section is for the personal data of the client'
-      properties:
-        description: 'The properties that are treated in this section, as references to the VTC component'
-        type: array
-        example: 'https://vtc.processen.zaakonline.nl/properties/1'
-      start:
-        description: 'Denotes if this section is the first section of the stage'
-        type: bool
-      stage:
-        description: 'the stage this section belongs to'
-        type: \Stage
-      next:
-        description: 'the next Section in the stage'
-        type: \Section
-      previous:
-        description: 'the previous Section in the stage'
-        type: \Section
-    required:
-      - name
   Stage-read:
     properties:
       id:
@@ -6393,25 +6337,28 @@ definitions:
         example: my-slug
         maxLength: 255
         minLength: 15
-      start:
-        description: 'Whether or not this proerty is the starting oint of a process'
-        type: string
-        example: 'true'
       dateCreated:
         description: 'The moment this request was created'
         type: \Datetime
       dateModified:
         description: 'The moment this request last Modified'
         type: \Datetime
-      next: []
-      previous: []
+      orderNumber:
+        description: 'The place in the order where the stage should be rendered'
+        type: int
       sections:
         description: 'the sections of this stage'
         type: \ArrayCollection
     required:
       - name
+      - orderNumber
   Stage-write:
     properties:
+      name:
+        description: 'The name of this stage'
+        type: string
+        example: 'Stage 1'
+        maxLength: 255
       icon:
         description: 'The icon of this property'
         type: string
@@ -6429,17 +6376,74 @@ definitions:
         example: my-slug
         maxLength: 255
         minLength: 15
-      start:
-        description: 'Whether or not this proerty is the starting oint of a process'
-        type: string
-        example: 'true'
-      next: []
-      previous: []
+      orderNumber:
+        description: 'The place in the order where the stage should be rendered'
+        type: int
       sections:
         description: 'the sections of this stage'
         type: \ArrayCollection
     required:
       - name
+      - orderNumber
+  Section-read:
+    properties:
+      id:
+        description: 'The UUID identifier of this object'
+        type: string
+        example: e2984465-190a-4562-829e-a8cca81aa35d
+        format: uuid
+      name:
+        description: 'the name of this Section'
+        type: string
+        example: 'Section 1'
+        maxLength: 255
+      description:
+        description: 'the description for this section'
+        type: string
+        example: 'this section is for the personal data of the client'
+      properties:
+        description: 'The properties that are treated in this section, as references to the VTC component'
+        type: array
+        example: 'https://vtc.processen.zaakonline.nl/properties/1'
+      dateCreated:
+        description: 'The moment this request was created'
+        type: \DateTime
+      dateModified:
+        description: 'The moment this request last Modified'
+        type: \DateTime
+      orderNumber:
+        description: 'The place in the order where the section should be rendered'
+        type: int
+      stage:
+        description: 'the stage this section belongs to'
+        type: \Stage
+    required:
+      - name
+      - orderNumber
+  Section-write:
+    properties:
+      name:
+        description: 'the name of this Section'
+        type: string
+        example: 'Section 1'
+        maxLength: 255
+      description:
+        description: 'the description for this section'
+        type: string
+        example: 'this section is for the personal data of the client'
+      properties:
+        description: 'The properties that are treated in this section, as references to the VTC component'
+        type: array
+        example: 'https://vtc.processen.zaakonline.nl/properties/1'
+      orderNumber:
+        description: 'The place in the order where the section should be rendered'
+        type: int
+      stage:
+        description: 'the stage this section belongs to'
+        type: \Stage
+    required:
+      - name
+      - orderNumber
   AuditTrail-read:
     properties:
       id:
@@ -6544,12 +6548,12 @@ definitions:
         description: 'The moment this request was created'
         type: string
         format: date-time
-        example: '2020-06-05 09:40:00'
+        example: '2020-06-08 19:41:13'
       dateModified:
         description: 'The moment this request last Modified'
         type: string
         format: date-time
-        example: '2020-06-05 09:40:00'
+        example: '2020-06-08 19:41:13'
     required: []
   AuditTrail-write:
     properties:
@@ -6597,12 +6601,12 @@ definitions:
         description: 'The moment this request was created'
         type: string
         format: date-time
-        example: '2020-06-05 09:40:00'
+        example: '2020-06-08 19:41:13'
       dateModified:
         description: 'The moment this request last Modified'
         type: string
         format: date-time
-        example: '2020-06-05 09:40:00'
+        example: '2020-06-08 19:41:13'
     required: []
   ChangeLog-write:
     properties:
@@ -6620,15 +6624,15 @@ tags:
       
       
   -
-    name: Section
-    description: |
-      
-      
-      
-  -
     name: Stage
     description: |
       A single stage within a process.
+      
+      
+  -
+    name: Section
+    description: |
+      
       
       
   -
@@ -6661,8 +6665,8 @@ securityDefinitions:
 host: irc.zaakonline.nl
 servers:
   -
-    name: processen.zaakonline.nl
-    url: ptc.dev.processen.zaakonline.nl
+    name: mijncluster.nl
+    url: ptc.dev.mijncluster.nl
 externalDocs:
   -
     description: 'OAS Documentatie'

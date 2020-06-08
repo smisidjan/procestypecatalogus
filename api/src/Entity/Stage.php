@@ -10,6 +10,7 @@ use ApiPlatform\Core\Bridge\Doctrine\Orm\Filter\OrderFilter;
 use ApiPlatform\Core\Bridge\Doctrine\Orm\Filter\SearchFilter;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
+use Doctrine\Common\Collections\Criteria;
 use Doctrine\ORM\Mapping as ORM;
 use Gedmo\Mapping\Annotation as Gedmo;
 use Ramsey\Uuid\UuidInterface;
@@ -55,6 +56,7 @@ use Symfony\Component\Validator\Constraints as Assert;
  *     },
  * )
  * @ORM\Entity(repositoryClass="App\Repository\StageRepository")
+ * @ORM\HasLifecycleCallbacks()
  * @Gedmo\Loggable(logEntryClass="Conduction\CommonGroundBundle\Entity\ChangeLog")
  *
  * @ApiFilter(BooleanFilter::class)
@@ -88,7 +90,7 @@ class Stage
      * @Assert\Length(
      *      max = 255
      * )
-     * @Groups({"read"})
+     * @Groups({"read", "write"})
      * @ORM\Column(type="string", length=255)
      */
     private $name;
@@ -154,12 +156,13 @@ class Stage
      * @Groups({"read"})
      * @ORM\Column(type="json", nullable=true)
      */
-    private $validation = [];
+    private $validation;
 
     /**
      * @var ProcessType ProcessType The process that this stage belongs to
      *
      * @MaxDepth(1)
+     * @Groups({"read","write"})
      * @Assert\NotBlank
      * @ORM\ManyToOne(targetEntity="App\Entity\ProcessType", inversedBy="stages")
      * @ORM\JoinColumn(nullable=false)
@@ -170,9 +173,7 @@ class Stage
      * @param Stage $next The next stage from this one
      *
      * @MaxDepth(1)
-     * @Groups({"read","write"})
-     * @Assert\Valid
-     * @ORM\OneToOne(targetEntity="App\Entity\Stage", inversedBy="previous", cascade={"persist", "remove"})
+     * @Groups({"read"})
      */
     private $next;
 
@@ -180,9 +181,7 @@ class Stage
      * @param Stage $previous The previues stage from this one
      *
      * @MaxDepth(1)
-     * @Groups({"read","write"})
-     * @Assert\Valid
-     * @ORM\OneToOne(targetEntity="App\Entity\Stage", mappedBy="next", cascade={"persist", "remove"})
+     * @Groups({"read"})
      */
     private $previous;
 
@@ -208,15 +207,22 @@ class Stage
     private $slug;
 
     /**
-     * @var string Whether or not this proerty is the starting oint of a process
+     * @var string Whether or not this proerty is the starting point of a process
      *
      * @example true
      *
-     * @Gedmo\Versioned
-     * @Groups({"read", "write"})
-     * @ORM\Column(type="boolean", nullable=true)
+     * @Groups({"read"})
      */
     private $start = false;
+
+    /**
+     * @var string Whether or not this proerty is the last point of a process
+     *
+     * @example true
+     *
+     * @Groups({"read"})
+     */
+    private $end = false;
 
     /**
      * @var Datetime The moment this request was created
@@ -241,9 +247,19 @@ class Stage
      *
      * @Groups({"read","write"})
      * @MaxDepth(1)
-     * @ORM\OneToMany(targetEntity="App\Entity\Section", mappedBy="stage", orphanRemoval=true)
+     * @ORM\OneToMany(targetEntity="App\Entity\Section", mappedBy="stage", orphanRemoval=true, cascade={"persist"})
+     * @ORM\OrderBy({"orderNumber" = "ASC"})
      */
     private $sections;
+
+    /**
+     * @var int The place in the order where the stage should be rendered
+     *
+     * @Assert\NotNull
+     * @Groups({"read","write"})
+     * @ORM\Column(type="integer")
+     */
+    private $orderNumber = 0;
 
     public function __construct()
     {
@@ -340,35 +356,16 @@ class Stage
         return $this;
     }
 
-    public function getNext(): ?self
+    public function getPrevious()
     {
-        return $this->next;
+        return $this->getProcess()->getPreviousStage($this);
     }
 
-    public function setNext(?self $next): self
+    public function getNext()
     {
-        $this->next = $next;
-
-        return $this;
+        return $this->getProcess()->getNextStage($this);
     }
 
-    public function getPrevious(): ?self
-    {
-        return $this->previous;
-    }
-
-    public function setPrevious(?self $previous): self
-    {
-        $this->previous = $previous;
-
-        // set (or unset) the owning side of the relation if necessary
-        $newNext = $previous === null ? null : $this;
-        if ($newNext !== $previous->getNext()) {
-            $previous->setNext($newNext);
-        }
-
-        return $this;
-    }
 
     public function getProperty(): ?string
     {
@@ -396,14 +393,20 @@ class Stage
 
     public function getStart(): ?bool
     {
-        return $this->start;
+        if($this->getProcess()->getFirstStage() == $this){
+            return true;
+        }
+
+        return false;
     }
 
-    public function setStart(bool $start): self
+    public function getEnd(): ?bool
     {
-        $this->start = $start;
+        if($this->getProcess()->getLastStage() == $this){
+            return true;
+        }
 
-        return $this;
+        return false;
     }
 
     public function getDateCreated(): ?\DateTimeInterface
@@ -459,5 +462,63 @@ class Stage
         }
 
         return $this;
+    }
+
+    // Section logic
+
+    public function getFirstSection()
+    {
+        return $this->getSections()->first();
+    }
+
+    public function getLastSection()
+    {
+        return $this->getSections()->last();
+    }
+
+    public function getPreviouSection($section)
+    {
+        $criteria = Criteria::create()
+            ->andWhere(Criteria::expr()->lt('orderNumber', $section->getOrderNumber()));
+
+        return $this->getSections()->matching($criteria)->last();
+    }
+
+    public function getNextSection($stage)
+    {
+        $criteria = Criteria::create()
+            ->andWhere(Criteria::expr()->gt('orderNumber', $section->getOrderNumber()));
+
+        return $this->getSections()->matching($criteria)->first;
+    }
+
+    public function getMaxSection()
+    {
+        if($this->getLastSection() && $this->getLastSection()->getOrderNumber()){
+            return $this->getLastSection()->getOrderNumber();
+        }
+        return 0;
+    }
+
+    public function getOrderNumber(): ?int
+    {
+        return $this->orderNumber;
+    }
+
+    public function setOrderNumber(int $orderNumber): self
+    {
+        $this->orderNumber = $orderNumber;
+
+        return $this;
+    }
+
+    /**
+     * @ORM\PrePersist
+     */
+    public function preFillOrderNumber()
+    {
+        if(!$this->orderNumber || $this->orderNumber <= 0){
+            $this->orderNumber = $this->getProcess()->getStages()->indexOf($this) + 1;
+        }
     }
 }

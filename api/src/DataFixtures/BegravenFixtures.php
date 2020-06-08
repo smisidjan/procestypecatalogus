@@ -34,125 +34,140 @@ class BegravenFixtures extends Fixture
         }
 
         /*
-         *  Verhuizen
+         *  Begraven
          */
         $id = Uuid::fromString('a8b8ce49-d5db-4270-9e42-4b47902fc817');
-        $begraven = new ProcessType();
-        $begraven->setIcon('fal fa-truck-moving');
-        $begraven->setSourceOrganization('0000');
-        $begraven->setName('Begraven');
-        $begraven->setDescription('Plan een begrafenis op een gekozen begraafplaats');
-        $begraven->setRequestType("{$this->commonGroundService->getComponent('vtc')['location']}/request_types/c2e9824e-2566-460f-ab4c-905f20cddb6c");
-        $manager->persist($begraven);
-        $begraven->setId($id);
-        $manager->persist($begraven);
+        $processType = new ProcessType();
+        $processType->setIcon('fal fa-tombstone');
+        $processType->setSourceOrganization('0000');
+        $processType->setName('Begraven');
+        $processType->setDescription('Plan een begrafenis op een gekozen begraafplaats');
+        $processType->setRequestType("{$this->commonGroundService->getComponent('vtc')['location']}/request_types/c2e9824e-2566-460f-ab4c-905f20cddb6c");
+        $manager->persist($processType);
+        $processType->setId($id);
+        $manager->persist($processType);
         $manager->flush();
-        $begraven = $manager->getRepository('App:ProcessType')->findOneBy(['id'=> $id]);
+        $processType = $manager->getRepository('App:ProcessType')->findOneBy(['id'=> $id]);
 
-        $stage1 = new Stage();
-        $stage1->setStart(true);
-        $stage1->setName('Begraafplaats');
-        $stage1->setIcon('fal fa-headstone');
-        $stage1->setSlug('begraafplaats');
-        $stage1->setDescription('De gegevens van de begrafenis');
-        $stage1->setProcess($begraven);
-        $manager->persist($stage1);
+        $stage = new Stage();
+        $stage->setName('Begraafplaats');
+        $stage->setIcon('fal fa-headstone');
+        $stage->setSlug('begraafplaats');
+        $stage->setDescription('De gegevens van de begrafenis');
+        $stage->setSlug('begraafplaats');
 
-        $section1 = new Section();
-        $section1->setStage($stage1);
-        $section1->setStart(true);
-        $section1->setName('Gemeente');
-        $section1->setDescription('In welke gemeente wilt u iemand begraven?');
-        $section1->setProperties(["{$this->commonGroundService->getComponent('vtc')['location']}/properties/72fdd281-c60d-4e2d-8b7d-d266303bdc46"]);
-        $manager->persist($stage1);
+        $section = new Section();
+        $section->setName('Gemeente');
+        $section->setDescription('In welke gemeente wilt u iemand begraven?');
+        $section->setProperties(["{$this->commonGroundService->getComponent('vtc')['location']}/properties/72fdd281-c60d-4e2d-8b7d-d266303bdc46"]);
+        $stage->addSection($section);
 
-        $section2 = new Section();
-        $section2->setStage($stage1);
-        $section2->setName('Begraafplaats');
-        $section2->setDescription('Op welke begraafplaats wilt u iemand begraven?');
-        $section2->setProperties(["{$this->commonGroundService->getComponent('vtc')['location']}/properties/bdae2f7b-21c3-4d88-be6d-a35b31c13916"]);
-        $section2->setPrevious($section1);
-        $manager->persist($section2);
+        $section = new Section();
+        $section->setName('Begraafplaats');
+        $section->setDescription('Op welke begraafplaats wilt u iemand begraven?');
+        $section->setProperties(["{$this->commonGroundService->getComponent('vtc')['location']}/properties/bdae2f7b-21c3-4d88-be6d-a35b31c13916"]);
+        $stage->addSection($section);
 
-        $section3 = new Section();
-        $section3->setStage($stage1);
-        $section3->setName('Soort graf');
-        $section3->setDescription('Wat voor soort graf wilt u iemand in begraven?');
-        $section3->setProperties(["{$this->commonGroundService->getComponent('vtc')['location']}/properties/3b6a637d-19c6-4730-b322-c03d0d8301b6"]);
-        $section3->setPrevious($section2);
-        $manager->persist($section3);
+        $section = new Section();
+        $section->setName('Soort graf');
+        $section->setDescription('Wat voor soort graf wilt u iemand in begraven?');
+        $section->setProperties(["{$this->commonGroundService->getComponent('vtc')['location']}/properties/3b6a637d-19c6-4730-b322-c03d0d8301b6"]);
+        $stage->addSection($section);
 
-        $stage2 = new Stage();
-        $stage2->setName('Datum en tijd');
-        $stage2->setDescription('Wanneer gaat het afscheid plaatsvinden?');
-        $stage2->setIcon('fal fa-calendar');
-        $stage2->setSlug('datum');
-        $stage2->setProcess($begraven);
-        $stage2->setPrevious($stage1);
-        $manager->persist($stage2);
+        // Add the stage to the procces type
+        $processType->addStage($stage);
 
-        $section1 = new Section();
-        $section1->setStage($stage2);
-        $section1->setStart(true);
-        $section1->setName('Datum en tijd');
-        $section1->setDescription('Wanneer vindt het afscheid plaats?');
-        $section1->setProperties(["{$this->commonGroundService->getComponent('vtc')['location']}/properties/b1fd7b38-384b-47ec-a0f2-6f81949cdece"]);
-        $manager->persist($section1);
+        $stage = new Stage();
+        $stage->setName('Datum en tijd');
+        $stage->setDescription('Wanneer gaat het afscheid plaatsvinden?');
+        $stage->setIcon('fal fa-calendar');
+        $stage->setSlug('datum');
 
-        $stage3 = new Stage();
-        $stage3->setPrevious($stage2);
-        $stage3->setName('Artikelen');
-        $stage3->setIcon('fal fa-map-tasks');
-        $stage3->setSlug('artikelen');
-        $stage3->setDescription('Selecteer hier de artikelen voor de begrafenis.');
-        $stage3->setProcess($begraven);
-        $manager->persist($stage3);
 
-        $section1 = new Section();
-        $section1->setStage($stage2);
-        $section1->setStart(true);
-        $section1->setName('Artikelen');
-        $section1->setDescription('Selecteer hier de artikelen voor de begrafenis.');
-        $section1->setProperties(["{$this->commonGroundService->getComponent('vtc')['location']}/properties/8f9adb13-d5e0-40de-a08c-a2ce5a648b1e"]);
-        $manager->persist($section1);
+        $section = new Section();
+        $section->setName('Datum en tijd');
+        $section->setDescription('Wanneer vindt het afscheid plaats?');
+        $section->setProperties(["{$this->commonGroundService->getComponent('vtc')['location']}/properties/b1fd7b38-384b-47ec-a0f2-6f81949cdece"]);
+        $stage->addSection($section);
 
-        $stage4 = new Stage();
-        $stage4->setPrevious($stage3);
+        // Add the stage to the procces type
+        $processType->addStage($stage);
+
+        $stage = new Stage();
+        $stage->setName('Artikelen');
+        $stage->setIcon('fal fa-map-tasks');
+        $stage->setSlug('artikelen');
+        $stage->setDescription('Selecteer hier de artikelen voor de begrafenis.');
+
+        $section = new Section();
+        $section->setName('Artikelen');
+        $section->setDescription('Selecteer hier de artikelen voor de begrafenis.');
+        $section->setProperties(["{$this->commonGroundService->getComponent('vtc')['location']}/properties/8f9adb13-d5e0-40de-a08c-a2ce5a648b1e"]);
+        $stage->addSection($section);
+
+        // Add the stage to the procces type
+        $processType->addStage($stage);
+
+        $stage = new Stage();
         //$property->setId('');
-        $stage4->setName('Overledene');
-        $stage4->setIcon('fal fa-users');
-        $stage4->setSlug('overledene');
-        $stage4->setDescription('Wie wordt er begraven?');
-        $stage4->setProcess($begraven);
-        $manager->persist($stage4);
+        $stage->setName('Overledene');
+        $stage->setIcon('fal fa-users');
+        $stage->setSlug('overledene');
+        $stage->setDescription('Wie wordt er begraven?');
 
-        $section1 = new Section();
-        $section1->setStage($stage4);
-        $section1->setStart(true);
-        $section1->setName('Overledene');
-        $section1->setDescription('Wie is er overleden?');
-        $section1->setProperties(["{$this->commonGroundService->getComponent('vtc')['location']}/properties/db69ce35-4ae1-4aac-936f-bdb5d4d1ff18"]);
-        $manager->persist($section1);
+        $section = new Section();
+        $section->setName('Overledene');
+        $section->setDescription('Wie is er overleden?');
+        $section->setProperties(["{$this->commonGroundService->getComponent('vtc')['location']}/properties/db69ce35-4ae1-4aac-936f-bdb5d4d1ff18"]);
+        $stage->addSection($section);
 
-        $stage5 = new Stage();
-        $stage5->setPrevious($stage4);
-        //$property->setId('');
-        $stage5->setName('Belanghebbende');
-        $stage5->setIcon('fal fa-users');
-        $stage5->setSlug('belanghebbende');
-        $stage5->setDescription('Wie treed op als belanghebbende?');
-        $stage5->setProcess($begraven);
-        $manager->persist($stage4);
+        // Add the stage to the procces type
+        $processType->addStage($stage);
 
-        $section1 = new Section();
-        $section1->setStage($stage5);
-        $section1->setStart(true);
-        $section1->setName('Belanghebbende');
-        $section1->setDescription('Wie treed er op als belanghebbende?');
-        $section1->setProperties(["{$this->commonGroundService->getComponent('vtc')['location']}/properties/db69ce35-4ae1-4aac-936f-bdb5d4d1ff18"]);
-        $manager->persist($section1);
+        $stage = new Stage();
+        $stage->setName('Belanghebbende');
+        $stage->setIcon('fal fa-users');
+        $stage->setSlug('belanghebbende');
+        $stage->setDescription('Wie treed op als belanghebbende?');
 
+        $section = new Section();
+        $section->setName('Belanghebbende');
+        $section->setDescription('Wie treed er op als belanghebbende?');
+        $section->setProperties(["{$this->commonGroundService->getComponent('vtc')['location']}/properties/db69ce35-4ae1-4aac-936f-bdb5d4d1ff18"]);
+        $stage->addSection($section);
+
+        // Add the stage to the procces type
+        $processType->addStage($stage);
+
+        // asd
+        $manager->persist($processType);
+        $processType->setId($id);
+        $manager->persist($processType);
         $manager->flush();
+        $processType= $manager->getRepository('App:ProcessType')->findOneBy(array('id'=> $id));
+
+        /*
+         *  Huwelijk
+         */
+        $id = Uuid::fromString('5b10c1d6-7121-4be2-b479-7523f1b625f1');
+        $processType = new ProcessType();
+        $processType->setIcon('fal fa-rings-wedding');
+        $processType->setSourceOrganization('000');
+        $processType->setName('Huwelijk / Partnerschap');
+        $processType->setDescription('Huwelijk / Partnerschap');
+        $processType->setRequestType("{$this->commonGroundService->getComponent('vtc')['location']}/request_types/5b10c1d6-7121-4be2-b479-7523f1b625f1");
+        $manager->persist($processType);
+        $processType->setId($id);
+        $manager->persist($processType);
+        $manager->flush();
+        $processType = $manager->getRepository('App:ProcessType')->findOneBy(['id'=> $id]);
+
+        // asd
+        $manager->persist($processType);
+        $processType->setId($id);
+        $manager->persist($processType);
+        $manager->flush();
+        $processType= $manager->getRepository('App:ProcessType')->findOneBy(array('id'=> $id));
 
         $manager->flush();
     }
