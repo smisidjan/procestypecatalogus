@@ -26,7 +26,7 @@ class MijnclusterFixtures extends Fixture
     {
         // Lets make sure we only run these fixtures on larping enviroment
         if ($this->params->get('app_domain') != "mijncluster.nl" && strpos($this->params->get('app_domain'), "mijncluster.nl") == false) {
-            return false;
+            //return false;
         }
 
         /*
@@ -56,12 +56,21 @@ class MijnclusterFixtures extends Fixture
         $section = new Section();
         $section->setStage($stage);
         $section->setName('Datum en tijd');
-        $section->setDescription('Wanneer vindt het afscheid plaats?');
+        $section->setDescription('Wanneer gaat u verhuizen');
         $section->setProperties([
-            "{$this->commonGroundService->getComponent('vtc')['location']}/properties/fbc9c518-8971-4257-bf81-68cbd9af84d3",
-            "{$this->commonGroundService->getComponent('vtc')['location']}/properties/c6623907-a2cc-490e-a4cf-4bc3eaaadeba"
+            "{$this->commonGroundService->getComponent('vtc')['location']}/properties/fbc9c518-8971-4257-bf81-68cbd9af84d3"
             ]);
         $manager->persist($section);
+
+        $section = new Section();
+        $section->setStage($stage);
+        $section->setName('Locatie');
+        $section->setDescription('Waarheen gaat u verhuizen');
+        $section->setProperties([
+            "{$this->commonGroundService->getComponent('vtc')['location']}/properties/c6623907-a2cc-490e-a4cf-4bc3eaaadeba"
+        ]);
+        $manager->persist($section);
+
 
         $manager->flush();
     }

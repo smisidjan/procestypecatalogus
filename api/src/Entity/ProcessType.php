@@ -10,12 +10,14 @@ use ApiPlatform\Core\Bridge\Doctrine\Orm\Filter\OrderFilter;
 use ApiPlatform\Core\Bridge\Doctrine\Orm\Filter\SearchFilter;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
+use Doctrine\Common\Collections\Criteria;
 use Doctrine\ORM\Mapping as ORM;
 use Gedmo\Mapping\Annotation as Gedmo;
 use Ramsey\Uuid\UuidInterface;
 use Symfony\Component\Serializer\Annotation\Groups;
 use Symfony\Component\Serializer\Annotation\MaxDepth;
 use Symfony\Component\Validator\Constraints as Assert;
+
 
 /**
  * A process.
@@ -336,6 +338,42 @@ class ProcessType
         }
 
         return $this;
+    }
+
+    // Stages logic
+
+    public function getFirstStage()
+    {
+        return $this->getStages()->first();
+    }
+
+    public function getLastStage()
+    {
+        return $this->getStages()->last();
+    }
+
+    public function getPreviousStage($stage)
+    {
+        $criteria = Criteria::create()
+            ->andWhere(Criteria::expr()->lt('orderNumber', $stage->getOrderNumber()));
+
+        return $this->getStages()->matching($criteria)->last();
+    }
+
+    public function getNextStage($stage)
+    {
+        $criteria = Criteria::create()
+            ->andWhere(Criteria::expr()->gt('orderNumber', $stage->getOrderNumber()));
+
+        return $this->getStages()->matching($criteria)->first();
+    }
+
+    public function getMaxStage()
+    {
+        if($this->getLastStage() && $this->getLastStage()->getOrderNumber()){
+            return $this->getLastStage()->getOrderNumber();
+        }
+        return 0;
     }
 
     public function getRequestType(): ?string
