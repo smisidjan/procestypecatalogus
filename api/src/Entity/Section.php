@@ -141,7 +141,7 @@ class Section
      * @var Section the next Section in the stage
      *
      * @MaxDepth(1)
-     * @Groups({"write"}))
+     * @Groups({"write","read"}))
      * @ORM\OneToOne(targetEntity="App\Entity\Section", inversedBy="previous", cascade={"persist", "remove"})
      */
     private $next;
@@ -150,10 +150,19 @@ class Section
      * @var Section the previous Section in the stage
      *
      * @MaxDepth(1)
-     * @Groups({"write"}))
+     * @Groups({"write","read"}))
      * @ORM\OneToOne(targetEntity="App\Entity\Section", mappedBy="next", cascade={"persist", "remove"})
      */
     private $previous;
+
+    /**
+     * @var int The place in the order where the section should be rendered
+     *
+     * @Assert\NotNull
+     * @Groups({"read","write"})
+     * @ORM\Column(type="integer")
+     */
+    private $orderNumber;
 
     public function getId(): ?Uuid
     {
@@ -270,6 +279,18 @@ class Section
         if ($previous->getNext() !== $newNext) {
             $previous->setNext($newNext);
         }
+
+        return $this;
+    }
+
+    public function getOrderNumber(): ?int
+    {
+        return $this->orderNumber;
+    }
+
+    public function setOrderNumber(int $orderNumber): self
+    {
+        $this->orderNumber = $orderNumber;
 
         return $this;
     }
