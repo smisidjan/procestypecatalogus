@@ -61,8 +61,8 @@ class MijnclusterFixtures extends Fixture
         $section->setDescription('Wanneer vindt het afscheid plaats?');
         $section->setOrderNumber(1);
         $section->setProperties([
-            $this->commonGroundService->cleanUrl("{$this->commonGroundService->getComponent('vtc')['location']}/properties/fbc9c518-8971-4257-bf81-68cbd9af84d3"),
-            $this->commonGroundService->cleanUrl("{$this->commonGroundService->getComponent('vtc')['location']}/properties/c6623907-a2cc-490e-a4cf-4bc3eaaadeba")
+            "{$this->commonGroundService->getComponent('vtc')['location']}/properties/fbc9c518-8971-4257-bf81-68cbd9af84d3",
+            "{$this->commonGroundService->getComponent('vtc')['location']}/properties/c6623907-a2cc-490e-a4cf-4bc3eaaadeba"
             ]);
         $manager->persist($section);
 
