@@ -157,6 +157,7 @@ class ProcessType
      * @Groups({"read", "write"})
      * @Assert\Valid
      * @ORM\OneToMany(targetEntity="App\Entity\Stage", mappedBy="process", orphanRemoval=true, fetch="EAGER", cascade={"persist"})
+     * @ORM\OrderBy({"orderNumber" = "ASC"})
      */
     private $stages;
 

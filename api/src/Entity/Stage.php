@@ -241,7 +241,8 @@ class Stage
      *
      * @Groups({"read","write"})
      * @MaxDepth(1)
-     * @ORM\OneToMany(targetEntity="App\Entity\Section", mappedBy="stage", orphanRemoval=true)
+     * @ORM\OneToMany(targetEntity="App\Entity\Section", mappedBy="stage", orphanRemoval=true, cascade={"persist"})
+     * @ORM\OrderBy({"orderNumber" = "ASC"})
      */
     private $sections;
 
