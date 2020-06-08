@@ -162,6 +162,7 @@ class Stage
      * @var ProcessType ProcessType The process that this stage belongs to
      *
      * @MaxDepth(1)
+     * @Groups({"read","write"})
      * @Assert\NotBlank
      * @ORM\ManyToOne(targetEntity="App\Entity\ProcessType", inversedBy="stages")
      * @ORM\JoinColumn(nullable=false)

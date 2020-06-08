@@ -332,7 +332,7 @@ class ProcessType
         if ($this->stages->contains($stage)) {
             $this->stages->removeElement($stage);
             // set the owning side to null (unless already changed)
-            if ($stage->setProcess() === $this) {
+            if ($stage->getProcess() === $this) {
                 $stage->setProcess(null);
             }
         }
