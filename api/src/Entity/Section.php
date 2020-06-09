@@ -9,7 +9,6 @@ use ApiPlatform\Core\Bridge\Doctrine\Orm\Filter\DateFilter;
 use ApiPlatform\Core\Bridge\Doctrine\Orm\Filter\OrderFilter;
 use ApiPlatform\Core\Bridge\Doctrine\Orm\Filter\SearchFilter;
 use Doctrine\ORM\Mapping as ORM;
-use Doctrine\Common\Collections\Criteria;
 use Gedmo\Mapping\Annotation as Gedmo;
 use Ramsey\Uuid\Uuid;
 use Ramsey\Uuid\UuidInterface;
@@ -253,7 +252,7 @@ class Section
 
     public function getStart(): ?bool
     {
-        if($this->getStage()->getFirstSection() == $this){
+        if ($this->getStage()->getFirstSection() == $this) {
             return true;
         }
 
@@ -262,13 +261,12 @@ class Section
 
     public function getEnd(): ?bool
     {
-        if($this->getStage()->getLastSection() == $this){
+        if ($this->getStage()->getLastSection() == $this) {
             return true;
         }
 
         return false;
     }
-
 
     public function getPrevious()
     {
@@ -279,7 +277,6 @@ class Section
     {
         return $this->getProessType()->getPreviousSection($this);
     }
-
 
     public function getOrderNumber(): ?int
     {
@@ -298,7 +295,7 @@ class Section
      */
     public function preFillOrderNumber()
     {
-        if(!$this->orderNumber || $this->orderNumber <= 0){
+        if (!$this->orderNumber || $this->orderNumber <= 0) {
             $this->orderNumber = $this->getStage()->getSections()->indexOf($this) + 1;
         }
     }
