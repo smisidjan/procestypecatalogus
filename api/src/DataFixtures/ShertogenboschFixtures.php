@@ -38,7 +38,7 @@ class ShertogenboschFixtures extends Fixture
          *  Verhuizen
          */
         $id = Uuid::fromString('c8de2851-332d-4284-b86e-ba0615694427');
-        $processType= new ProcessType();
+        $processType = new ProcessType();
         $processType->setName('Verhuizen');
         $processType->setIcon('fal fa-truck-moving');
         $processType->setDescription('Het doorgeven van een verhuizing aan een gemeente ');
@@ -48,7 +48,7 @@ class ShertogenboschFixtures extends Fixture
         $processType->setId($id);
         $manager->persist($processType);
         $manager->flush();
-        $processType= $manager->getRepository('App:ProcessType')->findOneBy(array('id'=> $id));
+        $processType = $manager->getRepository('App:ProcessType')->findOneBy(['id'=> $id]);
 
         $stage = new Stage();
         $stage->setName('Waarheen en Waneer');
@@ -64,8 +64,8 @@ class ShertogenboschFixtures extends Fixture
         $section->setDescription('Wanneer vindt het afscheid plaats?');
         $section->setProperties([
             "{$this->commonGroundService->getComponent('vtc')['location']}/properties/77aa09c9-c3d5-4764-9670-9ea08362341b",
-            "{$this->commonGroundService->getComponent('vtc')['location']}/properties/4b77bd59-d198-4aaf-ae0c-f66b16a6893d"
-            ]);
+            "{$this->commonGroundService->getComponent('vtc')['location']}/properties/4b77bd59-d198-4aaf-ae0c-f66b16a6893d",
+        ]);
         $manager->persist($section);
 
         $manager->flush();

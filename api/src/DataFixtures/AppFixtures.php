@@ -26,7 +26,7 @@ class AppFixtures extends Fixture
     {
         if ((strpos($this->params->get('app_domain'), 'zuiddrecht.nl') == false && strpos($this->params->get('app_domain'), 'zaakonline.nl') == false)
             || ($this->params->get('app_domain') != 'zuiddrecht.nl' && $this->params->get('app_domain') != 'zaakonline.nl')
-            || $this->params->get('app_domain') == 'begraven.zaakonline.nl' || $this->params->get('app_domain')=='westfriesland.commonground.nu') {
+            || $this->params->get('app_domain') == 'begraven.zaakonline.nl' || $this->params->get('app_domain') == 'westfriesland.commonground.nu') {
             return false;
         }
         /*
