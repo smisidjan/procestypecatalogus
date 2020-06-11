@@ -82,7 +82,6 @@ class BegravenFixtures extends Fixture
         $stage->setIcon('fal fa-calendar');
         $stage->setSlug('datum');
 
-
         $section = new Section();
         $section->setName('Datum en tijd');
         $section->setDescription('Wanneer vindt het afscheid plaats?');
@@ -143,7 +142,7 @@ class BegravenFixtures extends Fixture
         $processType->setId($id);
         $manager->persist($processType);
         $manager->flush();
-        $processType= $manager->getRepository('App:ProcessType')->findOneBy(array('id'=> $id));
+        $processType = $manager->getRepository('App:ProcessType')->findOneBy(['id'=> $id]);
 
         /*
          *  Huwelijk
@@ -290,7 +289,7 @@ class BegravenFixtures extends Fixture
         $processType->setId($id);
         $manager->persist($processType);
         $manager->flush();
-        $processType= $manager->getRepository('App:ProcessType')->findOneBy(array('id'=> $id));
+        $processType = $manager->getRepository('App:ProcessType')->findOneBy(['id'=> $id]);
 
         $manager->flush();
     }

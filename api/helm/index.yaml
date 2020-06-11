@@ -3,14 +3,14 @@ entries:
   ptc:
   - apiVersion: v1
     appVersion: V.0.1
-    created: "2020-06-11T05:56:09.606574042Z"
+    created: "2020-06-08T19:40:08.568693059Z"
     description: '&#039;Naast deze JSON rest API is er ook een [graphql](/graphql)
       interface beschikbaar.&#039;'
-    digest: 9990c7c9e305d032eff80e3ca1e305ab28d3bdcf439373604d7c68a4cb847c49
+    digest: 09a1f1073facf02d7f0e23d8a0ea7deac0e266e9c49eb41245bdae4549d60db3
     home: ptc.zaakonline.nl
     icon: ptc.zaakonline.nl
     name: ptc
     urls:
     - ptc-0.1.0.tgz
     version: 0.1.0
-generated: "2020-06-11T05:56:09.600240042Z"
+generated: "2020-06-08T19:40:08.562994059Z"

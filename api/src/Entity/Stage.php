@@ -162,6 +162,7 @@ class Stage
      * @var ProcessType ProcessType The process that this stage belongs to
      *
      * @MaxDepth(1)
+     * @Groups({"read","write"})
      * @Assert\NotBlank
      * @ORM\ManyToOne(targetEntity="App\Entity\ProcessType", inversedBy="stages")
      * @ORM\JoinColumn(nullable=false)
@@ -365,7 +366,6 @@ class Stage
         return $this->getProcess()->getNextStage($this);
     }
 
-
     public function getProperty(): ?string
     {
         return $this->property;
@@ -392,7 +392,7 @@ class Stage
 
     public function getStart(): ?bool
     {
-        if($this->getProcess()->getFirstStage() == $this){
+        if ($this->getProcess()->getFirstStage() == $this) {
             return true;
         }
 
@@ -401,7 +401,7 @@ class Stage
 
     public function getEnd(): ?bool
     {
-        if($this->getProcess()->getLastStage() == $this){
+        if ($this->getProcess()->getLastStage() == $this) {
             return true;
         }
 
@@ -493,9 +493,10 @@ class Stage
 
     public function getMaxSection()
     {
-        if($this->getLastSection() && $this->getLastSection()->getOrderNumber()){
+        if ($this->getLastSection() && $this->getLastSection()->getOrderNumber()) {
             return $this->getLastSection()->getOrderNumber();
         }
+
         return 0;
     }
 
@@ -516,7 +517,7 @@ class Stage
      */
     public function preFillOrderNumber()
     {
-        if(!$this->orderNumber || $this->orderNumber <= 0){
+        if (!$this->orderNumber || $this->orderNumber <= 0) {
             $this->orderNumber = $this->getProcess()->getStages()->indexOf($this) + 1;
         }
     }
