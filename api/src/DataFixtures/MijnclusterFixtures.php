@@ -26,8 +26,8 @@ class MijnclusterFixtures extends Fixture
     {
         // Lets make sure we only run these fixtures on larping enviroment
         if (
-            $this->params->get('app_domain') != "mijncluster.nl" && strpos($this->params->get('app_domain'), "mijncluster.nl") == false &&
-            $this->params->get('app_domain') != "zuid-drecht.nl" && strpos($this->params->get('app_domain'), "zuid-drecht.nl") == false
+            ($this->params->get('app_domain') != "mijncluster.nl" && strpos($this->params->get('app_domain'), "mijncluster.nl") == false) ||
+            ($this->params->get('app_domain') != "zuid-drecht.nl" && strpos($this->params->get('app_domain'), "zuid-drecht.nl") == false)
         ) {
             return false;
         }
@@ -54,7 +54,6 @@ class MijnclusterFixtures extends Fixture
         $stage->setIcon('fal fa-calendar');
         $stage->setSlug('gegevens');
         $stage->setProcess($processType);
-        $stage->setStart(true);
         $stage->setOrderNumber(1);
         $manager->persist($stage);
 
