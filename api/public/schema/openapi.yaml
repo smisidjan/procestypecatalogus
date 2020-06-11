@@ -6022,6 +6022,9 @@ components:
         validation:
           description: 'The validation rules that this stage adheres to'
           type: string
+        process:
+          description: 'ProcessType The process that this stage belongs to'
+          $ref: '#/components/schemas/ProcessType-read'
         next:
           readOnly: true
         previous:
@@ -6061,12 +6064,14 @@ components:
           type: integer
       required:
         - name
+        - process
         - orderNumber
     Stage-write:
       type: object
       description: 'A single stage within a process.'
       required:
         - name
+        - process
         - orderNumber
       properties:
         name:
@@ -6079,6 +6084,9 @@ components:
         options:
           description: 'The options or configuration for this stage'
           type: string
+        process:
+          description: 'ProcessType The process that this stage belongs to'
+          $ref: '#/components/schemas/ProcessType-write'
         property:
           type: string
           nullable: true
@@ -6131,6 +6139,9 @@ components:
         validation:
           description: 'The validation rules that this stage adheres to'
           type: string
+        process:
+          description: 'ProcessType The process that this stage belongs to'
+          $ref: '#/components/schemas/ProcessType:jsonld-read'
         next:
           readOnly: true
         previous:
@@ -6170,12 +6181,14 @@ components:
           type: integer
       required:
         - name
+        - process
         - orderNumber
     'Stage:jsonld-write':
       type: object
       description: 'A single stage within a process.'
       required:
         - name
+        - process
         - orderNumber
       properties:
         '@context':
@@ -6197,6 +6210,9 @@ components:
         options:
           description: 'The options or configuration for this stage'
           type: string
+        process:
+          description: 'ProcessType The process that this stage belongs to'
+          $ref: '#/components/schemas/ProcessType:jsonld-write'
         property:
           type: string
           nullable: true
@@ -6405,6 +6421,9 @@ definitions:
       orderNumber:
         description: 'The place in the order where the stage should be rendered'
         type: int
+      process:
+        description: 'ProcessType The process that this stage belongs to'
+        type: \ProcessType
       sections:
         description: 'the sections of this stage'
         type: \ArrayCollection
@@ -6438,6 +6457,9 @@ definitions:
       orderNumber:
         description: 'The place in the order where the stage should be rendered'
         type: int
+      process:
+        description: 'ProcessType The process that this stage belongs to'
+        type: \ProcessType
       sections:
         description: 'the sections of this stage'
         type: \ArrayCollection
@@ -6548,12 +6570,12 @@ definitions:
         description: 'The moment this request was created'
         type: string
         format: date-time
-        example: '2020-06-08 19:41:13'
+        example: '2020-06-11 09:46:21'
       dateModified:
         description: 'The moment this request last Modified'
         type: string
         format: date-time
-        example: '2020-06-08 19:41:13'
+        example: '2020-06-11 09:46:21'
     required: []
   AuditTrail-write:
     properties:
@@ -6601,12 +6623,12 @@ definitions:
         description: 'The moment this request was created'
         type: string
         format: date-time
-        example: '2020-06-08 19:41:13'
+        example: '2020-06-11 09:46:21'
       dateModified:
         description: 'The moment this request last Modified'
         type: string
         format: date-time
-        example: '2020-06-08 19:41:13'
+        example: '2020-06-11 09:46:21'
     required: []
   ChangeLog-write:
     properties:
