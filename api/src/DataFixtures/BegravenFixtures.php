@@ -49,11 +49,11 @@ class BegravenFixtures extends Fixture
         $processType = $manager->getRepository('App:ProcessType')->findOneBy(['id'=> $id]);
 
         $stage = new Stage();
-        $stage->setName('Begraafplaats');
+        $stage->setName('Gemeente');
         $stage->setIcon('fal fa-headstone');
-        $stage->setSlug('begraafplaats');
-        $stage->setDescription('De gegevens van de begrafenis');
-        $stage->setSlug('begraafplaats');
+        $stage->setSlug('gemeente');
+        $stage->setDescription('De gemeente waarin de begrafenis plaats moet vinden');
+        $stage->setSlug('gemeente');
 
         $section = new Section();
         $section->setName('Gemeente');
@@ -61,11 +61,29 @@ class BegravenFixtures extends Fixture
         $section->setProperties(["{$this->commonGroundService->getComponent('vtc')['location']}/properties/72fdd281-c60d-4e2d-8b7d-d266303bdc46"]);
         $stage->addSection($section);
 
+        $processType->addStage($stage);
+
+        $stage = new Stage();
+        $stage->setName('Begraafplaats');
+        $stage->setIcon('fal fa-headstone');
+        $stage->setSlug('begraafplaats');
+        $stage->setDescription('De gegevens van de begrafenis');
+        $stage->setSlug('begraafplaats');
+
         $section = new Section();
         $section->setName('Begraafplaats');
         $section->setDescription('Op welke begraafplaats wilt u iemand begraven?');
         $section->setProperties(["{$this->commonGroundService->getComponent('vtc')['location']}/properties/bdae2f7b-21c3-4d88-be6d-a35b31c13916"]);
         $stage->addSection($section);
+
+        $processType->addStage($stage);
+
+        $stage = new Stage();
+        $stage->setName('Grafsoort');
+        $stage->setIcon('fal fa-headstone');
+        $stage->setSlug('grafsoort');
+        $stage->setDescription('Het soort graf waarin de overledene wordt begraven');
+        $stage->setSlug('grafsoort');
 
         $section = new Section();
         $section->setName('Soort graf');
