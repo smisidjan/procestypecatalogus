@@ -11,7 +11,7 @@ use Doctrine\Common\Persistence\ObjectManager;
 use Ramsey\Uuid\Uuid;
 use Symfony\Component\DependencyInjection\ParameterBag\ParameterBagInterface;
 
-class HuwelijksplannerFixtures extends Fixture
+class BegravenFixtures extends Fixture
 {
     private $commonGroundService;
     private $params;
@@ -25,7 +25,8 @@ class HuwelijksplannerFixtures extends Fixture
     public function load(ObjectManager $manager)
     {
         if (
-            $this->params->get('app_domain') != "huwelijksplanner.online" && strpos($this->params->get('app_domain'), "huwelijksplanner.online") == false
+            $this->params->get('app_domain') != "zuiddrecht.nl" && strpos($this->params->get('app_domain'), "zuiddrecht.nl") == false &&
+            $this->params->get('app_domain') != "zuid-drecht.nl" && strpos($this->params->get('app_domain'), "zuid-drecht.nl") == false 
         ) {
             return false;
         }
