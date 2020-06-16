@@ -74,16 +74,18 @@ class HuwelijksplannerFixtures extends Fixture
         $processType->addStage($stage);
 
         $stage = new Stage();
-        $stage->setName('Ambtenaar en Locatie');
+        $stage->setName('Locatie');
         $stage->setIcon('fal fa-users');
         $stage->setSlug('ambtenaar-locatie');
         $stage->setDescription('Wie treed op als belanghebbende?');
 
+        /*
         $section = new Section();
         $section->setName('Ambtenaar');
         $section->setDescription('Trouwen of partnerschap');
         $section->setProperties(["{$this->commonGroundService->getComponent('vtc')['location']}/properties/db69ce35-4ae1-4aac-936f-bdb5d4d1ff18"]);
         $stage->addSection($section);
+        */
 
         $section = new Section();
         $section->setName('Locatie');
