@@ -25,10 +25,9 @@ class BegravenFixtures extends Fixture
     public function load(ObjectManager $manager)
     {
         if (
-            strpos($this->params->get('app_domain'), 'begraven.zaakonline.nl') == false &&
-            $this->params->get('app_domain') != 'begraven.zaakonline.nl' &&
-            strpos($this->params->get('app_domain'), 'westfriesland.commonground.nu') == false &&
-            $this->params->get('app_domain') != 'westfriesland.commonground.nu'
+            ($this->params->get('app_domain') != "begraven.zaakonline.nl" && strpos($this->params->get('app_domain'), "begraven.zaakonline.nl") == false) &&
+            ($this->params->get('app_domain') != "westfriesland.commonground.nu" && strpos($this->params->get('app_domain'), "westfriesland.commonground.nu") == false) &&
+            ($this->params->get('app_domain') != "zuid-drecht.nl" && strpos($this->params->get('app_domain'), "zuid-drecht.nl") == false)
         ) {
             return false;
         }
@@ -50,11 +49,11 @@ class BegravenFixtures extends Fixture
         $processType = $manager->getRepository('App:ProcessType')->findOneBy(['id'=> $id]);
 
         $stage = new Stage();
-        $stage->setName('Begraafplaats');
+        $stage->setName('Gemeente');
         $stage->setIcon('fal fa-headstone');
-        $stage->setSlug('begraafplaats');
-        $stage->setDescription('De gegevens van de begrafenis');
-        $stage->setSlug('begraafplaats');
+        $stage->setSlug('gemeente');
+        $stage->setDescription('De gemeente waarin de begrafenis plaats moet vinden');
+        $stage->setSlug('gemeente');
 
         $section = new Section();
         $section->setName('Gemeente');
@@ -62,11 +61,29 @@ class BegravenFixtures extends Fixture
         $section->setProperties(["{$this->commonGroundService->getComponent('vtc')['location']}/properties/72fdd281-c60d-4e2d-8b7d-d266303bdc46"]);
         $stage->addSection($section);
 
+        $processType->addStage($stage);
+
+        $stage = new Stage();
+        $stage->setName('Begraafplaats');
+        $stage->setIcon('fal fa-headstone');
+        $stage->setSlug('begraafplaats');
+        $stage->setDescription('De gegevens van de begrafenis');
+        $stage->setSlug('begraafplaats');
+
         $section = new Section();
         $section->setName('Begraafplaats');
         $section->setDescription('Op welke begraafplaats wilt u iemand begraven?');
         $section->setProperties(["{$this->commonGroundService->getComponent('vtc')['location']}/properties/bdae2f7b-21c3-4d88-be6d-a35b31c13916"]);
         $stage->addSection($section);
+
+        $processType->addStage($stage);
+
+        $stage = new Stage();
+        $stage->setName('Grafsoort');
+        $stage->setIcon('fal fa-headstone');
+        $stage->setSlug('grafsoort');
+        $stage->setDescription('Het soort graf waarin de overledene wordt begraven');
+        $stage->setSlug('grafsoort');
 
         $section = new Section();
         $section->setName('Soort graf');
@@ -82,6 +99,7 @@ class BegravenFixtures extends Fixture
         $stage->setDescription('Wanneer gaat het afscheid plaatsvinden?');
         $stage->setIcon('fal fa-calendar');
         $stage->setSlug('datum');
+
 
         $section = new Section();
         $section->setName('Datum en tijd');
@@ -138,35 +156,12 @@ class BegravenFixtures extends Fixture
         // Add the stage to the procces type
         $processType->addStage($stage);
 
-        // asd
+        // Save it all to the db
         $manager->persist($processType);
         $processType->setId($id);
         $manager->persist($processType);
         $manager->flush();
-        $processType = $manager->getRepository('App:ProcessType')->findOneBy(['id'=> $id]);
-
-        /*
-         *  Huwelijk
-         */
-        $id = Uuid::fromString('5b10c1d6-7121-4be2-b479-7523f1b625f1');
-        $processType = new ProcessType();
-        $processType->setIcon('fal fa-rings-wedding');
-        $processType->setSourceOrganization('000');
-        $processType->setName('Huwelijk / Partnerschap');
-        $processType->setDescription('Huwelijk / Partnerschap');
-        $processType->setRequestType("{$this->commonGroundService->getComponent('vtc')['location']}/request_types/5b10c1d6-7121-4be2-b479-7523f1b625f1");
-        $manager->persist($processType);
-        $processType->setId($id);
-        $manager->persist($processType);
-        $manager->flush();
-        $processType = $manager->getRepository('App:ProcessType')->findOneBy(['id'=> $id]);
-
-        // asd
-        $manager->persist($processType);
-        $processType->setId($id);
-        $manager->persist($processType);
-        $manager->flush();
-        $processType = $manager->getRepository('App:ProcessType')->findOneBy(['id'=> $id]);
+        $processType= $manager->getRepository('App:ProcessType')->findOneBy(array('id'=> $id));
 
         $manager->flush();
     }

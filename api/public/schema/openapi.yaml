@@ -6022,6 +6022,9 @@ components:
         validation:
           description: 'The validation rules that this stage adheres to'
           type: string
+        process:
+          description: 'ProcessType The process that this stage belongs to'
+          $ref: '#/components/schemas/ProcessType-read'
         next:
           readOnly: true
         previous:
@@ -6061,12 +6064,14 @@ components:
           type: integer
       required:
         - name
+        - process
         - orderNumber
     Stage-write:
       type: object
       description: 'A single stage within a process.'
       required:
         - name
+        - process
         - orderNumber
       properties:
         name:
@@ -6079,6 +6084,9 @@ components:
         options:
           description: 'The options or configuration for this stage'
           type: string
+        process:
+          description: 'ProcessType The process that this stage belongs to'
+          $ref: '#/components/schemas/ProcessType-write'
         property:
           type: string
           nullable: true
@@ -6131,6 +6139,9 @@ components:
         validation:
           description: 'The validation rules that this stage adheres to'
           type: string
+        process:
+          description: 'ProcessType The process that this stage belongs to'
+          $ref: '#/components/schemas/ProcessType:jsonld-read'
         next:
           readOnly: true
         previous:
@@ -6170,12 +6181,14 @@ components:
           type: integer
       required:
         - name
+        - process
         - orderNumber
     'Stage:jsonld-write':
       type: object
       description: 'A single stage within a process.'
       required:
         - name
+        - process
         - orderNumber
       properties:
         '@context':
@@ -6197,6 +6210,9 @@ components:
         options:
           description: 'The options or configuration for this stage'
           type: string
+        process:
+          description: 'ProcessType The process that this stage belongs to'
+          $ref: '#/components/schemas/ProcessType:jsonld-write'
         property:
           type: string
           nullable: true
@@ -6298,93 +6314,6 @@ definitions:
     required:
       - name
       - sourceOrganization
-  Stage-read:
-    properties:
-      id:
-        description: 'The UUID identifier of this object'
-        type: string
-        example: e2984465-190a-4562-829e-a8cca81aa35d
-        format: uuid
-      name:
-        description: 'The name of this stage'
-        type: string
-        example: 'Stage 1'
-        maxLength: 255
-      description:
-        description: 'An short description of this stage'
-        type: string
-        example: 'Please enter your email adres'
-        maxLength: 2550
-      icon:
-        description: 'The icon of this property'
-        type: string
-        example: 'My Property'
-        maxLength: 255
-        minLength: 15
-      options:
-        description: 'The options or configuration for this stage'
-        type: object
-        example: my-organisation
-      validation:
-        description: 'The validation rules that this stage adheres to'
-        type: object
-        example: my-organisation
-        maxLength: 255
-      property: []
-      slug:
-        description: 'The slug of this property'
-        type: string
-        example: my-slug
-        maxLength: 255
-        minLength: 15
-      dateCreated:
-        description: 'The moment this request was created'
-        type: \Datetime
-      dateModified:
-        description: 'The moment this request last Modified'
-        type: \Datetime
-      orderNumber:
-        description: 'The place in the order where the stage should be rendered'
-        type: int
-      sections:
-        description: 'the sections of this stage'
-        type: \ArrayCollection
-    required:
-      - name
-      - orderNumber
-  Stage-write:
-    properties:
-      name:
-        description: 'The name of this stage'
-        type: string
-        example: 'Stage 1'
-        maxLength: 255
-      icon:
-        description: 'The icon of this property'
-        type: string
-        example: 'My Property'
-        maxLength: 255
-        minLength: 15
-      options:
-        description: 'The options or configuration for this stage'
-        type: object
-        example: my-organisation
-      property: []
-      slug:
-        description: 'The slug of this property'
-        type: string
-        example: my-slug
-        maxLength: 255
-        minLength: 15
-      orderNumber:
-        description: 'The place in the order where the stage should be rendered'
-        type: int
-      sections:
-        description: 'the sections of this stage'
-        type: \ArrayCollection
-    required:
-      - name
-      - orderNumber
   Section-read:
     properties:
       id:
@@ -6441,6 +6370,99 @@ definitions:
       stage:
         description: 'the stage this section belongs to'
         type: \Stage
+    required:
+      - name
+      - orderNumber
+  Stage-read:
+    properties:
+      id:
+        description: 'The UUID identifier of this object'
+        type: string
+        example: e2984465-190a-4562-829e-a8cca81aa35d
+        format: uuid
+      name:
+        description: 'The name of this stage'
+        type: string
+        example: 'Stage 1'
+        maxLength: 255
+      description:
+        description: 'An short description of this stage'
+        type: string
+        example: 'Please enter your email adres'
+        maxLength: 2550
+      icon:
+        description: 'The icon of this property'
+        type: string
+        example: 'My Property'
+        maxLength: 255
+        minLength: 15
+      options:
+        description: 'The options or configuration for this stage'
+        type: object
+        example: my-organisation
+      validation:
+        description: 'The validation rules that this stage adheres to'
+        type: object
+        example: my-organisation
+        maxLength: 255
+      property: []
+      slug:
+        description: 'The slug of this property'
+        type: string
+        example: my-slug
+        maxLength: 255
+        minLength: 15
+      dateCreated:
+        description: 'The moment this request was created'
+        type: \Datetime
+      dateModified:
+        description: 'The moment this request last Modified'
+        type: \Datetime
+      orderNumber:
+        description: 'The place in the order where the stage should be rendered'
+        type: int
+      process:
+        description: 'ProcessType The process that this stage belongs to'
+        type: \ProcessType
+      sections:
+        description: 'the sections of this stage'
+        type: \ArrayCollection
+    required:
+      - name
+      - orderNumber
+  Stage-write:
+    properties:
+      name:
+        description: 'The name of this stage'
+        type: string
+        example: 'Stage 1'
+        maxLength: 255
+      icon:
+        description: 'The icon of this property'
+        type: string
+        example: 'My Property'
+        maxLength: 255
+        minLength: 15
+      options:
+        description: 'The options or configuration for this stage'
+        type: object
+        example: my-organisation
+      property: []
+      slug:
+        description: 'The slug of this property'
+        type: string
+        example: my-slug
+        maxLength: 255
+        minLength: 15
+      orderNumber:
+        description: 'The place in the order where the stage should be rendered'
+        type: int
+      process:
+        description: 'ProcessType The process that this stage belongs to'
+        type: \ProcessType
+      sections:
+        description: 'the sections of this stage'
+        type: \ArrayCollection
     required:
       - name
       - orderNumber
@@ -6548,12 +6570,12 @@ definitions:
         description: 'The moment this request was created'
         type: string
         format: date-time
-        example: '2020-06-08 19:41:13'
+        example: '2020-06-11 09:46:21'
       dateModified:
         description: 'The moment this request last Modified'
         type: string
         format: date-time
-        example: '2020-06-08 19:41:13'
+        example: '2020-06-11 09:46:21'
     required: []
   AuditTrail-write:
     properties:
@@ -6601,12 +6623,12 @@ definitions:
         description: 'The moment this request was created'
         type: string
         format: date-time
-        example: '2020-06-08 19:41:13'
+        example: '2020-06-11 09:46:21'
       dateModified:
         description: 'The moment this request last Modified'
         type: string
         format: date-time
-        example: '2020-06-08 19:41:13'
+        example: '2020-06-11 09:46:21'
     required: []
   ChangeLog-write:
     properties:
@@ -6624,15 +6646,15 @@ tags:
       
       
   -
-    name: Stage
-    description: |
-      A single stage within a process.
-      
-      
-  -
     name: Section
     description: |
       
+      
+      
+  -
+    name: Stage
+    description: |
+      A single stage within a process.
       
       
   -
