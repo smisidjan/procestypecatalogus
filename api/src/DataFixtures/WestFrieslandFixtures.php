@@ -11,7 +11,7 @@ use Doctrine\Common\Persistence\ObjectManager;
 use Ramsey\Uuid\Uuid;
 use Symfony\Component\DependencyInjection\ParameterBag\ParameterBagInterface;
 
-class BegravenFixtures extends Fixture
+class WestFrieslandFixtures extends Fixture
 {
     private $commonGroundService;
     private $params;
@@ -150,7 +150,7 @@ class BegravenFixtures extends Fixture
         $section = new Section();
         $section->setName('Belanghebbende');
         $section->setDescription('Wie treed er op als belanghebbende?');
-        $section->setProperties(["{$this->commonGroundService->getComponent('vtc')['location']}/properties/db69ce35-4ae1-4aac-936f-bdb5d4d1ff18"]);
+        $section->setProperties(["{$this->commonGroundService->getComponent('vtc')['location']}/properties/24d3e05d-26c2-4adb-acd4-08bde88b4526"]);
         $stage->addSection($section);
 
         // Add the stage to the procces type
