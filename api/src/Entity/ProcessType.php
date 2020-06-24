@@ -18,7 +18,6 @@ use Symfony\Component\Serializer\Annotation\Groups;
 use Symfony\Component\Serializer\Annotation\MaxDepth;
 use Symfony\Component\Validator\Constraints as Assert;
 
-
 /**
  * A process.
  *
@@ -370,9 +369,10 @@ class ProcessType
 
     public function getMaxStage()
     {
-        if($this->getLastStage() && $this->getLastStage()->getOrderNumber()){
+        if ($this->getLastStage() && $this->getLastStage()->getOrderNumber()) {
             return $this->getLastStage()->getOrderNumber();
         }
+
         return 0;
     }
 
