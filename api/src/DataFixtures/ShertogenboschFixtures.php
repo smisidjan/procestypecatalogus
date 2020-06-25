@@ -48,7 +48,7 @@ class ShertogenboschFixtures extends Fixture
         $processType->setIcon('fal fa-truck-moving');
         $processType->setDescription('Het doorgeven van een verhuizing aan een gemeente ');
         $processType->setSourceOrganization('001709124');
-        $processType->setRequestType("{$this->commonGroundService->getComponent('vtc')['location']}/request_types/37812338-fa7c-46c5-a914-bcf17339a4c5");
+        $processType->setRequestType($this->commonGroundService->cleanUrl(["component"=>"vtc","type"=>"request_types","id"=>"37812338-fa7c-46c5-a914-bcf17339a4c5"]));
         $manager->persist($processType);
         $processType->setId($id);
         $manager->persist($processType);
