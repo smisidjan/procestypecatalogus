@@ -60,19 +60,19 @@ class ZuiddrechtFixtures extends Fixture
         $section = new Section();
         $section->setName('Soort huwelijk');
         $section->setDescription('Trouwen of partnerschap');
-        $section->setProperties(["{$this->commonGroundService->getComponent('vtc')['location']}/properties/81ea285b-41c1-43ae-80f6-a8dc3c6825ff"]);
+        $section->setProperties([$this->commonGroundService->cleanUrl(["component"=>"vtc","type"=>"properties","id"=>"81ea285b-41c1-43ae-80f6-a8dc3c6825ff"])]);
         $stage->addSection($section);
 
         $section = new Section();
         $section->setName('Soort Plechtigheid');
         $section->setDescription('Trouwen of partnerschap');
-        $section->setProperties(["{$this->commonGroundService->getComponent('vtc')['location']}/properties/d16e3c3b-564b-4d8d-bad2-adb5ffac26ad"]);
+        $section->setProperties([$this->commonGroundService->cleanUrl(["component"=>"vtc","type"=>"properties","id"=>"d16e3c3b-564b-4d8d-bad2-adb5ffac26ad"])]);
         $stage->addSection($section);
 
         $section = new Section();
         $section->setName('Partner');
         $section->setDescription('Met wie wilt u trouwen');
-        $section->setProperties(["{$this->commonGroundService->getComponent('vtc')['location']}/properties/963162eb-c4b7-42f2-9b37-b8bcbf84117a"]);
+        $section->setProperties([$this->commonGroundService->cleanUrl(["component"=>"vtc","type"=>"properties","id"=>"963162eb-c4b7-42f2-9b37-b8bcbf84117a"])]);
         $stage->addSection($section);
 
         $processType->addStage($stage);
@@ -87,15 +87,14 @@ class ZuiddrechtFixtures extends Fixture
         $section = new Section();
         $section->setName('Ambtenaar');
         $section->setDescription('Trouwen of partnerschap');
-        $section->setProperties(["{$this->commonGroundService->getComponent('vtc')['location']}/properties/c9937faf-ebc2-438c-b3bb-5590a3c63464"]);
+        $section->setProperties([$this->commonGroundService->cleanUrl(["component"=>"vtc","type"=>"properties","id"=>"c9937faf-ebc2-438c-b3bb-5590a3c63464"])]);
         $stage->addSection($section);
         */
 
         $section = new Section();
         $section->setName('Locatie');
         $section->setDescription('Trouwen of partnerschap');
-        $section->setProperties(["{$this->commonGroundService->getComponent('vtc')['location']}/properties/7a59202e-c830-4a2e-839c-c11a1ce62a6a"]);
-
+        $section->setProperties([$this->commonGroundService->cleanUrl(["component"=>"vtc","type"=>"properties","id"=>"7a59202e-c830-4a2e-839c-c11a1ce62a6a"])]);
         $stage->addSection($section);
 
         $stage = new Stage();
@@ -107,7 +106,7 @@ class ZuiddrechtFixtures extends Fixture
         $section = new Section();
         $section->setName('Datum');
         $section->setDescription('Trouwen of partnerschap');
-        $section->setProperties(["{$this->commonGroundService->getComponent('vtc')['location']}/properties/e85fdb66-f8b6-4ca0-a3fb-32b11aaebcb2"]);
+        $section->setProperties([$this->commonGroundService->cleanUrl(["component"=>"vtc","type"=>"properties","id"=>"e85fdb66-f8b6-4ca0-a3fb-32b11aaebcb2"])]);
         $stage->addSection($section);
 
         $processType->addStage($stage);
@@ -121,7 +120,7 @@ class ZuiddrechtFixtures extends Fixture
         $section = new Section();
         $section->setName('Getuigen');
         $section->setDescription('Trouwen of partnerschap');
-        $section->setProperties(["{$this->commonGroundService->getComponent('vtc')['location']}/properties/3a3b2d0e-7d93-4c4b-b313-30f7cdef0c06"]);
+        $section->setProperties([$this->commonGroundService->cleanUrl(["component"=>"vtc","type"=>"properties","id"=>"3a3b2d0e-7d93-4c4b-b313-30f7cdef0c06"])]);
         $stage->addSection($section);
 
         $processType->addStage($stage);
@@ -135,39 +134,39 @@ class ZuiddrechtFixtures extends Fixture
         $section = new Section();
         $section->setName('Contact gegevens');
         $section->setDescription('Trouwen of partnerschap');
-        $section->setProperties(["{$this->commonGroundService->getComponent('vtc')['location']}/properties/db69ce35-4ae1-4aac-936f-bdb5d4d1ff18"]);
+        $section->setProperties([$this->commonGroundService->cleanUrl(["component"=>"vtc","type"=>"properties","id"=>"db69ce35-4ae1-4aac-936f-bdb5d4d1ff18"])]);
         $stage->addSection($section);
 
         /*
         $section = new Section();
         $section->setName('Naamsgebruik');
         $section->setDescription('Trouwen of partnerschap');
-        $section->setProperties(["{$this->commonGroundService->getComponent('vtc')['location']}/properties/db69ce35-4ae1-4aac-936f-bdb5d4d1ff18"]);
+        $section->setProperties([$this->commonGroundService->cleanUrl(["component"=>"vtc","type"=>"properties","id"=>"db69ce35-4ae1-4aac-936f-bdb5d4d1ff18"])]);
         $stage->addSection($section);
 
         $section = new Section();
         $section->setName('Taal');
         $section->setDescription('Trouwen of partnerschap');
-        $section->setProperties(["{$this->commonGroundService->getComponent('vtc')['location']}/properties/db69ce35-4ae1-4aac-936f-bdb5d4d1ff18"]);
+        $section->setProperties([$this->commonGroundService->cleanUrl(["component"=>"vtc","type"=>"properties","id"=>"db69ce35-4ae1-4aac-936f-bdb5d4d1ff18"])]);
         $stage->addSection($section);
         */
 
         $section = new Section();
         $section->setName('Extras');
         $section->setDescription('Trouwen of partnerschap');
-        $section->setProperties(["{$this->commonGroundService->getComponent('vtc')['location']}/properties/e6a8c45c-eae2-48a2-b215-81c3b5bf82df"]);
+        $section->setProperties([$this->commonGroundService->cleanUrl(["component"=>"vtc","type"=>"properties","id"=>"e6a8c45c-eae2-48a2-b215-81c3b5bf82df"])]);
         $stage->addSection($section);
 
         $section = new Section();
         $section->setName('Opmerkingen');
         $section->setDescription('Trouwen of partnerschap');
-        $section->setProperties(["{$this->commonGroundService->getComponent('vtc')['location']}/properties/8a047a87-61fe-435c-95a8-ffc843a8e362"]);
+        $section->setProperties([$this->commonGroundService->cleanUrl(["component"=>"vtc","type"=>"properties","id"=>"8a047a87-61fe-435c-95a8-ffc843a8e362"])]);
         $stage->addSection($section);
 
         $section = new Section();
         $section->setName('Melding voorgenomen huwelijk');
         $section->setDescription('Trouwen of partnerschap');
-        $section->setProperties(["{$this->commonGroundService->getComponent('vtc')['location']}/properties/d46c0a9c-b6db-40da-af77-09f0037def57"]);
+        $section->setProperties([$this->commonGroundService->cleanUrl(["component"=>"vtc","type"=>"properties","id"=>"d46c0a9c-b6db-40da-af77-09f0037def57"])]);
         $stage->addSection($section);
 
         $processType->addStage($stage);

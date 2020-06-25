@@ -67,9 +67,11 @@ class ShertogenboschFixtures extends Fixture
         $section->setStage($stage);
         $section->setName('Datum en tijd');
         $section->setDescription('Wanneer vindt het afscheid plaats?');
+        $section->setProperties([]);
+
         $section->setProperties([
-            "{$this->commonGroundService->getComponent('vtc')['location']}/properties/77aa09c9-c3d5-4764-9670-9ea08362341b",
-            "{$this->commonGroundService->getComponent('vtc')['location']}/properties/4b77bd59-d198-4aaf-ae0c-f66b16a6893d",
+            $this->commonGroundService->cleanUrl(["component"=>"vtc","type"=>"properties","id"=>"77aa09c9-c3d5-4764-9670-9ea08362341b"]),
+            $this->commonGroundService->cleanUrl(["component"=>"vtc","type"=>"properties","id"=>"4b77bd59-d198-4aaf-ae0c-f66b16a6893d"])
         ]);
         $manager->persist($section);
 
