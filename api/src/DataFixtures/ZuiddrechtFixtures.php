@@ -25,6 +25,9 @@ class ZuiddrechtFixtures extends Fixture
     public function load(ObjectManager $manager)
     {
         if (
+            // If build all fixtures is true we build all the fixtures
+            !$this->params->get('app_build_all_fixtures') &&
+            // Specific domain names
             $this->params->get('app_domain') != "zuiddrecht.nl" && strpos($this->params->get('app_domain'), "zuiddrecht.nl") == false &&
             $this->params->get('app_domain') != "zuid-drecht.nl" && strpos($this->params->get('app_domain'), "zuid-drecht.nl") == false
         ) {
@@ -41,7 +44,7 @@ class ZuiddrechtFixtures extends Fixture
         $processType->setSourceOrganization('000');
         $processType->setName('Huwelijk / Partnerschap');
         $processType->setDescription('Huwelijk / Partnerschap');
-        $processType->setRequestType("{$this->commonGroundService->getComponent('vtc')['location']}/request_types/d0badfff-1c90-4ddb-80fc-49842d806eaa");
+        $processType->setRequestType($this->commonGroundService->cleanUrl(["component"=>"vtc","type"=>"request_types","id"=>"d0badfff-1c90-4ddb-80fc-49842d806eaa"]));
         $manager->persist($processType);
         $processType->setId($id);
         $manager->persist($processType);

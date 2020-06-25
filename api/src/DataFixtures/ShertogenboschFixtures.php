@@ -26,14 +26,14 @@ class ShertogenboschFixtures extends Fixture
     {
         // Lets make sure we only run these fixtures on larping enviroment
         if (
-            $this->params->get('app_domain') != 'shertogenbosch.commonground.nu' &&
-            strpos($this->params->get('app_domain'), 'shertogenbosch.commonground.nu') == false &&
-            $this->params->get('app_domain') != 's-hertogenbosch.commonground.nu' &&
-            $this->params->get('app_domain') != 'verhuizen.accp.s-hertogenbosch.nl' &&
-            strpos($this->params->get('app_domain'), 'verhuizen.accp.s-hertogenbosch.nl') == false &&
-            $this->params->get('app_domain') != 'verhuizen=.s-hertogenbosch.nl' &&
-            strpos($this->params->get('app_domain'), 'verhuizen.s-hertogenbosch.nl') == false &&
-            strpos($this->params->get('app_domain'), 's-hertogenbosch.commonground.nu') == false
+            // If build all fixtures is true we build all the fixtures
+            !$this->params->get('app_build_all_fixtures') &&
+            // Specific domain names
+            $this->params->get('app_domain') != 'shertogenbosch.commonground.nu' && strpos($this->params->get('app_domain'), 'shertogenbosch.commonground.nu') == false &&
+            $this->params->get('app_domain') != 's-hertogenbosch.commonground.nu' && $this->params->get('app_domain') != 'verhuizen.accp.s-hertogenbosch.nl' &&
+            strpos($this->params->get('app_domain'), 'verhuizen.accp.s-hertogenbosch.nl') == false && $this->params->get('app_domain') != 'verhuizen=.s-hertogenbosch.nl' &&
+            strpos($this->params->get('app_domain'), 'verhuizen.s-hertogenbosch.nl') == false && strpos($this->params->get('app_domain'), 's-hertogenbosch.commonground.nu') == false &&
+            $this->params->get('app_domain') != "zuid-drecht.nl" && strpos($this->params->get('app_domain'), "zuid-drecht.nl") == false
         ) {
             return false;
         }
@@ -47,7 +47,7 @@ class ShertogenboschFixtures extends Fixture
         $processType->setIcon('fal fa-truck-moving');
         $processType->setDescription('Het doorgeven van een verhuizing aan een gemeente ');
         $processType->setSourceOrganization('001709124');
-        $processType->setRequestType("{$this->commonGroundService->getComponent('vtc')['location']}/request_types/37812338-fa7c-46c5-a914-bcf17339a4c5");
+        $processType->setRequestType($this->commonGroundService->cleanUrl(["component"=>"vtc","type"=>"request_types","id"=>"37812338-fa7c-46c5-a914-bcf17339a4c5"]));
         $manager->persist($processType);
         $processType->setId($id);
         $manager->persist($processType);
