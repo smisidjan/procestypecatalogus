@@ -39,9 +39,9 @@ class ZuiddrechtFixtures extends Fixture
          */
         $id = Uuid::fromString('993cefcc-de42-46f5-9289-5f24df5dd3c7');
         $processType = new ProcessType();
-        $processType->setName('Verhuizen');
-        $processType->setIcon('fal fa-truck-moving');
-        $processType->setDescription('Het doorgeven van een verhuizing aan een gemeente ');
+        $processType->setName('Parkeer vergunning');
+        $processType->setIcon('fas fa-parking');
+        $processType->setDescription('Aanvragen van een parkeer verguning');
         $processType->setSourceOrganization('001709124');
         $processType->setRequestType($this->commonGroundService->cleanUrl(["component"=>"vtc","type"=>"request_types","id"=>"f86591ef-6964-412b-84de-261fd47c3288"]));
         $manager->persist($processType);
@@ -153,6 +153,39 @@ class ZuiddrechtFixtures extends Fixture
         $manager->persist($section);
 
         $manager->flush();
+
+        /*
+         *  Contact Formulier
+         */
+        $id = Uuid::fromString('d1118a40-cede-42e0-b5dd-ff38e837ab0b');
+        $processType = new ProcessType();
+        $processType->setName('Contacnt');
+        $processType->setIcon('fas fa-parking');
+        $processType->setDescription('Via dit formulier neemt u contact met ons op');
+        $processType->setSourceOrganization('001709124');
+        $processType->setRequestType($this->commonGroundService->cleanUrl(["component"=>"vtc","type"=>"request_types","id"=>"3b76447e-1b4b-4b86-a582-8f6b4a5a8c6f"]));
+        $manager->persist($processType);
+        $processType->setId($id);
+        $manager->persist($processType);
+        $manager->flush();
+        $processType = $manager->getRepository('App:ProcessType')->findOneBy(['id'=> $id]);
+
+        /*
+         *  Ballie Afspraak
+         */
+        $id = Uuid::fromString('32293766-8b3a-43ee-9f16-ed67234ac309');
+        $processType = new ProcessType();
+        $processType->setName('Balie afspraak');
+        $processType->setIcon('fas fa-parking');
+        $processType->setDescription('Via dit formulier kunt u een ballie afspraak bij ons inplannen');
+        $processType->setSourceOrganization('001709124');
+        $processType->setRequestType($this->commonGroundService->cleanUrl(["component"=>"vtc","type"=>"request_types","id"=>"f86591ef-6964-412b-84de-261fd47c3288"]));
+        $manager->persist($processType);
+        $processType->setId($id);
+        $manager->persist($processType);
+        $manager->flush();
+        $processType = $manager->getRepository('App:ProcessType')->findOneBy(['id'=> $id]);
+
 
         /*
          *  Huwelijk
