@@ -35,6 +35,126 @@ class ZuiddrechtFixtures extends Fixture
         }
 
         /*
+         *  Parkeer vergunning
+         */
+        $id = Uuid::fromString('993cefcc-de42-46f5-9289-5f24df5dd3c7');
+        $processType = new ProcessType();
+        $processType->setName('Verhuizen');
+        $processType->setIcon('fal fa-truck-moving');
+        $processType->setDescription('Het doorgeven van een verhuizing aan een gemeente ');
+        $processType->setSourceOrganization('001709124');
+        $processType->setRequestType($this->commonGroundService->cleanUrl(["component"=>"vtc","type"=>"request_types","id"=>"f86591ef-6964-412b-84de-261fd47c3288"]));
+        $manager->persist($processType);
+        $processType->setId($id);
+        $manager->persist($processType);
+        $manager->flush();
+        $processType = $manager->getRepository('App:ProcessType')->findOneBy(['id'=> $id]);
+
+        $stage = new Stage();
+        $stage->setName('Is er een eigen parkeergelegenheid bij uw woning?');
+        $stage->setDescription('Is er een eigen parkeergelegenheid bij uw woning?');
+        $stage->setIcon('fas fa-parking');
+        $stage->setSlug('parkeergelegenheid');
+        $stage->setProcess($processType);
+        $manager->persist($stage);
+
+        $section = new Section();
+        $section->setStage($stage);
+        $section->setName('Parkeergelegenheid');
+        $section->setDescription('Is er een eigen parkeergelegenheid bij uw woning?');
+        $section->setProperties([
+            $this->commonGroundService->cleanUrl(["component"=>"vtc","type"=>"properties","id"=>"92461726-dc0a-4132-a466-4968a37f4620"])
+        ]);
+        $manager->persist($section);
+
+        $stage = new Stage();
+        $stage->setName('Vergunning oud adres');
+        $stage->setDescription('vergunning oud adres');
+        $stage->setIcon('fas fa-parking');
+        $stage->setSlug('oud-adres');
+        $stage->setProcess($processType);
+        $manager->persist($stage);
+
+        $section = new Section();
+        $section->setStage($stage);
+        $section->setName('vergunning oud adres');
+        $section->setDescription('Ik heb een vergunning op mijn oude adres en wil ook een vergunning op mijn nieuwe adres:');
+        $section->setProperties([
+            $this->commonGroundService->cleanUrl(["component"=>"vtc","type"=>"properties","id"=>"3539cb5f-6801-4f45-838f-9c592946a592"])
+        ]);
+        $manager->persist($section);
+
+        $stage = new Stage();
+        $stage->setName('einddatum vergunning oud adres');
+        $stage->setDescription('einddatum vergunning oud adres');
+        $stage->setIcon('fas fa-parking');
+        $stage->setSlug('einddatum');
+        $stage->setProcess($processType);
+        $manager->persist($stage);
+
+        $section = new Section();
+        $section->setStage($stage);
+        $section->setName('einddatum vergunning oud adres');
+        $section->setDescription('Gewenste einddatum vergunning op het oude adres:');
+        $section->setProperties([
+            $this->commonGroundService->cleanUrl(["component"=>"vtc","type"=>"properties","id"=>"a719f9c2-4565-488e-b0dd-f153fb6f4756"])
+        ]);
+        $manager->persist($section);
+
+        $stage = new Stage();
+        $stage->setName('kentekenbewijs');
+        $stage->setDescription('kentekenbewijs');
+        $stage->setIcon('fas fa-parking');
+        $stage->setSlug('kentekenbewijs');
+        $stage->setProcess($processType);
+        $manager->persist($stage);
+
+        $section = new Section();
+        $section->setStage($stage);
+        $section->setName('kentekenbewijs');
+        $section->setDescription('Staat uw naam op het kentenbewijs?');
+        $section->setProperties([
+            $this->commonGroundService->cleanUrl(["component"=>"vtc","type"=>"properties","id"=>"c3102b38-b07c-4392-8a31-e57d81b39d70"])
+        ]);
+        $manager->persist($section);
+
+        $stage = new Stage();
+        $stage->setName('type voertuig');
+        $stage->setDescription('type voertuig');
+        $stage->setIcon('fas fa-parking');
+        $stage->setSlug('type-voertuig');
+        $stage->setProcess($processType);
+        $manager->persist($stage);
+
+        $section = new Section();
+        $section->setStage($stage);
+        $section->setName('type voertuig');
+        $section->setDescription('U vraagt een parkeervergunning aan voor een:');
+        $section->setProperties([
+            $this->commonGroundService->cleanUrl(["component"=>"vtc","type"=>"properties","id"=>"ee8acd31-8a5e-48e9-ac16-0f73543d18c5"])
+        ]);
+        $manager->persist($section);
+
+        $stage = new Stage();
+        $stage->setName('betalen');
+        $stage->setDescription('betalen');
+        $stage->setIcon('fas fa-parking');
+        $stage->setSlug('betalen');
+        $stage->setProcess($processType);
+        $manager->persist($stage);
+
+        $section = new Section();
+        $section->setStage($stage);
+        $section->setName('betalen');
+        $section->setDescription('Hoe wilt u betalen?');
+        $section->setProperties([
+            $this->commonGroundService->cleanUrl(["component"=>"vtc","type"=>"properties","id"=>"b3ebaedc-578b-43bd-bc7e-91e5a5235de4"])
+        ]);
+        $manager->persist($section);
+
+        $manager->flush();
+
+        /*
          *  Huwelijk
          */
 
