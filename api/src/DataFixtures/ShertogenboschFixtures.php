@@ -68,10 +68,38 @@ class ShertogenboschFixtures extends Fixture
         $section->setName('Datum en tijd');
         $section->setDescription('Wanneer vindt het afscheid plaats?');
         $section->setProperties([]);
-
         $section->setProperties([
             $this->commonGroundService->cleanUrl(["component"=>"vtc","type"=>"properties","id"=>"77aa09c9-c3d5-4764-9670-9ea08362341b"]),
             $this->commonGroundService->cleanUrl(["component"=>"vtc","type"=>"properties","id"=>"4b77bd59-d198-4aaf-ae0c-f66b16a6893d"])
+        ]);
+        $manager->persist($section);
+
+        $stage = new Stage();
+        $stage->setName('Contact Gegevens');
+        $stage->setDescription('Hoe kunnen wij u berijken');
+        $stage->setIcon('fal fa-calendar');
+        $stage->setSlug('contact');
+        $stage->setProcess($processType);
+        $manager->persist($stage);
+
+        $section = new Section();
+        $section->setStage($stage);
+        $section->setName('Gegevens');
+        $section->setDescription('Waar kunnen wij u berijken als we vragen hebben over deze verhuising');
+        $section->setProperties([]);
+        $section->setProperties([
+            $this->commonGroundService->cleanUrl(["component"=>"vtc","type"=>"properties","id"=>"32061b32-1f8d-4bd7-b203-52b22585f3c9"]),
+            $this->commonGroundService->cleanUrl(["component"=>"vtc","type"=>"properties","id"=>"09cac491-a428-47eb-99ac-9717b1690620"])
+        ]);
+        $manager->persist($section);
+
+        $section = new Section();
+        $section->setStage($stage);
+        $section->setName('Melding doorzetten');
+        $section->setDescription('Het is mogenlijk om uw melding door te geven aan bijvoorbeeld de posterijen, wilt u hier gebruik van maken?');
+        $section->setProperties([]);
+        $section->setProperties([
+            $this->commonGroundService->cleanUrl(["component"=>"vtc","type"=>"properties","id"=>"f1964c98-df49-431a-a5e1-64c17d7d956b"])
         ]);
         $manager->persist($section);
 
