@@ -25,7 +25,9 @@ class WestFrieslandFixtures extends Fixture
     public function load(ObjectManager $manager)
     {
         if (
+            // If build all fixtures is true we build all the fixtures
             !$this->params->get('app_build_all_fixtures') &&
+            // Specific domain names
             ($this->params->get('app_domain') != "begraven.zaakonline.nl" && strpos($this->params->get('app_domain'), "begraven.zaakonline.nl") == false) &&
             ($this->params->get('app_domain') != "westfriesland.commonground.nu" && strpos($this->params->get('app_domain'), "westfriesland.commonground.nu") == false) &&
             ($this->params->get('app_domain') != "zuid-drecht.nl" && strpos($this->params->get('app_domain'), "zuid-drecht.nl") == false)
@@ -43,7 +45,6 @@ class WestFrieslandFixtures extends Fixture
         $processType->setName('Begraven');
         $processType->setDescription('Plan een begrafenis op een gekozen begraafplaats');
         $processType->setRequestType($this->commonGroundService->cleanUrl(["component"=>"vtc","type"=>"request_types","id"=>"c2e9824e-2566-460f-ab4c-905f20cddb6c"]));
-        //$processType->setRequestType("https://vtc.westfriesland.commonground.nu/request_types/c2e9824e-2566-460f-ab4c-905f20cddb6c");
         $manager->persist($processType);
         $processType->setId($id);
         $manager->persist($processType);

@@ -48,7 +48,7 @@ class ShertogenboschFixtures extends Fixture
         $processType->setIcon('fal fa-truck-moving');
         $processType->setDescription('Het doorgeven van een verhuizing aan een gemeente ');
         $processType->setSourceOrganization('001709124');
-        $processType->setRequestType("{$this->commonGroundService->getComponent('vtc')['location']}/request_types/37812338-fa7c-46c5-a914-bcf17339a4c5");
+        $processType->setRequestType($this->commonGroundService->cleanUrl(["component"=>"vtc","type"=>"request_types","id"=>"37812338-fa7c-46c5-a914-bcf17339a4c5"]));
         $manager->persist($processType);
         $processType->setId($id);
         $manager->persist($processType);
@@ -67,9 +67,39 @@ class ShertogenboschFixtures extends Fixture
         $section->setStage($stage);
         $section->setName('Datum en tijd');
         $section->setDescription('Wanneer vindt het afscheid plaats?');
+        $section->setProperties([]);
         $section->setProperties([
-            "{$this->commonGroundService->getComponent('vtc')['location']}/properties/77aa09c9-c3d5-4764-9670-9ea08362341b",
-            "{$this->commonGroundService->getComponent('vtc')['location']}/properties/4b77bd59-d198-4aaf-ae0c-f66b16a6893d",
+            $this->commonGroundService->cleanUrl(["component"=>"vtc","type"=>"properties","id"=>"77aa09c9-c3d5-4764-9670-9ea08362341b"]),
+            $this->commonGroundService->cleanUrl(["component"=>"vtc","type"=>"properties","id"=>"4b77bd59-d198-4aaf-ae0c-f66b16a6893d"])
+        ]);
+        $manager->persist($section);
+
+        $stage = new Stage();
+        $stage->setName('Contact Gegevens');
+        $stage->setDescription('Hoe kunnen wij u berijken');
+        $stage->setIcon('fal fa-calendar');
+        $stage->setSlug('contact');
+        $stage->setProcess($processType);
+        $manager->persist($stage);
+
+        $section = new Section();
+        $section->setStage($stage);
+        $section->setName('Gegevens');
+        $section->setDescription('Waar kunnen wij u berijken als we vragen hebben over deze verhuising');
+        $section->setProperties([]);
+        $section->setProperties([
+            $this->commonGroundService->cleanUrl(["component"=>"vtc","type"=>"properties","id"=>"32061b32-1f8d-4bd7-b203-52b22585f3c9"]),
+            $this->commonGroundService->cleanUrl(["component"=>"vtc","type"=>"properties","id"=>"09cac491-a428-47eb-99ac-9717b1690620"])
+        ]);
+        $manager->persist($section);
+
+        $section = new Section();
+        $section->setStage($stage);
+        $section->setName('Melding doorzetten');
+        $section->setDescription('Het is mogenlijk om uw melding door te geven aan bijvoorbeeld de posterijen, wilt u hier gebruik van maken?');
+        $section->setProperties([]);
+        $section->setProperties([
+            $this->commonGroundService->cleanUrl(["component"=>"vtc","type"=>"properties","id"=>"f1964c98-df49-431a-a5e1-64c17d7d956b"])
         ]);
         $manager->persist($section);
 
