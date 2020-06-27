@@ -186,6 +186,22 @@ class ZuiddrechtFixtures extends Fixture
         $manager->flush();
         $processType = $manager->getRepository('App:ProcessType')->findOneBy(['id'=> $id]);
 
+        /*
+         *  Melding Openbare ruimte
+         */
+        $id = Uuid::fromString('8a3ec75e-186c-4085-bc7c-4e1c5bf250d0');
+        $processType = new ProcessType();
+        $processType->setName('Melding openbare ruimte');
+        $processType->setIcon('fas fa-parking');
+        $processType->setDescription('Via dit formulier kunt u melding maken van een probleem in de openbare ruimte');
+        $processType->setSourceOrganization('001709124');
+        $processType->setRequestType($this->commonGroundService->cleanUrl(["component"=>"vtc","type"=>"request_types","id"=>"f86591ef-6964-412b-84de-261fd47c3288"]));
+        $manager->persist($processType);
+        $processType->setId($id);
+        $manager->persist($processType);
+        $manager->flush();
+        $processType = $manager->getRepository('App:ProcessType')->findOneBy(['id'=> $id]);
+
 
         /*
          *  Huwelijk
