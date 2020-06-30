@@ -42,7 +42,7 @@ class ZuiddrechtFixtures extends Fixture
         $processType->setName('Parkeer vergunning');
         $processType->setIcon('fas fa-parking');
         $processType->setDescription('Aanvragen van een parkeer verguning');
-        $processType->setSourceOrganization('001709124');
+        $processType->setSourceOrganization($this->commonGroundService->cleanUrl(["component"=>"vtc","type"=>"request_types","id"=>"4d1eded3-fbdf-438f-9536-8747dd8ab591"]));
         $processType->setRequestType($this->commonGroundService->cleanUrl(["component"=>"vtc","type"=>"request_types","id"=>"f86591ef-6964-412b-84de-261fd47c3288"]));
         $manager->persist($processType);
         $processType->setId($id);
@@ -162,13 +162,43 @@ class ZuiddrechtFixtures extends Fixture
         $processType->setName('Contacnt');
         $processType->setIcon('fas fa-parking');
         $processType->setDescription('Via dit formulier neemt u contact met ons op');
-        $processType->setSourceOrganization('001709124');
+        $processType->setSourceOrganization($this->commonGroundService->cleanUrl(["component"=>"vtc","type"=>"request_types","id"=>"4d1eded3-fbdf-438f-9536-8747dd8ab591"]));
         $processType->setRequestType($this->commonGroundService->cleanUrl(["component"=>"vtc","type"=>"request_types","id"=>"3b76447e-1b4b-4b86-a582-8f6b4a5a8c6f"]));
         $manager->persist($processType);
         $processType->setId($id);
         $manager->persist($processType);
         $manager->flush();
         $processType = $manager->getRepository('App:ProcessType')->findOneBy(['id'=> $id]);
+
+        $stage = new Stage();
+        $stage->setName('Contact');
+        $stage->setIcon('fal fa-users');
+        $stage->setSlug('huwelijk-ceremonie');
+        $stage->setDescription('Waarover wilt u contact hebben?');
+
+        $section = new Section();
+        $section->setName('Soort huwelijk');
+        $section->setDescription('Trouwen of partnerschap');
+        $section->setProperties([$this->commonGroundService->cleanUrl(["component"=>"vtc","type"=>"properties","id"=>"81ea285b-41c1-43ae-80f6-a8dc3c6825ff"])]);
+        $stage->addSection($section);
+
+        $processType->addStage($stage);
+
+        $stage = new Stage();
+        $stage->setName('Uw gegevens');
+        $stage->setIcon('fal fa-users');
+        $stage->setSlug('uw-gegevens');
+        $stage->setDescription('Hoe kunnen wij u berijken');
+
+        $section = new Section();
+        $section->setName('Soort huwelijk');
+        $section->setDescription('Trouwen of partnerschap');
+        $section->setProperties([$this->commonGroundService->cleanUrl(["component"=>"vtc","type"=>"properties","id"=>"81ea285b-41c1-43ae-80f6-a8dc3c6825ff"])]);
+        $stage->addSection($section);
+
+        $processType->addStage($stage);
+        $manager->persist($processType);
+        $manager->flush();
 
         /*
          *  Ballie Afspraak
@@ -186,6 +216,38 @@ class ZuiddrechtFixtures extends Fixture
         $manager->flush();
         $processType = $manager->getRepository('App:ProcessType')->findOneBy(['id'=> $id]);
 
+        $stage = new Stage();
+        $stage->setName('Afspraak');
+        $stage->setIcon('fal fa-users');
+        $stage->setSlug('afspraak');
+        $stage->setDescription('de details van uw afspraak');
+
+        $section = new Section();
+        $section->setName('Soort huwelijk');
+        $section->setDescription('Trouwen of partnerschap');
+        $section->setProperties([$this->commonGroundService->cleanUrl(["component"=>"vtc","type"=>"properties","id"=>"81ea285b-41c1-43ae-80f6-a8dc3c6825ff"])]);
+        $stage->addSection($section);
+
+        $processType->addStage($stage);
+        $manager->persist($processType);
+        $manager->flush();
+
+        $stage = new Stage();
+        $stage->setName('Uw gegevens');
+        $stage->setIcon('fal fa-users');
+        $stage->setSlug('uw-gegevens');
+        $stage->setDescription('Hoe kunnen wij u berijken');
+
+        $section = new Section();
+        $section->setName('Soort huwelijk');
+        $section->setDescription('Trouwen of partnerschap');
+        $section->setProperties([$this->commonGroundService->cleanUrl(["component"=>"vtc","type"=>"properties","id"=>"81ea285b-41c1-43ae-80f6-a8dc3c6825ff"])]);
+        $stage->addSection($section);
+
+        $processType->addStage($stage);
+        $manager->persist($processType);
+        $manager->flush();
+
         /*
          *  Melding Openbare ruimte
          */
@@ -194,13 +256,43 @@ class ZuiddrechtFixtures extends Fixture
         $processType->setName('Melding openbare ruimte');
         $processType->setIcon('fas fa-parking');
         $processType->setDescription('Via dit formulier kunt u melding maken van een probleem in de openbare ruimte');
-        $processType->setSourceOrganization('001709124');
+        $processType->setSourceOrganization($this->commonGroundService->cleanUrl(["component"=>"vtc","type"=>"request_types","id"=>"4d1eded3-fbdf-438f-9536-8747dd8ab591"]));
         $processType->setRequestType($this->commonGroundService->cleanUrl(["component"=>"vtc","type"=>"request_types","id"=>"f86591ef-6964-412b-84de-261fd47c3288"]));
         $manager->persist($processType);
         $processType->setId($id);
         $manager->persist($processType);
         $manager->flush();
         $processType = $manager->getRepository('App:ProcessType')->findOneBy(['id'=> $id]);
+
+        $stage = new Stage();
+        $stage->setName('Melding');
+        $stage->setIcon('fal fa-users');
+        $stage->setSlug('melding');
+        $stage->setDescription('Wie treed op als belanghebbende?');
+
+        $section = new Section();
+        $section->setName('Soort huwelijk');
+        $section->setDescription('Trouwen of partnerschap');
+        $section->setProperties([$this->commonGroundService->cleanUrl(["component"=>"vtc","type"=>"properties","id"=>"81ea285b-41c1-43ae-80f6-a8dc3c6825ff"])]);
+        $stage->addSection($section);
+
+        $processType->addStage($stage);
+
+        $stage = new Stage();
+        $stage->setName('Uw gegevens');
+        $stage->setIcon('fal fa-users');
+        $stage->setSlug('uw-gegevens');
+        $stage->setDescription('Hoe kunnen wij u berijken');
+
+        $section = new Section();
+        $section->setName('Soort huwelijk');
+        $section->setDescription('Trouwen of partnerschap');
+        $section->setProperties([$this->commonGroundService->cleanUrl(["component"=>"vtc","type"=>"properties","id"=>"81ea285b-41c1-43ae-80f6-a8dc3c6825ff"])]);
+        $stage->addSection($section);
+
+        $processType->addStage($stage);
+        $manager->persist($processType);
+        $manager->flush();
 
 
         /*
