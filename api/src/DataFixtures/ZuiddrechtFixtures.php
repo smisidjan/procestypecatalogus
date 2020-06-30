@@ -177,9 +177,13 @@ class ZuiddrechtFixtures extends Fixture
         $stage->setDescription('Waarover wilt u contact hebben?');
 
         $section = new Section();
-        $section->setName('Soort huwelijk');
+        $section->setName('Onderwerk');
         $section->setDescription('Trouwen of partnerschap');
-        $section->setProperties([$this->commonGroundService->cleanUrl(["component"=>"vtc","type"=>"properties","id"=>"81ea285b-41c1-43ae-80f6-a8dc3c6825ff"])]);
+        $section->setProperties([
+            $this->commonGroundService->cleanUrl(["component"=>"vtc","type"=>"properties","id"=>"4f34ac1b-8c0c-4f3d-b1c4-07e086be43fd"]),
+            $this->commonGroundService->cleanUrl(["component"=>"vtc","type"=>"properties","id"=>"54b86107-aa93-45ce-a02f-8516390fd92b"]),
+            $this->commonGroundService->cleanUrl(["component"=>"vtc","type"=>"properties","id"=>"78ede193-a0b4-4851-af0d-84252b1903d1"])
+        ]);
         $stage->addSection($section);
 
         $processType->addStage($stage);
@@ -191,9 +195,12 @@ class ZuiddrechtFixtures extends Fixture
         $stage->setDescription('Hoe kunnen wij u berijken');
 
         $section = new Section();
-        $section->setName('Soort huwelijk');
-        $section->setDescription('Trouwen of partnerschap');
-        $section->setProperties([$this->commonGroundService->cleanUrl(["component"=>"vtc","type"=>"properties","id"=>"81ea285b-41c1-43ae-80f6-a8dc3c6825ff"])]);
+        $section->setName('Gegevens');
+        $section->setDescription('Contact gegevens');
+        $section->setProperties([
+            $this->commonGroundService->cleanUrl(["component"=>"vtc","type"=>"properties","id"=>"beb0f9c5-fe0d-4826-84a6-6c91429f3235"]),
+            $this->commonGroundService->cleanUrl(["component"=>"vtc","type"=>"properties","id"=>"1eb5f485-4e26-489f-a65d-9cf035e5da43"])
+        ]);
         $stage->addSection($section);
 
         $processType->addStage($stage);
@@ -223,9 +230,14 @@ class ZuiddrechtFixtures extends Fixture
         $stage->setDescription('de details van uw afspraak');
 
         $section = new Section();
-        $section->setName('Soort huwelijk');
-        $section->setDescription('Trouwen of partnerschap');
-        $section->setProperties([$this->commonGroundService->cleanUrl(["component"=>"vtc","type"=>"properties","id"=>"81ea285b-41c1-43ae-80f6-a8dc3c6825ff"])]);
+        $section->setName('Afspraak');
+        $section->setDescription('Waneer wilt u langskomen bij de ballie?');
+        $section->setProperties([
+            $this->commonGroundService->cleanUrl(["component"=>"vtc","type"=>"properties","id"=>"bb4fd6ee-5dce-4b9f-a28a-c566d5542d07"]),
+            $this->commonGroundService->cleanUrl(["component"=>"vtc","type"=>"properties","id"=>"af3fefb1-3a47-4d17-8837-a0ffc4901dd8"]),
+            $this->commonGroundService->cleanUrl(["component"=>"vtc","type"=>"properties","id"=>"1db8bb40-aa1d-4ddd-b4d7-d43c987869cb"]),
+            $this->commonGroundService->cleanUrl(["component"=>"vtc","type"=>"properties","id"=>"b90265da-379e-4254-b6df-14f962a68212"])
+        ]);
         $stage->addSection($section);
 
         $processType->addStage($stage);
@@ -239,9 +251,12 @@ class ZuiddrechtFixtures extends Fixture
         $stage->setDescription('Hoe kunnen wij u berijken');
 
         $section = new Section();
-        $section->setName('Soort huwelijk');
-        $section->setDescription('Trouwen of partnerschap');
-        $section->setProperties([$this->commonGroundService->cleanUrl(["component"=>"vtc","type"=>"properties","id"=>"81ea285b-41c1-43ae-80f6-a8dc3c6825ff"])]);
+        $section->setName('Contact');
+        $section->setDescription('Uw contact gegevens');
+        $section->setProperties([
+            $this->commonGroundService->cleanUrl(["component"=>"vtc","type"=>"properties","id"=>"3ed36d5b-349f-42f2-a084-f2feb20899be"]),
+            $this->commonGroundService->cleanUrl(["component"=>"vtc","type"=>"properties","id"=>"c4e88952-bd02-4832-886f-316bcbaf6ed4"])
+        ]);
         $stage->addSection($section);
 
         $processType->addStage($stage);
@@ -257,7 +272,7 @@ class ZuiddrechtFixtures extends Fixture
         $processType->setIcon('fas fa-parking');
         $processType->setDescription('Via dit formulier kunt u melding maken van een probleem in de openbare ruimte');
         $processType->setSourceOrganization($this->commonGroundService->cleanUrl(["component"=>"vtc","type"=>"request_types","id"=>"4d1eded3-fbdf-438f-9536-8747dd8ab591"]));
-        $processType->setRequestType($this->commonGroundService->cleanUrl(["component"=>"vtc","type"=>"request_types","id"=>"f86591ef-6964-412b-84de-261fd47c3288"]));
+        $processType->setRequestType($this->commonGroundService->cleanUrl(["component"=>"vtc","type"=>"request_types","id"=>"6541d18b-1666-4600-98e3-6f5df1a67423"]));
         $manager->persist($processType);
         $processType->setId($id);
         $manager->persist($processType);
@@ -271,9 +286,13 @@ class ZuiddrechtFixtures extends Fixture
         $stage->setDescription('Wie treed op als belanghebbende?');
 
         $section = new Section();
-        $section->setName('Soort huwelijk');
-        $section->setDescription('Trouwen of partnerschap');
-        $section->setProperties([$this->commonGroundService->cleanUrl(["component"=>"vtc","type"=>"properties","id"=>"81ea285b-41c1-43ae-80f6-a8dc3c6825ff"])]);
+        $section->setName('Melding');
+        $section->setDescription('Probeer het probleem zo zorgvuldig mogenlijk te omschrijven');
+        $section->setProperties([
+            $this->commonGroundService->cleanUrl(["component"=>"vtc","type"=>"properties","id"=>"67201efb-73e1-4aab-b28f-28ce5c9b5014"]),
+            $this->commonGroundService->cleanUrl(["component"=>"vtc","type"=>"properties","id"=>"2f09a068-410e-4053-983a-604220c4facc"]),
+            $this->commonGroundService->cleanUrl(["component"=>"vtc","type"=>"properties","id"=>"49da683f-3001-437b-99ab-9c8065e47269"])
+        ]);
         $stage->addSection($section);
 
         $processType->addStage($stage);
@@ -285,9 +304,12 @@ class ZuiddrechtFixtures extends Fixture
         $stage->setDescription('Hoe kunnen wij u berijken');
 
         $section = new Section();
-        $section->setName('Soort huwelijk');
-        $section->setDescription('Trouwen of partnerschap');
-        $section->setProperties([$this->commonGroundService->cleanUrl(["component"=>"vtc","type"=>"properties","id"=>"81ea285b-41c1-43ae-80f6-a8dc3c6825ff"])]);
+        $section->setName('Contact');
+        $section->setDescription('Uw contact gegevens');
+        $section->setProperties([
+            $this->commonGroundService->cleanUrl(["component"=>"vtc","type"=>"properties","id"=>"e7ffde88-60cc-41a7-a670-42ec4e8d17b8"]),
+            $this->commonGroundService->cleanUrl(["component"=>"vtc","type"=>"properties","id"=>"b82581b4-04d5-4d9a-8b3f-90646505bf80"])
+        ]);
         $stage->addSection($section);
 
         $processType->addStage($stage);
