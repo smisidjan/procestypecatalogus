@@ -159,7 +159,7 @@ class ZuiddrechtFixtures extends Fixture
          */
         $id = Uuid::fromString('d1118a40-cede-42e0-b5dd-ff38e837ab0b');
         $processType = new ProcessType();
-        $processType->setName('Contacnt');
+        $processType->setName('Contact');
         $processType->setIcon('fas fa-parking');
         $processType->setDescription('Via dit formulier neemt u contact met ons op');
         $processType->setSourceOrganization($this->commonGroundService->cleanUrl(["component"=>"vtc","type"=>"request_types","id"=>"4d1eded3-fbdf-438f-9536-8747dd8ab591"]));
@@ -173,7 +173,7 @@ class ZuiddrechtFixtures extends Fixture
         $stage = new Stage();
         $stage->setName('Contact');
         $stage->setIcon('fal fa-users');
-        $stage->setSlug('huwelijk-ceremonie');
+        $stage->setSlug('contact');
         $stage->setDescription('Waarover wilt u contact hebben?');
 
         $section = new Section();

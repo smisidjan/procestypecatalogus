@@ -39,7 +39,7 @@ class MijnclusterFixtures extends Fixture
         $processType->setName('Verhuizen');
         $processType->setIcon('fal fa-truck-moving');
         $processType->setDescription('Het doorgeven van een verhuizing aan een gemeente ');
-        $processType->setSourceOrganization('001709124');
+        $processType->setSourceOrganization($this->commonGroundService->cleanUrl(["component"=>"wrc","type"=>"organizations","id"=>"cc935415-a674-4235-b99d-0c7bfce5c7aa"]));
         $processType->setRequestType("{$this->commonGroundService->getComponent('vtc')['location']}/request_types/23d4803a-67cd-4720-82d0-e1e0a776d8c4");
         $manager->persist($processType);
         $processType->setId($id);
