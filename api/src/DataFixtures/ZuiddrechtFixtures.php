@@ -85,23 +85,6 @@ class ZuiddrechtFixtures extends Fixture
         $manager->persist($section);
 
         $stage = new Stage();
-        $stage->setName('einddatum vergunning oud adres');
-        $stage->setDescription('einddatum vergunning oud adres');
-        $stage->setIcon('fas fa-parking');
-        $stage->setSlug('einddatum');
-        $stage->setProcess($processType);
-        $manager->persist($stage);
-
-        $section = new Section();
-        $section->setStage($stage);
-        $section->setName('einddatum vergunning oud adres');
-        $section->setDescription('Gewenste einddatum vergunning op het oude adres:');
-        $section->setProperties([
-            $this->commonGroundService->cleanUrl(["component"=>"vtc","type"=>"properties","id"=>"a719f9c2-4565-488e-b0dd-f153fb6f4756"])
-        ]);
-        $manager->persist($section);
-
-        $stage = new Stage();
         $stage->setName('kentekenbewijs');
         $stage->setDescription('kentekenbewijs');
         $stage->setIcon('fas fa-parking');
@@ -177,8 +160,8 @@ class ZuiddrechtFixtures extends Fixture
         $stage->setDescription('Waarover wilt u contact hebben?');
 
         $section = new Section();
-        $section->setName('Onderwerk');
-        $section->setDescription('Trouwen of partnerschap');
+        $section->setName('Onderwerp');
+        $section->setDescription('Waarover wilt u contact hebben?');
         $section->setProperties([
             $this->commonGroundService->cleanUrl(["component"=>"vtc","type"=>"properties","id"=>"4f34ac1b-8c0c-4f3d-b1c4-07e086be43fd"]),
             $this->commonGroundService->cleanUrl(["component"=>"vtc","type"=>"properties","id"=>"54b86107-aa93-45ce-a02f-8516390fd92b"]),
