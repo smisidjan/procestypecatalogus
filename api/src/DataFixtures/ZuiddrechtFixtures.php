@@ -41,7 +41,7 @@ class ZuiddrechtFixtures extends Fixture
         $processType = new ProcessType();
         $processType->setName('Parkeer vergunning');
         $processType->setIcon('fas fa-parking');
-        $processType->setDescription('Aanvragen van een parkeer verguning');
+        $processType->setDescription('Aanvragen van een parkeer vergunning');
         $processType->setSourceOrganization($this->commonGroundService->cleanUrl(['component'=>'vtc', 'type'=>'request_types', 'id'=>'4d1eded3-fbdf-438f-9536-8747dd8ab591']));
         $processType->setRequestType($this->commonGroundService->cleanUrl(['component'=>'vtc', 'type'=>'request_types', 'id'=>'f86591ef-6964-412b-84de-261fd47c3288']));
         $manager->persist($processType);
@@ -56,7 +56,6 @@ class ZuiddrechtFixtures extends Fixture
         $stage->setIcon('fas fa-parking');
         $stage->setSlug('parkeergelegenheid');
         $stage->setProcess($processType);
-        $manager->persist($stage);
 
         $section = new Section();
         $section->setStage($stage);
@@ -65,7 +64,11 @@ class ZuiddrechtFixtures extends Fixture
         $section->setProperties([
             $this->commonGroundService->cleanUrl(['component'=>'vtc', 'type'=>'properties', 'id'=>'92461726-dc0a-4132-a466-4968a37f4620']),
         ]);
-        $manager->persist($section);
+        $stage->addSection($section);
+
+        $processType->addStage($stage);
+        $manager->persist($processType);
+        $manager->flush();
 
         $stage = new Stage();
         $stage->setName('Vergunning oud adres');
@@ -73,7 +76,6 @@ class ZuiddrechtFixtures extends Fixture
         $stage->setIcon('fas fa-parking');
         $stage->setSlug('oud-adres');
         $stage->setProcess($processType);
-        $manager->persist($stage);
 
         $section = new Section();
         $section->setStage($stage);
@@ -82,7 +84,11 @@ class ZuiddrechtFixtures extends Fixture
         $section->setProperties([
             $this->commonGroundService->cleanUrl(['component'=>'vtc', 'type'=>'properties', 'id'=>'3539cb5f-6801-4f45-838f-9c592946a592']),
         ]);
-        $manager->persist($section);
+        $stage->addSection($section);
+
+        $processType->addStage($stage);
+        $manager->persist($processType);
+        $manager->flush();
 
         $stage = new Stage();
         $stage->setName('kentekenbewijs');
@@ -90,7 +96,7 @@ class ZuiddrechtFixtures extends Fixture
         $stage->setIcon('fas fa-parking');
         $stage->setSlug('kentekenbewijs');
         $stage->setProcess($processType);
-        $manager->persist($stage);
+
 
         $section = new Section();
         $section->setStage($stage);
@@ -99,7 +105,11 @@ class ZuiddrechtFixtures extends Fixture
         $section->setProperties([
             $this->commonGroundService->cleanUrl(['component'=>'vtc', 'type'=>'properties', 'id'=>'c3102b38-b07c-4392-8a31-e57d81b39d70']),
         ]);
-        $manager->persist($section);
+        $stage->addSection($section);
+
+        $processType->addStage($stage);
+        $manager->persist($processType);
+        $manager->flush();
 
         $stage = new Stage();
         $stage->setName('type voertuig');
@@ -107,7 +117,7 @@ class ZuiddrechtFixtures extends Fixture
         $stage->setIcon('fas fa-parking');
         $stage->setSlug('type-voertuig');
         $stage->setProcess($processType);
-        $manager->persist($stage);
+
 
         $section = new Section();
         $section->setStage($stage);
@@ -116,7 +126,11 @@ class ZuiddrechtFixtures extends Fixture
         $section->setProperties([
             $this->commonGroundService->cleanUrl(['component'=>'vtc', 'type'=>'properties', 'id'=>'ee8acd31-8a5e-48e9-ac16-0f73543d18c5']),
         ]);
-        $manager->persist($section);
+        $stage->addSection($section);
+
+        $processType->addStage($stage);
+        $manager->persist($processType);
+        $manager->flush();
 
         $stage = new Stage();
         $stage->setName('betalen');
@@ -124,7 +138,7 @@ class ZuiddrechtFixtures extends Fixture
         $stage->setIcon('fas fa-parking');
         $stage->setSlug('betalen');
         $stage->setProcess($processType);
-        $manager->persist($stage);
+
 
         $section = new Section();
         $section->setStage($stage);
@@ -133,8 +147,10 @@ class ZuiddrechtFixtures extends Fixture
         $section->setProperties([
             $this->commonGroundService->cleanUrl(['component'=>'vtc', 'type'=>'properties', 'id'=>'b3ebaedc-578b-43bd-bc7e-91e5a5235de4']),
         ]);
-        $manager->persist($section);
+        $stage->addSection($section);
 
+        $processType->addStage($stage);
+        $manager->persist($processType);
         $manager->flush();
 
         /*
@@ -170,6 +186,8 @@ class ZuiddrechtFixtures extends Fixture
         $stage->addSection($section);
 
         $processType->addStage($stage);
+        $manager->persist($processType);
+        $manager->flush();
 
         $stage = new Stage();
         $stage->setName('Uw gegevens');
@@ -199,7 +217,7 @@ class ZuiddrechtFixtures extends Fixture
         $processType->setIcon('fas fa-parking');
         $processType->setDescription('Via dit formulier kunt u een ballie afspraak bij ons inplannen');
         $processType->setSourceOrganization($this->commonGroundService->cleanUrl(['component'=>'vtc', 'type'=>'request_types', 'id'=>'4d1eded3-fbdf-438f-9536-8747dd8ab591']));
-        $processType->setRequestType($this->commonGroundService->cleanUrl(['component'=>'vtc', 'type'=>'request_types', 'id'=>'f86591ef-6964-412b-84de-261fd47c3288']));
+        $processType->setRequestType($this->commonGroundService->cleanUrl(['component'=>'vtc', 'type'=>'request_types', 'id'=>'32293766-8b3a-43ee-9f16-ed67234ac309']));
         $manager->persist($processType);
         $processType->setId($id);
         $manager->persist($processType);

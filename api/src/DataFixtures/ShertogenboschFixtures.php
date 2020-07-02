@@ -61,7 +61,7 @@ class ShertogenboschFixtures extends Fixture
         $stage->setIcon('fal fa-calendar');
         $stage->setSlug('gegevens');
         $stage->setProcess($processType);
-        $manager->persist($stage);
+
 
         $section = new Section();
         $section->setStage($stage);
@@ -72,7 +72,11 @@ class ShertogenboschFixtures extends Fixture
             $this->commonGroundService->cleanUrl(['component'=>'vtc', 'type'=>'properties', 'id'=>'77aa09c9-c3d5-4764-9670-9ea08362341b']),
             $this->commonGroundService->cleanUrl(['component'=>'vtc', 'type'=>'properties', 'id'=>'4b77bd59-d198-4aaf-ae0c-f66b16a6893d']),
         ]);
-        $manager->persist($section);
+        $stage->addSection($section);
+
+        $processType->addStage($stage);
+        $manager->persist($processType);
+        $manager->flush();
 
         $stage = new Stage();
         $stage->setName('Contact Gegevens');
@@ -80,7 +84,7 @@ class ShertogenboschFixtures extends Fixture
         $stage->setIcon('fal fa-calendar');
         $stage->setSlug('contact');
         $stage->setProcess($processType);
-        $manager->persist($stage);
+
 
         $section = new Section();
         $section->setStage($stage);
@@ -91,7 +95,11 @@ class ShertogenboschFixtures extends Fixture
             $this->commonGroundService->cleanUrl(['component'=>'vtc', 'type'=>'properties', 'id'=>'32061b32-1f8d-4bd7-b203-52b22585f3c9']),
             $this->commonGroundService->cleanUrl(['component'=>'vtc', 'type'=>'properties', 'id'=>'09cac491-a428-47eb-99ac-9717b1690620']),
         ]);
-        $manager->persist($section);
+        $stage->addSection($section);
+
+        $processType->addStage($stage);
+        $manager->persist($processType);
+        $manager->flush();
 
         $section = new Section();
         $section->setStage($stage);
