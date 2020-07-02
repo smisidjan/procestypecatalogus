@@ -37,7 +37,7 @@ class HelmondFixtures extends Fixture
          */
         $id = Uuid::fromString('83130777-df65-4346-a4be-8816b8d92f9a');
         $processType = new ProcessType();
-        $processType->setName('Parkeer vergunning');
+        $processType->setName('geboorte aangifte');
         $processType->setIcon('fas fa-parking');
         $processType->setDescription('Aanvragen van een parkeer verguning');
         $processType->setSourceOrganization('001709124');
