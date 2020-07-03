@@ -326,7 +326,7 @@ class ZuiddrechtFixtures extends Fixture
         $processType->setIcon('fal fa-rings-wedding');
         $processType->setSourceOrganization($this->commonGroundService->cleanUrl(['component'=>'vtc', 'type'=>'request_types', 'id'=>'4d1eded3-fbdf-438f-9536-8747dd8ab591']));
         $processType->setName('Huwelijk / Partnerschap');
-        $processType->setDescription('Huwelijk / Partnerschap');
+        $processType->setDescription('Als je gaat trouwen moet je veel regelen. Om je wat overzicht te geven hebben we hieronder een lijstje gemaakt van alles wat je met de Gemeente moet regelen.');
         $processType->setRequestType($this->commonGroundService->cleanUrl(['component'=>'vtc', 'type'=>'request_types', 'id'=>'d0badfff-1c90-4ddb-80fc-49842d806eaa']));
         $manager->persist($processType);
         $processType->setId($id);
