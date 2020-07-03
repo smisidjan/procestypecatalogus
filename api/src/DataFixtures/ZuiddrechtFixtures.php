@@ -342,13 +342,13 @@ class ZuiddrechtFixtures extends Fixture
 
         $section = new Section();
         $section->setName('Soort huwelijk');
-        $section->setDescription('Trouwen of partnerschap');
+        $section->setDescription('Kies uw soort huwelijk');
         $section->setProperties([$this->commonGroundService->cleanUrl(['component'=>'vtc', 'type'=>'properties', 'id'=>'81ea285b-41c1-43ae-80f6-a8dc3c6825ff'])]);
         $stage->addSection($section);
 
         $section = new Section();
         $section->setName('Soort Plechtigheid');
-        $section->setDescription('Trouwen of partnerschap');
+        $section->setDescription('Kies uw soort plechtigheid');
         $section->setProperties([$this->commonGroundService->cleanUrl(['component'=>'vtc', 'type'=>'properties', 'id'=>'d16e3c3b-564b-4d8d-bad2-adb5ffac26ad'])]);
         $stage->addSection($section);
 
@@ -376,7 +376,7 @@ class ZuiddrechtFixtures extends Fixture
 
         $section = new Section();
         $section->setName('Locatie');
-        $section->setDescription('Trouwen of partnerschap');
+        $section->setDescription('Locatie van het huwelijk');
         $section->setProperties([$this->commonGroundService->cleanUrl(['component'=>'vtc', 'type'=>'properties', 'id'=>'7a59202e-c830-4a2e-839c-c11a1ce62a6a'])]);
         $stage->addSection($section);
 
@@ -402,7 +402,7 @@ class ZuiddrechtFixtures extends Fixture
 
         $section = new Section();
         $section->setName('Getuigen');
-        $section->setDescription('Trouwen of partnerschap');
+        $section->setDescription('Uw getuigen');
         $section->setProperties([$this->commonGroundService->cleanUrl(['component'=>'vtc', 'type'=>'properties', 'id'=>'3a3b2d0e-7d93-4c4b-b313-30f7cdef0c06'])]);
         $stage->addSection($section);
 
@@ -416,7 +416,7 @@ class ZuiddrechtFixtures extends Fixture
 
         $section = new Section();
         $section->setName('Contact gegevens');
-        $section->setDescription('Trouwen of partnerschap');
+        $section->setDescription('We hebben uw contact gegevens nodig');
         $section->setProperties([$this->commonGroundService->cleanUrl(['component'=>'vtc', 'type'=>'properties', 'id'=>'db69ce35-4ae1-4aac-936f-bdb5d4d1ff18'])]);
         $stage->addSection($section);
 
@@ -436,19 +436,19 @@ class ZuiddrechtFixtures extends Fixture
 
         $section = new Section();
         $section->setName('Extras');
-        $section->setDescription('Trouwen of partnerschap');
+        $section->setDescription('hier kunt u kiezen uit extras');
         $section->setProperties([$this->commonGroundService->cleanUrl(['component'=>'vtc', 'type'=>'properties', 'id'=>'e6a8c45c-eae2-48a2-b215-81c3b5bf82df'])]);
         $stage->addSection($section);
 
         $section = new Section();
         $section->setName('Opmerkingen');
-        $section->setDescription('Trouwen of partnerschap');
+        $section->setDescription('hier kunt u eventuele opmerkingen plaatsen');
         $section->setProperties([$this->commonGroundService->cleanUrl(['component'=>'vtc', 'type'=>'properties', 'id'=>'8a047a87-61fe-435c-95a8-ffc843a8e362'])]);
         $stage->addSection($section);
 
         $section = new Section();
         $section->setName('Melding voorgenomen huwelijk');
-        $section->setDescription('Trouwen of partnerschap');
+        $section->setDescription('Wilt u een melding doen voor voorgenomen huwelijk');
         $section->setProperties([$this->commonGroundService->cleanUrl(['component'=>'vtc', 'type'=>'properties', 'id'=>'d46c0a9c-b6db-40da-af77-09f0037def57'])]);
         $stage->addSection($section);
 
