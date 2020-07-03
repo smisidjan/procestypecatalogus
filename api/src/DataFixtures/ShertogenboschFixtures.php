@@ -103,8 +103,8 @@ class ShertogenboschFixtures extends Fixture
 
         $section = new Section();
         $section->setStage($stage);
-        $section->setName('Melding doorzetten');
-        $section->setDescription('Het is mogenlijk om uw melding door te geven aan bijvoorbeeld de posterijen, wilt u hier gebruik van maken?');
+        $section->setName('Notificatie');
+        $section->setDescription('Mogen wij andere op de hoogste stellen van uw verhuizing?');
         $section->setProperties([]);
         $section->setProperties([
             $this->commonGroundService->cleanUrl(['component'=>'vtc', 'type'=>'properties', 'id'=>'f1964c98-df49-431a-a5e1-64c17d7d956b']),
