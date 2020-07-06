@@ -413,8 +413,8 @@ class ZuiddrechtFixtures extends Fixture
         $stage->setIcon('fal fa-users');
         $stage->setSlug('overig');
         $stage->setDescription('Wie treed op als belanghebbende?');
-        
-        /*
+
+
         $section = new Section();
         $section->setName('Naamsgebruik');
         $section->setDescription('Trouwen of partnerschap');
@@ -426,7 +426,7 @@ class ZuiddrechtFixtures extends Fixture
         $section->setDescription('Trouwen of partnerschap');
         $section->setProperties([$this->commonGroundService->cleanUrl(["component"=>"vtc","type"=>"properties","id"=>"db69ce35-4ae1-4aac-936f-bdb5d4d1ff18"])]);
         $stage->addSection($section);
-        */
+
 
         $section = new Section();
         $section->setName('Extras');

@@ -66,7 +66,7 @@ class ShertogenboschFixtures extends Fixture
         $section = new Section();
         $section->setStage($stage);
         $section->setName('Datum en tijd');
-        $section->setDescription('Wanneer vindt het afscheid plaats?');
+        $section->setDescription('Datum en tijd van de verhuizing');
         $section->setProperties([]);
         $section->setProperties([
             $this->commonGroundService->cleanUrl(['component'=>'vtc', 'type'=>'properties', 'id'=>'77aa09c9-c3d5-4764-9670-9ea08362341b']),
@@ -80,7 +80,7 @@ class ShertogenboschFixtures extends Fixture
 
         $stage = new Stage();
         $stage->setName('Contact Gegevens');
-        $stage->setDescription('Hoe kunnen wij u berijken');
+        $stage->setDescription('Hoe kunnen wij u bereiken');
         $stage->setIcon('fal fa-calendar');
         $stage->setSlug('contact');
         $stage->setProcess($processType);
@@ -89,7 +89,7 @@ class ShertogenboschFixtures extends Fixture
         $section = new Section();
         $section->setStage($stage);
         $section->setName('Gegevens');
-        $section->setDescription('Waar kunnen wij u berijken als we vragen hebben over deze verhuising');
+        $section->setDescription('Waar kunnen wij u bereiken als we vragen hebben over deze verhuizing');
         $section->setProperties([]);
         $section->setProperties([
             $this->commonGroundService->cleanUrl(['component'=>'vtc', 'type'=>'properties', 'id'=>'32061b32-1f8d-4bd7-b203-52b22585f3c9']),
