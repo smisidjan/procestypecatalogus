@@ -49,8 +49,7 @@ class HelmondFixtures extends Fixture
         $manager->persist($processType);
         $manager->flush();
         $processType = $manager->getRepository('App:ProcessType')->findOneBy(['id'=> $id]);
-        */
-        
+
         $manager->flush();
 
         $stage = new Stage();
