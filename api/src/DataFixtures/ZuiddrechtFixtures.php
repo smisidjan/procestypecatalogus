@@ -344,7 +344,7 @@ class ZuiddrechtFixtures extends Fixture
         $stage->addSection($section);
 
         $section = new Section();
-        $section->setName('Soort Plechtigheid');
+        $section->setName('Plechtigheid');
         $section->setDescription('Kies uw soort plechtigheid');
         $section->setProperties([$this->commonGroundService->cleanUrl(['component'=>'vtc', 'type'=>'properties', 'id'=>'d16e3c3b-564b-4d8d-bad2-adb5ffac26ad'])]);
         $stage->addSection($section);
