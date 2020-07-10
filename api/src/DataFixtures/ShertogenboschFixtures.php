@@ -62,7 +62,6 @@ class ShertogenboschFixtures extends Fixture
         $stage->setSlug('gegevens');
         $stage->setProcess($processType);
 
-
         $section = new Section();
         $section->setStage($stage);
         $section->setName('Datum en tijd');
@@ -85,7 +84,6 @@ class ShertogenboschFixtures extends Fixture
         $stage->setSlug('mee-verhuizers');
         $stage->setProcess($processType);
 
-
         $section = new Section();
         $section->setStage($stage);
         $section->setName('Mee verhuizers');
@@ -105,7 +103,6 @@ class ShertogenboschFixtures extends Fixture
         $stage->setIcon('fal fa-calendar');
         $stage->setSlug('contact');
         $stage->setProcess($processType);
-
 
         $section = new Section();
         $section->setStage($stage);
