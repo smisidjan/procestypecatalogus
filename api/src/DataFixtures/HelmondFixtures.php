@@ -59,13 +59,23 @@ class HelmondFixtures extends Fixture
         $stage->setDescription('Geboorte aangifte');
 
         $section = new Section();
-        $section->setName('Geboorte');
-        $section->setDescription('Geboorte aangifte doen');
+        $section->setName('Geboortedatum');
+        $section->setDescription('Wanneer is uw kind geboren');
         $section->setProperties([
-            $this->commonGroundService->cleanUrl(['component'=>'vtc', 'type'=>'properties', 'id'=>'2c4446ed-1b3a-42c4-86bd-2587f010895b']),
-            $this->commonGroundService->cleanUrl(['component'=>'vtc', 'type'=>'properties', 'id'=>'467d0c0e-6533-46fa-8ff5-2508e40cca65']),
-            $this->commonGroundService->cleanUrl(['component'=>'vtc', 'type'=>'properties', 'id'=>'c00cacae-1edd-44dc-bda2-9eb0c970318e']),
+            $this->commonGroundService->cleanUrl(['component'=>'vtc', 'type'=>'properties', 'id'=>'2c4446ed-1b3a-42c4-86bd-2587f010895b'])
         ]);
+        $stage->addSection($section);
+
+        $section = new Section();
+        $section->setName('Ouders');
+        $section->setDescription('Gegevens van de ouders');
+        $section->setProperties([$this->commonGroundService->cleanUrl(['component'=>'vtc', 'type'=>'properties', 'id'=>'467d0c0e-6533-46fa-8ff5-2508e40cca65'])]);
+        $stage->addSection($section);
+
+        $section = new Section();
+        $section->setName('Naam');
+        $section->setDescription('Naam van uw kind');
+        $section->setProperties([$this->commonGroundService->cleanUrl(['component'=>'vtc', 'type'=>'properties', 'id'=>'c00cacae-1edd-44dc-bda2-9eb0c970318e'])]);
         $stage->addSection($section);
 
         $processType->addStage($stage);
