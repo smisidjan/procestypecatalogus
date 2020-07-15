@@ -33,7 +33,8 @@ class ShertogenboschFixtures extends Fixture
             strpos($this->params->get('app_domain'), 'verhuizen.accp.s-hertogenbosch.nl') == false &&
             $this->params->get('app_domain') != 'verhuizen=.s-hertogenbosch.nl' &&
             strpos($this->params->get('app_domain'), 'verhuizen.s-hertogenbosch.nl') == false &&
-            strpos($this->params->get('app_domain'), 's-hertogenbosch.commonground.nu') == false
+            strpos($this->params->get('app_domain'), 's-hertogenbosch.commonground.nu') == false &&
+            $this->params->get('app_domain') != 'zuid-drecht.nl' && strpos($this->params->get('app_domain'), 'zuid-drecht.nl') == false
         ) {
             return false;
         }
@@ -46,8 +47,8 @@ class ShertogenboschFixtures extends Fixture
         $processType->setName('Verhuizen');
         $processType->setIcon('fal fa-truck-moving');
         $processType->setDescription('Het doorgeven van een verhuizing aan een gemeente ');
-        $processType->setSourceOrganization('001709124');
-        $processType->setRequestType("{$this->commonGroundService->getComponent('vtc')['location']}/request_types/37812338-fa7c-46c5-a914-bcf17339a4c5");
+        $processType->setSourceOrganization($this->commonGroundService->cleanUrl(['component'=>'wrc', 'type'=>'organizations', 'id'=>'4f387d0e-a2e5-44c0-9902-c31b63a8ee36'])); //'001709124'
+        $processType->setRequestType($this->commonGroundService->cleanUrl(['component'=>'vtc', 'type'=>'request_types', 'id'=>'37812338-fa7c-46c5-a914-bcf17339a4c5']));
         $manager->persist($processType);
         $processType->setId($id);
         $manager->persist($processType);
@@ -60,15 +61,71 @@ class ShertogenboschFixtures extends Fixture
         $stage->setIcon('fal fa-calendar');
         $stage->setSlug('gegevens');
         $stage->setProcess($processType);
-        $manager->persist($stage);
 
         $section = new Section();
         $section->setStage($stage);
         $section->setName('Datum en tijd');
-        $section->setDescription('Wanneer vindt het afscheid plaats?');
+        $section->setDescription('Datum en tijd van de verhuizing');
+        $section->setProperties([]);
         $section->setProperties([
-            "{$this->commonGroundService->getComponent('vtc')['location']}/properties/77aa09c9-c3d5-4764-9670-9ea08362341b",
-            "{$this->commonGroundService->getComponent('vtc')['location']}/properties/4b77bd59-d198-4aaf-ae0c-f66b16a6893d",
+            $this->commonGroundService->cleanUrl(['component'=>'vtc', 'type'=>'properties', 'id'=>'77aa09c9-c3d5-4764-9670-9ea08362341b']),
+            $this->commonGroundService->cleanUrl(['component'=>'vtc', 'type'=>'properties', 'id'=>'4b77bd59-d198-4aaf-ae0c-f66b16a6893d']),
+        ]);
+        $stage->addSection($section);
+
+        $processType->addStage($stage);
+        $manager->persist($processType);
+        $manager->flush();
+
+        $stage = new Stage();
+        $stage->setName('Mee verhuizers');
+        $stage->setDescription('Zijn er personen die mee verhuizen');
+        $stage->setIcon('fal fa-calendar');
+        $stage->setSlug('mee-verhuizers');
+        $stage->setProcess($processType);
+
+        $section = new Section();
+        $section->setStage($stage);
+        $section->setName('Mee verhuizers');
+        $section->setDescription('Zijn er meerdere mensen die mee verhuizen');
+        $section->setProperties([
+            $this->commonGroundService->cleanUrl(['component'=>'vtc', 'type'=>'properties', 'id'=>'a5f3c372-37b3-495d-b0b2-d1cd24990e46']),
+        ]);
+        $stage->addSection($section);
+
+        $processType->addStage($stage);
+        $manager->persist($processType);
+        $manager->flush();
+
+        $stage = new Stage();
+        $stage->setName('Contact Gegevens');
+        $stage->setDescription('Hoe kunnen wij u bereiken');
+        $stage->setIcon('fal fa-calendar');
+        $stage->setSlug('contact');
+        $stage->setProcess($processType);
+
+        $section = new Section();
+        $section->setStage($stage);
+        $section->setName('Gegevens');
+        $section->setDescription('Waar kunnen wij u bereiken als we vragen hebben over deze verhuizing');
+        $section->setProperties([]);
+        $section->setProperties([
+            $this->commonGroundService->cleanUrl(['component'=>'vtc', 'type'=>'properties', 'id'=>'32061b32-1f8d-4bd7-b203-52b22585f3c9']),
+            $this->commonGroundService->cleanUrl(['component'=>'vtc', 'type'=>'properties', 'id'=>'09cac491-a428-47eb-99ac-9717b1690620']),
+        ]);
+        $stage->addSection($section);
+
+        $processType->addStage($stage);
+        $manager->persist($processType);
+        $manager->flush();
+
+        $section = new Section();
+        $section->setStage($stage);
+        $section->setName('Notificatie');
+        $section->setDescription('Mogen wij andere op de hoogste stellen van uw verhuizing?');
+        $section->setProperties([]);
+        $section->setProperties([
+            $this->commonGroundService->cleanUrl(['component'=>'vtc', 'type'=>'properties', 'id'=>'f1964c98-df49-431a-a5e1-64c17d7d956b']),
         ]);
         $manager->persist($section);
 
