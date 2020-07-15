@@ -62,7 +62,7 @@ class HelmondFixtures extends Fixture
         $section->setName('Geboortedatum');
         $section->setDescription('Wanneer is uw kind geboren');
         $section->setProperties([
-            $this->commonGroundService->cleanUrl(['component'=>'vtc', 'type'=>'properties', 'id'=>'2c4446ed-1b3a-42c4-86bd-2587f010895b'])
+            $this->commonGroundService->cleanUrl(['component'=>'vtc', 'type'=>'properties', 'id'=>'2c4446ed-1b3a-42c4-86bd-2587f010895b']),
         ]);
         $stage->addSection($section);
 
