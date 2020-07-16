@@ -43,7 +43,7 @@ class HelmondFixtures extends Fixture
         $processType->setIcon('fas fa-parking');
         $processType->setDescription('Geboorte aangifte doen');
         $processType->setSourceOrganization('001709124');
-        $processType->setRequestType($this->commonGroundService->cleanUrl(['component'=>'vtc', 'type'=>'request_types', 'id'=>'f86591ef-6964-412b-84de-261fd47c3288']));
+        $processType->setRequestType($this->commonGroundService->cleanUrl(['component'=>'vtc', 'type'=>'request_types', 'id'=>'504b2a88-223f-4e35-8043-f061ea8a6623']));
         $manager->persist($processType);
         $processType->setId($id);
         $manager->persist($processType);
