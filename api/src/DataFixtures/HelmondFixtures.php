@@ -41,7 +41,7 @@ class HelmondFixtures extends Fixture
         $processType = new ProcessType();
         $processType->setName('geboorte aangifte');
         $processType->setIcon('fas fa-parking');
-        $processType->setDescription('Geboorte aangifte doen');
+        $processType->setDescription('Hier kunt u de geboorte van uw kersverse kindje aangeven.');
         $processType->setSourceOrganization('001709124');
         $processType->setRequestType($this->commonGroundService->cleanUrl(['component'=>'vtc', 'type'=>'request_types', 'id'=>'504b2a88-223f-4e35-8043-f061ea8a6623']));
         $manager->persist($processType);
