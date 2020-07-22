@@ -284,7 +284,7 @@ class ZuiddrechtFixtures extends Fixture
         $stage->setDescription('Wie treed op als belanghebbende?');
 
         $section = new Section();
-        $section->setName('Melding');
+        $section->setName('Beschrijf melding');
         $section->setDescription('Probeer het probleem zo zorgvuldig mogenlijk te omschrijven');
         $section->setProperties([
             $this->commonGroundService->cleanUrl(['component'=>'vtc', 'type'=>'properties', 'id'=>'67201efb-73e1-4aab-b28f-28ce5c9b5014']),
