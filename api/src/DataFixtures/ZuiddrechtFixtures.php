@@ -52,15 +52,15 @@ class ZuiddrechtFixtures extends Fixture
 
         $stage = new Stage();
         $stage->setName('Kenteken');
-        $stage->setDescription('');
+        $stage->setDescription('Kenteken');
         $stage->setIcon('fas fa-parking');
         $stage->setSlug('kenteken');
         $stage->setProcess($processType);
 
         $section = new Section();
         $section->setStage($stage);
-        $section->setName('');
-        $section->setDescription('');
+        $section->setName('Kenteken');
+        $section->setDescription('Kenteken');
         $section->setProperties([
             $this->commonGroundService->cleanUrl(['component'=>'vtc', 'type'=>'properties', 'id'=>'0ab3fbc1-ee3c-40d6-881b-84b5b331710f']),
         ]);
