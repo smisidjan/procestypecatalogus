@@ -59,7 +59,7 @@ class ZuiddrechtFixtures extends Fixture
 
         $section = new Section();
         $section->setStage($stage);
-        $section->setName('');
+        $section->setName('Kenteken');
         $section->setDescription('');
         $section->setProperties([
             $this->commonGroundService->cleanUrl(['component'=>'vtc', 'type'=>'properties', 'id'=>'0ab3fbc1-ee3c-40d6-881b-84b5b331710f']),
