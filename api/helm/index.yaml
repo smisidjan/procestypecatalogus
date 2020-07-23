@@ -3,7 +3,7 @@ entries:
   pc:
   - apiVersion: v1
     appVersion: V.0.1
-    created: "2020-07-14T12:53:58.7035308Z"
+    created: "2020-07-22T07:40:20.315460685Z"
     description: '&#039;Naast deze JSON rest API is er ook een [graphql](/graphql)
       interface beschikbaar.&#039;'
     digest: a3ebf537582710b118b706a276db61fec8e25b642f3e8f3d1bb239ac1131f064
@@ -16,14 +16,14 @@ entries:
   ptc:
   - apiVersion: v1
     appVersion: V.0.1
-    created: "2020-07-14T12:53:58.7087196Z"
+    created: "2020-07-22T07:40:20.324216485Z"
     description: '&#039;Naast deze JSON rest API is er ook een [graphql](/graphql)
       interface beschikbaar.&#039;'
-    digest: 6a297687a98cd12a0172961d03232bce34892af71753daa47c47bb7adca9e8ad
+    digest: 12797c485aa54cef233a34c01e61c23459533f7d26e149e2122ba07bdcbb28c6
     home: ptc.zuid-drecht.nl
     icon: ptc.zuid-drecht.nl
     name: ptc
     urls:
     - ptc-0.1.0.tgz
     version: 0.1.0
-generated: "2020-07-14T12:53:58.6847657Z"
+generated: "2020-07-22T07:40:20.304415385Z"
