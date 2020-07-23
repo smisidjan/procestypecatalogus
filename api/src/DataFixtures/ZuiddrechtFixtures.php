@@ -251,10 +251,9 @@ class ZuiddrechtFixtures extends Fixture
         $section->setName('Afspraak');
         $section->setDescription('Waneer wilt u langskomen bij de ballie?');
         $section->setProperties([
-            $this->commonGroundService->cleanUrl(['component'=>'vtc', 'type'=>'properties', 'id'=>'bb4fd6ee-5dce-4b9f-a28a-c566d5542d07']),
-            $this->commonGroundService->cleanUrl(['component'=>'vtc', 'type'=>'properties', 'id'=>'af3fefb1-3a47-4d17-8837-a0ffc4901dd8']),
-            $this->commonGroundService->cleanUrl(['component'=>'vtc', 'type'=>'properties', 'id'=>'1db8bb40-aa1d-4ddd-b4d7-d43c987869cb']),
             $this->commonGroundService->cleanUrl(['component'=>'vtc', 'type'=>'properties', 'id'=>'b90265da-379e-4254-b6df-14f962a68212']),
+            $this->commonGroundService->cleanUrl(['component'=>'vtc', 'type'=>'properties', 'id'=>'1db8bb40-aa1d-4ddd-b4d7-d43c987869cb']),
+            $this->commonGroundService->cleanUrl(['component'=>'vtc', 'type'=>'properties', 'id'=>'bb4fd6ee-5dce-4b9f-a28a-c566d5542d07']),
         ]);
         $stage->addSection($section);
 
