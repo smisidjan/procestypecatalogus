@@ -35,11 +35,11 @@ class ZuiddrechtFixtures extends Fixture
         }
 
         /*
-         *  Parkeer vergunning
+         *  Parkeervergunning
          */
         $id = Uuid::fromString('993cefcc-de42-46f5-9289-5f24df5dd3c7');
         $processType = new ProcessType();
-        $processType->setName('Parkeer vergunning');
+        $processType->setName('Parkeervergunning');
         $processType->setIcon('fas fa-parking');
         $processType->setDescription('Hier kunt u een parkeervergunning aanvragen.');
         $processType->setSourceOrganization($this->commonGroundService->cleanUrl(['component'=>'vtc', 'type'=>'request_types', 'id'=>'4d1eded3-fbdf-438f-9536-8747dd8ab591']));
@@ -49,6 +49,26 @@ class ZuiddrechtFixtures extends Fixture
         $manager->persist($processType);
         $manager->flush();
         $processType = $manager->getRepository('App:ProcessType')->findOneBy(['id'=> $id]);
+
+        $stage = new Stage();
+        $stage->setName('Wat is uw kenteken?');
+        $stage->setDescription('Wat is uw kenteken?');
+        $stage->setIcon('fas fa-parking');
+        $stage->setSlug('Wat is uw kenteken?');
+        $stage->setProcess($processType);
+
+        $section = new Section();
+        $section->setStage($stage);
+        $section->setName('Wat is uw kenteken?');
+        $section->setDescription('Wat is uw kenteken?');
+        $section->setProperties([
+            $this->commonGroundService->cleanUrl(['component'=>'vtc', 'type'=>'properties', 'id'=>'0ab3fbc1-ee3c-40d6-881b-84b5b331710f']),
+        ]);
+        $stage->addSection($section);
+
+        $processType->addStage($stage);
+        $manager->persist($processType);
+        $manager->flush();
 
         $stage = new Stage();
         $stage->setName('Is er een eigen parkeergelegenheid bij uw woning?');
