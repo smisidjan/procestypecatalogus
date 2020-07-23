@@ -51,16 +51,16 @@ class ZuiddrechtFixtures extends Fixture
         $processType = $manager->getRepository('App:ProcessType')->findOneBy(['id'=> $id]);
 
         $stage = new Stage();
-        $stage->setName('Wat is uw kenteken?');
-        $stage->setDescription('Wat is uw kenteken?');
+        $stage->setName('Kenteken');
+        $stage->setDescription('');
         $stage->setIcon('fas fa-parking');
-        $stage->setSlug('Wat is uw kenteken?');
+        $stage->setSlug('kenteken');
         $stage->setProcess($processType);
 
         $section = new Section();
         $section->setStage($stage);
-        $section->setName('Wat is uw kenteken?');
-        $section->setDescription('Wat is uw kenteken?');
+        $section->setName('');
+        $section->setDescription('');
         $section->setProperties([
             $this->commonGroundService->cleanUrl(['component'=>'vtc', 'type'=>'properties', 'id'=>'0ab3fbc1-ee3c-40d6-881b-84b5b331710f']),
         ]);
