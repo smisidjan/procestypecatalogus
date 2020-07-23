@@ -309,7 +309,6 @@ class ZuiddrechtFixtures extends Fixture
         $section->setProperties([
             $this->commonGroundService->cleanUrl(['component'=>'vtc', 'type'=>'properties', 'id'=>'67201efb-73e1-4aab-b28f-28ce5c9b5014']),
             $this->commonGroundService->cleanUrl(['component'=>'vtc', 'type'=>'properties', 'id'=>'2f09a068-410e-4053-983a-604220c4facc']),
-            $this->commonGroundService->cleanUrl(['component'=>'vtc', 'type'=>'properties', 'id'=>'49da683f-3001-437b-99ab-9c8065e47269']),
         ]);
         $stage->addSection($section);
 
