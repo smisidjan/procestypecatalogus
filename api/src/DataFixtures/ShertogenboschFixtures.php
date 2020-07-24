@@ -78,26 +78,6 @@ class ShertogenboschFixtures extends Fixture
         $manager->flush();
 
         $stage = new Stage();
-        $stage->setName('Mee verhuizers');
-        $stage->setDescription('Zijn er personen die mee verhuizen');
-        $stage->setIcon('fal fa-calendar');
-        $stage->setSlug('mee-verhuizers');
-        $stage->setProcess($processType);
-
-        $section = new Section();
-        $section->setStage($stage);
-        $section->setName('Mee verhuizers');
-        $section->setDescription('Zijn er meerdere mensen die mee verhuizen');
-        $section->setProperties([
-            $this->commonGroundService->cleanUrl(['component'=>'vtc', 'type'=>'properties', 'id'=>'a5f3c372-37b3-495d-b0b2-d1cd24990e46']),
-        ]);
-        $stage->addSection($section);
-
-        $processType->addStage($stage);
-        $manager->persist($processType);
-        $manager->flush();
-
-        $stage = new Stage();
         $stage->setName('Contact Gegevens');
         $stage->setDescription('Hoe kunnen wij u bereiken');
         $stage->setIcon('fal fa-calendar');
