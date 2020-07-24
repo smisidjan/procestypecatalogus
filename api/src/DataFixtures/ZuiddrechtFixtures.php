@@ -51,26 +51,6 @@ class ZuiddrechtFixtures extends Fixture
         $processType = $manager->getRepository('App:ProcessType')->findOneBy(['id'=> $id]);
 
         $stage = new Stage();
-        $stage->setName('Kenteken');
-        $stage->setDescription('Kenteken');
-        $stage->setIcon('fas fa-parking');
-        $stage->setSlug('kenteken');
-        $stage->setProcess($processType);
-
-        $section = new Section();
-        $section->setStage($stage);
-        $section->setName('Kenteken');
-        $section->setDescription('Kenteken');
-        $section->setProperties([
-            $this->commonGroundService->cleanUrl(['component'=>'vtc', 'type'=>'properties', 'id'=>'0ab3fbc1-ee3c-40d6-881b-84b5b331710f']),
-        ]);
-        $stage->addSection($section);
-
-        $processType->addStage($stage);
-        $manager->persist($processType);
-        $manager->flush();
-
-        $stage = new Stage();
         $stage->setName('Is er een eigen parkeergelegenheid bij uw woning?');
         $stage->setDescription('Is er een eigen parkeergelegenheid bij uw woning?');
         $stage->setIcon('fas fa-parking');
@@ -123,6 +103,15 @@ class ZuiddrechtFixtures extends Fixture
         $section->setDescription('Staat uw naam op het kentenbewijs?');
         $section->setProperties([
             $this->commonGroundService->cleanUrl(['component'=>'vtc', 'type'=>'properties', 'id'=>'c3102b38-b07c-4392-8a31-e57d81b39d70']),
+        ]);
+        $stage->addSection($section);
+
+        $section = new Section();
+        $section->setStage($stage);
+        $section->setName('Kenteken');
+        $section->setDescription('Kenteken');
+        $section->setProperties([
+            $this->commonGroundService->cleanUrl(['component'=>'vtc', 'type'=>'properties', 'id'=>'0ab3fbc1-ee3c-40d6-881b-84b5b331710f']),
         ]);
         $stage->addSection($section);
 
