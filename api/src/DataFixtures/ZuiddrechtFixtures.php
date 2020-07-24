@@ -35,13 +35,13 @@ class ZuiddrechtFixtures extends Fixture
         }
 
         /*
-         *  Parkeer vergunning
+         *  Parkeervergunning
          */
         $id = Uuid::fromString('993cefcc-de42-46f5-9289-5f24df5dd3c7');
         $processType = new ProcessType();
-        $processType->setName('Parkeer vergunning');
+        $processType->setName('Parkeervergunning');
         $processType->setIcon('fas fa-parking');
-        $processType->setDescription('Aanvragen van een parkeer vergunning');
+        $processType->setDescription('Hier kunt u een parkeervergunning aanvragen.');
         $processType->setSourceOrganization($this->commonGroundService->cleanUrl(['component'=>'vtc', 'type'=>'request_types', 'id'=>'4d1eded3-fbdf-438f-9536-8747dd8ab591']));
         $processType->setRequestType($this->commonGroundService->cleanUrl(['component'=>'vtc', 'type'=>'request_types', 'id'=>'f86591ef-6964-412b-84de-261fd47c3288']));
         $manager->persist($processType);
@@ -106,6 +106,15 @@ class ZuiddrechtFixtures extends Fixture
         ]);
         $stage->addSection($section);
 
+        $section = new Section();
+        $section->setStage($stage);
+        $section->setName('Kenteken');
+        $section->setDescription('');
+        $section->setProperties([
+            $this->commonGroundService->cleanUrl(['component'=>'vtc', 'type'=>'properties', 'id'=>'0ab3fbc1-ee3c-40d6-881b-84b5b331710f']),
+        ]);
+        $stage->addSection($section);
+
         $processType->addStage($stage);
         $manager->persist($processType);
         $manager->flush();
@@ -157,7 +166,7 @@ class ZuiddrechtFixtures extends Fixture
         $processType = new ProcessType();
         $processType->setName('Contact');
         $processType->setIcon('fas fa-parking');
-        $processType->setDescription('Via dit formulier neemt u contact met ons op');
+        $processType->setDescription('Via dit formulier neemt u contact met ons op.');
         $processType->setSourceOrganization($this->commonGroundService->cleanUrl(['component'=>'vtc', 'type'=>'request_types', 'id'=>'4d1eded3-fbdf-438f-9536-8747dd8ab591']));
         $processType->setRequestType($this->commonGroundService->cleanUrl(['component'=>'vtc', 'type'=>'request_types', 'id'=>'3b76447e-1b4b-4b86-a582-8f6b4a5a8c6f']));
         $manager->persist($processType);
@@ -212,7 +221,7 @@ class ZuiddrechtFixtures extends Fixture
         $processType = new ProcessType();
         $processType->setName('Balie afspraak');
         $processType->setIcon('fas fa-parking');
-        $processType->setDescription('Via dit formulier kunt u een ballie afspraak bij ons inplannen');
+        $processType->setDescription('Via dit formulier kunt u een balie afspraak bij ons inplannen.');
         $processType->setSourceOrganization($this->commonGroundService->cleanUrl(['component'=>'vtc', 'type'=>'request_types', 'id'=>'4d1eded3-fbdf-438f-9536-8747dd8ab591']));
         $processType->setRequestType($this->commonGroundService->cleanUrl(['component'=>'vtc', 'type'=>'request_types', 'id'=>'32293766-8b3a-43ee-9f16-ed67234ac309']));
         $manager->persist($processType);
@@ -231,10 +240,9 @@ class ZuiddrechtFixtures extends Fixture
         $section->setName('Afspraak');
         $section->setDescription('Waneer wilt u langskomen bij de ballie?');
         $section->setProperties([
-            $this->commonGroundService->cleanUrl(['component'=>'vtc', 'type'=>'properties', 'id'=>'bb4fd6ee-5dce-4b9f-a28a-c566d5542d07']),
-            $this->commonGroundService->cleanUrl(['component'=>'vtc', 'type'=>'properties', 'id'=>'af3fefb1-3a47-4d17-8837-a0ffc4901dd8']),
-            $this->commonGroundService->cleanUrl(['component'=>'vtc', 'type'=>'properties', 'id'=>'1db8bb40-aa1d-4ddd-b4d7-d43c987869cb']),
             $this->commonGroundService->cleanUrl(['component'=>'vtc', 'type'=>'properties', 'id'=>'b90265da-379e-4254-b6df-14f962a68212']),
+            $this->commonGroundService->cleanUrl(['component'=>'vtc', 'type'=>'properties', 'id'=>'1db8bb40-aa1d-4ddd-b4d7-d43c987869cb']),
+            $this->commonGroundService->cleanUrl(['component'=>'vtc', 'type'=>'properties', 'id'=>'bb4fd6ee-5dce-4b9f-a28a-c566d5542d07']),
         ]);
         $stage->addSection($section);
 
@@ -268,7 +276,7 @@ class ZuiddrechtFixtures extends Fixture
         $processType = new ProcessType();
         $processType->setName('Melding openbare ruimte');
         $processType->setIcon('fas fa-parking');
-        $processType->setDescription('Via dit formulier kunt u melding maken van een probleem in de openbare ruimte');
+        $processType->setDescription('Via dit formulier kunt u melding maken van een probleem in de openbare ruimte.');
         $processType->setSourceOrganization($this->commonGroundService->cleanUrl(['component'=>'vtc', 'type'=>'request_types', 'id'=>'4d1eded3-fbdf-438f-9536-8747dd8ab591']));
         $processType->setRequestType($this->commonGroundService->cleanUrl(['component'=>'vtc', 'type'=>'request_types', 'id'=>'6541d18b-1666-4600-98e3-6f5df1a67423']));
         $manager->persist($processType);
@@ -284,12 +292,11 @@ class ZuiddrechtFixtures extends Fixture
         $stage->setDescription('Wie treed op als belanghebbende?');
 
         $section = new Section();
-        $section->setName('Melding');
+        $section->setName('Beschrijf melding');
         $section->setDescription('Probeer het probleem zo zorgvuldig mogenlijk te omschrijven');
         $section->setProperties([
             $this->commonGroundService->cleanUrl(['component'=>'vtc', 'type'=>'properties', 'id'=>'67201efb-73e1-4aab-b28f-28ce5c9b5014']),
             $this->commonGroundService->cleanUrl(['component'=>'vtc', 'type'=>'properties', 'id'=>'2f09a068-410e-4053-983a-604220c4facc']),
-            $this->commonGroundService->cleanUrl(['component'=>'vtc', 'type'=>'properties', 'id'=>'49da683f-3001-437b-99ab-9c8065e47269']),
         ]);
         $stage->addSection($section);
 
@@ -323,7 +330,7 @@ class ZuiddrechtFixtures extends Fixture
         $processType->setIcon('fal fa-rings-wedding');
         $processType->setSourceOrganization($this->commonGroundService->cleanUrl(['component'=>'vtc', 'type'=>'request_types', 'id'=>'4d1eded3-fbdf-438f-9536-8747dd8ab591']));
         $processType->setName('Huwelijk / Partnerschap');
-        $processType->setDescription('Als je gaat trouwen moet je veel regelen. Om je wat overzicht te geven hebben we hieronder een lijstje gemaakt van alles wat je met de Gemeente moet regelen.');
+        $processType->setDescription('Als je gaat trouwen moet je veel regelen. Om je wat overzicht te geven hebben we hieronder een lijstje gemaakt van alles wat je met de gemeente moet regelen.');
         $processType->setRequestType($this->commonGroundService->cleanUrl(['component'=>'vtc', 'type'=>'request_types', 'id'=>'d0badfff-1c90-4ddb-80fc-49842d806eaa']));
         $manager->persist($processType);
         $processType->setId($id);

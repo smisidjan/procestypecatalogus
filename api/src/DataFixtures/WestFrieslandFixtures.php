@@ -43,7 +43,7 @@ class WestFrieslandFixtures extends Fixture
         $processType->setIcon('fal fa-tombstone');
         $processType->setSourceOrganization($this->commonGroundService->cleanUrl(['component'=>'wrc', 'type'=>'organizations', 'id'=>'d280c4d3-6310-46db-9934-5285ec7d0d5e']));
         $processType->setName('Begraven');
-        $processType->setDescription('Plan een begrafenis op een gekozen begraafplaats');
+        $processType->setDescription('Plan een begrafenis op een gekozen begraafplaats.');
         $processType->setRequestType($this->commonGroundService->cleanUrl(['component'=>'vtc', 'type'=>'request_types', 'id'=>'c2e9824e-2566-460f-ab4c-905f20cddb6c']));
         $manager->persist($processType);
         $processType->setId($id);
@@ -101,13 +101,13 @@ class WestFrieslandFixtures extends Fixture
         $processType->addStage($stage);
 
         $stage = new Stage();
-        $stage->setName('Datum en tijd');
+        $stage->setName('Datum');
         $stage->setDescription('Wanneer gaat het afscheid plaatsvinden?');
         $stage->setIcon('fal fa-calendar');
         $stage->setSlug('datum');
 
         $section = new Section();
-        $section->setName('Datum en tijd');
+        $section->setName('Datum');
         $section->setDescription('Wanneer vindt het afscheid plaats?');
         $section->setProperties([$this->commonGroundService->cleanUrl(['component'=>'vtc', 'type'=>'properties', 'id'=>'b1fd7b38-384b-47ec-a0f2-6f81949cdece'])]);
         //$section->setProperties(["https://vtc.westfriesland.commonground.nu/properties/b1fd7b38-384b-47ec-a0f2-6f81949cdece"]);
