@@ -50,8 +50,6 @@ class ZuiddrechtFixtures extends Fixture
         $manager->flush();
         $processType = $manager->getRepository('App:ProcessType')->findOneBy(['id'=> $id]);
 
-
-
         $stage = new Stage();
         $stage->setName('Is er een eigen parkeergelegenheid bij uw woning?');
         $stage->setDescription('Is er een eigen parkeergelegenheid bij uw woning?');
