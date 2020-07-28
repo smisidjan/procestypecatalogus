@@ -4406,12 +4406,12 @@
 	],
 	"variable": [
 		{
-			"id": "f0a56a77-d308-4419-b6f5-28ff19dd6cb7",
+			"id": "7d9a1090-0d8d-4474-aace-5b54c0823cdf",
 			"key": "baseUrl",
-			"value": "https://ptc.dev.zuid-drecht.nl"
+			"value": "localhost"
 		},
 		{
-			"id": "db9e76ed-7666-41b1-8808-2f8491cb0ed3",
+			"id": "458fc257-e111-466b-828e-433928f8894e",
 			"key": "authorization",
 			"value": "45c1a4b6-59d3-4a6e-86bf-88a872f35845"
 		}
