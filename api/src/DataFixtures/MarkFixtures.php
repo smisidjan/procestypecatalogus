@@ -1,5 +1,4 @@
 <?php
-namespace App\DataFixtures;
 
 namespace App\DataFixtures;
 
@@ -12,10 +11,8 @@ use Doctrine\Common\Persistence\ObjectManager;
 use Ramsey\Uuid\Uuid;
 use Symfony\Component\DependencyInjection\ParameterBag\ParameterBagInterface;
 
-
 class MarkFixtures extends Fixture
 {
-
     private $commonGroundService;
     private $params;
 
@@ -27,7 +24,6 @@ class MarkFixtures extends Fixture
 
     public function load(ObjectManager $manager)
     {
-
         if (
             // If build all fixtures is true we build all the fixtures
             !$this->params->get('app_build_all_fixtures') &&
