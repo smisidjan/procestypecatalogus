@@ -1,13 +1,13 @@
 openapi: 3.0.2
 info:
   title: 'Proces Type Catalogus'
-  version: V.0.1
+  version: V1.0
   description: |
     API Details
     - Component: Proces Type Catalogus
     - Reference: ptc
     - Enviroment: dev
-    - Version: V.0.1
+    - Version: V1.0
     - Repository: [online](https://github.com/ConductionNL/procestypecatalogus) / [zip](https://github.com/ConductionNL/procestypecatalogus/archive/master.zip)
     - Docker Image: [online](https://hub.docker.com/repository/docker/conduction/ptc-php) 
     - Datamodel: [postman](/schema/ptc.postman_collection.json) / [oas](/schema/openapi.yaml) / [pdf](/schema/datamodel.pdf) / [modelio (zip)](/schema/Datamodel_Modelio.zip) 
@@ -6615,12 +6615,12 @@ definitions:
         description: 'The moment this request was created'
         type: string
         format: date-time
-        example: '2020-07-22 07:41:12'
+        example: '2020-07-28 12:29:23'
       dateModified:
         description: 'The moment this request last Modified'
         type: string
         format: date-time
-        example: '2020-07-22 07:41:12'
+        example: '2020-07-28 12:29:23'
     required: []
   AuditTrail-write:
     properties:
@@ -6668,12 +6668,12 @@ definitions:
         description: 'The moment this request was created'
         type: string
         format: date-time
-        example: '2020-07-22 07:41:12'
+        example: '2020-07-28 12:29:23'
       dateModified:
         description: 'The moment this request last Modified'
         type: string
         format: date-time
-        example: '2020-07-22 07:41:12'
+        example: '2020-07-28 12:29:23'
     required: []
   ChangeLog-write:
     properties:
