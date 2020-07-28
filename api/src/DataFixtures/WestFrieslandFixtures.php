@@ -52,21 +52,6 @@ class WestFrieslandFixtures extends Fixture
         $processType = $manager->getRepository('App:ProcessType')->findOneBy(['id'=> $id]);
 
         $stage = new Stage();
-        $stage->setName('Instructies');
-//        $stage->setIcon('fal fa-headstone');
-        $stage->setSlug('instruction');
-        $stage->setDescription('De instructies van dit process type');
-
-        $section = new Section();
-        $section->setName('Instructies');
-        $section->setDescription('De instructies van dit process type');
-        $section->setProperties([$this->commonGroundService->cleanUrl(['component'=>'vtc', 'type'=>'properties', 'id'=>'f22037e8-8088-4f15-a24c-d1be880d495e'])]);
-        //$section->setProperties(["https://vtc.westfriesland.commonground.nu/properties/72fdd281-c60d-4e2d-8b7d-d266303bdc46"]);
-        $stage->addSection($section);
-
-        $processType->addStage($stage);
-
-        $stage = new Stage();
         $stage->setName('Gemeente');
         $stage->setIcon('fal fa-headstone');
         $stage->setSlug('gemeente');
