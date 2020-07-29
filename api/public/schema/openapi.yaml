@@ -6668,12 +6668,28 @@ definitions:
         description: 'The moment this request was created'
         type: string
         format: date-time
+<<<<<<< HEAD
         example: '2020-07-29 13:24:20'
+=======
+<<<<<<< Updated upstream
+        example: '2020-07-28 12:29:23'
+=======
+        example: '2020-07-27 09:56:12'
+>>>>>>> Stashed changes
+>>>>>>> development
       dateModified:
         description: 'The moment this request last Modified'
         type: string
         format: date-time
+<<<<<<< HEAD
         example: '2020-07-29 13:24:20'
+=======
+<<<<<<< Updated upstream
+        example: '2020-07-28 12:29:23'
+=======
+        example: '2020-07-27 09:56:12'
+>>>>>>> Stashed changes
+>>>>>>> development
     required: []
   AuditTrail-write:
     properties:
@@ -6683,6 +6699,70 @@ definitions:
         example: 'This log line looks suspicius'
         maxLength: 2555
     required: []
+<<<<<<< HEAD
+=======
+  ChangeLog-read:
+    properties:
+      id:
+        description: 'The UUID identifier of this object'
+        type: string
+        example: e2984465-190a-4562-829e-a8cca81aa35d
+        format: uuid
+      note:
+        description: 'A note conserning this log lin'
+        type: string
+        example: 'This log line is suspicius'
+        maxLength: 2555
+      action:
+        description: ''
+        type: string
+      objectId:
+        description: ''
+        type: string
+      objectClass:
+        description: ''
+        type: string
+      version:
+        description: ''
+        type: int
+      data:
+        description: ''
+        type: array
+      username:
+        description: ''
+        type: string
+      session:
+        description: 'The moment this request was created'
+        type: string
+        maxLength: 255
+      dateCreated:
+        description: 'The moment this request was created'
+        type: string
+        format: date-time
+<<<<<<< Updated upstream
+        example: '2020-07-28 12:29:23'
+=======
+        example: '2020-07-27 09:56:12'
+>>>>>>> Stashed changes
+      dateModified:
+        description: 'The moment this request last Modified'
+        type: string
+        format: date-time
+<<<<<<< Updated upstream
+        example: '2020-07-28 12:29:23'
+=======
+        example: '2020-07-27 09:56:12'
+>>>>>>> Stashed changes
+    required: []
+  ChangeLog-write:
+    properties:
+      note:
+        description: 'A note conserning this log lin'
+        type: string
+        example: 'This log line is suspicius'
+        maxLength: 2555
+    required: []
+>>>>>>> development
 tags:
   -
     name: ProcessType
