@@ -117,7 +117,7 @@ class ProcessType
      * @Assert\Length(
      *      max = 2550
      * )
-     * @Groups({"read"})
+     * @Groups({"read", "write"})
      * @ORM\Column(type="text", nullable=true)
      */
     private $description;
