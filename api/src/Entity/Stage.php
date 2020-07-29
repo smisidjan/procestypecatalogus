@@ -115,7 +115,6 @@ class Stage
      * @example My Property
      *
      * @Gedmo\Versioned
-     * @Assert\Length(min = 15, max = 255)
      * @Groups({"read", "write"})
      * @ORM\Column(type="string", length=255, nullable=true)
      */
@@ -200,7 +199,6 @@ class Stage
      * @example my-slug
      *
      * @Gedmo\Versioned
-     * @Assert\Length(min = 15, max = 255)
      * @Groups({"read", "write"})
      * @ORM\Column(type="string", length=255, nullable=true)
      */
