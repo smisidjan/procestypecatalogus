@@ -37,7 +37,7 @@ class MarkFixtures extends Fixture
         $id = Uuid::fromString('5b24880e-708a-4fd9-84e7-c5427740fad6');
         $processType = new ProcessType();
         $processType->setName('Aanvraag JA/NEE of NEE/NEE sticker');
-        $processType->setDescription('Hier kunt u een parkeervergunning aanvragen.');
+        $processType->setDescription('Hier kunt u een JA/NEE NEE/NEE sticker aanvragen.');
         $processType->setSourceOrganization($this->commonGroundService->cleanUrl(['component'=>'vtc', 'type'=>'request_types', 'id'=>'4d1eded3-fbdf-438f-9536-8747dd8ab591']));
         $processType->setRequestType($this->commonGroundService->cleanUrl(['component'=>'vtc', 'type'=>'request_types', 'id'=>'7e3998c0-4e9d-41e2-b9dc-f0840efc44d9']));
         $manager->persist($processType);
@@ -76,7 +76,6 @@ class MarkFixtures extends Fixture
         $section->setName('Uw gegevens');
         $section->setDescription('Waar moet de sticker naartoe?');
         $section->setProperties([
-            $this->commonGroundService->cleanUrl(['component'=>'vtc', 'type'=>'properties', 'id'=>'2ae7bd21-117c-4451-94ab-cff5727cbc96']),
             $this->commonGroundService->cleanUrl(['component'=>'vtc', 'type'=>'properties', 'id'=>'c9ed0d31-6296-4e65-9416-aa2a1c366ecd']),
             $this->commonGroundService->cleanUrl(['component'=>'vtc', 'type'=>'properties', 'id'=>'f0ab2b61-2a98-48c0-b984-58ab5fa8568f']),
             $this->commonGroundService->cleanUrl(['component'=>'vtc', 'type'=>'properties', 'id'=>'afcf73a4-9d31-4104-baf2-039c0fae85e2']),
