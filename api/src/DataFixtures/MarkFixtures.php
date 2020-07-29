@@ -90,7 +90,7 @@ class MarkFixtures extends Fixture
         $manager->persist($processType);
         $manager->flush();
 
-        /Contactformulier bijzondere bijstand
+        //Contactformulier bijzondere bijstand
 
         $id = Uuid::fromString('f7e630cb-c521-4e53-83ed-33775a50f9d1');
         $processType = new ProcessType();
