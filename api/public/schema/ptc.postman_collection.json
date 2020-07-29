@@ -364,10 +364,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n\t\"name\": \"My process\",\n\t\"subtitle\": \"an example process\",\n\t\"description\": \"This is a process\",\n    \"sourceOrganization\": \"002851234\",\n    \"icon\": \"this is an icon name\",\n    \"requestType\": \"http://rtc.zaakonline.nl/9bd169ef-bc8c-4422-86ce-a0e7679ab67a\",\n    \"properties\": [\n        \"property\",\n        \"property2\"\n    ],\n    \"documents\": [\n        \"document\",\n        \"document2\"\n    ]\n}",
-							"options": {
-								"raw": {}
-							}
+							"raw": "{\n\t\"name\": \"My process\",\n\t\"subtitle\": \"an example process\",\n\t\"description\": \"This is a process\",\n    \"sourceOrganization\": \"http://wrc.dev.zuid-drecht.nl/organizations/4d1eded3-fbdf-438f-9536-8747dd8ab591\",\n    \"icon\": \"this is an icon name\",\n    \"requestType\": \"http://rtc.zaakonline.nl/9bd169ef-bc8c-4422-86ce-a0e7679ab67a\",\n    \"properties\": [\n        \"property\",\n        \"property2\"\n    ],\n    \"documents\": [\n        \"document\",\n        \"document2\"\n    ]\n}"
 						},
 						"url": {
 							"raw": "{{baseUrl}}/process_types",
@@ -948,10 +945,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n\t\"name\": \"My process\",\n\t\"description\": \"This is a process\",\n    \"sourceOrganization\": \"002851234\",\n    \"icon\": \"this is an icon name\",\n    \"requestType\": \"http://rtc.zaakonline.nl/9bd169ef-bc8c-4422-86ce-a0e7679ab67a\",\n    \"properties\": [\n        \"property\",\n        \"property2\"\n    ],\n    \"documents\": [\n        \"document\",\n        \"document2\"\n    ]\n}",
-							"options": {
-								"raw": {}
-							}
+							"raw": "{\n\t\"name\": \"My process\",\n\t\"description\": \"This is a process\",\n    \"sourceOrganization\": \"http://wrc.dev.zuid-drecht.nl/organizations/4d1eded3-fbdf-438f-9536-8747dd8ab591\",\n    \"icon\": \"this is an icon name\",\n    \"requestType\": \"http://rtc.zaakonline.nl/9bd169ef-bc8c-4422-86ce-a0e7679ab67a\",\n    \"properties\": [\n        \"property\",\n        \"property2\"\n    ],\n    \"documents\": [\n        \"document\",\n        \"document2\"\n    ]\n}"
 						},
 						"url": {
 							"raw": "{{baseUrl}}/process_types/{{procestype}}",
@@ -2253,10 +2247,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"name\": \"this is a stage name\",\n    \"description\": \"Please enter your email adres\",\n    \"icon\": \"this is a icon name\",\n    \"validation\": [],\n    \"property\": \"property\",\n    \"slug\": \"this is a slug name\",\n    \"start\": true,\n    \"process\": \"/process_types/{{procestype}}\",\n    \"orderNumber\": 4\n}\n",
-							"options": {
-								"raw": {}
-							}
+							"raw": "{\n    \"name\": \"this is a stage name\",\n    \"description\": \"Please enter your email adres\",\n    \"icon\": \"this is a icon name\",\n    \"validation\": [],\n    \"property\": \"property\",\n    \"slug\": \"this is a slug name\",\n    \"start\": true,\n    \"process\": \"/process_types/{{procestype}}\",\n    \"orderNumber\": 4\n}\n"
 						},
 						"url": {
 							"raw": "{{baseUrl}}/stages/{{stage}}",
@@ -2908,10 +2899,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"name\": \"Section 1\",\n    \"description\": \"this section is for the personal data of the client\",\n    \"properties\": [\n        \"https://vtc.processen.zaakonline.nl/properties/1\"\n    ],\n    \"orderNumber\": 5,\n    \"stage\": \"/stages/{{stage}}\"\n}",
-							"options": {
-								"raw": {}
-							}
+							"raw": "{\n    \"name\": \"Section 1\",\n    \"description\": \"this section is for the personal data of the client\",\n    \"properties\": [\n        \"https://vtc.processen.zaakonline.nl/properties/1\"\n    ],\n    \"orderNumber\": 5,\n    \"stage\": \"/stages/{{stage}}\"\n}"
 						},
 						"url": {
 							"raw": "{{baseUrl}}/sections",
@@ -3492,10 +3480,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"name\": \"Section 1\",\n    \"description\": \"this section is for the personal data of the client\",\n    \"properties\": [\n        \"https://vtc.processen.zaakonline.nl/properties/1\"\n    ],\n    \"orderNumber\": 5,\n    \"stage\": \"/stages/{{stage}}\"\n}",
-							"options": {
-								"raw": {}
-							}
+							"raw": "{\n    \"name\": \"Section 1\",\n    \"description\": \"this section is for the personal data of the client\",\n    \"properties\": [\n        \"https://vtc.processen.zaakonline.nl/properties/1\"\n    ],\n    \"orderNumber\": 5,\n    \"stage\": \"/stages/{{stage}}\"\n}"
 						},
 						"url": {
 							"raw": "{{baseUrl}}/sections/{{section}}",
@@ -4406,12 +4391,12 @@
 	],
 	"variable": [
 		{
-			"id": "7d9a1090-0d8d-4474-aace-5b54c0823cdf",
+			"id": "c59c6b82-4509-424d-86a2-1123389783df",
 			"key": "baseUrl",
 			"value": "localhost"
 		},
 		{
-			"id": "458fc257-e111-466b-828e-433928f8894e",
+			"id": "9111791a-ae12-4b8e-982e-6c786f666c14",
 			"key": "authorization",
 			"value": "45c1a4b6-59d3-4a6e-86bf-88a872f35845"
 		}

@@ -135,19 +135,15 @@ class ProcessType
     private $icon;
 
     /**
-     * @var string The RSIN of the organization that owns this process
+     * @var string A specific commonground organisation that is being reviewd, e.g a single product
      *
-     * @example 002851234
+     * @example https://wrc.zaakonline.nl/organisations/16353702-4614-42ff-92af-7dd11c8eef9f
      *
      * @Gedmo\Versioned
      * @Assert\NotNull
-     * @Assert\Length(
-     *      min = 8,
-     *      max = 11
-     * )
+     * @Assert\Url
      * @Groups({"read", "write"})
      * @ORM\Column(type="string", length=255)
-     * @ApiFilter(SearchFilter::class, strategy="exact")
      */
     private $sourceOrganization;
 
