@@ -53,7 +53,8 @@ class LucasFixtures extends Fixture
         $stage->setDescription('Aanvullende documenten inleveren!');
         $stage->setSlug('documenten-inleveren');
         $stage->setProcess($processType);
-        
+
+
         $section = new Section();
         $section->setStage($stage);
         $section->setName('Documenten Inleveren');
