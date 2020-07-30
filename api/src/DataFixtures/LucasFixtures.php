@@ -71,5 +71,44 @@ class LucasFixtures extends Fixture
         $processType->addStage($stage);
         $manager->persist($processType);
         $manager->flush();
+
+
+        // Jeugdlintje
+        $id = Uuid::fromString('a7b3f4d3-3973-4390-b10a-d10a7d99ff2b');
+        $processType = new ProcessType();
+        $processType->setName('Jeugdlintje - neem contact met mij op');
+        $processType->setDescription('Gemeentelijke onderschijding (Jeugdlintje)');
+        $processType->setSourceOrganization($this->commonGroundService->cleanUrl(['component'=>'vtc', 'type'=>'request_types', 'id'=>'4d1eded3-fbdf-438f-9536-8747dd8ab591']));
+        $processType->setRequestType($this->commonGroundService->cleanUrl(['component'=>'vtc', 'type'=>'request_types', 'id'=>'f74294c8-f7af-4357-a819-738989e1da0b']));
+        $manager->persist($processType);
+        $processType->setId($id);
+        $manager->persist($processType);
+        $manager->flush();
+        $processType = $manager->getRepository('App:ProcessType')->findOneBy(['id'=> $id]);
+
+        $stage = new Stage();
+        $stage->setName('Uw gegevens');
+        $stage->setDescription('Uw gegevens invullen.');
+        $stage->setSlug('uw-gegevens');
+        $stage->setProcess($processType);
+
+
+        $section = new Section();
+        $section->setStage($stage);
+        $section->setName('Uw gegevens');
+        $section->setDescription('Uw gegevens invullen.');
+        $section->setProperties([
+            $this->commonGroundService->cleanUrl(['component'=>'vtc', 'type'=>'properties', 'id'=>'7383ba2f-79e3-4419-8ba6-e959c708eb7a']),
+            $this->commonGroundService->cleanUrl(['component'=>'vtc', 'type'=>'properties', 'id'=>'5f2b3a7f-0c81-4f7a-baeb-7dafa453a23c']),
+            $this->commonGroundService->cleanUrl(['component'=>'vtc', 'type'=>'properties', 'id'=>'f8623f03-aa64-4a7b-809a-34996192e8e7']),
+            $this->commonGroundService->cleanUrl(['component'=>'vtc', 'type'=>'properties', 'id'=>'ca88b58c-e791-4b60-9d09-53bb69b64baf']),
+            $this->commonGroundService->cleanUrl(['component'=>'vtc', 'type'=>'properties', 'id'=>'b17119cc-303e-4f3a-a192-124821b71f3d']),
+            $this->commonGroundService->cleanUrl(['component'=>'vtc', 'type'=>'properties', 'id'=>'3bf1e76b-0cc7-4e5d-b7d9-1e963f7f7ff5']),
+        ]);
+        $stage->addSection($section);
+
+        $processType->addStage($stage);
+        $manager->persist($processType);
+        $manager->flush();
     }
 }
