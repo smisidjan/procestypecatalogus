@@ -88,6 +88,7 @@ class LucasFixtures extends Fixture
         $stage->setDescription('Uw gegevens invullen.');
         $stage->setSlug('uw-gegevens');
         $stage->setProcess($processType);
+
         
         $section = new Section();
         $section->setStage($stage);
