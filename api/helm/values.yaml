@@ -7,15 +7,17 @@ settings:
   projectName: ptc
   name: ptc
   title: Proces Type Catalogus
-  version: V.0.1
+  version: V1.0
+  majorVersion: v1
   id: 
-  description: '&#039;Naast deze JSON rest API is er ook een [graphql](/graphql) interface beschikbaar.&#039;'
+  description: 'Naast deze JSON rest API is er ook een [graphql](/graphql) interface beschikbaar.'
   type: component
   repro: https://github.com/ConductionNL/procestypecatalogus
   demo: pc.zaakonline.nl
   container: https://hub.docker.com/repository/docker/conduction/ptc-php
   domain: zuid-drecht.nl
   subdomain: ptc
+  subpath: ptc
   organisationName: Conduction
   email: info@conduction.nl
   country: Netherlands
