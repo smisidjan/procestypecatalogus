@@ -123,19 +123,9 @@ class SaraiFixtures extends Fixture
 
         $section = new Section();
         $section->setProperties([
-            $this->commonGroundService->cleanUrl(['component' => 'vtc', 'type' => 'properties', 'id' => 'fb2fd447-3492-4f32-9850-d48e1f8b34c3']),
-            $this->commonGroundService->cleanUrl(['component' => 'vtc', 'type' => 'properties', 'id' => '033730a1-0beb-40a4-9f5d-9fae5ceb27cf']),
-            $this->commonGroundService->cleanUrl(['component' => 'vtc', 'type' => 'properties', 'id' => '1bfea7c2-bf99-4c40-bcf9-6297960c8e47']),
-            $this->commonGroundService->cleanUrl(['component' => 'vtc', 'type' => 'properties', 'id' => '21aac5fd-a0a3-4613-a181-b124dd5e236e']),
-            $this->commonGroundService->cleanUrl(['component' => 'vtc', 'type' => 'properties', 'id' => '63a2ac70-2b93-4538-b777-27264f96b7f9']),
-            $this->commonGroundService->cleanUrl(['component' => 'vtc', 'type' => 'properties', 'id' => '3e654833-dd90-41dd-befb-88aa70b095b4']),
-            $this->commonGroundService->cleanUrl(['component' => 'vtc', 'type' => 'properties', 'id' => '9d20977b-9297-4f39-8102-4d4cbf31bb1d']),
-            $this->commonGroundService->cleanUrl(['component' => 'vtc', 'type' => 'properties', 'id' => '87e71ad1-f985-4f0a-a03f-524b1d045588']),
-            $this->commonGroundService->cleanUrl(['component' => 'vtc', 'type' => 'properties', 'id' => 'ff25b852-280c-423f-882a-37e6e8450569']),
             $this->commonGroundService->cleanUrl(['component' => 'vtc', 'type' => 'properties', 'id' => '56e115f6-aaa4-437f-80f6-252ff4ea0b84']),
             $this->commonGroundService->cleanUrl(['component' => 'vtc', 'type' => 'properties', 'id' => 'b8835509-40a0-4d7a-958d-f4c72f726bfe']),
-            $this->commonGroundService->cleanUrl(['component' => 'vtc', 'type' => 'properties', 'id' => '2b22534f-7982-42b6-98d5-c91f5b93eddd']),
-            $this->commonGroundService->cleanUrl(['component' => 'vtc', 'type' => 'properties', 'id' => '642c8a72-8f73-4531-ad1b-63e0580a7a77'])
+            $this->commonGroundService->cleanUrl(['component' => 'vtc', 'type' => 'properties', 'id' => '2b22534f-7982-42b6-98d5-c91f5b93eddd'])
 
         ]);
         $stage->addSection($section);
