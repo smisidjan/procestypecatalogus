@@ -89,7 +89,6 @@ class LucasFixtures extends Fixture
         $stage->setSlug('uw-gegevens');
         $stage->setProcess($processType);
 
-        
         $section = new Section();
         $section->setStage($stage);
         $section->setName('Uw gegevens');
