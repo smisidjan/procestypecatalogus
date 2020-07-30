@@ -142,7 +142,7 @@ class MarkFixtures extends Fixture
         //Formulier Stel uw vraag aan Zuid-drecht
         $id = Uuid::fromString('c09fc57f-f03a-42fc-9d1f-e6e1f73e8002');
         $processType = new ProcessType();
-        $processType->setName('Stel uw vraag aan Zuid-drecht');
+        $processType->setName('Stel uw vraag aan Zuid-Drecht');
         $processType->setDescription('Dit formulier gebruikt u als u een algemene vraag over zorg en ondersteuning wilt stellen. Als u uw gegevens invult, ontvangt u een antwoord via e-mail of telefoon. U kunt ook anoniem een melding maken. Als u hiervoor kiest, kunnen wij geen contact met u opnemen.');
         $processType->setSourceOrganization($this->commonGroundService->cleanUrl(['component'=>'vtc', 'type'=>'request_types', 'id'=>'4d1eded3-fbdf-438f-9536-8747dd8ab591']));
         $processType->setRequestType($this->commonGroundService->cleanUrl(['component'=>'vtc', 'type'=>'request_types', 'id'=>'a3844f30-74d7-4fcc-84c0-5c81fea5dc2e']));
@@ -153,9 +153,9 @@ class MarkFixtures extends Fixture
         $processType = $manager->getRepository('App:ProcessType')->findOneBy(['id'=> $id]);
 
         $stage = new Stage();
-        $stage->setName('Vraag');
+        $stage->setName('Informatie over vraag of melding.');
         $stage->setSlug('vraag');
-        $stage->setDescription('Vraag');
+        $stage->setDescription('Informatie over vraag of melding.');
         $stage->setProcess($processType);
 
         $section = new Section();
@@ -169,7 +169,7 @@ class MarkFixtures extends Fixture
 
         $section = new Section();
         $section->setStage($stage);
-        $section->setName('Uw vraag of melding betreft');
+        $section->setName('Uw vraag of melding betreft:');
         $section->setProperties([
             $this->commonGroundService->cleanUrl(['component'=>'vtc', 'type'=>'properties', 'id'=>'24d9151f-abfe-45c6-9b87-5b543acae91d']),
             $this->commonGroundService->cleanUrl(['component'=>'vtc', 'type'=>'properties', 'id'=>'36708885-716b-4e12-a93a-614952217b4e']),
