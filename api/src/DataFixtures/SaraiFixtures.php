@@ -34,56 +34,6 @@ class SaraiFixtures extends Fixture
             return false;
         }
 
-        /*
-            * Opdracht contact formulier
-            */
-
-        $id = Uuid::fromString('c836945e-ef8e-48a5-bdfa-a89b22a0beff');
-        $processType = new ProcessType();
-        $processType->setName('Contact formulier');
-        $processType->setDescription('Neem contact met ons op.');
-        $processType->setRequestType($this->commonGroundService->clearUrl(['component' => 'vtc', 'type' => 'request_types', 'id' => '47e9675d-fd72-435b-93c9-32aea32815ed']));
-        $manager->persist($processType);
-        $manager->flush();
-        $processType = $manager->getRepository('App:ProcessType')->findOneBy(['id' => $id]);
-
-        $stage = new Stage();
-        $stage->setName('Contact');
-        $stage->setIcon('fal fa-users');
-        $stage->setSlug('contactform');
-        $stage->setDescription('Neem contact met ons op.');
-
-        $section = new Section();
-        $section->setName('Onderwerp');
-        $section->setDescription('Waarover wilt u contact hebben?');
-        $section->setProperties([
-            $this->commonGroundService->clearUrl(['component' => 'vtc', 'type' => 'properties', 'id' => '0ab6b17e-4020-47f7-9b33-beb10275ba7b']),
-            $this->commonGroundService->clearUrl(['component' => 'vtc', 'type' => 'properties', 'id' => '708dbd31-4365-47f1-85fa-facde400afcb'])
-        ]);
-        $stage->addSection($section);
-        $processType->addStage($stage);
-        $manager->persist($processType);
-        $manager->flush();
-
-        $stage = new Stage();
-        $stage->setName('Uw gegevens');
-        $stage->setSlug('uw-gegevens');
-        $stage->setDescription('Uw contact gegevens');
-
-        $section = new Section();
-        $section->setName('Uw gegevens');
-        $section->setDescription('Uw contact gegevens');
-        $section->setProperties([
-            $this->commonGroundService->cleanUrl(['component' => 'vtc', 'type' => 'properties', 'id' => '91d4faea-2fec-4a48-85f1-4b03a261a56b']),
-            $this->commonGroundService->cleanUrl(['component' => 'vtc', 'type' => 'properties', 'id' => '303b4bc2-198d-4fd7-9123-7c736fc45e80'])
-        ]);
-        $stage->addSection($section);
-        $processType->addStage($stage);
-        $manager->persist($processType);
-        $manager->flush();
-
-
-
         //zorg formulier
         $id = Uuid::fromString('6ea049ca-a24a-40b8-b854-2544c9b813c3');
         $processType = new ProcessType();
