@@ -152,7 +152,6 @@ class MarkFixtures extends Fixture
         $manager->flush();
         $processType = $manager->getRepository('App:ProcessType')->findOneBy(['id'=> $id]);
 
-
         $stage = new Stage();
         $stage->setName('Vraag');
         $stage->setSlug('vraag');
