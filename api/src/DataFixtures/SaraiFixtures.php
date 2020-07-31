@@ -110,6 +110,7 @@ class SaraiFixtures extends Fixture
         $stage->setSlug('betrokkenen');
         $stage->setProcess($processType);
 
+        $section = new Section();
         $section->setName('Betrokkenen');
         $section->setProperties([
             $this->commonGroundService->cleanUrl(['component' => 'vtc', 'type' => 'properties', 'id' => '5c3ba3db-bf7a-40d3-8f94-201a885f8df0']),
@@ -130,6 +131,7 @@ class SaraiFixtures extends Fixture
         $stage->setSlug('reden-aanmelding');
         $stage->setProcess($processType);
 
+        $section = new Section();
         $section->setName('Reden voor aanmelding');
         $section->setProperties([
             $this->commonGroundService->cleanUrl(['component' => 'vtc', 'type' => 'properties', 'id' => '0a2ff1c2-0712-4c08-964e-524b1ad66513']),
@@ -149,6 +151,7 @@ class SaraiFixtures extends Fixture
         $stage->setSlug('overige-opmerkingen');
         $stage->setProcess($processType);
 
+        $section = new Section();
         $section->setName('Overige opmerkingen');
         $section->setProperties([
             $this->commonGroundService->cleanUrl(['component' => 'vtc', 'type' => 'properties', 'id' => '1cbd9f75-6689-405e-9d84-e6459870a941']),
