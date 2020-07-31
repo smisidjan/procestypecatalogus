@@ -6758,12 +6758,28 @@ definitions:
         description: 'The moment this request was created'
         type: string
         format: date-time
+<<<<<<< HEAD
         example: '2020-07-31 12:04:05'
+=======
+<<<<<<< HEAD
+        example: '2020-07-31 09:49:35'
+=======
+        example: '2020-07-31 09:43:13'
+>>>>>>> development
+>>>>>>> development
       dateModified:
         description: 'The moment this request last Modified'
         type: string
         format: date-time
+<<<<<<< HEAD
         example: '2020-07-31 12:04:05'
+=======
+<<<<<<< HEAD
+        example: '2020-07-31 09:49:35'
+=======
+        example: '2020-07-31 09:43:13'
+>>>>>>> development
+>>>>>>> development
     required: []
   AuditTrail-write:
     properties:
@@ -6773,6 +6789,10 @@ definitions:
         example: 'This log line looks suspicius'
         maxLength: 2555
     required: []
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> development
   ChangeLog-read:
     properties:
       id:
@@ -6811,12 +6831,20 @@ definitions:
         description: 'The moment this request was created'
         type: string
         format: date-time
+<<<<<<< HEAD
         example: '2020-07-31 12:04:05'
+=======
+        example: '2020-07-31 09:49:35'
+>>>>>>> development
       dateModified:
         description: 'The moment this request last Modified'
         type: string
         format: date-time
+<<<<<<< HEAD
         example: '2020-07-31 12:04:05'
+=======
+        example: '2020-07-31 09:49:35'
+>>>>>>> development
     required: []
   ChangeLog-write:
     properties:
@@ -6826,6 +6854,11 @@ definitions:
         example: 'This log line is suspicius'
         maxLength: 2555
     required: []
+<<<<<<< HEAD
+=======
+=======
+>>>>>>> development
+>>>>>>> development
 tags:
   -
     name: ProcessType
