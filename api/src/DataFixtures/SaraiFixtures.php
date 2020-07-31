@@ -206,7 +206,6 @@ class SaraiFixtures extends Fixture
 
         $section = new Section();
         $section->setName('Van wie?');
-        $section->setDescription('Van wie vraagt u het aan?');
         $section->setProperties([
             $this->commonGroundService->cleanUrl(['component' => 'vtc', 'type' => 'properties', 'id' => 'f2b68e37-f6d2-447c-a374-0fd9cb68b93e']),
         ]);
