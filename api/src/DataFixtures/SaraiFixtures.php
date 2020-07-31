@@ -276,7 +276,6 @@ class SaraiFixtures extends Fixture
          * Leerlingen vervoer wijziging doorgeven
          */
 
-
         $id = Uuid::fromString('b79b3b4d-78f8-4b18-be86-dcace8d838a7');
         $processType = new ProcessType();
         $processType->setSourceOrganization($this->commonGroundService->cleanUrl(['component'=>'vtc', 'type'=>'request_types', 'id'=>'4d1eded3-fbdf-438f-9536-8747dd8ab591']));
