@@ -34,57 +34,6 @@ class SaraiFixtures extends Fixture
             return false;
         }
 
-        /*
-            * Opdracht contact formulier
-            */
-
-        $id = Uuid::fromString('c836945e-ef8e-48a5-bdfa-a89b22a0beff');
-        $processType = new ProcessType();
-        $processType->setSourceOrganization($this->commonGroundService->cleanUrl(['component'=>'vtc', 'type'=>'request_types', 'id'=>'4d1eded3-fbdf-438f-9536-8747dd8ab591']));
-        $processType->setName('Contact formulier');
-        $processType->setDescription('Neem contact met ons op.');
-        $processType->setRequestType($this->commonGroundService->cleanUrl(['component' => 'vtc', 'type' => 'request_types', 'id' => '47e9675d-fd72-435b-93c9-32aea32815ed']));
-        $manager->persist($processType);
-        $manager->flush();
-        $processType = $manager->getRepository('App:ProcessType')->findOneBy(['id' => $id]);
-
-        $stage = new Stage();
-        $stage->setName('Contact');
-        $stage->setIcon('fal fa-users');
-        $stage->setSlug('contactform');
-        $stage->setDescription('Neem contact met ons op.');
-
-        $section = new Section();
-        $section->setName('Onderwerp');
-        $section->setDescription('Waarover wilt u contact hebben?');
-        $section->setProperties([
-            $this->commonGroundService->cleanUrl(['component' => 'vtc', 'type' => 'properties', 'id' => '0ab6b17e-4020-47f7-9b33-beb10275ba7b']),
-            $this->commonGroundService->cleanUrl(['component' => 'vtc', 'type' => 'properties', 'id' => '708dbd31-4365-47f1-85fa-facde400afcb'])
-        ]);
-        $stage->addSection($section);
-        $processType->addStage($stage);
-        $manager->persist($processType);
-        $manager->flush();
-
-        $stage = new Stage();
-        $stage->setName('Uw gegevens');
-        $stage->setSlug('uw-gegevens');
-        $stage->setDescription('Uw contact gegevens');
-
-        $section = new Section();
-        $section->setName('Uw gegevens');
-        $section->setDescription('Uw contact gegevens');
-        $section->setProperties([
-            $this->commonGroundService->cleanUrl(['component' => 'vtc', 'type' => 'properties', 'id' => '91d4faea-2fec-4a48-85f1-4b03a261a56b']),
-            $this->commonGroundService->cleanUrl(['component' => 'vtc', 'type' => 'properties', 'id' => '303b4bc2-198d-4fd7-9123-7c736fc45e80'])
-        ]);
-        $stage->addSection($section);
-        $processType->addStage($stage);
-        $manager->persist($processType);
-        $manager->flush();
-
-
-
         //zorg formulier
         $id = Uuid::fromString('6ea049ca-a24a-40b8-b854-2544c9b813c3');
         $processType = new ProcessType();
@@ -93,6 +42,8 @@ class SaraiFixtures extends Fixture
         $processType->setDescription('Dit aanmeldformulier is voor bewoners van Zuid Drecht die zorg en/of ondersteuning nodig hebben. De gegevens uit dit aanmeldformulier worden opgeslagen en besproken binnen het team van Zuid Drecht.');
         $processType->setRequestType($this->commonGroundService->cleanUrl(['component' => 'vtc', 'type' => 'request_types', 'id' => 'ffa22c00-6622-4cf3-8e97-682459a28d2d']));
         $manager->persist($processType);
+        $processType->setId($id);
+        $manager->persist($processType);
         $manager->flush();
         $processType = $manager->getRepository('App:ProcessType')->findOneBy(['id' => $id]);
 
@@ -100,11 +51,12 @@ class SaraiFixtures extends Fixture
         $stage = new Stage();
         $stage->setName('Aanmelden');
         $stage->setIcon('fal fa-users');
-        $processType->setDescription('Wie wilt u aanmelden');
         $stage->setSlug('zorgform');
         $stage->setDescription('Dit aanmeldformulier is voor bewoners van Zuid Drecht die zorg en/of ondersteuning nodig hebben. De gegevens uit dit aanmeldformulier worden opgeslagen en besproken binnen het team van Zuid Drecht');
+        $stage->setProcess($processType);
 
         $section = new Section();
+        $section->setName('Aanmelden');
         $section->setProperties([
             $this->commonGroundService->cleanUrl(['component' => 'vtc', 'type' => 'properties', 'id' => '621a9799-0eb8-4242-b2d5-aa4c7ac5e62b']),
             $this->commonGroundService->cleanUrl(['component' => 'vtc', 'type' => 'properties', 'id' => 'e5b77291-5ba1-49f3-a8c7-0e94a1df0dfe']),
@@ -120,8 +72,10 @@ class SaraiFixtures extends Fixture
         $stage->setName('Contactgegevens');
         $stage->setIcon('fal fa-users');
         $stage->setSlug('contact');
+        $stage->setProcess($processType);
 
         $section = new Section();
+        $section->setName('Contactgegevens');
         $section->setProperties([
             $this->commonGroundService->cleanUrl(['component' => 'vtc', 'type' => 'properties', 'id' => '56e115f6-aaa4-437f-80f6-252ff4ea0b84']),
             $this->commonGroundService->cleanUrl(['component' => 'vtc', 'type' => 'properties', 'id' => 'b8835509-40a0-4d7a-958d-f4c72f726bfe']),
@@ -138,7 +92,9 @@ class SaraiFixtures extends Fixture
         $stage->setName('Taal');
         $stage->setIcon('fal fa-users');
         $stage->setSlug('taal');
+        $stage->setProcess($processType);
 
+        $section->setName('Taal');
         $section->setProperties([
             $this->commonGroundService->cleanUrl(['component' => 'vtc', 'type' => 'properties', 'id' => '688a2e68-55c3-4dde-aaf6-339b918ae137'])
         ]);
@@ -152,7 +108,9 @@ class SaraiFixtures extends Fixture
         $stage->setName('Betrokkenen');
         $stage->setIcon('fal fa-users');
         $stage->setSlug('betrokkenen');
+        $stage->setProcess($processType);
 
+        $section->setName('Betrokkenen');
         $section->setProperties([
             $this->commonGroundService->cleanUrl(['component' => 'vtc', 'type' => 'properties', 'id' => '5c3ba3db-bf7a-40d3-8f94-201a885f8df0']),
             $this->commonGroundService->cleanUrl(['component' => 'vtc', 'type' => 'properties', 'id' => '88f0d590-7fc4-4097-90fa-8406799ea13c']),
@@ -170,7 +128,9 @@ class SaraiFixtures extends Fixture
         $stage->setDescription('U kunt in een volgend scherm (Overige opmerkingen) ook een bijlage toevoegen.');
         $stage->setIcon('fal fa-users');
         $stage->setSlug('reden-aanmelding');
+        $stage->setProcess($processType);
 
+        $section->setName('Reden voor aanmelding');
         $section->setProperties([
             $this->commonGroundService->cleanUrl(['component' => 'vtc', 'type' => 'properties', 'id' => '0a2ff1c2-0712-4c08-964e-524b1ad66513']),
             $this->commonGroundService->cleanUrl(['component' => 'vtc', 'type' => 'properties', 'id' => '4276abce-e9b5-4360-a255-1d45a4a94bcc']),
@@ -187,7 +147,9 @@ class SaraiFixtures extends Fixture
         $stage->setName('Overige opmerkingen');
         $stage->setIcon('fal fa-users');
         $stage->setSlug('overige-opmerkingen');
+        $stage->setProcess($processType);
 
+        $section->setName('Overige opmerkingen');
         $section->setProperties([
             $this->commonGroundService->cleanUrl(['component' => 'vtc', 'type' => 'properties', 'id' => '1cbd9f75-6689-405e-9d84-e6459870a941']),
             $this->commonGroundService->cleanUrl(['component' => 'vtc', 'type' => 'properties', 'id' => '65002f0c-8b16-496f-9298-70e89c08b67f'])
