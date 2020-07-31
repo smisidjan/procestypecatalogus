@@ -320,23 +320,5 @@ class SaraiFixtures extends Fixture
         $processType->addStage($stage);
         $manager->persist($processType);
         $manager->flush();
-
-        //2e pagina
-        $stage = new Stage();
-        $stage->setName('Afronden');
-        $stage->setIcon('fal fa-users');
-        $stage->setSlug('leerlingwijzig');
-        $stage->setProcess($processType);
-
-        $section = new Section();
-        $section->setName('Afronden');
-        $section->setProperties([
-            $this->commonGroundService->cleanUrl(['component' => 'vtc', 'type' => 'properties', 'id' => 'd3ab8f45-8ae0-42e0-829c-512d109389c3']),
-        ]);
-        $section->setStage($stage);
-        $stage->addSection($section);
-        $processType->addStage($stage);
-        $manager->persist($processType);
-        $manager->flush();
     }
 }
