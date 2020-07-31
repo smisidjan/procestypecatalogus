@@ -62,6 +62,7 @@ class SaraiFixtures extends Fixture
             $this->commonGroundService->cleanUrl(['component' => 'vtc', 'type' => 'properties', 'id' => 'e5b77291-5ba1-49f3-a8c7-0e94a1df0dfe']),
             $this->commonGroundService->cleanUrl(['component' => 'vtc', 'type' => 'properties', 'id' => '5e286dc3-c7b8-4f09-8bd0-7daa0db21881']),
         ]);
+        $section->setStage($stage);
         $stage->addSection($section);
         $processType->addStage($stage);
         $manager->persist($processType);
@@ -81,6 +82,7 @@ class SaraiFixtures extends Fixture
             $this->commonGroundService->cleanUrl(['component' => 'vtc', 'type' => 'properties', 'id' => 'b8835509-40a0-4d7a-958d-f4c72f726bfe']),
             $this->commonGroundService->cleanUrl(['component' => 'vtc', 'type' => 'properties', 'id' => '2b22534f-7982-42b6-98d5-c91f5b93eddd']),
         ]);
+        $section->setStage($stage);
         $stage->addSection($section);
         $processType->addStage($stage);
         $manager->persist($processType);
@@ -98,6 +100,7 @@ class SaraiFixtures extends Fixture
         $section->setProperties([
             $this->commonGroundService->cleanUrl(['component' => 'vtc', 'type' => 'properties', 'id' => '688a2e68-55c3-4dde-aaf6-339b918ae137']),
         ]);
+        $section->setStage($stage);
         $stage->addSection($section);
         $processType->addStage($stage);
         $manager->persist($processType);
@@ -118,6 +121,7 @@ class SaraiFixtures extends Fixture
             $this->commonGroundService->cleanUrl(['component' => 'vtc', 'type' => 'properties', 'id' => '0d1ffdb0-23cf-4431-8c6e-1db2a88b7e4c']),
 
         ]);
+        $section->setStage($stage);
         $stage->addSection($section);
         $processType->addStage($stage);
         $manager->persist($processType);
@@ -139,6 +143,7 @@ class SaraiFixtures extends Fixture
             $this->commonGroundService->cleanUrl(['component' => 'vtc', 'type' => 'properties', 'id' => 'cc9d2eba-b050-46e2-bc90-407e0bde4baf']),
 
         ]);
+        $section->setStage($stage);
         $stage->addSection($section);
         $processType->addStage($stage);
         $manager->persist($processType);
@@ -157,11 +162,17 @@ class SaraiFixtures extends Fixture
             $this->commonGroundService->cleanUrl(['component' => 'vtc', 'type' => 'properties', 'id' => '1cbd9f75-6689-405e-9d84-e6459870a941']),
             $this->commonGroundService->cleanUrl(['component' => 'vtc', 'type' => 'properties', 'id' => '65002f0c-8b16-496f-9298-70e89c08b67f']),
         ]);
+        $section->setStage($stage);
         $stage->addSection($section);
         $processType->addStage($stage);
         $manager->persist($processType);
         $manager->flush();
 
+
+        /*
+         *
+         * Leerlingen verv
+         */
 
 
 
