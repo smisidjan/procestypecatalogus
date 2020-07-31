@@ -168,7 +168,6 @@ class SaraiFixtures extends Fixture
         $manager->persist($processType);
         $manager->flush();
 
-
         /*
          * Afschrift burgelijke stand
          *
@@ -272,32 +271,6 @@ class SaraiFixtures extends Fixture
         $manager->persist($processType);
         $manager->flush();
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
         /*
          *
          * Leerlingen vervoer wijziging doorgeven
@@ -363,9 +336,5 @@ class SaraiFixtures extends Fixture
         $processType->addStage($stage);
         $manager->persist($processType);
         $manager->flush();
-
-
-
-
     }
 }
