@@ -205,7 +205,6 @@ class SaraiFixtures extends Fixture
 
         $section = new Section();
         $section->setName('Van wie?');
-        $section->setDescription('Van wie vraagt u het aan?');
         $section->setProperties([
             $this->commonGroundService->cleanUrl(['component' => 'vtc', 'type' => 'properties', 'id' => 'f2b68e37-f6d2-447c-a374-0fd9cb68b93e']),
         ]);
@@ -330,8 +329,10 @@ class SaraiFixtures extends Fixture
         $stage->setProcess($processType);
 
         $section = new Section();
-        $section->setName('Bedankt voor het doorgeven.');
-        $section->setDescription('U ontvangt een bevestigings op het door u opgegeven e-mailardes. Daarin staat een overzicht van uw gegevens');
+        $section->setName('Afronden');
+        $section->setProperties([
+            $this->commonGroundService->cleanUrl(['component' => 'vtc', 'type' => 'properties', 'id' => 'd3ab8f45-8ae0-42e0-829c-512d109389c3']),
+        ]);
         $section->setStage($stage);
         $stage->addSection($section);
         $processType->addStage($stage);
