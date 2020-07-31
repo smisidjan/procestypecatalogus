@@ -108,5 +108,63 @@ class LucasFixtures extends Fixture
         $processType->addStage($stage);
         $manager->persist($processType);
         $manager->flush();
+
+        // Vraag Stellen
+        $id = Uuid::fromString('3e758293-b910-490d-bc22-3941d61f9363');
+        $processType = new ProcessType();
+        $processType->setName('Vraag stellen');
+        $processType->setDescription('Algemeen contactformulier');
+        $processType->setSourceOrganization($this->commonGroundService->cleanUrl(['component'=>'vtc', 'type'=>'request_types', 'id'=>'4d1eded3-fbdf-438f-9536-8747dd8ab591']));
+        $processType->setRequestType($this->commonGroundService->cleanUrl(['component'=>'vtc', 'type'=>'request_types', 'id'=>'cf2482fd-5bed-4843-8f54-895cabdf6251']));
+        $manager->persist($processType);
+        $processType->setId($id);
+        $manager->persist($processType);
+        $manager->flush();
+        $processType = $manager->getRepository('App:ProcessType')->findOneBy(['id'=> $id]);
+
+        $stage = new Stage();
+        $stage->setName('Omschrijving');
+        $stage->setDescription('De omschrijving van de vraag die u heeft.');
+        $stage->setSlug('omschrijving');
+        $stage->setProcess($processType);
+
+        $section = new Section();
+        $section->setStage($stage);
+        $section->setName('Omschrijving');
+        $section->setDescription('De vraag die u wilt stellen.');
+        $section->setProperties([
+            $this->commonGroundService->cleanUrl(['component'=>'vtc', 'type'=>'properties', 'id'=>'3de7512b-1fe0-4c70-8667-d765ef6c1e88']),
+            $this->commonGroundService->cleanUrl(['component'=>'vtc', 'type'=>'properties', 'id'=>'c9e351f1-41c1-4274-af38-ed9f18611cf5']),
+            $this->commonGroundService->cleanUrl(['component'=>'vtc', 'type'=>'properties', 'id'=>'d2dae617-12f2-41d4-b976-e78dd86c08ea']),
+        ]);
+        $stage->addSection($section);
+
+        $processType->addStage($stage);
+        $manager->persist($processType);
+        $manager->flush();
+
+        $stage = new Stage();
+        $stage->setName('Uw gegevens');
+        $stage->setDescription('Uw gegevens invullen.');
+        $stage->setSlug('uw-gegevens');
+        $stage->setProcess($processType);
+
+        $section = new Section();
+        $section->setStage($stage);
+        $section->setName('Uw gegevens');
+        $section->setDescription('Uw gegevens invullen.');
+        $section->setProperties([
+            $this->commonGroundService->cleanUrl(['component'=>'vtc', 'type'=>'properties', 'id'=>'66df1173-ccb4-45f6-86e3-689f517a693c']),
+            $this->commonGroundService->cleanUrl(['component'=>'vtc', 'type'=>'properties', 'id'=>'147583a4-6a01-4422-9c60-fbe6e705bc3e']),
+            $this->commonGroundService->cleanUrl(['component'=>'vtc', 'type'=>'properties', 'id'=>'59d82428-0caf-47eb-a8df-2daf996b8f2f']),
+            $this->commonGroundService->cleanUrl(['component'=>'vtc', 'type'=>'properties', 'id'=>'fa4fb441-bc3e-4e4f-8ec0-df5386260917']),
+            $this->commonGroundService->cleanUrl(['component'=>'vtc', 'type'=>'properties', 'id'=>'3f2a0ecb-5f4f-4519-abc1-857a9b36fe38']),
+            $this->commonGroundService->cleanUrl(['component'=>'vtc', 'type'=>'properties', 'id'=>'e48c567d-c542-409e-b9dd-3f2934bc874f']),
+        ]);
+        $stage->addSection($section);
+
+        $processType->addStage($stage);
+        $manager->persist($processType);
+        $manager->flush();
     }
 }
