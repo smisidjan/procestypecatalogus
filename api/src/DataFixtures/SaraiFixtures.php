@@ -168,7 +168,6 @@ class SaraiFixtures extends Fixture
         $manager->persist($processType);
         $manager->flush();
 
-        
         /*
          * Afschrift burgelijke stand
          *
