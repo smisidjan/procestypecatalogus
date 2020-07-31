@@ -276,6 +276,7 @@ class SaraiFixtures extends Fixture
          * Leerlingen vervoer wijziging doorgeven
          */
 
+
         $id = Uuid::fromString('b79b3b4d-78f8-4b18-be86-dcace8d838a7');
         $processType = new ProcessType();
         $processType->setSourceOrganization($this->commonGroundService->cleanUrl(['component'=>'vtc', 'type'=>'request_types', 'id'=>'4d1eded3-fbdf-438f-9536-8747dd8ab591']));
@@ -329,8 +330,10 @@ class SaraiFixtures extends Fixture
         $stage->setProcess($processType);
 
         $section = new Section();
-        $section->setName('Bedankt voor het doorgeven.');
-        $section->setDescription('U ontvangt een bevestigings op het door u opgegeven e-mailardes. Daarin staat een overzicht van uw gegevens');
+        $section->setName('Afronden');
+        $section->setProperties([
+            $this->commonGroundService->cleanUrl(['component' => 'vtc', 'type' => 'properties', 'id' => 'd3ab8f45-8ae0-42e0-829c-512d109389c3']),
+        ]);
         $section->setStage($stage);
         $stage->addSection($section);
         $processType->addStage($stage);
