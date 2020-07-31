@@ -70,7 +70,6 @@ class LucasFixtures extends Fixture
         $manager->persist($processType);
         $manager->flush();
 
-
         // Jeugdlintje
         $id = Uuid::fromString('a7b3f4d3-3973-4390-b10a-d10a7d99ff2b');
         $processType = new ProcessType();
@@ -89,7 +88,6 @@ class LucasFixtures extends Fixture
         $stage->setDescription('Uw gegevens invullen.');
         $stage->setSlug('uw-gegevens');
         $stage->setProcess($processType);
-
 
         $section = new Section();
         $section->setStage($stage);
