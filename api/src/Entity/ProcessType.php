@@ -204,7 +204,6 @@ class ProcessType
      * @var string The audience this processType is intended for
      *
      * @Groups({"read","write"})
-     * @Assert\Choice({"organization", "employee", "person"})
      * @ORM\Column(type="json_array", nullable=true)
      */
     private $audience;
