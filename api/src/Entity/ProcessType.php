@@ -205,8 +205,7 @@ class ProcessType
      *
      * @Groups({"read","write"})
      * @Assert\Choice({"organization", "employee", "person"})
-     * @Assert\NotNull
-     * @ORM\Column(type="json_array", nullable=false)
+     * @ORM\Column(type="json_array", nullable=true)
      */
     private $audience;
 
