@@ -352,7 +352,7 @@ class MarkFixtures extends Fixture
 
         $section = new Section();
         $section->setStage($stage);
-        $section->setName('Referentie 1:');
+        $section->setName('Referentie 2:');
         $section->setProperties([
             $this->commonGroundService->cleanUrl(['component'=>'vtc', 'type'=>'properties', 'id'=>'99fe1089-bdf4-4db1-be70-fcb85d19efdf']),
             $this->commonGroundService->cleanUrl(['component'=>'vtc', 'type'=>'properties', 'id'=>'5a6f7003-ec42-46fd-b595-ff05dbd01f2e']),
