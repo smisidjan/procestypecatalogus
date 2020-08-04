@@ -1,58 +1,16 @@
 apiVersion: v1
 entries:
-<<<<<<< HEAD
-  pc:
-  - apiVersion: v1
-    appVersion: V.0.1
-<<<<<<< Updated upstream
-    created: "2020-07-27T13:52:54.972432017Z"
-=======
-    created: "2020-07-27T09:54:38.479301959Z"
->>>>>>> Stashed changes
-    description: '&#039;Naast deze JSON rest API is er ook een [graphql](/graphql)
-      interface beschikbaar.&#039;'
-    digest: a3ebf537582710b118b706a276db61fec8e25b642f3e8f3d1bb239ac1131f064
-    home: pc.zaakonline.nl
-    icon: pc.zaakonline.nl
-    name: pc
-    urls:
-    - pc-0.1.0.tgz
-    version: 0.1.0
-  ptc:
-  - apiVersion: v1
-    appVersion: V.0.1
-<<<<<<< Updated upstream
-    created: "2020-07-27T13:52:54.976549016Z"
-    description: '&#039;Naast deze JSON rest API is er ook een [graphql](/graphql)
-      interface beschikbaar.&#039;'
-    digest: 9586a5499f1f482c7b341143d0fce2c7c68ab5042f89bb5bfcda30d3dd26bf12
-=======
   ptc:
   - apiVersion: v1
     appVersion: V1.0
-    created: "2020-07-28T12:28:53.044949254Z"
-    description: '&#039;Naast deze JSON rest API is er ook een [graphql](/graphql)
-      interface beschikbaar.&#039;'
-    digest: 4273d71d5e2e385925b303c87d9ee53e4f787f78297fcd1ec0600fdb7e7e0b55
->>>>>>> development
-=======
-    created: "2020-07-27T09:54:38.482179459Z"
-    description: '&#039;Naast deze JSON rest API is er ook een [graphql](/graphql)
-      interface beschikbaar.&#039;'
-    digest: cd17901b579f9bb192d90090b64d2d64b8bbc95a71afcc19e9b65cfaa6e566a2
->>>>>>> Stashed changes
+    created: "2020-08-04T08:24:04.007610009Z"
+    description: Naast deze JSON rest API is er ook een [graphql](/graphql) interface
+      beschikbaar.
+    digest: 9353aa0de31bdc67301f5680063bd20df5c8a46981971a2cc3367611a64d0223
     home: ptc.zuid-drecht.nl
     icon: ptc.zuid-drecht.nl
     name: ptc
     urls:
     - ptc-0.1.0.tgz
     version: 0.1.0
-<<<<<<< Updated upstream
-<<<<<<< HEAD
-generated: "2020-07-27T13:52:54.967576618Z"
-=======
-generated: "2020-07-28T12:28:53.039472454Z"
->>>>>>> development
-=======
-generated: "2020-07-27T09:54:38.476566159Z"
->>>>>>> Stashed changes
+generated: "2020-08-04T08:24:04.004356509Z"
