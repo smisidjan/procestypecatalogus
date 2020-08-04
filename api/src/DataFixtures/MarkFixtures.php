@@ -195,9 +195,9 @@ class MarkFixtures extends Fixture
         $processType = $manager->getRepository('App:ProcessType')->findOneBy(['id'=> $id]);
 
         $stage = new Stage();
-        $stage->setName('Informatie over uw evenement.');
-        $stage->setSlug('aavraag-evenement');
-        $stage->setDescription('Informatie over evenement.');
+        $stage->setName('Omschrijf uw evenement.');
+        $stage->setSlug('omschrijf-evenement');
+        $stage->setDescription('Omschrijf uw evenement.');
         $stage->setProcess($processType);
 
         $section = new Section();
@@ -206,25 +206,71 @@ class MarkFixtures extends Fixture
         $section->setProperties([
             $this->commonGroundService->cleanUrl(['component'=>'vtc', 'type'=>'properties', 'id'=>'3210089c-30e7-4e32-b0ee-c7120924ff4a']),
             $this->commonGroundService->cleanUrl(['component'=>'vtc', 'type'=>'properties', 'id'=>'a92e3830-0c45-406b-a955-dfd00e01905c']),
+            $this->commonGroundService->cleanUrl(['component'=>'vtc', 'type'=>'properties', 'id'=>'a4079fc0-7386-4262-8497-ba2ecb272395']),
+        ]);
+        $stage->addSection($section);
+
+        $processType->addStage($stage);
+        $manager->persist($processType);
+        $manager->flush();
+
+        $stage = new Stage();
+        $stage->setName('Wanneer vind uw evenement plaats.');
+        $stage->setSlug('tijd-evenement');
+        $stage->setDescription('Wanneer vind uw evenement plaats.');
+        $stage->setProcess($processType);
+
+        $section = new Section();
+        $section->setStage($stage);
+        $section->setName('Wanneer vind uw evenement plaats:');
+        $section->setProperties([
             $this->commonGroundService->cleanUrl(['component'=>'vtc', 'type'=>'properties', 'id'=>'b7415265-4f0f-4e35-9ee1-1774c5242ee3']),
-            $this->commonGroundService->cleanUrl(['component'=>'vtc', 'type'=>'properties', 'id'=>'dc3d50fb-106d-4fea-acb8-1323ac412744']),
             $this->commonGroundService->cleanUrl(['component'=>'vtc', 'type'=>'properties', 'id'=>'2b34d5f1-37fb-40a9-b171-61a9ccea3e16']),
             $this->commonGroundService->cleanUrl(['component'=>'vtc', 'type'=>'properties', 'id'=>'ef793831-d09b-428f-a2d5-338943abe8b5']),
+
+        ]);
+        $stage->addSection($section);
+
+        $processType->addStage($stage);
+        $manager->persist($processType);
+        $manager->flush();
+
+        $stage = new Stage();
+        $stage->setName('Waar vind het evenement plaats');
+        $stage->setSlug('plek-evenement');
+        $stage->setDescription('Waar vind het evenement plaats.');
+        $stage->setProcess($processType);
+
+        $section = new Section();
+        $section->setStage($stage);
+        $section->setName('Waar vind uw evenement plaats:');
+        $section->setProperties([
+            $this->commonGroundService->cleanUrl(['component'=>'vtc', 'type'=>'properties', 'id'=>'dc3d50fb-106d-4fea-acb8-1323ac412744']),
             $this->commonGroundService->cleanUrl(['component'=>'vtc', 'type'=>'properties', 'id'=>'ee10e23b-0722-4744-95d9-db3d3a77291f']),
             $this->commonGroundService->cleanUrl(['component'=>'vtc', 'type'=>'properties', 'id'=>'4b3faaf9-f8f4-422c-869b-19103892316f']),
             $this->commonGroundService->cleanUrl(['component'=>'vtc', 'type'=>'properties', 'id'=>'abed58a6-3e16-42fb-bb15-8b4f197fb7fc']),
             $this->commonGroundService->cleanUrl(['component'=>'vtc', 'type'=>'properties', 'id'=>'234daa9c-f4ae-4a54-b1d2-a57ae7cbaeff']),
             $this->commonGroundService->cleanUrl(['component'=>'vtc', 'type'=>'properties', 'id'=>'145f99ba-3319-41d9-b035-a178239eeec1']),
             $this->commonGroundService->cleanUrl(['component'=>'vtc', 'type'=>'properties', 'id'=>'a4079fc0-7386-4262-8497-ba2ecb272395']),
-            $this->commonGroundService->cleanUrl(['component'=>'vtc', 'type'=>'properties', 'id'=>'18271026-961a-4577-834b-f00c68df6a7a']),
-            $this->commonGroundService->cleanUrl(['component'=>'vtc', 'type'=>'properties', 'id'=>'5a57828b-1232-4225-ad59-50c9347fbb98']),
         ]);
         $stage->addSection($section);
 
+        $processType->addStage($stage);
+        $manager->persist($processType);
+        $manager->flush();
+
+        $stage = new Stage();
+        $stage->setName('Extra informatie over het evenement');
+        $stage->setSlug('info-evenement');
+        $stage->setDescription('Extra informatie over het evenement');
+        $stage->setProcess($processType);
+
         $section = new Section();
         $section->setStage($stage);
-        $section->setName('Waarheid gegevens');
+        $section->setName('Documenten en info evenement:');
         $section->setProperties([
+            $this->commonGroundService->cleanUrl(['component'=>'vtc', 'type'=>'properties', 'id'=>'18271026-961a-4577-834b-f00c68df6a7a']),
+            $this->commonGroundService->cleanUrl(['component'=>'vtc', 'type'=>'properties', 'id'=>'5a57828b-1232-4225-ad59-50c9347fbb98']),
             $this->commonGroundService->cleanUrl(['component'=>'vtc', 'type'=>'properties', 'id'=>'81000444-8880-4ad4-82a3-0b53e9c1a233']),
         ]);
         $stage->addSection($section);
