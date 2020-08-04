@@ -164,5 +164,61 @@ class LucasFixtures extends Fixture
         $processType->addStage($stage);
         $manager->persist($processType);
         $manager->flush();
+
+        // Kraskaarten
+        $id = Uuid::fromString('30f26d23-acb4-4dda-b944-b336ef00ff52');
+        $processType = new ProcessType();
+        $processType->setName('Vraag stellen');
+        $processType->setDescription('Algemeen contactformulier');
+        $processType->setSourceOrganization($this->commonGroundService->cleanUrl(['component'=>'vtc', 'type'=>'request_types', 'id'=>'4d1eded3-fbdf-438f-9536-8747dd8ab591']));
+        $processType->setRequestType($this->commonGroundService->cleanUrl(['component'=>'vtc', 'type'=>'request_types', 'id'=>'c64bb62c-670a-4cde-bd29-f50c220a6442']));
+        $manager->persist($processType);
+        $processType->setId($id);
+        $manager->persist($processType);
+        $manager->flush();
+        $processType = $manager->getRepository('App:ProcessType')->findOneBy(['id'=> $id]);
+
+        $stage = new Stage();
+        $stage->setName('Uw gegevens');
+        $stage->setDescription('Uw persoonlijke gegevens invullen.');
+        $stage->setSlug('uw-gegevens');
+        $stage->setProcess($processType);
+
+        $section = new Section();
+        $section->setStage($stage);
+        $section->setName('Uw gegevens');
+        $section->setDescription('Uw persoonlijke gegevens invullen.');
+        $section->setProperties([
+            $this->commonGroundService->cleanUrl(['component'=>'vtc', 'type'=>'properties', 'id'=>'aa636080-5e9d-4909-80fd-0df8a6cb8754']),
+            $this->commonGroundService->cleanUrl(['component'=>'vtc', 'type'=>'properties', 'id'=>'87eec012-befe-45f8-b64d-62f3b2d26f11']),
+            $this->commonGroundService->cleanUrl(['component'=>'vtc', 'type'=>'properties', 'id'=>'1ec4376e-c5e9-47cf-aa36-617615bf5b28']),
+        ]);
+        $stage->addSection($section);
+
+        $processType->addStage($stage);
+        $manager->persist($processType);
+        $manager->flush();
+
+        $stage = new Stage();
+        $stage->setName('Kraskaarten');
+        $stage->setDescription('Kraskaart kopen');
+        $stage->setSlug('kraskaart');
+        $stage->setProcess($processType);
+
+        $section = new Section();
+        $section->setStage($stage);
+        $section->setName('Kraskaarten');
+        $section->setDescription('Kraskaart kopen');
+        $section->setProperties([
+            $this->commonGroundService->cleanUrl(['component'=>'vtc', 'type'=>'properties', 'id'=>'bed1d4f6-b16f-414d-a951-1ca7c41be66e']),
+            $this->commonGroundService->cleanUrl(['component'=>'vtc', 'type'=>'properties', 'id'=>'19f3f27c-ae2f-41b2-874d-883020a7f472']),
+            $this->commonGroundService->cleanUrl(['component'=>'vtc', 'type'=>'properties', 'id'=>'2762debf-a021-40c2-8f5b-83c29bb833cc']),
+            $this->commonGroundService->cleanUrl(['component'=>'vtc', 'type'=>'properties', 'id'=>'eace7bd9-8bff-4f6c-badb-e028a338890f']),
+        ]);
+        $stage->addSection($section);
+
+        $processType->addStage($stage);
+        $manager->persist($processType);
+        $manager->flush();
     }
 }
