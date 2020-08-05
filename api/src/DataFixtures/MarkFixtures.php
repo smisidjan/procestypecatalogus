@@ -277,5 +277,126 @@ class MarkFixtures extends Fixture
         $processType->addStage($stage);
         $manager->persist($processType);
         $manager->flush();
+
+        //Formulier aanmelden zorg
+        $id = Uuid::fromString('c47285f2-90b4-4080-be56-c2992f677b41');
+        $processType = new ProcessType();
+        $processType->setName('Aanmelden zorg');
+        $processType->setDescription('Dit aanmeldformulier is voor bewoners van Hoorn die zorg en/of ondersteuning nodig hebben.');
+        $processType->setSourceOrganization($this->commonGroundService->cleanUrl(['component'=>'vtc', 'type'=>'request_types', 'id'=>'4d1eded3-fbdf-438f-9536-8747dd8ab591']));
+        $processType->setRequestType($this->commonGroundService->cleanUrl(['component'=>'vtc', 'type'=>'request_types', 'id'=>'30d63557-53e5-4393-a613-ca1debf278f4']));
+        $manager->persist($processType);
+        $processType->setId($id);
+        $manager->persist($processType);
+        $manager->flush();
+        $processType = $manager->getRepository('App:ProcessType')->findOneBy(['id'=> $id]);
+
+        $stage = new Stage();
+        $stage->setName('Aanmelden basis.');
+        $stage->setSlug('aanmelden-zorg');
+        $stage->setDescription('Aanmelden basis.');
+        $stage->setProcess($processType);
+
+        $section = new Section();
+        $section->setStage($stage);
+        $section->setName('Vul de toepassende gegevens in:');
+        $section->setProperties([
+            $this->commonGroundService->cleanUrl(['component'=>'vtc', 'type'=>'properties', 'id'=>'0565b5b9-7823-434e-b608-ec7341a30756']),
+            $this->commonGroundService->cleanUrl(['component'=>'vtc', 'type'=>'properties', 'id'=>'2c1ecdbb-0bfd-4840-9272-cbf07265b4ed']),
+            $this->commonGroundService->cleanUrl(['component'=>'vtc', 'type'=>'properties', 'id'=>'198c0dbb-f99b-4a1e-9c89-bd6d8fd2d731']),
+        ]);
+        $stage->addSection($section);
+
+        $processType->addStage($stage);
+        $manager->persist($processType);
+        $manager->flush();
+
+        $stage = new Stage();
+        $stage->setName('Contactgegevens Patiënt');
+        $stage->setSlug('gegevens-zorg');
+        $stage->setDescription('Contactgegevens patiënt:');
+        $stage->setProcess($processType);
+
+        $section = new Section();
+        $section->setStage($stage);
+        $section->setName('Vul hier de gegevens van de patiënt in: (Als u voor uzelf aanmeld hoeft u alleen de verplicte velden in te vullen)');
+        $section->setProperties([
+            $this->commonGroundService->cleanUrl(['component'=>'vtc', 'type'=>'properties', 'id'=>'889d5fc0-6709-42c5-b910-b992638e2755']),
+            $this->commonGroundService->cleanUrl(['component'=>'vtc', 'type'=>'properties', 'id'=>'7130e972-64e1-4e8b-8a6e-fe6f61ad4db3']),
+            $this->commonGroundService->cleanUrl(['component'=>'vtc', 'type'=>'properties', 'id'=>'bd54116a-70d4-417f-8f98-b53b4309a9a9']),
+            $this->commonGroundService->cleanUrl(['component'=>'vtc', 'type'=>'properties', 'id'=>'9d3e1f91-51c3-4c55-9440-0e09aa19957a']),
+            $this->commonGroundService->cleanUrl(['component'=>'vtc', 'type'=>'properties', 'id'=>'ddf32494-e32c-4d13-990a-555377f28a82']),
+            $this->commonGroundService->cleanUrl(['component'=>'vtc', 'type'=>'properties', 'id'=>'5b6f5604-3188-4584-a936-c6ec3ea20994']),
+            $this->commonGroundService->cleanUrl(['component'=>'vtc', 'type'=>'properties', 'id'=>'b2163bf1-1247-4670-a146-d9bd2ce703ef']),
+            $this->commonGroundService->cleanUrl(['component'=>'vtc', 'type'=>'properties', 'id'=>'f519d8f7-37a0-41b9-87fb-669b4de7bac0']),
+            $this->commonGroundService->cleanUrl(['component'=>'vtc', 'type'=>'properties', 'id'=>'01a07273-6977-4b1b-87e6-96cf4930552d']),
+            $this->commonGroundService->cleanUrl(['component'=>'vtc', 'type'=>'properties', 'id'=>'cb87cae2-1a8c-42de-8587-ee821b400032']),
+            $this->commonGroundService->cleanUrl(['component'=>'vtc', 'type'=>'properties', 'id'=>'8ef914af-94e1-4ffc-a579-183d02e6a516']),
+            $this->commonGroundService->cleanUrl(['component'=>'vtc', 'type'=>'properties', 'id'=>'8209b47d-b602-4a23-a7ed-a725c50df022']),
+        ]);
+        $stage->addSection($section);
+
+        $processType->addStage($stage);
+        $manager->persist($processType);
+        $manager->flush();
+
+        $stage = new Stage();
+        $stage->setName('Informatie vorige zorgaanbieder(s)');
+        $stage->setSlug('aanbieder-zorg');
+        $stage->setDescription('Informatie vorige zorgaanbieder(s)');
+        $stage->setProcess($processType);
+
+        $section = new Section();
+        $section->setStage($stage);
+        $section->setName('Vermeld hier de gegevens van uw vorige zorgaanbieder:');
+        $section->setProperties([
+            $this->commonGroundService->cleanUrl(['component'=>'vtc', 'type'=>'properties', 'id'=>'100b40fb-fbd8-4aaf-bcc9-c7539d17a475']),
+            $this->commonGroundService->cleanUrl(['component'=>'vtc', 'type'=>'properties', 'id'=>'dd04a7ed-f205-4870-adee-4a6a674fc2ea']),
+            $this->commonGroundService->cleanUrl(['component'=>'vtc', 'type'=>'properties', 'id'=>'03f34417-fd81-4c7f-8cb4-c37c6eca4d2a']),
+        ]);
+        $stage->addSection($section);
+
+        $processType->addStage($stage);
+        $manager->persist($processType);
+        $manager->flush();
+
+        $stage = new Stage();
+        $stage->setName('Reden van aanmelding');
+        $stage->setSlug('reden-zorg');
+        $stage->setDescription('Reden van aanmelding');
+        $stage->setProcess($processType);
+
+        $section = new Section();
+        $section->setStage($stage);
+        $section->setName('Beschrijf in het kort wat U van ons nodig heeft:');
+        $section->setProperties([
+            $this->commonGroundService->cleanUrl(['component'=>'vtc', 'type'=>'properties', 'id'=>'9b1ffcf6-822d-4ca1-a85d-eb44e7861ea0']),
+            $this->commonGroundService->cleanUrl(['component'=>'vtc', 'type'=>'properties', 'id'=>'55de8ff7-0513-4b09-b8de-dbec3f1ae343']),
+            $this->commonGroundService->cleanUrl(['component'=>'vtc', 'type'=>'properties', 'id'=>'574e80ce-8ec5-4c85-9a06-0057d6c20b5e']),
+        ]);
+        $stage->addSection($section);
+
+        $processType->addStage($stage);
+        $manager->persist($processType);
+        $manager->flush();
+
+        $stage = new Stage();
+        $stage->setName('Melden overige informatie');
+        $stage->setSlug('overig-zorg');
+        $stage->setDescription('Melden overige informatie');
+        $stage->setProcess($processType);
+
+        $section = new Section();
+        $section->setStage($stage);
+        $section->setName('Geef hier extra informatie op (Waar van toepassing):');
+        $section->setProperties([
+            $this->commonGroundService->cleanUrl(['component'=>'vtc', 'type'=>'properties', 'id'=>'227977df-801d-47b4-a6af-972a3f585d76']),
+            $this->commonGroundService->cleanUrl(['component'=>'vtc', 'type'=>'properties', 'id'=>'d739487d-6e6a-4dce-be87-58b52194e955']),
+        ]);
+        $stage->addSection($section);
+
+        $processType->addStage($stage);
+        $manager->persist($processType);
+        $manager->flush();
     }
 }
