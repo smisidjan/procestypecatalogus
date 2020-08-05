@@ -190,6 +190,25 @@ class ProcessType
     private $extendedBy;
 
     /**
+     * @var bool If being logged in for process is required.
+     *
+     * @example false
+     *
+     * @Assert\Type("bool")
+     * @Groups({"read", "write"})
+     * @ORM\Column(type="boolean", nullable=true)
+     */
+    private $requireLogin = false;
+
+    /**
+     * @var string The audience this processType is intended for
+     *
+     * @Groups({"read","write"})
+     * @ORM\Column(type="json_array", nullable=true)
+     */
+    private $audience;
+
+    /**
      * @param array|string[] The request properties that are used for this process
      *
      * @Gedmo\Versioned
@@ -299,6 +318,30 @@ class ProcessType
     public function setSourceOrganization(string $sourceOrganization): self
     {
         $this->sourceOrganization = $sourceOrganization;
+
+        return $this;
+    }
+
+    public function getAudience()
+    {
+        return $this->audience;
+    }
+
+    public function setAudience($audience): self
+    {
+        $this->audience = $audience;
+
+        return $this;
+    }
+
+    public function getRequireLogin(): ?bool
+    {
+        return $this->requireLogin;
+    }
+
+    public function setRequireLogin(?bool $requireLogin): self
+    {
+        $this->requireLogin = $requireLogin;
 
         return $this;
     }

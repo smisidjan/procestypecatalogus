@@ -2029,6 +2029,12 @@ paths:
                   $ref: '#/components/schemas/ProcessType-read'
       parameters:
         -
+          name: requireLogin
+          in: query
+          required: false
+          schema:
+            type: boolean
+        -
           name: 'order[id]'
           in: query
           required: false
@@ -2075,6 +2081,24 @@ paths:
               - desc
         -
           name: 'order[requestType]'
+          in: query
+          required: false
+          schema:
+            type: string
+            enum:
+              - asc
+              - desc
+        -
+          name: 'order[requireLogin]'
+          in: query
+          required: false
+          schema:
+            type: string
+            enum:
+              - asc
+              - desc
+        -
+          name: 'order[audience]'
           in: query
           required: false
           schema:
@@ -2254,6 +2278,38 @@ paths:
             type: string
         -
           name: 'requestType[]'
+          in: query
+          required: false
+          schema:
+            type: array
+            items:
+              type: string
+          style: form
+          explode: true
+        -
+          name: requireLogin
+          in: query
+          required: false
+          schema:
+            type: boolean
+        -
+          name: 'requireLogin[]'
+          in: query
+          required: false
+          schema:
+            type: array
+            items:
+              type: boolean
+          style: form
+          explode: true
+        -
+          name: audience
+          in: query
+          required: false
+          schema:
+            type: string
+        -
+          name: 'audience[]'
           in: query
           required: false
           schema:
@@ -5804,6 +5860,16 @@ components:
           externalDocs:
             url: 'http://schema.org/url'
           type: string
+        requireLogin:
+          description: 'If being logged in for process is required.'
+          type: boolean
+          nullable: true
+        audience:
+          description: 'The audience this processType is intended for'
+          type: array
+          items:
+            type: string
+          nullable: true
         properties:
           type: array
           items:
@@ -5866,6 +5932,16 @@ components:
           anyOf:
             -
               $ref: '#/components/schemas/ProcessType-write'
+        requireLogin:
+          description: 'If being logged in for process is required.'
+          type: boolean
+          nullable: true
+        audience:
+          description: 'The audience this processType is intended for'
+          type: array
+          items:
+            type: string
+          nullable: true
         properties:
           type: array
           items:
@@ -5922,6 +5998,16 @@ components:
           externalDocs:
             url: 'http://schema.org/url'
           type: string
+        requireLogin:
+          description: 'If being logged in for process is required.'
+          type: boolean
+          nullable: true
+        audience:
+          description: 'The audience this processType is intended for'
+          type: array
+          items:
+            type: string
+          nullable: true
         properties:
           type: array
           items:
@@ -5993,6 +6079,16 @@ components:
           anyOf:
             -
               $ref: '#/components/schemas/ProcessType:jsonld-write'
+        requireLogin:
+          description: 'If being logged in for process is required.'
+          type: boolean
+          nullable: true
+        audience:
+          description: 'The audience this processType is intended for'
+          type: array
+          items:
+            type: string
+          nullable: true
         properties:
           type: array
           items:
@@ -6458,6 +6554,13 @@ definitions:
         example: 'http://rtc.zaakonline.nl/9bd169ef-bc8c-4422-86ce-a0e7679ab67a'
         format: url
         maxLength: 255
+      requireLogin:
+        description: 'If being logged in for process is required.'
+        type: bool
+        example: 'false'
+      audience:
+        description: 'The audience this processType is intended for'
+        type: string
       properties: []
       documents: []
       dateCreated:
@@ -6499,6 +6602,13 @@ definitions:
         example: 'http://rtc.zaakonline.nl/9bd169ef-bc8c-4422-86ce-a0e7679ab67a'
         format: url
         maxLength: 255
+      requireLogin:
+        description: 'If being logged in for process is required.'
+        type: bool
+        example: 'false'
+      audience:
+        description: 'The audience this processType is intended for'
+        type: string
       properties: []
       documents: []
       stages:
@@ -6758,12 +6868,28 @@ definitions:
         description: 'The moment this request was created'
         type: string
         format: date-time
+<<<<<<< HEAD
         example: '2020-07-31 12:24:26'
+=======
+<<<<<<< Updated upstream
+        example: '2020-08-04 13:07:28'
+=======
+        example: '2020-08-04 16:00:34'
+>>>>>>> Stashed changes
+>>>>>>> development
       dateModified:
         description: 'The moment this request last Modified'
         type: string
         format: date-time
+<<<<<<< HEAD
         example: '2020-07-31 12:24:26'
+=======
+<<<<<<< Updated upstream
+        example: '2020-08-04 13:07:28'
+=======
+        example: '2020-08-04 16:00:34'
+>>>>>>> Stashed changes
+>>>>>>> development
     required: []
   AuditTrail-write:
     properties:
@@ -6811,12 +6937,28 @@ definitions:
         description: 'The moment this request was created'
         type: string
         format: date-time
+<<<<<<< HEAD
         example: '2020-07-31 12:24:26'
+=======
+<<<<<<< Updated upstream
+        example: '2020-08-04 13:07:28'
+=======
+        example: '2020-08-04 16:00:34'
+>>>>>>> Stashed changes
+>>>>>>> development
       dateModified:
         description: 'The moment this request last Modified'
         type: string
         format: date-time
+<<<<<<< HEAD
         example: '2020-07-31 12:24:26'
+=======
+<<<<<<< Updated upstream
+        example: '2020-08-04 13:07:28'
+=======
+        example: '2020-08-04 16:00:34'
+>>>>>>> Stashed changes
+>>>>>>> development
     required: []
   ChangeLog-write:
     properties:
