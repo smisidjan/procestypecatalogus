@@ -49,14 +49,14 @@ class SaraiFixtures extends Fixture
 
         //1ste pagina
         $stage = new Stage();
-        $stage->setName('Aanmelden');
+        $stage->setName('Wie wilt u aanmelden');
         $stage->setIcon('fal fa-users');
         $stage->setSlug('zorgform');
         $stage->setDescription('Dit aanmeldformulier is voor bewoners van Zuid Drecht die zorg en/of ondersteuning nodig hebben. De gegevens uit dit aanmeldformulier worden opgeslagen en besproken binnen het team van Zuid Drecht');
         $stage->setProcess($processType);
 
         $section = new Section();
-        $section->setName('Aanmelden');
+        $section->setName('Wie wilt u aanmelden');
         $section->setProperties([
             $this->commonGroundService->cleanUrl(['component' => 'vtc', 'type' => 'properties', 'id' => '621a9799-0eb8-4242-b2d5-aa4c7ac5e62b']),
             $this->commonGroundService->cleanUrl(['component' => 'vtc', 'type' => 'properties', 'id' => 'e5b77291-5ba1-49f3-a8c7-0e94a1df0dfe']),
@@ -70,13 +70,13 @@ class SaraiFixtures extends Fixture
 
         //2e pagina
         $stage = new Stage();
-        $stage->setName('Contactgegevens');
+        $stage->setName('Uw contactgegevens');
         $stage->setIcon('fal fa-users');
         $stage->setSlug('contact');
         $stage->setProcess($processType);
 
         $section = new Section();
-        $section->setName('Contactgegevens');
+        $section->setName('Uw contactgegevens');
         $section->setProperties([
             $this->commonGroundService->cleanUrl(['component' => 'vtc', 'type' => 'properties', 'id' => '56e115f6-aaa4-437f-80f6-252ff4ea0b84']),
             $this->commonGroundService->cleanUrl(['component' => 'vtc', 'type' => 'properties', 'id' => 'b8835509-40a0-4d7a-958d-f4c72f726bfe']),
@@ -90,13 +90,13 @@ class SaraiFixtures extends Fixture
 
         //3de pagina
         $stage = new Stage();
-        $stage->setName('Taal');
+        $stage->setName('Spreekt u de Nederlandse taal');
         $stage->setIcon('fal fa-users');
         $stage->setSlug('taal');
         $stage->setProcess($processType);
 
         $section = new Section();
-        $section->setName('Taal');
+        $section->setName('Spreekt u de Nederlandse taal');
         $section->setProperties([
             $this->commonGroundService->cleanUrl(['component' => 'vtc', 'type' => 'properties', 'id' => '688a2e68-55c3-4dde-aaf6-339b918ae137']),
         ]);
@@ -108,13 +108,13 @@ class SaraiFixtures extends Fixture
 
         //4de pagina
         $stage = new Stage();
-        $stage->setName('Betrokkenen');
+        $stage->setName('Wie zijn er bij betrokken');
         $stage->setIcon('fal fa-users');
         $stage->setSlug('betrokkenen');
         $stage->setProcess($processType);
 
         $section = new Section();
-        $section->setName('Betrokkenen');
+        $section->setName('Wie zijn er bij betrokken');
         $section->setProperties([
             $this->commonGroundService->cleanUrl(['component' => 'vtc', 'type' => 'properties', 'id' => '5c3ba3db-bf7a-40d3-8f94-201a885f8df0']),
             $this->commonGroundService->cleanUrl(['component' => 'vtc', 'type' => 'properties', 'id' => '88f0d590-7fc4-4097-90fa-8406799ea13c']),
@@ -289,7 +289,7 @@ class SaraiFixtures extends Fixture
 
         //1ste pagina
         $stage = new Stage();
-        $stage->setName('Doorgeven');
+        $stage->setName('Gegevens doorgeven');
         $stage->setIcon('fal fa-users');
         $stage->setSlug('leerlingwijzig');
         $stage->setProcess($processType);
