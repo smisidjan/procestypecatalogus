@@ -406,7 +406,7 @@ class SaraiFixtures extends Fixture
         $processType = new ProcessType();
         $processType->setSourceOrganization($this->commonGroundService->cleanUrl(['component'=>'vtc', 'type'=>'request_types', 'id'=>'4d1eded3-fbdf-438f-9536-8747dd8ab591']));
         $processType->setName('Buurtbudget aanvragen');
-        $processType->setDescription('Vraag hier een buurtbudget aan');
+        $processType->setDescription('Via dit formulier kunt u een buurtbudget aanvragen');
         $processType->setRequestType($this->commonGroundService->cleanUrl(['component' => 'vtc', 'type' => 'request_types', 'id' => '50c4032e-b2d2-4e54-a07a-610832d16252']));
         $manager->persist($processType);
         $processType->setId($id);
