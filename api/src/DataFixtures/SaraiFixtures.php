@@ -320,9 +320,7 @@ class SaraiFixtures extends Fixture
         $processType->addStage($stage);
         $manager->persist($processType);
         $manager->flush();
-
-
-
+        
         /*
          *
          * Bouwtekening opvragen
@@ -492,7 +490,6 @@ class SaraiFixtures extends Fixture
          *
          * Samenstelling sportvereniging
          */
-
         $id = Uuid::fromString('958eeb72-3b4d-4361-8b58-5bb0424c8e59');
         $processType = new ProcessType();
         $processType->setSourceOrganization($this->commonGroundService->cleanUrl(['component'=>'vtc', 'type'=>'request_types', 'id'=>'4d1eded3-fbdf-438f-9536-8747dd8ab591']));
@@ -610,7 +607,6 @@ class SaraiFixtures extends Fixture
          * Aanvragen tegemoetkoming in schade (planschadevergoeding)
          *
          */
-
         $id = Uuid::fromString('5246ca0d-2a0a-4422-b500-39923a540d95');
         $processType = new ProcessType();
         $processType->setSourceOrganization($this->commonGroundService->cleanUrl(['component'=>'vtc', 'type'=>'request_types', 'id'=>'4d1eded3-fbdf-438f-9536-8747dd8ab591']));
@@ -706,6 +702,5 @@ class SaraiFixtures extends Fixture
         $processType->addStage($stage);
         $manager->persist($processType);
         $manager->flush();
-
     }
 }
