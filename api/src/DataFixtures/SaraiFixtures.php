@@ -731,7 +731,7 @@ class SaraiFixtures extends Fixture
         $id = Uuid::fromString('1ec841bd-3a86-4bf8-beb0-27a5558773bf');
         $processType = new ProcessType();
         $processType->setSourceOrganization($this->commonGroundService->cleanUrl(['component'=>'vtc', 'type'=>'request_types', 'id'=>'4d1eded3-fbdf-438f-9536-8747dd8ab591']));
-        $processType->setName('Aanvragen tegemoetkoming in schade (planschadevergoeding)');
+        $processType->setName('Parkeervergunning Incidenteel');
         $processType->setDescription('Via dit formulier vraagt u Indicenteel een parkeervergunning aan');
         $processType->setRequestType($this->commonGroundService->cleanUrl(['component' => 'vtc', 'type' => 'request_types', 'id' => '06ede3d9-2146-4250-a06b-00d1d4822a78']));
         $manager->persist($processType);
@@ -825,7 +825,7 @@ class SaraiFixtures extends Fixture
         $id = Uuid::fromString('49234bba-d0db-4b1e-acef-7208e0dc429e');
         $processType = new ProcessType();
         $processType->setSourceOrganization($this->commonGroundService->cleanUrl(['component'=>'vtc', 'type'=>'request_types', 'id'=>'4d1eded3-fbdf-438f-9536-8747dd8ab591']));
-        $processType->setName('Aanvragen tegemoetkoming in schade (planschadevergoeding)');
+        $processType->setName('Ligplaats klein bootje');
         $processType->setDescription('Via dit formulier vraagt u een ligplaats voor een klein bootje aan');
         $processType->setRequestType($this->commonGroundService->cleanUrl(['component' => 'vtc', 'type' => 'request_types', 'id' => 'ebff7783-2a8a-482c-882b-9d478e7d0a12']));
         $manager->persist($processType);
