@@ -41,6 +41,8 @@ class WestFrieslandFixtures extends Fixture
         $id = Uuid::fromString('a8b8ce49-d5db-4270-9e42-4b47902fc817');
         $processType = new ProcessType();
         $processType->setIcon('fal fa-tombstone');
+        $processType->setRequireLogin(true);
+        $processType->setAudience('organization');
         $processType->setSourceOrganization($this->commonGroundService->cleanUrl(['component'=>'wrc', 'type'=>'organizations', 'id'=>'d280c4d3-6310-46db-9934-5285ec7d0d5e']));
         $processType->setName('Begraven');
         $processType->setDescription('Plan een begrafenis op een gekozen begraafplaats.');
