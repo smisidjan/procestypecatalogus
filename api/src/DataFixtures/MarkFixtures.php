@@ -281,8 +281,8 @@ class MarkFixtures extends Fixture
         //Formulier Drank en horecawet
         $id = Uuid::fromString('c47285f2-90b4-4080-be56-c2992f677b41');
         $processType = new ProcessType();
-        $processType->setName('Aanmelden zorg');
-        $processType->setDescription('Dit aanmeldformulier is voor bewoners van Zuid-Drecht die zorg en/of ondersteuning nodig hebben.');
+        $processType->setName('Aanvragen vergunning Drank en Horecaet');
+        $processType->setDescription('Een ondernemer moet een drank- en horecavergunning hebben om alcoholische dranken te schenken, vraag deze aan met dit formulier.');
         $processType->setSourceOrganization($this->commonGroundService->cleanUrl(['component'=>'vtc', 'type'=>'request_types', 'id'=>'4d1eded3-fbdf-438f-9536-8747dd8ab591']));
         $processType->setRequestType($this->commonGroundService->cleanUrl(['component'=>'vtc', 'type'=>'request_types', 'id'=>'30d63557-53e5-4393-a613-ca1debf278f4']));
         $manager->persist($processType);
