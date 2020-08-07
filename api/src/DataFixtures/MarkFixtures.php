@@ -621,7 +621,6 @@ class MarkFixtures extends Fixture
         $manager->persist($processType);
         $manager->flush();
 
-
         $section = new Section();
         $section->setName('Adresgegevens locatie:');
         $section->setProperties([
