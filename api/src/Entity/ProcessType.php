@@ -117,7 +117,7 @@ class ProcessType
      * @Assert\Length(
      *      max = 2550
      * )
-     * @Groups({"read"})
+     * @Groups({"read", "write"})
      * @ORM\Column(type="text", nullable=true)
      */
     private $description;
@@ -128,26 +128,21 @@ class ProcessType
      * @example My Property
      *
      * @Gedmo\Versioned
-     * @Assert\Length(min = 5, max = 255)
      * @Groups({"read", "write"})
      * @ORM\Column(type="string", length=255, nullable=true)
      */
     private $icon;
 
     /**
-     * @var string The RSIN of the organization that owns this process
+     * @var string A specific commonground organisation that is being reviewd, e.g a single product
      *
-     * @example 002851234
+     * @example https://wrc.zaakonline.nl/organisations/16353702-4614-42ff-92af-7dd11c8eef9f
      *
      * @Gedmo\Versioned
      * @Assert\NotNull
-     * @Assert\Length(
-     *      min = 8,
-     *      max = 11
-     * )
+     * @Assert\Url
      * @Groups({"read", "write"})
      * @ORM\Column(type="string", length=255)
-     * @ApiFilter(SearchFilter::class, strategy="exact")
      */
     private $sourceOrganization;
 
@@ -193,6 +188,25 @@ class ProcessType
      * @ORM\OneToMany(targetEntity="App\Entity\ProcessType", mappedBy="extends")
      */
     private $extendedBy;
+
+    /**
+     * @var bool If being logged in for process is required.
+     *
+     * @example false
+     *
+     * @Assert\Type("bool")
+     * @Groups({"read", "write"})
+     * @ORM\Column(type="boolean", nullable=true)
+     */
+    private $requireLogin = false;
+
+    /**
+     * @var string The audience this processType is intended for
+     *
+     * @Groups({"read","write"})
+     * @ORM\Column(type="json_array", nullable=true)
+     */
+    private $audience;
 
     /**
      * @param array|string[] The request properties that are used for this process
@@ -304,6 +318,30 @@ class ProcessType
     public function setSourceOrganization(string $sourceOrganization): self
     {
         $this->sourceOrganization = $sourceOrganization;
+
+        return $this;
+    }
+
+    public function getAudience()
+    {
+        return $this->audience;
+    }
+
+    public function setAudience($audience): self
+    {
+        $this->audience = $audience;
+
+        return $this;
+    }
+
+    public function getRequireLogin(): ?bool
+    {
+        return $this->requireLogin;
+    }
+
+    public function setRequireLogin(?bool $requireLogin): self
+    {
+        $this->requireLogin = $requireLogin;
 
         return $this;
     }
