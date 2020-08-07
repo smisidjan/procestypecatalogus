@@ -395,7 +395,7 @@ class MarkFixtures extends Fixture
 
         $stage = new Stage();
         $stage->setName('Bijlagen en extra informatie');
-        $stage->setSlug('opening-vergunning');
+        $stage->setSlug('extra-vergunning');
         $stage->setDescription('Bijlagen en extra informatie');
         $stage->setProcess($processType);
 
