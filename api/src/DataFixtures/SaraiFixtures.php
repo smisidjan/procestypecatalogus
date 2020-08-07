@@ -764,7 +764,7 @@ class SaraiFixtures extends Fixture
         $stage = new Stage();
         $stage->setName('Vergunning gegevens');
         $stage->setIcon('fal fa-users');
-        $stage->setSlug('vergunning-gegevens');
+        $stage->setSlug('vergunning');
         $stage->setProcess($processType);
 
         $section = new Section();
