@@ -482,9 +482,15 @@ class MarkFixtures extends Fixture
         $manager->persist($processType);
         $manager->flush();
 
+        $stage = new Stage();
+        $stage->setName('Gegevens van uw woning');
+        $stage->setIcon('fal fa-users');
+        $stage->setSlug('woning');
+        $stage->setProcess($processType);
+
         $section = new Section();
-        $section->setName('gegevens van uw woning');
-        $section->setDescription('Wat is het adres van de woning waarvoor u een blijverslening wilt aanvragen?');
+        $section->setName('Wat is het adres van de woning waarvoor u een blijverslening wilt aanvragen?');
+        $section->setDescription('gegevens woning:');
         $section->setProperties([
             $this->commonGroundService->cleanUrl(['component' => 'vtc', 'type' => 'properties', 'id' => 'f9f7bf4e-a798-45b9-9fab-e5e68aa48718']),
             $this->commonGroundService->cleanUrl(['component' => 'vtc', 'type' => 'properties', 'id' => 'c5d64190-bf92-40ce-93bc-f83bb386c414']),
@@ -611,6 +617,11 @@ class MarkFixtures extends Fixture
             $this->commonGroundService->cleanUrl(['component' => 'vtc', 'type' => 'properties', 'id' => '6330becc-b082-48e6-9517-a6000dfc8826']),
         ]);
         $section->setStage($stage);
+        $stage->addSection($section);
+        $processType->addStage($stage);
+        $manager->persist($processType);
+        $manager->flush();
+
 
         $section = new Section();
         $section->setName('Adresgegevens locatie:');
