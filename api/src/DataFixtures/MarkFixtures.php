@@ -430,7 +430,6 @@ class MarkFixtures extends Fixture
         $manager->persist($processType);
         $manager->flush();
 
-
         /*
          * Aanvraag Blijverslening
          *
