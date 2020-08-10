@@ -631,7 +631,7 @@ class SaraiFixtures extends Fixture
         $processType = new ProcessType();
         $processType->setSourceOrganization($this->commonGroundService->cleanUrl(['component'=>'vtc', 'type'=>'request_types', 'id'=>'4d1eded3-fbdf-438f-9536-8747dd8ab591']));
         $processType->setName('Aanvragen tegemoetkoming in schade (planschadevergoeding)');
-        $processType->setDescription('Vraag hier een tegemoetkoming in schade aan');
+        $processType->setDescription('Via dit formulier kunt u een tegemoetkoming in schade aanvragen');
         $processType->setRequestType($this->commonGroundService->cleanUrl(['component' => 'vtc', 'type' => 'request_types', 'id' => '3bb7a27a-82a0-4e38-afba-b4b3a9de4306']));
         $manager->persist($processType);
         $processType->setId($id);
@@ -764,7 +764,7 @@ class SaraiFixtures extends Fixture
         $stage = new Stage();
         $stage->setName('Vergunning gegevens');
         $stage->setIcon('fal fa-users');
-        $stage->setSlug('vergunning-gegevens');
+        $stage->setSlug('vergunning');
         $stage->setProcess($processType);
 
         $section = new Section();
