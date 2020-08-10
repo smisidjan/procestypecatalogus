@@ -517,7 +517,6 @@ class MarkFixtures extends Fixture
         $section->setDescription('Welke maatregelen of werkzaamheden aan uw woning gaat u uitvoeren?');
         $section->setProperties([
             //formElement moet nog gemaakt worden
-            $this->commonGroundService->cleanUrl(['component' => 'vtc', 'type' => 'properties', 'id' => '']),
             $this->commonGroundService->cleanUrl(['component' => 'vtc', 'type' => 'properties', 'id' => '700d1c83-e911-4c2c-ad3b-ee9a5292b314']),
             $this->commonGroundService->cleanUrl(['component' => 'vtc', 'type' => 'properties', 'id' => 'ff8161eb-41ae-4d01-b236-7091e2d1413d']),
             $this->commonGroundService->cleanUrl(['component' => 'vtc', 'type' => 'properties', 'id' => 'b1ef428f-7be4-4004-9455-1b3dbff64bf9']),
@@ -554,6 +553,12 @@ class MarkFixtures extends Fixture
         $manager->persist($processType);
         $manager->flush();
 
+        $stage = new Stage();
+        $stage->setName('Lening en bijlagen');
+        $stage->setIcon('fal fa-users');
+        $stage->setSlug('lening');
+        $stage->setProcess($processType);
+
         $section = new Section();
         $section->setName('Lening');
         $section->setDescription('Een lening is alleen mogelijk voor de geoffreerde kosten min de ontvangen subsidies of ondersteuning.');
@@ -580,7 +585,7 @@ class MarkFixtures extends Fixture
         $manager->flush();
 
         $section = new Section();
-        $section->setName('Ondersteuning');
+        $section->setName('Tot slot');
         $section->setDescription('Ik ga akkoord met het volgende: alle verstrekte gegevens naar waarheid te hebben ingevuld inclusief de bijlage(n)');
         $section->setProperties([
             $this->commonGroundService->cleanUrl(['component' => 'vtc', 'type' => 'properties', 'id' => '8064ccf3-f853-4a65-9109-ce2dc11abcf9']),
