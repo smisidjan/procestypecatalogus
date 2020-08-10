@@ -688,7 +688,6 @@ class MarkFixtures extends Fixture
         $section->setStage($stage);
         $stage->addSection($section);
 
-
         $section = new Section();
         $section->setName('Bedrijfsgegevens');
         $section->setProperties([
@@ -727,7 +726,6 @@ class MarkFixtures extends Fixture
 
         $stage->addSection($section);
 
-
         $section = new Section();
         $section->setName('Waarheid gegevens');
         $section->setProperties([
@@ -757,7 +755,6 @@ class MarkFixtures extends Fixture
         $section->setStage($stage);
 
         $stage->addSection($section);
-
 
         $section = new Section();
         $section->setName('Gegevens van de rechthebbende / opdrachtgever');
