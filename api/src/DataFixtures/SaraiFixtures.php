@@ -948,7 +948,7 @@ class SaraiFixtures extends Fixture
         $stage->setProcess($processType);
 
         $section = new Section();
-        $stage->setName('Belangrijk');
+        $section->setName('Belangrijk');
         $section->setProperties([
             $this->commonGroundService->cleanUrl(['component' => 'vtc', 'type' => 'properties', 'id' => 'c18e476b-d5b0-43dd-b8a9-3fbfa60379e1']),
             $this->commonGroundService->cleanUrl(['component' => 'vtc', 'type' => 'properties', 'id' => 'fe566195-405e-43fa-802f-7b9240caf872']),
