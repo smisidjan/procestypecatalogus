@@ -787,7 +787,6 @@ class SaraiFixtures extends Fixture
             ////De vergunning meot minimaal 1 week en mag maximaal 3 maanden van tevoren aangevraagd worden.
             ////De vergunning kan maximaal voor de duur van 1 jaar aangevraagd worden.
             $this->commonGroundService->cleanUrl(['component' => 'vtc', 'type' => 'properties', 'id' => '9a5e4cfc-e67e-4163-a516-f1c133e49f59']),
-            $this->commonGroundService->cleanUrl(['component' => 'vtc', 'type' => 'properties', 'id' => '12cfd36c-330c-4e6c-820e-17e232b318eb']),
         ]);
         $section->setStage($stage);
         $stage->addSection($section);
