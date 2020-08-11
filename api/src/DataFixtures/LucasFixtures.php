@@ -350,7 +350,6 @@ class LucasFixtures extends Fixture
         ]);
         $stage->addSection($section);
 
-
         $section = new Section();
         $section->setStage($stage);
         $section->setName('Adres');
