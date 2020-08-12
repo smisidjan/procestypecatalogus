@@ -2029,6 +2029,12 @@ paths:
                   $ref: '#/components/schemas/ProcessType-read'
       parameters:
         -
+          name: requireLogin
+          in: query
+          required: false
+          schema:
+            type: boolean
+        -
           name: 'order[id]'
           in: query
           required: false
@@ -2075,6 +2081,24 @@ paths:
               - desc
         -
           name: 'order[requestType]'
+          in: query
+          required: false
+          schema:
+            type: string
+            enum:
+              - asc
+              - desc
+        -
+          name: 'order[requireLogin]'
+          in: query
+          required: false
+          schema:
+            type: string
+            enum:
+              - asc
+              - desc
+        -
+          name: 'order[audience]'
           in: query
           required: false
           schema:
@@ -2254,6 +2278,38 @@ paths:
             type: string
         -
           name: 'requestType[]'
+          in: query
+          required: false
+          schema:
+            type: array
+            items:
+              type: string
+          style: form
+          explode: true
+        -
+          name: requireLogin
+          in: query
+          required: false
+          schema:
+            type: boolean
+        -
+          name: 'requireLogin[]'
+          in: query
+          required: false
+          schema:
+            type: array
+            items:
+              type: boolean
+          style: form
+          explode: true
+        -
+          name: audience
+          in: query
+          required: false
+          schema:
+            type: string
+        -
+          name: 'audience[]'
           in: query
           required: false
           schema:
@@ -5804,6 +5860,16 @@ components:
           externalDocs:
             url: 'http://schema.org/url'
           type: string
+        requireLogin:
+          description: 'If being logged in for process is required.'
+          type: boolean
+          nullable: true
+        audience:
+          description: 'The audience this processType is intended for'
+          type: array
+          items:
+            type: string
+          nullable: true
         properties:
           type: array
           items:
@@ -5866,6 +5932,16 @@ components:
           anyOf:
             -
               $ref: '#/components/schemas/ProcessType-write'
+        requireLogin:
+          description: 'If being logged in for process is required.'
+          type: boolean
+          nullable: true
+        audience:
+          description: 'The audience this processType is intended for'
+          type: array
+          items:
+            type: string
+          nullable: true
         properties:
           type: array
           items:
@@ -5922,6 +5998,16 @@ components:
           externalDocs:
             url: 'http://schema.org/url'
           type: string
+        requireLogin:
+          description: 'If being logged in for process is required.'
+          type: boolean
+          nullable: true
+        audience:
+          description: 'The audience this processType is intended for'
+          type: array
+          items:
+            type: string
+          nullable: true
         properties:
           type: array
           items:
@@ -5993,6 +6079,16 @@ components:
           anyOf:
             -
               $ref: '#/components/schemas/ProcessType:jsonld-write'
+        requireLogin:
+          description: 'If being logged in for process is required.'
+          type: boolean
+          nullable: true
+        audience:
+          description: 'The audience this processType is intended for'
+          type: array
+          items:
+            type: string
+          nullable: true
         properties:
           type: array
           items:
@@ -6458,6 +6554,13 @@ definitions:
         example: 'http://rtc.zaakonline.nl/9bd169ef-bc8c-4422-86ce-a0e7679ab67a'
         format: url
         maxLength: 255
+      requireLogin:
+        description: 'If being logged in for process is required.'
+        type: bool
+        example: 'false'
+      audience:
+        description: 'The audience this processType is intended for'
+        type: string
       properties: []
       documents: []
       dateCreated:
@@ -6499,6 +6602,13 @@ definitions:
         example: 'http://rtc.zaakonline.nl/9bd169ef-bc8c-4422-86ce-a0e7679ab67a'
         format: url
         maxLength: 255
+      requireLogin:
+        description: 'If being logged in for process is required.'
+        type: bool
+        example: 'false'
+      audience:
+        description: 'The audience this processType is intended for'
+        type: string
       properties: []
       documents: []
       stages:
@@ -6510,6 +6620,65 @@ definitions:
     required:
       - name
       - sourceOrganization
+  Section-read:
+    properties:
+      id:
+        description: 'The UUID identifier of this object'
+        type: string
+        example: e2984465-190a-4562-829e-a8cca81aa35d
+        format: uuid
+      name:
+        description: 'the name of this Section'
+        type: string
+        example: 'Section 1'
+        maxLength: 255
+      description:
+        description: 'the description for this section'
+        type: string
+        example: 'this section is for the personal data of the client'
+      properties:
+        description: 'The properties that are treated in this section, as references to the VTC component'
+        type: array
+        example: 'https://vtc.processen.zaakonline.nl/properties/1'
+      dateCreated:
+        description: 'The moment this request was created'
+        type: \DateTime
+      dateModified:
+        description: 'The moment this request last Modified'
+        type: \DateTime
+      orderNumber:
+        description: 'The place in the order where the section should be rendered'
+        type: int
+      stage:
+        description: 'the stage this section belongs to'
+        type: \Stage
+    required:
+      - name
+      - orderNumber
+  Section-write:
+    properties:
+      name:
+        description: 'the name of this Section'
+        type: string
+        example: 'Section 1'
+        maxLength: 255
+      description:
+        description: 'the description for this section'
+        type: string
+        example: 'this section is for the personal data of the client'
+      properties:
+        description: 'The properties that are treated in this section, as references to the VTC component'
+        type: array
+        example: 'https://vtc.processen.zaakonline.nl/properties/1'
+      orderNumber:
+        description: 'The place in the order where the section should be rendered'
+        type: int
+      stage:
+        description: 'the stage this section belongs to'
+        type: \Stage
+    required:
+      - name
+      - orderNumber
   Stage-read:
     properties:
       id:
@@ -6595,118 +6764,6 @@ definitions:
     required:
       - name
       - orderNumber
-  Section-read:
-    properties:
-      id:
-        description: 'The UUID identifier of this object'
-        type: string
-        example: e2984465-190a-4562-829e-a8cca81aa35d
-        format: uuid
-      name:
-        description: 'the name of this Section'
-        type: string
-        example: 'Section 1'
-        maxLength: 255
-      description:
-        description: 'the description for this section'
-        type: string
-        example: 'this section is for the personal data of the client'
-      properties:
-        description: 'The properties that are treated in this section, as references to the VTC component'
-        type: array
-        example: 'https://vtc.processen.zaakonline.nl/properties/1'
-      dateCreated:
-        description: 'The moment this request was created'
-        type: \DateTime
-      dateModified:
-        description: 'The moment this request last Modified'
-        type: \DateTime
-      orderNumber:
-        description: 'The place in the order where the section should be rendered'
-        type: int
-      stage:
-        description: 'the stage this section belongs to'
-        type: \Stage
-    required:
-      - name
-      - orderNumber
-  Section-write:
-    properties:
-      name:
-        description: 'the name of this Section'
-        type: string
-        example: 'Section 1'
-        maxLength: 255
-      description:
-        description: 'the description for this section'
-        type: string
-        example: 'this section is for the personal data of the client'
-      properties:
-        description: 'The properties that are treated in this section, as references to the VTC component'
-        type: array
-        example: 'https://vtc.processen.zaakonline.nl/properties/1'
-      orderNumber:
-        description: 'The place in the order where the section should be rendered'
-        type: int
-      stage:
-        description: 'the stage this section belongs to'
-        type: \Stage
-    required:
-      - name
-      - orderNumber
-  ChangeLog-read:
-    properties:
-      id:
-        description: 'The UUID identifier of this object'
-        type: string
-        example: e2984465-190a-4562-829e-a8cca81aa35d
-        format: uuid
-      note:
-        description: 'A note conserning this log lin'
-        type: string
-        example: 'This log line is suspicius'
-        maxLength: 2555
-      action:
-        description: ''
-        type: string
-      objectId:
-        description: ''
-        type: string
-      objectClass:
-        description: ''
-        type: string
-      version:
-        description: ''
-        type: int
-      data:
-        description: ''
-        type: array
-      username:
-        description: ''
-        type: string
-      session:
-        description: 'The moment this request was created'
-        type: string
-        maxLength: 255
-      dateCreated:
-        description: 'The moment this request was created'
-        type: string
-        format: date-time
-        example: '2020-08-04 12:00:39'
-      dateModified:
-        description: 'The moment this request last Modified'
-        type: string
-        format: date-time
-        example: '2020-08-04 12:00:39'
-    required: []
-  ChangeLog-write:
-    properties:
-      note:
-        description: 'A note conserning this log lin'
-        type: string
-        example: 'This log line is suspicius'
-        maxLength: 2555
-    required: []
   AuditTrail-read:
     properties:
       id:
@@ -6811,12 +6868,12 @@ definitions:
         description: 'The moment this request was created'
         type: string
         format: date-time
-        example: '2020-08-04 12:00:39'
+        example: '2020-08-11 12:07:42'
       dateModified:
         description: 'The moment this request last Modified'
         type: string
         format: date-time
-        example: '2020-08-04 12:00:39'
+        example: '2020-08-11 12:07:42'
     required: []
   AuditTrail-write:
     properties:
@@ -6824,6 +6881,59 @@ definitions:
         description: 'A note conserning this log lin'
         type: string
         example: 'This log line looks suspicius'
+        maxLength: 2555
+    required: []
+  ChangeLog-read:
+    properties:
+      id:
+        description: 'The UUID identifier of this object'
+        type: string
+        example: e2984465-190a-4562-829e-a8cca81aa35d
+        format: uuid
+      note:
+        description: 'A note conserning this log lin'
+        type: string
+        example: 'This log line is suspicius'
+        maxLength: 2555
+      action:
+        description: ''
+        type: string
+      objectId:
+        description: ''
+        type: string
+      objectClass:
+        description: ''
+        type: string
+      version:
+        description: ''
+        type: int
+      data:
+        description: ''
+        type: array
+      username:
+        description: ''
+        type: string
+      session:
+        description: 'The moment this request was created'
+        type: string
+        maxLength: 255
+      dateCreated:
+        description: 'The moment this request was created'
+        type: string
+        format: date-time
+        example: '2020-08-11 12:07:42'
+      dateModified:
+        description: 'The moment this request last Modified'
+        type: string
+        format: date-time
+        example: '2020-08-11 12:07:42'
+    required: []
+  ChangeLog-write:
+    properties:
+      note:
+        description: 'A note conserning this log lin'
+        type: string
+        example: 'This log line is suspicius'
         maxLength: 2555
     required: []
 tags:
@@ -6834,25 +6944,25 @@ tags:
       
       
   -
-    name: Stage
-    description: |
-      A single stage within a process.
-      
-      
-  -
     name: Section
     description: |
       
       
       
   -
-    name: ChangeLog
+    name: Stage
+    description: |
+      A single stage within a process.
+      
+      
+  -
+    name: AuditTrail
     description: |
       An resource representing a log line.
       
       This entity represents a product that can be ordered via the OrderRegistratieComponent.
   -
-    name: AuditTrail
+    name: ChangeLog
     description: |
       An resource representing a log line.
       
@@ -6863,15 +6973,15 @@ securityDefinitions:
     authorizationUrl: 'http://petstore.swagger.io/api/oauth/dialog'
     flow: implicit
     scopes:
-      read: 'read right to the AuditTrail resource'
-      write: 'write right to the AuditTrail resource'
+      read: 'read right to the ChangeLog resource'
+      write: 'write right to the ChangeLog resource'
   JWT-Token:
     type: apiKey
     in: header
     name: Authorization
     scopes:
-      read: 'read right to the AuditTrail resource'
-      write: 'write right to the AuditTrail resource'
+      read: 'read right to the ChangeLog resource'
+      write: 'write right to the ChangeLog resource'
 host: irc.zaakonline.nl
 servers:
   -
