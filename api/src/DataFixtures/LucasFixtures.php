@@ -173,6 +173,14 @@ class LucasFixtures extends Fixture
         ]);
         $stage->addSection($section);
 
+        $section = new Section();
+        $section->setStage($stage);
+        $section->setName('Datum aanmelding');
+        $section->setProperties([
+            $this->commonGroundService->cleanUrl(['component'=>'vtc', 'type'=>'properties', 'id'=>'e1df079b-22b1-4952-a333-b70384a93f01']),
+        ]);
+        $stage->addSection($section);
+
         $processType->addStage($stage);
         $manager->persist($processType);
         $manager->flush();
