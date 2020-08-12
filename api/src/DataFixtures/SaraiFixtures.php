@@ -1043,7 +1043,6 @@ class SaraiFixtures extends Fixture
         $manager->persist($processType);
         $manager->flush();
 
-
         /*
          *
          * Verzoek tot geheimhouding persoonsgegevens
@@ -1389,7 +1388,5 @@ class SaraiFixtures extends Fixture
         $processType->addStage($stage);
         $manager->persist($processType);
         $manager->flush();
-
-
     }
 }
