@@ -239,7 +239,7 @@ class LucasFixtures extends Fixture
         $id = Uuid::fromString('30f26d23-acb4-4dda-b944-b336ef00ff52');
         $processType = new ProcessType();
         $processType->setName('Kraskaarten');
-        $processType->setDescription('Aanvraag kraskaarten (Parkeren voor uw bezoek)');
+        $processType->setDescription('Via dit formulier kunt u kraskaarten aanvragen.');
         $processType->setSourceOrganization($this->commonGroundService->cleanUrl(['component'=>'vtc', 'type'=>'request_types', 'id'=>'4d1eded3-fbdf-438f-9536-8747dd8ab591']));
         $processType->setRequestType($this->commonGroundService->cleanUrl(['component'=>'vtc', 'type'=>'request_types', 'id'=>'c64bb62c-670a-4cde-bd29-f50c220a6442']));
         $manager->persist($processType);
