@@ -928,7 +928,7 @@ class SaraiFixtures extends Fixture
          *
          */
 
-        $id = Uuid::fromString('e49c17b9-5c16-4992-ae25-1e090452f685');
+               $id = Uuid::fromString('e49c17b9-5c16-4992-ae25-1e090452f685');
         $processType = new ProcessType();
         $processType->setSourceOrganization($this->commonGroundService->cleanUrl(['component'=>'vtc', 'type'=>'request_types', 'id'=>'4d1eded3-fbdf-438f-9536-8747dd8ab591']));
         $processType->setName('Contactformulier schuldhulpverlening');
