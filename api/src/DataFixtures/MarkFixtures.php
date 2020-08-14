@@ -755,6 +755,14 @@ class MarkFixtures extends Fixture
         $section->setStage($stage);
 
         $stage->addSection($section);
+        $processType->addStage($stage);
+        $manager->persist($processType);
+        $manager->flush();
+
+        $stage = new Stage();
+        $stage->setName('Gegevens rechthebbende');
+        $stage->setSlug('rechthebbende');
+        $stage->setProcess($processType);
 
         $section = new Section();
         $section->setName('Gegevens van de rechthebbende / opdrachtgever');
@@ -810,6 +818,133 @@ class MarkFixtures extends Fixture
         ]);
         $section->setStage($stage);
         $stage->addSection($section);
+        $processType->addStage($stage);
+        $manager->persist($processType);
+        $manager->flush();
+
+        //formulier aangeven overleiden
+        $id = Uuid::fromString('2e9b0775-5efc-4954-b1e4-da0382db2fbf');
+        $processType = new ProcessType();
+        $processType->setSourceOrganization($this->commonGroundService->cleanUrl(['component'=>'vtc', 'type'=>'request_types', 'id'=>'4d1eded3-fbdf-438f-9536-8747dd8ab591']));
+        $processType->setName('Aangeven overleiden');
+        $processType->setDescription('Met dit formulier kan de uitvaartverzorger een overleden persoon digitaal aangeven bij de gemeente Zuid-Drecht.');
+        $processType->setRequestType($this->commonGroundService->cleanUrl(['component' => 'vtc', 'type' => 'request_types', 'id' => '24962583-a3a2-4453-88b8-970114ebb89b']));
+        $manager->persist($processType);
+        $processType->setId($id);
+        $manager->persist($processType);
+        $manager->flush();
+        $processType = $manager->getRepository('App:ProcessType')->findOneBy(['id' => $id]);
+
+        $stage = new Stage();
+        $stage->setName('Gegevens van het bedrijf');
+        $stage->setSlug('gegevens');
+        $stage->setProcess($processType);
+
+        $section = new Section();
+        $section->setName('Gegevens bedrijf');
+        $section->setDescription('Gegevens kamer van koophandel');
+        $section->setProperties([
+            $this->commonGroundService->cleanUrl(['component' => 'vtc', 'type' => 'properties', 'id' => 'cb4bbbdc-74d5-461c-accd-dd032dfefb75']),
+            $this->commonGroundService->cleanUrl(['component' => 'vtc', 'type' => 'properties', 'id' => '4e9697ac-b44f-4094-84cf-4552ae8859f0']),
+        ]);
+        $section->setStage($stage);
+        $stage->addSection($section);
+
+        $section = new Section();
+        $section->setName('Bedrijfsgegevens');
+        $section->setProperties([
+            $this->commonGroundService->cleanUrl(['component' => 'vtc', 'type' => 'properties', 'id' => '486950fe-f884-4f28-99d4-82058a29cbca']),
+            $this->commonGroundService->cleanUrl(['component' => 'vtc', 'type' => 'properties', 'id' => '7ce30df4-fcf6-4429-acfb-a72091490443']),
+            $this->commonGroundService->cleanUrl(['component' => 'vtc', 'type' => 'properties', 'id' => '2f187ded-547a-43bb-b8d7-dcd0809159c7']),
+            $this->commonGroundService->cleanUrl(['component' => 'vtc', 'type' => 'properties', 'id' => '582bc39a-251a-4c9e-bafa-f1f186b63ef4']),
+            $this->commonGroundService->cleanUrl(['component' => 'vtc', 'type' => 'properties', 'id' => 'fbb74614-c969-421c-bb72-1465ce65f06e']),
+            $this->commonGroundService->cleanUrl(['component' => 'vtc', 'type' => 'properties', 'id' => '48e083f6-0de2-4196-9cc8-34cb3592959b']),
+        ]);
+        $section->setStage($stage);
+        $stage->addSection($section);
+
+        $processType->addStage($stage);
+        $manager->persist($processType);
+        $manager->flush();
+
+        $stage = new Stage();
+        $stage->setName('Gegevens van de aangever');
+        $stage->setSlug('aangever');
+        $stage->setProcess($processType);
+
+        $section = new Section();
+        $section->setName('Gegevens aangever:');
+        $section->setProperties([
+            $this->commonGroundService->cleanUrl(['component' => 'vtc', 'type' => 'properties', 'id' => 'b3aa2e1e-8d3f-458e-96e9-c37aa194512f']),
+            $this->commonGroundService->cleanUrl(['component' => 'vtc', 'type' => 'properties', 'id' => '7872224c-10ec-488c-8b70-703ea42fbdf3']),
+            $this->commonGroundService->cleanUrl(['component' => 'vtc', 'type' => 'properties', 'id' => '8d55d760-d5a6-4967-a29b-f41a80bb9109']),
+            $this->commonGroundService->cleanUrl(['component' => 'vtc', 'type' => 'properties', 'id' => '6a23a136-0dce-457b-9b15-fbd60ac5f835']),
+            $this->commonGroundService->cleanUrl(['component' => 'vtc', 'type' => 'properties', 'id' => '90594152-2302-43e9-a544-ae120bb249da']),
+            $this->commonGroundService->cleanUrl(['component' => 'vtc', 'type' => 'properties', 'id' => '75dcaddf-9a42-48d7-a2b6-4eb0e527e4cd']),
+            $this->commonGroundService->cleanUrl(['component' => 'vtc', 'type' => 'properties', 'id' => 'eb1314d1-cee4-433e-a61e-07d0c4822c2f']),
+        ]);
+        $section->setStage($stage);
+        $stage->addSection($section);
+
+        $processType->addStage($stage);
+        $manager->persist($processType);
+        $manager->flush();
+
+        $stage = new Stage();
+        $stage->setName('Gegevens van de overledene');
+        $stage->setSlug('overledene');
+        $stage->setProcess($processType);
+
+        $section = new Section();
+        $section->setName('Plaats overleiden');
+        $section->setProperties([
+            $this->commonGroundService->cleanUrl(['component' => 'vtc', 'type' => 'properties', 'id' => '1abb6b5a-4534-4957-8ab1-6e5a46a864bf']),
+        ]);
+        $section->setStage($stage);
+        $stage->addSection($section);
+
+        $section = new Section();
+        $section->setName('Gegevens overledene:');
+        $section->setProperties([
+            $this->commonGroundService->cleanUrl(['component' => 'vtc', 'type' => 'properties', 'id' => '9c90a629-5aab-4194-a8bf-39ea57f219a6']),
+            $this->commonGroundService->cleanUrl(['component' => 'vtc', 'type' => 'properties', 'id' => 'c49b417a-f0d2-49b2-bcfb-11946b2636f0']),
+            $this->commonGroundService->cleanUrl(['component' => 'vtc', 'type' => 'properties', 'id' => '2ff7dbf5-099c-4f24-9419-584ed6bc2e55']),
+            $this->commonGroundService->cleanUrl(['component' => 'vtc', 'type' => 'properties', 'id' => 'a3cd3ea3-762c-4022-94eb-bb698083d62f']),
+            $this->commonGroundService->cleanUrl(['component' => 'vtc', 'type' => 'properties', 'id' => 'c2393ead-43ea-4d0d-a6d1-28836e46b7f0']),
+            $this->commonGroundService->cleanUrl(['component' => 'vtc', 'type' => 'properties', 'id' => 'dd1bdc9a-87bd-429e-921c-7b39f53c6033']),
+        ]);
+        $section->setStage($stage);
+        $stage->addSection($section);
+
+        $processType->addStage($stage);
+        $manager->persist($processType);
+        $manager->flush();
+
+        $stage = new Stage();
+        $stage->setName('Gegevens van de overledene');
+        $stage->setSlug('overledene');
+        $stage->setProcess($processType);
+
+        $section = new Section();
+        $section->setName('Informatie overleiden');
+        $section->setProperties([
+            $this->commonGroundService->cleanUrl(['component' => 'vtc', 'type' => 'properties', 'id' => 'cb4bbbdc-74d5-461c-accd-dd032dfefb75']),
+            $this->commonGroundService->cleanUrl(['component' => 'vtc', 'type' => 'properties', 'id' => '4e9697ac-b44f-4094-84cf-4552ae8859f0']),
+        ]);
+        $section->setStage($stage);
+        $stage->addSection($section);
+
+        $section = new Section();
+        $section->setName('Gegevens overledene');
+        $section->setProperties([
+            $this->commonGroundService->cleanUrl(['component' => 'vtc', 'type' => 'properties', 'id' => 'eb896755-7731-4c9b-8b3d-57ccffce9e3b']),
+            $this->commonGroundService->cleanUrl(['component' => 'vtc', 'type' => 'properties', 'id' => 'b6669bed-9c50-4bb5-9e9d-4c9a36e7ff2c']),
+            $this->commonGroundService->cleanUrl(['component' => 'vtc', 'type' => 'properties', 'id' => '8cb78060-35a6-4deb-9e2c-8bcf305739b5']),
+            $this->commonGroundService->cleanUrl(['component' => 'vtc', 'type' => 'properties', 'id' => '447168d3-2fb7-4bfc-bcb6-1289d9eb83f3']),
+        ]);
+        $section->setStage($stage);
+        $stage->addSection($section);
+
         $processType->addStage($stage);
         $manager->persist($processType);
         $manager->flush();
