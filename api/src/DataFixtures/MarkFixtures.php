@@ -755,6 +755,14 @@ class MarkFixtures extends Fixture
         $section->setStage($stage);
 
         $stage->addSection($section);
+        $processType->addStage($stage);
+        $manager->persist($processType);
+        $manager->flush();
+
+        $stage = new Stage();
+        $stage->setName('Gegevens rechthebbende');
+        $stage->setSlug('rechthebbende');
+        $stage->setProcess($processType);
 
         $section = new Section();
         $section->setName('Gegevens van de rechthebbende / opdrachtgever');
