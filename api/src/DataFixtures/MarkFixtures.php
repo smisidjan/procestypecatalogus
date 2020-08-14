@@ -738,7 +738,7 @@ class MarkFixtures extends Fixture
         $manager->flush();
 
         $stage = new Stage();
-        $stage->setName('Persoonsgegevens');
+        $stage->setName('Persoonsgegevens van de overledene');
         $stage->setSlug('overledene');
         $stage->setProcess($processType);
 
@@ -921,8 +921,8 @@ class MarkFixtures extends Fixture
         $manager->flush();
 
         $stage = new Stage();
-        $stage->setName('Gegevens van de overledene');
-        $stage->setSlug('overledene');
+        $stage->setName('Informatie overleiden');
+        $stage->setSlug('Informatie');
         $stage->setProcess($processType);
 
         $section = new Section();
@@ -935,7 +935,7 @@ class MarkFixtures extends Fixture
         $stage->addSection($section);
 
         $section = new Section();
-        $section->setName('Gegevens overledene');
+        $section->setName('Gegevens overleiden');
         $section->setProperties([
             $this->commonGroundService->cleanUrl(['component' => 'vtc', 'type' => 'properties', 'id' => 'eb896755-7731-4c9b-8b3d-57ccffce9e3b']),
             $this->commonGroundService->cleanUrl(['component' => 'vtc', 'type' => 'properties', 'id' => 'b6669bed-9c50-4bb5-9e9d-4c9a36e7ff2c']),
