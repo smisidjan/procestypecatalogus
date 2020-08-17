@@ -240,7 +240,7 @@ class ProcessType
      * @Groups({"read", "write"})
      * @ORM\Column(type="integer", nullable=true)
      */
-    private $depositpercentage;
+    private $depositPercentage;
 
     /**
      * @param array|string[] The request properties that are used for this process
