@@ -928,8 +928,8 @@ class MarkFixtures extends Fixture
         $section = new Section();
         $section->setName('Informatie overleiden');
         $section->setProperties([
-            $this->commonGroundService->cleanUrl(['component' => 'vtc', 'type' => 'properties', 'id' => 'cb4bbbdc-74d5-461c-accd-dd032dfefb75']),
-            $this->commonGroundService->cleanUrl(['component' => 'vtc', 'type' => 'properties', 'id' => '4e9697ac-b44f-4094-84cf-4552ae8859f0']),
+            $this->commonGroundService->cleanUrl(['component' => 'vtc', 'type' => 'properties', 'id' => 'ed48ccc3-da5f-406a-8c91-9b47d0d361b9']),
+            $this->commonGroundService->cleanUrl(['component' => 'vtc', 'type' => 'properties', 'id' => '469bbdb8-78cf-4d03-bdcd-d14db3d3054c']),
         ]);
         $section->setStage($stage);
         $stage->addSection($section);
