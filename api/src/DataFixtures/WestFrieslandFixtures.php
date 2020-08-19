@@ -265,6 +265,5 @@ class WestFrieslandFixtures extends Fixture
         $processType = $manager->getRepository('App:ProcessType')->findOneBy(['id'=> $id]);
 
         $manager->flush();
-
     }
 }
