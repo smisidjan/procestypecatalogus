@@ -196,7 +196,7 @@ class TimFixtures extends Fixture
         $section = new Section();
         $section->setName('gegevens controleren');
         $section->setProperties([
-            $this->commonGroundService->cleanUrl(['component' => 'vtc', 'type' => 'properties', 'id' => 'f423d067-1aba-44f3-ac77-3923a6c748c6']),
+            $this->commonGroundService->cleanUrl(['component' => 'vtc', 'type' => 'properties', 'id' => '74125607-0c91-4037-813e-43b87df15972']),
         ]);
         $section->setStage($stage);
 
