@@ -232,7 +232,7 @@ class ProcessType
     private $depositCurrency;
 
     /**
-     * @var integer The deposit percentage requered for this proces
+     * @var int The deposit percentage requered for this proces
      *
      * @example 25
      *
@@ -403,7 +403,6 @@ class ProcessType
 
         return $this;
     }
-
 
     public function getDepositPercentage()
     {
