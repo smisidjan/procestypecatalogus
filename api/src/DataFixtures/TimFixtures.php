@@ -40,7 +40,7 @@ class TimFixtures extends Fixture
         $processType->setSourceOrganization($this->commonGroundService->cleanUrl(['component'=>'vtc', 'type'=>'request_types', 'id'=>'4d1eded3-fbdf-438f-9536-8747dd8ab591']));
         $processType->setName('formulier Inlichtingen BRP / Burgerlijke stand');
         $processType->setDescription('Advocaten, notarissen en gerechtsdeurwaarders gebruiken dit formulier voor een verzoek om inlichtingen uit de Basisregistratie Personen (BRP) of Burgerlijke stand');
-        $processType->setRequestType($this->commonGroundService->cleanUrl(['component' => 'vtc', 'type' => 'request_types', 'id' => 'd6b1f1ab-82f5-4a0d-b808-b0a63c72a201']));
+        $processType->setRequestType($this->commonGroundService->cleanUrl(['component' => 'vtc', 'type' => 'request_types', 'id' => '4dcf25f2-c2dc-4a82-8a78-33e4d3d7241d']));
         $manager->persist($processType);
         $processType->setId($id);
         $manager->persist($processType);
@@ -186,7 +186,6 @@ class TimFixtures extends Fixture
         $manager->persist($processType);
         $manager->flush();
 
-
         //6e pagina
         $stage = new Stage();
         $stage->setName('gegevens controleren');
@@ -206,6 +205,131 @@ class TimFixtures extends Fixture
         $processType->addStage($stage);
         $manager->persist($processType);
         $manager->flush();
+
+        // formulier gegevens inzien en aanpassen
+
+        $id = Uuid::fromString('3562f567-9bec-4993-81dd-c339dbb14fc6');
+        $processType = new ProcessType();
+        $processType->setSourceOrganization($this->commonGroundService->cleanUrl(['component'=>'vtc', 'type'=>'request_types', 'id'=>'4d1eded3-fbdf-438f-9536-8747dd8ab591']));
+        $processType->setName('formulier gegevens inzien en aanpassen');
+        $processType->setDescription('hier kunt u uw eigen gegevens aanpassen en/of bekijken');
+        $processType->setRequestType($this->commonGroundService->cleanUrl(['component' => 'vtc', 'type' => 'request_types', 'id' => '4dcf25f2-c2dc-4a82-8a78-33e4d3d7241d']));
+        $manager->persist($processType);
+        $processType->setId($id);
+        $manager->persist($processType);
+        $manager->flush();
+        $processType = $manager->getRepository('App:ProcessType')->findOneBy(['id' => $id]);
+
+//        // 1e pagina
+//        $stage = new Stage();
+//        $stage->setName('inloggen digiD');
+//        $stage->setIcon('fal fa-users');
+//        $stage->setSlug('inloggen-digid');
+//        $stage->setProcess($processType);
+//
+//        $section = new Section();
+//        $section->setName('inloggen met digiD');
+//        $section->setProperties(['text']);
+//        $section->setStage($stage);
+//
+//        $section->setStage($stage);
+//        $stage->addSection($section);
+//        $processType->addStage($stage);
+//        $manager->persist($processType);
+//        $manager->flush();
+
+        //2e pagina
+        $stage = new Stage();
+        $stage->setName('inloggen');
+        $stage->setIcon('fal fa-users');
+        $stage->setSlug('inloggen');
+        $stage->setProcess($processType);
+
+        $section = new Section();
+        $section->setName('inloggen en controleren');
+        $section->setProperties([
+            $this->commonGroundService->cleanUrl(['component' => 'vtc', 'type' => 'properties', 'id' => '07a5c63f-faa2-4a50-8d56-6ac29eb2a20e']),
+            $this->commonGroundService->cleanUrl(['component' => 'vtc', 'type' => 'properties', 'id' => '858eedae-5cab-48ed-94fe-4607af1df047']),
+            $this->commonGroundService->cleanUrl(['component' => 'vtc', 'type' => 'properties', 'id' => 'cad8e40a-ce4b-4c6d-a702-3d72f7910402']),
+            $this->commonGroundService->cleanUrl(['component' => 'vtc', 'type' => 'properties', 'id' => 'd3070f7f-2762-4d8e-b05b-f36183f60a1e']),
+            $this->commonGroundService->cleanUrl(['component' => 'vtc', 'type' => 'properties', 'id' => 'bdd227ca-b2f9-4847-8e40-eaddc070545e']),
+            $this->commonGroundService->cleanUrl(['component' => 'vtc', 'type' => 'properties', 'id' => '6c8ade97-1281-42db-af85-eaeca7385df2']),
+            $this->commonGroundService->cleanUrl(['component' => 'vtc', 'type' => 'properties', 'id' => '8de289e5-e361-4639-9b9e-5c2e88493b6b']),
+        ]);
+        $section->setStage($stage);
+
+        $section->setStage($stage);
+        $stage->addSection($section);
+        $processType->addStage($stage);
+        $manager->persist($processType);
+        $manager->flush();
+
+        //3e pagina
+        $stage = new Stage();
+        $stage->setName('persoongegevens inzien');
+        $stage->setIcon('fal fa-users');
+        $stage->setSlug('persoonsgegevens-inzien');
+        $stage->setProcess($processType);
+
+        $section = new Section();
+        $section->setName('persoonsgevens inzien');
+        $section->setProperties([
+            $this->commonGroundService->cleanUrl(['component' => 'vtc', 'type' => 'properties', 'id' => 'f44234ab-1e3e-403e-87a0-6b2945f84969']),
+        ]);
+        $section->setStage($stage);
+
+        $section->setStage($stage);
+        $stage->addSection($section);
+        $processType->addStage($stage);
+        $manager->persist($processType);
+        $manager->flush();
+
+        //4e pagina
+        $stage = new Stage();
+        $stage->setName('redenering voor product of dienst');
+        $stage->setIcon('fal fa-users');
+        $stage->setSlug('reden-product-dienst');
+        $stage->setProcess($processType);
+
+        $section = new Section();
+        $section->setName('persoonsgevens inzien');
+        $section->setProperties([
+            $this->commonGroundService->cleanUrl(['component' => 'vtc', 'type' => 'properties', 'id' => 'a9c105be-3265-4ccb-bd48-c18a571d5fde']),
+            $this->commonGroundService->cleanUrl(['component' => 'vtc', 'type' => 'properties', 'id' => 'fa528567-6f94-45f6-a2ca-bf8c2ba261a0']),
+            $this->commonGroundService->cleanUrl(['component' => 'vtc', 'type' => 'properties', 'id' => '1f4f5156-5528-4cdc-b8af-91ea7c60f771']),
+        ]);
+        $section->setStage($stage);
+
+        $section->setStage($stage);
+        $stage->addSection($section);
+        $processType->addStage($stage);
+        $manager->persist($processType);
+        $manager->flush();
+
+        //5e pagina
+        $stage = new Stage();
+        $stage->setName('controleren');
+        $stage->setIcon('fal fa-users');
+        $stage->setSlug('controleren');
+        $stage->setProcess($processType);
+
+        $section = new Section();
+        $section->setName('controleren');
+        $section->setProperties([
+          $this->commonGroundService->cleanUrl(['component' => 'vtc', 'type' => 'properties', 'id' => 'f44234ab-1e3e-403e-87a0-6b2945f84969']),
+        ]);
+        $section->setStage($stage);
+
+        $section->setStage($stage);
+        $stage->addSection($section);
+        $processType->addStage($stage);
+        $manager->persist($processType);
+        $manager->flush();
+
+
+
+
+
 
     }
 }
