@@ -77,7 +77,7 @@ class TimFixtures extends Fixture
             $this->commonGroundService->cleanUrl(['component' => 'vtc', 'type' => 'properties', 'id' => '898ba684-a579-4690-8a44-42f3bc7c132c']),
             $this->commonGroundService->cleanUrl(['component' => 'vtc', 'type' => 'properties', 'id' => '2b248c60-8449-4a41-ae2d-0dfa9d7cfd71']),
             $this->commonGroundService->cleanUrl(['component' => 'vtc', 'type' => 'properties', 'id' => 'fba5b39d-6694-4c53-962a-28529fbbab1d']),
-            ]);
+        ]);
         $section->setStage($stage);
 
         $section->setStage($stage);
@@ -316,20 +316,13 @@ class TimFixtures extends Fixture
         $section = new Section();
         $section->setName('controleren');
         $section->setProperties([
-          $this->commonGroundService->cleanUrl(['component' => 'vtc', 'type' => 'properties', 'id' => 'f44234ab-1e3e-403e-87a0-6b2945f84969']),
+            $this->commonGroundService->cleanUrl(['component' => 'vtc', 'type' => 'properties', 'id' => 'f44234ab-1e3e-403e-87a0-6b2945f84969']),
         ]);
         $section->setStage($stage);
-
         $section->setStage($stage);
         $stage->addSection($section);
         $processType->addStage($stage);
         $manager->persist($processType);
         $manager->flush();
-
-
-
-
-
-
     }
 }
