@@ -406,6 +406,7 @@ class SaraiFixtures extends Fixture
         $section->setName('Welke gegevens heeft u nodig?');
         $section->setProperties([
             $this->commonGroundService->cleanUrl(['component' => 'vtc', 'type' => 'properties', 'id' => '542f5cfa-e2a8-4e08-99a3-589bb891ef7f']),
+            $this->commonGroundService->cleanUrl(['component' => 'vtc', 'type' => 'properties', 'id' => 'a4932198-7f55-411f-8dd0-cf5d453d744c']),
         ]);
         $section->setStage($stage);
         $stage->addSection($section);
@@ -1566,8 +1567,7 @@ class SaraiFixtures extends Fixture
         $processType->addStage($stage);
         $manager->persist($processType);
         $manager->flush();
-<<<<<<< HEAD
-//
+
 //        /*
 //         * Naamwijziging
 //         * Advocaat voor jezelf en voor een ander
@@ -1662,7 +1662,6 @@ class SaraiFixtures extends Fixture
 //        $processType->addStage($stage);
 //        $manager->persist($processType);
 //        $manager->flush();
-=======
->>>>>>> development
+
     }
 }
