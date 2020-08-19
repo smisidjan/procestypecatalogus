@@ -274,7 +274,7 @@ class TimFixtures extends Fixture
         $section = new Section();
         $section->setName('persoonsgevens inzien');
         $section->setProperties([
-            $this->commonGroundService->cleanUrl(['component' => 'vtc', 'type' => 'properties', 'id' => 'f44234ab-1e3e-403e-87a0-6b2945f84969']),
+            $this->commonGroundService->cleanUrl(['component' => 'vtc', 'type' => 'properties', 'id' => '195c7e03-e3f5-4c71-bf66-b023d9f1bfe9']),
         ]);
         $section->setStage($stage);
 
