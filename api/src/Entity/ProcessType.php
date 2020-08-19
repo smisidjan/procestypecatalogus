@@ -209,6 +209,40 @@ class ProcessType
     private $audience;
 
     /**
+     * @var string The deposit requered for this process
+     *
+     * @example 50.00
+     *
+     * @Gedmo\Versioned
+     * @Groups({"read", "write"})
+     * @ORM\Column(type="decimal", precision=8, scale=2, nullable=true)
+     */
+    private $deposit;
+
+    /**
+     * @var string The currency of the deposit price in an [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) format
+     *
+     * @example EUR
+     *
+     * @Gedmo\Versioned
+     * @Assert\Currency
+     * @Groups({"read", "write"})
+     * @ORM\Column(type="string", nullable=true)
+     */
+    private $depositCurrency;
+
+    /**
+     * @var integer The deposit percentage requered for this proces
+     *
+     * @example 25
+     *
+     * @Gedmo\Versioned
+     * @Groups({"read", "write"})
+     * @ORM\Column(type="integer", nullable=true)
+     */
+    private $depositPercentage;
+
+    /**
      * @param array|string[] The request properties that are used for this process
      *
      * @Gedmo\Versioned
@@ -322,6 +356,18 @@ class ProcessType
         return $this;
     }
 
+    public function getRequireLogin(): ?bool
+    {
+        return $this->requireLogin;
+    }
+
+    public function setRequireLogin(?bool $requireLogin): self
+    {
+        $this->requireLogin = $requireLogin;
+
+        return $this;
+    }
+
     public function getAudience()
     {
         return $this->audience;
@@ -334,14 +380,39 @@ class ProcessType
         return $this;
     }
 
-    public function getRequireLogin(): ?bool
+    public function getDeposit()
     {
-        return $this->requireLogin;
+        return $this->deposit;
     }
 
-    public function setRequireLogin(?bool $requireLogin): self
+    public function setDeposit($deposit): self
     {
-        $this->requireLogin = $requireLogin;
+        $this->deposit = $deposit;
+
+        return $this;
+    }
+
+    public function getDepositCurrency(): ?string
+    {
+        return $this->depositCurrency;
+    }
+
+    public function setDepositCurrency(string $depositCurrency): self
+    {
+        $this->depositCurrency = $depositCurrency;
+
+        return $this;
+    }
+
+
+    public function getDepositPercentage()
+    {
+        return $this->depositPercentage;
+    }
+
+    public function setDepositPercentage($depositPercentage): self
+    {
+        $this->depositPercentage = $depositPercentage;
 
         return $this;
     }
