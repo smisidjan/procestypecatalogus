@@ -1506,12 +1506,12 @@ class SaraiFixtures extends Fixture
         $section->setName('Gegevens moeder');
         $section->setProperties([
             $this->commonGroundService->cleanUrl(['component' => 'vtc', 'type' => 'properties', 'id' => 'fa71df86-6746-48a0-bfb8-71c27f84645e']),
-            #ja gekozen
+            //#ja gekozen
             $this->commonGroundService->cleanUrl(['component' => 'vtc', 'type' => 'properties', 'id' => '04724836-2dd9-49a5-ba62-75b4ec88c75a']),
             $this->commonGroundService->cleanUrl(['component' => 'vtc', 'type' => 'properties', 'id' => '9d8cf98d-2dbe-49a8-b59d-9eb9453db9bc']),
             $this->commonGroundService->cleanUrl(['component' => 'vtc', 'type' => 'properties', 'id' => '1ab4cc13-981b-4633-8659-05abec39f491']),
             $this->commonGroundService->cleanUrl(['component' => 'vtc', 'type' => 'properties', 'id' => 'da1a4e76-3324-4414-87cd-61ccc3b75783']),
-            #nee gekozen
+            //#nee gekozen
             $this->commonGroundService->cleanUrl(['component' => 'vtc', 'type' => 'properties', 'id' => 'e11e7114-8799-4a38-b426-31e5b958fb99']),
             $this->commonGroundService->cleanUrl(['component' => 'vtc', 'type' => 'properties', 'id' => '36c34686-94c0-44c8-bb44-a6f70c8f4941']),
             $this->commonGroundService->cleanUrl(['component' => 'vtc', 'type' => 'properties', 'id' => 'd3435887-9045-41b5-bf3e-5b4dd0cea46d']),
@@ -1544,12 +1544,12 @@ class SaraiFixtures extends Fixture
         $section->setName('Gegevens vader of meemoeder');
         $section->setProperties([
             $this->commonGroundService->cleanUrl(['component' => 'vtc', 'type' => 'properties', 'id' => '5252aebf-cc48-4cd4-93a2-ca55a93bfa01']),
-            #ja gekozen
+            //#ja gekozen
             $this->commonGroundService->cleanUrl(['component' => 'vtc', 'type' => 'properties', 'id' => '04724836-2dd9-49a5-ba62-75b4ec88c75a']),
             $this->commonGroundService->cleanUrl(['component' => 'vtc', 'type' => 'properties', 'id' => '9d8cf98d-2dbe-49a8-b59d-9eb9453db9bc']),
             $this->commonGroundService->cleanUrl(['component' => 'vtc', 'type' => 'properties', 'id' => '1ab4cc13-981b-4633-8659-05abec39f491']),
             $this->commonGroundService->cleanUrl(['component' => 'vtc', 'type' => 'properties', 'id' => 'da1a4e76-3324-4414-87cd-61ccc3b75783']),
-            #nee gekozen
+            //#nee gekozen
             $this->commonGroundService->cleanUrl(['component' => 'vtc', 'type' => 'properties', 'id' => 'e11e7114-8799-4a38-b426-31e5b958fb99']),
             $this->commonGroundService->cleanUrl(['component' => 'vtc', 'type' => 'properties', 'id' => '36c34686-94c0-44c8-bb44-a6f70c8f4941']),
             $this->commonGroundService->cleanUrl(['component' => 'vtc', 'type' => 'properties', 'id' => 'd3435887-9045-41b5-bf3e-5b4dd0cea46d']),
@@ -1566,6 +1566,7 @@ class SaraiFixtures extends Fixture
         $processType->addStage($stage);
         $manager->persist($processType);
         $manager->flush();
+<<<<<<< HEAD
 //
 //        /*
 //         * Naamwijziging
@@ -1661,5 +1662,7 @@ class SaraiFixtures extends Fixture
 //        $processType->addStage($stage);
 //        $manager->persist($processType);
 //        $manager->flush();
+=======
+>>>>>>> development
     }
 }
