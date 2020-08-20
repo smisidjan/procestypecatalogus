@@ -122,11 +122,11 @@ class WestFrieslandFixtures extends Fixture
         $stage->setName('Artikelen');
         $stage->setIcon('fal fa-map-tasks');
         $stage->setSlug('artikelen');
-        $stage->setDescription('Selecteer hier de artikelen voor de begrafenis.');
+        $stage->setDescription('Selecteer hier de gewenste artikelen voor de begrafenis.');
 
         $section = new Section();
         $section->setName('Artikelen');
-        $section->setDescription('Selecteer hier de artikelen voor de begrafenis.');
+        $section->setDescription('Selecteer hier de gewenste artikelen voor de begrafenis.');
         $section->setProperties([$this->commonGroundService->cleanUrl(['component'=>'vtc', 'type'=>'properties', 'id'=>'8f9adb13-d5e0-40de-a08c-a2ce5a648b1e'])]);
         // $section->setProperties(["https://vtc.westfriesland.commonground.nu/properties/8f9adb13-d5e0-40de-a08c-a2ce5a648b1e"]);
         $stage->addSection($section);
