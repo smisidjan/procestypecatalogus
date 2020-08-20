@@ -165,7 +165,7 @@ class ZuiddrechtFixtures extends Fixture
         $id = Uuid::fromString('d1118a40-cede-42e0-b5dd-ff38e837ab0b');
         $processType = new ProcessType();
         $processType->setName('Contact');
-        $processType->setIcon('fas fa-parking');
+        $processType->setIcon('fas fa-envelope');
         $processType->setDescription('Via dit formulier neemt u contact met ons op.');
         $processType->setSourceOrganization($this->commonGroundService->cleanUrl(['component' => 'vtc', 'type' => 'request_types', 'id' => '4d1eded3-fbdf-438f-9536-8747dd8ab591']));
         $processType->setRequestType($this->commonGroundService->cleanUrl(['component' => 'vtc', 'type' => 'request_types', 'id' => '3b76447e-1b4b-4b86-a582-8f6b4a5a8c6f']));
@@ -177,7 +177,7 @@ class ZuiddrechtFixtures extends Fixture
 
         $stage = new Stage();
         $stage->setName('Contact');
-        $stage->setIcon('fal fa-users');
+        $stage->setIcon('fas fa-users');
         $stage->setSlug('contact');
         $stage->setDescription('Waarover wilt u contact hebben?');
 
@@ -197,7 +197,7 @@ class ZuiddrechtFixtures extends Fixture
 
         $stage = new Stage();
         $stage->setName('Uw gegevens');
-        $stage->setIcon('fal fa-users');
+        $stage->setIcon('fas fa-users');
         $stage->setSlug('uw-gegevens');
         $stage->setDescription('Hoe kunnen wij u berijken');
 
@@ -220,7 +220,7 @@ class ZuiddrechtFixtures extends Fixture
         $id = Uuid::fromString('32293766-8b3a-43ee-9f16-ed67234ac309');
         $processType = new ProcessType();
         $processType->setName('Balie afspraak');
-        $processType->setIcon('fas fa-parking');
+        $processType->setIcon('fas fa-calendar');
         $processType->setDescription('Via dit formulier kunt u een balie afspraak bij ons inplannen.');
         $processType->setSourceOrganization($this->commonGroundService->cleanUrl(['component' => 'vtc', 'type' => 'request_types', 'id' => '4d1eded3-fbdf-438f-9536-8747dd8ab591']));
         $processType->setRequestType($this->commonGroundService->cleanUrl(['component' => 'vtc', 'type' => 'request_types', 'id' => '32293766-8b3a-43ee-9f16-ed67234ac309']));
@@ -232,7 +232,7 @@ class ZuiddrechtFixtures extends Fixture
 
         $stage = new Stage();
         $stage->setName('Afspraak');
-        $stage->setIcon('fal fa-users');
+        $stage->setIcon('fas fa-users');
         $stage->setSlug('afspraak');
         $stage->setDescription('de details van uw afspraak');
 
@@ -252,7 +252,7 @@ class ZuiddrechtFixtures extends Fixture
 
         $stage = new Stage();
         $stage->setName('Uw gegevens');
-        $stage->setIcon('fal fa-users');
+        $stage->setIcon('fas fa-users');
         $stage->setSlug('uw-gegevens');
         $stage->setDescription('Hoe kunnen wij u berijken');
 
@@ -275,7 +275,7 @@ class ZuiddrechtFixtures extends Fixture
         $id = Uuid::fromString('8a3ec75e-186c-4085-bc7c-4e1c5bf250d0');
         $processType = new ProcessType();
         $processType->setName('Melding openbare ruimte');
-        $processType->setIcon('fas fa-parking');
+        $processType->setIcon('fas fa-dumpster-fire');
         $processType->setDescription('Via dit formulier kunt u melding maken van een probleem in de openbare ruimte.');
         $processType->setSourceOrganization($this->commonGroundService->cleanUrl(['component' => 'vtc', 'type' => 'request_types', 'id' => '4d1eded3-fbdf-438f-9536-8747dd8ab591']));
         $processType->setRequestType($this->commonGroundService->cleanUrl(['component' => 'vtc', 'type' => 'request_types', 'id' => '6541d18b-1666-4600-98e3-6f5df1a67423']));
@@ -287,7 +287,7 @@ class ZuiddrechtFixtures extends Fixture
 
         $stage = new Stage();
         $stage->setName('Melding');
-        $stage->setIcon('fal fa-users');
+        $stage->setIcon('fas fa-users');
         $stage->setSlug('melding');
         $stage->setDescription('Wie treed op als belanghebbende?');
 
@@ -304,7 +304,7 @@ class ZuiddrechtFixtures extends Fixture
 
         $stage = new Stage();
         $stage->setName('Uw gegevens');
-        $stage->setIcon('fal fa-users');
+        $stage->setIcon('fas fa-users');
         $stage->setSlug('uw-gegevens');
         $stage->setDescription('Hoe kunnen wij u berijken');
 
@@ -327,7 +327,7 @@ class ZuiddrechtFixtures extends Fixture
 
         $id = Uuid::fromString('b8955949-2d8d-4bfb-9c73-e5275bffa427');
         $processType = new ProcessType();
-        $processType->setIcon('fal fa-rings-wedding');
+        $processType->setIcon('fas fa-rings-wedding');
         $processType->setSourceOrganization($this->commonGroundService->cleanUrl(['component' => 'vtc', 'type' => 'request_types', 'id' => '4d1eded3-fbdf-438f-9536-8747dd8ab591']));
         $processType->setName('Huwelijk / Partnerschap');
         $processType->setDescription('Als je gaat trouwen moet je veel regelen. Om je wat overzicht te geven hebben we hieronder een lijstje gemaakt van alles wat je met de gemeente moet regelen.');
@@ -340,7 +340,7 @@ class ZuiddrechtFixtures extends Fixture
 
         $stage = new Stage();
         $stage->setName('Hoe wilt u trouwen?');
-        $stage->setIcon('fal fa-users');
+        $stage->setIcon('fas fa-users');
         $stage->setSlug('huwelijk-ceremonie');
         $stage->setDescription('Wie treed op als belanghebbende?');
 
@@ -366,7 +366,7 @@ class ZuiddrechtFixtures extends Fixture
 
         $stage = new Stage();
         $stage->setName('Ambtenaar');
-        $stage->setIcon('fal fa-users');
+        $stage->setIcon('fas fa-users');
         $stage->setSlug('ambtenaar-locatie');
         $stage->setDescription('Wie treed op als belanghebbende?');
 
@@ -384,7 +384,7 @@ class ZuiddrechtFixtures extends Fixture
 
         $stage = new Stage();
         $stage->setName('Wanneer wilt u trouwen?');
-        $stage->setIcon('fal fa-users');
+        $stage->setIcon('fas fa-users');
         $stage->setSlug('datum');
         $stage->setDescription('Wie treed op als belanghebbende?');
 
@@ -398,7 +398,7 @@ class ZuiddrechtFixtures extends Fixture
 
         $stage = new Stage();
         $stage->setName('Getuigen');
-        $stage->setIcon('fal fa-users');
+        $stage->setIcon('fas fa-users');
         $stage->setSlug('getuigen');
         $stage->setDescription('Wie treed op als belanghebbende?');
 
@@ -412,7 +412,7 @@ class ZuiddrechtFixtures extends Fixture
 
         $stage = new Stage();
         $stage->setName('Overige gegevens');
-        $stage->setIcon('fal fa-users');
+        $stage->setIcon('fas fa-users');
         $stage->setSlug('overig');
         $stage->setDescription('Wie treed op als belanghebbende?');
 
