@@ -431,5 +431,107 @@ class TimFixtures extends Fixture
         $section->setStage($stage);
 
 
+        //vormulier aansprakelijk stellen
+        $id = Uuid::fromString('942fee77-2cb7-420e-a03c-4b1e3a470ec4');
+        $processType = new ProcessType();
+        $processType->setSourceOrganization($this->commonGroundService->cleanUrl(['component'=>'vtc', 'type'=>'request_types', 'id'=>'4d1eded3-fbdf-438f-9536-8747dd8ab591']));
+        $processType->setName('formulier aanspraakelijk stellen');
+        $processType->setDescription('met dit formulier kunt u schade aanspraakelijk stellen voor de gemeente');
+        $processType->setRequestType($this->commonGroundService->cleanUrl(['component' => 'vtc', 'type' => 'request_types', 'id' => '']));
+        $manager->persist($processType);
+        $processType->setId($id);
+        $manager->persist($processType);
+        $manager->flush();
+        $processType = $manager->getRepository('App:ProcessType')->findOneBy(['id' => $id]);
+
+        //1e pagina
+        $stage = new Stage();
+        $stage->setName('belangrijke informatie');
+        $stage->setIcon('fal fa-users');
+        $stage->setSlug('belangrijke-informatie');
+        $stage->setProcess($processType);
+
+
+        $section = new Section();
+        $section->setName('belangrijke informatie');
+        $section->setProperties([]);
+        $section->setStage($stage);
+
+        $section->setStage($stage);
+        $stage->addSection($section);
+        $processType->addStage($stage);
+        $manager->persist($processType);
+        $manager->flush();
+
+
+
+
+        //2e pagina
+        $stage = new Stage();
+        $stage->setName('uw gegevens');
+        $stage->setIcon('fal fa-users');
+        $stage->setSlug('uw-gevens');
+        $stage->setProcess($processType);
+
+        $section = new Section();
+        $section->setName('uw gevens invullen');
+        $section->setProperties([
+            $this->commonGroundService->cleanUrl(['component' => 'vtc', 'type' => 'properties', 'id' => 'b93ed2e5-28ea-4ea6-af32-2ff4e6f588c9']),
+            $this->commonGroundService->cleanUrl(['component' => 'vtc', 'type' => 'properties', 'id' => '6442816e-4657-4eb2-9d1b-ace895d01bd0']),
+            $this->commonGroundService->cleanUrl(['component' => 'vtc', 'type' => 'properties', 'id' => '0f7117f2-91bf-4718-99cf-f6334285e03e']),
+            $this->commonGroundService->cleanUrl(['component' => 'vtc', 'type' => 'properties', 'id' => '7a64a89a-ed40-474f-bfda-2e597d55df4f']),
+            $this->commonGroundService->cleanUrl(['component' => 'vtc', 'type' => 'properties', 'id' => 'e778b034-42fd-4675-a3de-98a557273d76']),
+            $this->commonGroundService->cleanUrl(['component' => 'vtc', 'type' => 'properties', 'id' => 'bd8e85ec-5f4d-4dcf-b5b4-3b808460ad3b']),
+            $this->commonGroundService->cleanUrl(['component' => 'vtc', 'type' => 'properties', 'id' => '93dd4314-22a6-49e4-aab8-ee2ea6c07703']),
+            $this->commonGroundService->cleanUrl(['component' => 'vtc', 'type' => 'properties', 'id' => 'd4686644-8093-47d3-b3f8-f32a6843c556']),
+        ]);
+        $section->setStage($stage);
+
+        $section->setStage($stage);
+        $stage->addSection($section);
+        $processType->addStage($stage);
+        $manager->persist($processType);
+        $manager->flush();
+
+        //3 pagina
+        $stage = new Stage();
+        $stage->setName('schade beschrijven');
+        $stage->setIcon('fal fa-users');
+        $stage->setSlug('schade-beschrijven');
+        $stage->setProcess($processType);
+
+        $section = new Section();
+        $section->setName('');
+        $section->setProperties([
+            $this->commonGroundService->cleanUrl(['component' => 'vtc', 'type' => 'properties', 'id' => '0aea6d71-cc37-4385-96aa-d0840ec98c63']),
+            $this->commonGroundService->cleanUrl(['component' => 'vtc', 'type' => 'properties', 'id' => '76eef960-8900-4a48-8d4f-e713bf0482b9']),
+            $this->commonGroundService->cleanUrl(['component' => 'vtc', 'type' => 'properties', 'id' => 'b5d4615e-c4b6-46c4-961a-8bf3d603d8c5']),
+            $this->commonGroundService->cleanUrl(['component' => 'vtc', 'type' => 'properties', 'id' => 'c6a5f469-33ed-45a1-ad97-12f0c8946247']),
+            $this->commonGroundService->cleanUrl(['component' => 'vtc', 'type' => 'properties', 'id' => 'f0cc0767-987b-4aa4-8679-4ef46a8f7e2b']),
+            $this->commonGroundService->cleanUrl(['component' => 'vtc', 'type' => 'properties', 'id' => '7b128adb-c509-4758-83b9-73f4ed90d712']),
+            $this->commonGroundService->cleanUrl(['component' => 'vtc', 'type' => 'properties', 'id' => 'bb217564-0cdc-4e4c-929d-540259eddfb2']),
+        ]);
+        $section->setStage($stage);
+
+        $section->setStage($stage);
+        $stage->addSection($section);
+        $processType->addStage($stage);
+        $manager->persist($processType);
+        $manager->flush();
+
+        //4 pagina
+        $stage = new Stage();
+        $stage->setName('controleren');
+        $stage->setIcon('fal fa-users');
+        $stage->setSlug('controleren');
+        $stage->setProcess($processType);
+
+        $section = new Section();
+        $section->setName('zijn uw gegevens juist ingevult');
+        $section->setProperties([
+            $this->commonGroundService->cleanUrl(['component' => 'vtc', 'type' => 'properties', 'id' => '1a195ef3-670b-40f6-8b69-c3f4e35a97d9']),
+        ]);
+        $section->setStage($stage);
+
     }
 }
