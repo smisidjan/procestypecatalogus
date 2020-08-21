@@ -3,14 +3,25 @@ entries:
   ptc:
   - apiVersion: v1
     appVersion: V1.0
+<<<<<<< HEAD
+    created: "2020-08-21T08:56:08.276320201Z"
+    description: Naast deze JSON rest API is er ook een [graphql](/graphql) interface
+      beschikbaar.
+    digest: 120308aaa07fc299cd657568340824edfe2c456e5fb9954697dff991fdea1e0b
+=======
     created: "2020-08-19T15:30:06.322092006Z"
     description: Naast deze JSON rest API is er ook een [graphql](/graphql) interface
       beschikbaar.
     digest: 6991919c130a595be62cb3a28c0a5be7aad274f061ac58073d0f6717481c1f3c
+>>>>>>> development
     home: ptc.zuid-drecht.nl
     icon: ptc.zuid-drecht.nl
     name: ptc
     urls:
     - ptc-0.1.0.tgz
     version: 0.1.0
+<<<<<<< HEAD
+generated: "2020-08-21T08:56:08.2576087Z"
+=======
 generated: "2020-08-19T15:30:06.318783006Z"
+>>>>>>> development
