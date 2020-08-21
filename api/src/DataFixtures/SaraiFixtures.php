@@ -1772,7 +1772,7 @@ class SaraiFixtures extends Fixture
         $processType = new ProcessType();
         $processType->setSourceOrganization($this->commonGroundService->cleanUrl(['component'=>'vtc', 'type'=>'request_types', 'id'=>'4d1eded3-fbdf-438f-9536-8747dd8ab591']));
         $processType->setName('Kwijtscheldingsberekening');
-        $processType->setDescription('Via dit formulier kunt u wijtscheldingsberekenen');
+        $processType->setDescription('Via dit formulier kunt u uw kwijtscheldingsberekenen');
         $processType->setRequestType($this->commonGroundService->cleanUrl(['component' => 'vtc', 'type' => 'request_types', 'id' => '92f2c3fd-236a-4cf7-adb2-8c5d27424f62']));
         $manager->persist($processType);
         $processType->setId($id);
@@ -1853,14 +1853,14 @@ class SaraiFixtures extends Fixture
         $manager->flush();
 
         /*
-        * Verhuizing naar de gemeente Hoorn
+        * Verhuizing naar de gemeente Zuid-Drecht
         *
         */
         $id = Uuid::fromString('e4ff0d03-ad79-4496-95ae-0bf250e2a10d');
         $processType = new ProcessType();
         $processType->setSourceOrganization($this->commonGroundService->cleanUrl(['component'=>'vtc', 'type'=>'request_types', 'id'=>'4d1eded3-fbdf-438f-9536-8747dd8ab591']));
-        $processType->setName('Kwijtscheldingsberekening');
-        $processType->setDescription('Via dit formulier kunt u wijtscheldingsberekenen');
+        $processType->setName('Verhuizing naar de gemeente Zuid-Drecht');
+        $processType->setDescription('Via dit formulier kunt u de verhuizing naar de gemeente Zuid-Drecht aangeven');
         $processType->setRequestType($this->commonGroundService->cleanUrl(['component' => 'vtc', 'type' => 'request_types', 'id' => 'df920444-7783-477a-97fd-6a7ef839345c']));
         $manager->persist($processType);
         $processType->setId($id);
