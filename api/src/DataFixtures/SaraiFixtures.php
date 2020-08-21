@@ -80,11 +80,11 @@ class SaraiFixtures extends Fixture
         $section->setName('Uw contactgegevens');
         $section->setProperties([
             $this->commonGroundService->cleanUrl(['component' => 'vtc', 'type' => 'properties', 'id' => '2a33e22a-b9de-46e9-89d5-0bd2da2cceba']),
-            $this->commonGroundService->cleanUrl(['component' => 'vtc', 'type' => 'properties', 'id' => 'd53aa76f-aad6-42ec-8be7-6f50d8109ef2']),
-            $this->commonGroundService->cleanUrl(['component' => 'vtc', 'type' => 'properties', 'id' => '891ec347-13d9-4d3e-89c1-d7db32b28691']),
-            $this->commonGroundService->cleanUrl(['component' => 'vtc', 'type' => 'properties', 'id' => 'eb1c128b-d4b0-49d2-9a3e-6064027adeef']),
-            $this->commonGroundService->cleanUrl(['component' => 'vtc', 'type' => 'properties', 'id' => '69be5e95-dbd3-4518-b08d-95bd232c4271']),
-            $this->commonGroundService->cleanUrl(['component' => 'vtc', 'type' => 'properties', 'id' => '76539609-7734-4f6b-acec-0a91c80e9ffb']),
+            $this->commonGroundService->cleanUrl(['component' => 'vtc', 'type' => 'properties', 'id' => '29377e0f-3973-4df2-a2d8-bd3ce574af66']),
+            $this->commonGroundService->cleanUrl(['component' => 'vtc', 'type' => 'properties', 'id' => '7bf4f9a1-a78a-40f9-b76c-fcd77027ce6f']),
+            $this->commonGroundService->cleanUrl(['component' => 'vtc', 'type' => 'properties', 'id' => 'f2fa150a-e180-4f48-b879-c5a4fb1a93bb']),
+            $this->commonGroundService->cleanUrl(['component' => 'vtc', 'type' => 'properties', 'id' => '02980ace-1760-4ea3-8cf5-29fec39b948f']),
+            $this->commonGroundService->cleanUrl(['component' => 'vtc', 'type' => 'properties', 'id' => '81addb3a-b43f-40c3-a56f-64e65def1709']),
         ]);
         $section->setStage($stage);
         $stage->addSection($section);
@@ -1772,7 +1772,7 @@ class SaraiFixtures extends Fixture
         $processType = new ProcessType();
         $processType->setSourceOrganization($this->commonGroundService->cleanUrl(['component'=>'vtc', 'type'=>'request_types', 'id'=>'4d1eded3-fbdf-438f-9536-8747dd8ab591']));
         $processType->setName('Kwijtscheldingsberekening');
-        $processType->setDescription('Via dit formulier kunt u wijtscheldingsberekenen');
+        $processType->setDescription('Via dit formulier kunt u uw kwijtscheldingsberekenen');
         $processType->setRequestType($this->commonGroundService->cleanUrl(['component' => 'vtc', 'type' => 'request_types', 'id' => '92f2c3fd-236a-4cf7-adb2-8c5d27424f62']));
         $manager->persist($processType);
         $processType->setId($id);
@@ -1853,14 +1853,14 @@ class SaraiFixtures extends Fixture
         $manager->flush();
 
         /*
-        * Verhuizing naar de gemeente Hoorn
+        * Verhuizing naar de gemeente Zuid-Drecht
         *
         */
         $id = Uuid::fromString('e4ff0d03-ad79-4496-95ae-0bf250e2a10d');
         $processType = new ProcessType();
         $processType->setSourceOrganization($this->commonGroundService->cleanUrl(['component'=>'vtc', 'type'=>'request_types', 'id'=>'4d1eded3-fbdf-438f-9536-8747dd8ab591']));
-        $processType->setName('Kwijtscheldingsberekening');
-        $processType->setDescription('Via dit formulier kunt u wijtscheldingsberekenen');
+        $processType->setName('Verhuizing naar de gemeente Zuid-Drecht');
+        $processType->setDescription('Via dit formulier kunt u de verhuizing naar de gemeente Zuid-Drecht aangeven');
         $processType->setRequestType($this->commonGroundService->cleanUrl(['component' => 'vtc', 'type' => 'request_types', 'id' => 'df920444-7783-477a-97fd-6a7ef839345c']));
         $manager->persist($processType);
         $processType->setId($id);
