@@ -78,9 +78,12 @@ class SaraiFixtures extends Fixture
         $section = new Section();
         $section->setName('Uw contactgegevens');
         $section->setProperties([
-            $this->commonGroundService->cleanUrl(['component' => 'vtc', 'type' => 'properties', 'id' => '56e115f6-aaa4-437f-80f6-252ff4ea0b84']),
-            $this->commonGroundService->cleanUrl(['component' => 'vtc', 'type' => 'properties', 'id' => 'b8835509-40a0-4d7a-958d-f4c72f726bfe']),
-            $this->commonGroundService->cleanUrl(['component' => 'vtc', 'type' => 'properties', 'id' => '2b22534f-7982-42b6-98d5-c91f5b93eddd']),
+            $this->commonGroundService->cleanUrl(['component' => 'vtc', 'type' => 'properties', 'id' => '2a33e22a-b9de-46e9-89d5-0bd2da2cceba']),
+            $this->commonGroundService->cleanUrl(['component' => 'vtc', 'type' => 'properties', 'id' => 'd53aa76f-aad6-42ec-8be7-6f50d8109ef2']),
+            $this->commonGroundService->cleanUrl(['component' => 'vtc', 'type' => 'properties', 'id' => '891ec347-13d9-4d3e-89c1-d7db32b28691']),
+            $this->commonGroundService->cleanUrl(['component' => 'vtc', 'type' => 'properties', 'id' => 'eb1c128b-d4b0-49d2-9a3e-6064027adeef']),
+            $this->commonGroundService->cleanUrl(['component' => 'vtc', 'type' => 'properties', 'id' => '69be5e95-dbd3-4518-b08d-95bd232c4271']),
+            $this->commonGroundService->cleanUrl(['component' => 'vtc', 'type' => 'properties', 'id' => '76539609-7734-4f6b-acec-0a91c80e9ffb']),
         ]);
         $section->setStage($stage);
         $stage->addSection($section);
@@ -1840,7 +1843,7 @@ class SaraiFixtures extends Fixture
         * Verhuizing naar de gemeente Hoorn
         *
         */
-        $id = Uuid::fromString('');
+        $id = Uuid::fromString('e4ff0d03-ad79-4496-95ae-0bf250e2a10d');
         $processType = new ProcessType();
         $processType->setSourceOrganization($this->commonGroundService->cleanUrl(['component'=>'vtc', 'type'=>'request_types', 'id'=>'4d1eded3-fbdf-438f-9536-8747dd8ab591']));
         $processType->setName('Kwijtscheldingsberekening');
