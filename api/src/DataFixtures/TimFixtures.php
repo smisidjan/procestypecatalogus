@@ -325,7 +325,7 @@ class TimFixtures extends Fixture
         $manager->persist($processType);
         $manager->flush();
 
-// Aanvraagformulier mantelzorgwaardering
+        // Aanvraagformulier mantelzorgwaardering
         $id = Uuid::fromString('230cb89b-7498-4955-af4a-df7f78b026f0');
         $processType = new ProcessType();
         $processType->setSourceOrganization($this->commonGroundService->cleanUrl(['component'=>'vtc', 'type'=>'request_types', 'id'=>'4d1eded3-fbdf-438f-9536-8747dd8ab591']));
@@ -430,7 +430,6 @@ class TimFixtures extends Fixture
         ]);
         $section->setStage($stage);
 
-
         //vormulier aansprakelijk stellen
         $id = Uuid::fromString('942fee77-2cb7-420e-a03c-4b1e3a470ec4');
         $processType = new ProcessType();
@@ -451,7 +450,6 @@ class TimFixtures extends Fixture
         $stage->setSlug('belangrijke-informatie');
         $stage->setProcess($processType);
 
-
         $section = new Section();
         $section->setName('belangrijke informatie');
         $section->setProperties([]);
@@ -462,9 +460,6 @@ class TimFixtures extends Fixture
         $processType->addStage($stage);
         $manager->persist($processType);
         $manager->flush();
-
-
-
 
         //2e pagina
         $stage = new Stage();
@@ -532,6 +527,5 @@ class TimFixtures extends Fixture
             $this->commonGroundService->cleanUrl(['component' => 'vtc', 'type' => 'properties', 'id' => '1a195ef3-670b-40f6-8b69-c3f4e35a97d9']),
         ]);
         $section->setStage($stage);
-
     }
 }
