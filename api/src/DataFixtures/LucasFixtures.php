@@ -39,6 +39,7 @@ class LucasFixtures extends Fixture
         $id = Uuid::fromString('f5b473e9-a2d8-4383-b268-265c340f4bc5');
         $processType = new ProcessType();
         $processType->setName('Documenten inleveren');
+        $processType->setIcon('fas fa-file-alt');
         $processType->setDescription('Hier kunt u aanvullende documenten of informatie inleveren.');
         $processType->setSourceOrganization($this->commonGroundService->cleanUrl(['component'=>'vtc', 'type'=>'request_types', 'id'=>'4d1eded3-fbdf-438f-9536-8747dd8ab591']));
         $processType->setRequestType($this->commonGroundService->cleanUrl(['component'=>'vtc', 'type'=>'request_types', 'id'=>'ff3a0263-350f-407a-84d4-bd12e89ce040']));
@@ -74,6 +75,7 @@ class LucasFixtures extends Fixture
         $id = Uuid::fromString('9f7a7616-179f-4ca1-b91f-1ac73222fe0e');
         $processType = new ProcessType();
         $processType->setName('Aanmeldformulier jeugdlintje');
+        $processType->setIcon('fas fa-medal');
         $processType->setDescription('Doe hier een aanvraag voor een jeugdlintje voor iemand in de gemeenschap');
         $processType->setSourceOrganization($this->commonGroundService->cleanUrl(['component'=>'vtc', 'type'=>'request_types', 'id'=>'4d1eded3-fbdf-438f-9536-8747dd8ab591']));
         $processType->setRequestType($this->commonGroundService->cleanUrl(['component'=>'vtc', 'type'=>'request_types', 'id'=>'466e7a07-1388-40f7-964b-b9d8725d4a60']));
@@ -173,6 +175,14 @@ class LucasFixtures extends Fixture
         ]);
         $stage->addSection($section);
 
+        $section = new Section();
+        $section->setStage($stage);
+        $section->setName('Datum aanmelding');
+        $section->setProperties([
+            $this->commonGroundService->cleanUrl(['component'=>'vtc', 'type'=>'properties', 'id'=>'e1df079b-22b1-4952-a333-b70384a93f01']),
+        ]);
+        $stage->addSection($section);
+
         $processType->addStage($stage);
         $manager->persist($processType);
         $manager->flush();
@@ -181,6 +191,7 @@ class LucasFixtures extends Fixture
         $id = Uuid::fromString('3e758293-b910-490d-bc22-3941d61f9363');
         $processType = new ProcessType();
         $processType->setName('Vraag stellen');
+        $processType->setIcon('fas fa-question');
         $processType->setDescription('Algemeen contactformulier');
         $processType->setSourceOrganization($this->commonGroundService->cleanUrl(['component'=>'vtc', 'type'=>'request_types', 'id'=>'4d1eded3-fbdf-438f-9536-8747dd8ab591']));
         $processType->setRequestType($this->commonGroundService->cleanUrl(['component'=>'vtc', 'type'=>'request_types', 'id'=>'cf2482fd-5bed-4843-8f54-895cabdf6251']));
@@ -239,7 +250,8 @@ class LucasFixtures extends Fixture
         $id = Uuid::fromString('30f26d23-acb4-4dda-b944-b336ef00ff52');
         $processType = new ProcessType();
         $processType->setName('Kraskaarten');
-        $processType->setDescription('Aanvraag kraskaarten (Parkeren voor uw bezoek)');
+        $processType->setIcon('fas fa-money-check-alt');
+        $processType->setDescription('Via dit formulier kunt u kraskaarten aanvragen.');
         $processType->setSourceOrganization($this->commonGroundService->cleanUrl(['component'=>'vtc', 'type'=>'request_types', 'id'=>'4d1eded3-fbdf-438f-9536-8747dd8ab591']));
         $processType->setRequestType($this->commonGroundService->cleanUrl(['component'=>'vtc', 'type'=>'request_types', 'id'=>'c64bb62c-670a-4cde-bd29-f50c220a6442']));
         $manager->persist($processType);
@@ -295,6 +307,7 @@ class LucasFixtures extends Fixture
         $id = Uuid::fromString('3bfc975f-6ca6-4c65-813a-6c4da973f6e0');
         $processType = new ProcessType();
         $processType->setName('Starterslening');
+        $processType->setIcon('fas fa-piggy-bank');
         $processType->setDescription('Een starterslening aanvragen');
         $processType->setSourceOrganization($this->commonGroundService->cleanUrl(['component'=>'vtc', 'type'=>'request_types', 'id'=>'4d1eded3-fbdf-438f-9536-8747dd8ab591']));
         $processType->setRequestType($this->commonGroundService->cleanUrl(['component'=>'vtc', 'type'=>'request_types', 'id'=>'2f3f2c71-f9b0-463d-8cf3-8dc5cdfeeaeb']));
