@@ -40,7 +40,7 @@ class WestFrieslandFixtures extends Fixture
          */
         $id = Uuid::fromString('a8b8ce49-d5db-4270-9e42-4b47902fc817');
         $processType = new ProcessType();
-        $processType->setIcon('fal fa-tombstone');
+        $processType->setIcon('fas fa-monument');
         $processType->setRequireLogin(true);
         $processType->setAudience('organization');
         $processType->setSourceOrganization($this->commonGroundService->cleanUrl(['component'=>'wrc', 'type'=>'organizations', 'id'=>'d280c4d3-6310-46db-9934-5285ec7d0d5e']));
@@ -122,11 +122,11 @@ class WestFrieslandFixtures extends Fixture
         $stage->setName('Artikelen');
         $stage->setIcon('fal fa-map-tasks');
         $stage->setSlug('artikelen');
-        $stage->setDescription('Selecteer hier de artikelen voor de begrafenis.');
+        $stage->setDescription('Selecteer hier de gewenste artikelen voor de begrafenis.');
 
         $section = new Section();
         $section->setName('Artikelen');
-        $section->setDescription('Selecteer hier de artikelen voor de begrafenis.');
+        $section->setDescription('Selecteer hier de gewenste artikelen voor de begrafenis.');
         $section->setProperties([$this->commonGroundService->cleanUrl(['component'=>'vtc', 'type'=>'properties', 'id'=>'8f9adb13-d5e0-40de-a08c-a2ce5a648b1e'])]);
         // $section->setProperties(["https://vtc.westfriesland.commonground.nu/properties/8f9adb13-d5e0-40de-a08c-a2ce5a648b1e"]);
         $stage->addSection($section);
@@ -162,6 +162,96 @@ class WestFrieslandFixtures extends Fixture
         $section->setDescription('Wie treed er op als belanghebbende?');
         $section->setProperties([$this->commonGroundService->cleanUrl(['component'=>'vtc', 'type'=>'properties', 'id'=>'24d3e05d-26c2-4adb-acd4-08bde88b4526'])]);
         //$section->setProperties(["https://vtc.westfriesland.commonground.nu/properties/24d3e05d-26c2-4adb-acd4-08bde88b4526"]);
+        $stage->addSection($section);
+
+        // Add the stage to the procces type
+        $processType->addStage($stage);
+
+        // Save it all to the db
+        $manager->persist($processType);
+        $processType->setId($id);
+        $manager->persist($processType);
+        $manager->flush();
+        $processType = $manager->getRepository('App:ProcessType')->findOneBy(['id'=> $id]);
+
+        $manager->flush();
+
+        /*
+         *  Wijziging
+         */
+        $id = Uuid::fromString('7216b69d-e245-488e-af8f-0969241926e7');
+        $processType = new ProcessType();
+        $processType->setIcon('far fa-edit');
+        $processType->setRequireLogin(true);
+        $processType->setAudience('organization');
+        $processType->setSourceOrganization($this->commonGroundService->cleanUrl(['component'=>'wrc', 'type'=>'organizations', 'id'=>'d280c4d3-6310-46db-9934-5285ec7d0d5e']));
+        $processType->setName('Wijziging');
+        $processType->setDescription('Met dit verzoek kunt u een reeds in behandeling zijnd verzoek wijzigen');
+        $processType->setRequestType($this->commonGroundService->cleanUrl(['component'=>'vtc', 'type'=>'request_types', 'id'=>'5223c58e-75a5-4a9d-86ca-47b77b4656e8']));
+        $manager->persist($processType);
+        $processType->setId($id);
+        $manager->persist($processType);
+        $manager->flush();
+        $processType = $manager->getRepository('App:ProcessType')->findOneBy(['id'=> $id]);
+
+        $stage = new Stage();
+        $stage->setName('Belanghebbende');
+        $stage->setIcon('fal fa-users');
+        $stage->setSlug('belanghebbende');
+        $stage->setDescription('Wie treed op als belanghebbende?');
+
+        $stage = new Stage();
+        $stage->setName('gegevens');
+        $stage->setIcon('fal fa-users');
+        $stage->setSlug('gegevens');
+        $stage->setDescription('Wat zijn de gegevens van het bezwaar');
+
+        $section = new Section();
+        $section->setName('gegevens');
+        $section->setDescription('Wat zijn de gegevens van het bezwaar');
+        $section->setProperties([$this->commonGroundService->cleanUrl(['component'=>'vtc', 'type'=>'properties', 'id'=>'6c5e6a94-1b31-4db3-97a7-c9a0bb3e6eda'])]);
+        $stage->addSection($section);
+
+        // Add the stage to the procces type
+        $processType->addStage($stage);
+
+        // Save it all to the db
+        $manager->persist($processType);
+        $processType->setId($id);
+        $manager->persist($processType);
+        $manager->flush();
+        $processType = $manager->getRepository('App:ProcessType')->findOneBy(['id'=> $id]);
+
+        $manager->flush();
+
+        /*
+         *  Bezwaar
+         */
+        $id = Uuid::fromString('2a95ba3e-a3f9-4fdf-8a6d-005d96aad405');
+        $processType = new ProcessType();
+        $processType->setIcon('far fa-hand-paper');
+        $processType->setRequireLogin(true);
+        $processType->setAudience('organization');
+        $processType->setSourceOrganization($this->commonGroundService->cleanUrl(['component'=>'wrc', 'type'=>'organizations', 'id'=>'d280c4d3-6310-46db-9934-5285ec7d0d5e']));
+        $processType->setName('Bezwaar');
+        $processType->setDescription('Met dit verzoek kunt bezwaar maken tegen de uitkomst van een procedure');
+        $processType->setRequestType($this->commonGroundService->cleanUrl(['component'=>'vtc', 'type'=>'request_types', 'id'=>'5013042b-ffab-4933-9fd8-edfbc0c82b22']));
+        $manager->persist($processType);
+        $processType->setId($id);
+        $manager->persist($processType);
+        $manager->flush();
+        $processType = $manager->getRepository('App:ProcessType')->findOneBy(['id'=> $id]);
+
+        $stage = new Stage();
+        $stage->setName('gegevens');
+        $stage->setIcon('fal fa-users');
+        $stage->setSlug('gegevens');
+        $stage->setDescription('Wat zijn de gegevens van het bezwaar');
+
+        $section = new Section();
+        $section->setName('gegevens');
+        $section->setDescription('Wat zijn de gegevens van het bezwaar');
+        $section->setProperties([$this->commonGroundService->cleanUrl(['component'=>'vtc', 'type'=>'properties', 'id'=>'efc8430d-73b5-44ae-a217-d95b663b7d09'])]);
         $stage->addSection($section);
 
         // Add the stage to the procces type

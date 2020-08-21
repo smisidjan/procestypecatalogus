@@ -39,6 +39,7 @@ class SaraiFixtures extends Fixture
         $processType = new ProcessType();
         $processType->setSourceOrganization($this->commonGroundService->cleanUrl(['component'=>'vtc', 'type'=>'request_types', 'id'=>'4d1eded3-fbdf-438f-9536-8747dd8ab591']));
         $processType->setName('Direct zorg aanvragen');
+        $processType->setIcon('fas fa-comment-medical');
         $processType->setDescription('Dit aanmeldformulier is voor bewoners van Zuid Drecht die zorg en/of ondersteuning nodig hebben. De gegevens uit dit aanmeldformulier worden opgeslagen en besproken binnen het team van Zuid Drecht.');
         $processType->setRequestType($this->commonGroundService->cleanUrl(['component' => 'vtc', 'type' => 'request_types', 'id' => 'ffa22c00-6622-4cf3-8e97-682459a28d2d']));
         $manager->persist($processType);
@@ -180,6 +181,7 @@ class SaraiFixtures extends Fixture
         $processType = new ProcessType();
         $processType->setSourceOrganization($this->commonGroundService->cleanUrl(['component'=>'vtc', 'type'=>'request_types', 'id'=>'4d1eded3-fbdf-438f-9536-8747dd8ab591']));
         $processType->setName('Afschrift burgelijke stand');
+        $processType->setIcon('fas fa-address-card');
         $processType->setDescription('Via dit formulier kunt u een afschrift burgelijke stand aanvragen');
         $processType->setRequestType($this->commonGroundService->cleanUrl(['component' => 'vtc', 'type' => 'request_types', 'id' => 'a535b49a-6a0c-4010-b14d-25b850b32380']));
         $manager->persist($processType);
@@ -284,6 +286,7 @@ class SaraiFixtures extends Fixture
         $processType = new ProcessType();
         $processType->setSourceOrganization($this->commonGroundService->cleanUrl(['component'=>'vtc', 'type'=>'request_types', 'id'=>'4d1eded3-fbdf-438f-9536-8747dd8ab591']));
         $processType->setName('Leerlingen vervoer wijziging doorgeven');
+        $processType->setIcon('fas fa-bus');
         $processType->setDescription('Geef hier uw leerlingen vervoer wijziging door');
         $processType->setRequestType($this->commonGroundService->cleanUrl(['component' => 'vtc', 'type' => 'request_types', 'id' => '51665b5d-e727-442c-9b48-cf704d1f958c']));
         $manager->persist($processType);
@@ -334,6 +337,7 @@ class SaraiFixtures extends Fixture
         $processType = new ProcessType();
         $processType->setSourceOrganization($this->commonGroundService->cleanUrl(['component'=>'vtc', 'type'=>'request_types', 'id'=>'4d1eded3-fbdf-438f-9536-8747dd8ab591']));
         $processType->setName('Bouwtekening opvragen');
+        $processType->setIcon('fas fa-building');
         $processType->setDescription('Via dit formulier kunt u bouwtekeningen opvragen');
         $processType->setRequestType($this->commonGroundService->cleanUrl(['component' => 'vtc', 'type' => 'request_types', 'id' => 'ba6093e6-2f51-4d05-b9a2-60dc9ef6fc62']));
         $manager->persist($processType);
@@ -426,6 +430,7 @@ class SaraiFixtures extends Fixture
         $processType = new ProcessType();
         $processType->setSourceOrganization($this->commonGroundService->cleanUrl(['component'=>'vtc', 'type'=>'request_types', 'id'=>'4d1eded3-fbdf-438f-9536-8747dd8ab591']));
         $processType->setName('Buurtbudget aanvragen');
+        $processType->setIcon('fas fa-comment-dollar');
         $processType->setDescription('Via dit formulier kunt u een buurtbudget aanvragen');
         $processType->setRequestType($this->commonGroundService->cleanUrl(['component' => 'vtc', 'type' => 'request_types', 'id' => '50c4032e-b2d2-4e54-a07a-610832d16252']));
         $manager->persist($processType);
@@ -517,6 +522,7 @@ class SaraiFixtures extends Fixture
         $processType = new ProcessType();
         $processType->setSourceOrganization($this->commonGroundService->cleanUrl(['component'=>'vtc', 'type'=>'request_types', 'id'=>'4d1eded3-fbdf-438f-9536-8747dd8ab591']));
         $processType->setName('Samenstelling sportvereniging');
+        $processType->setIcon('fas fa-futbol');
         $processType->setDescription('Via dit formulier kunt u een samenstelling sportvereniging aanvragen');
         $processType->setRequestType($this->commonGroundService->cleanUrl(['component' => 'vtc', 'type' => 'request_types', 'id' => '1f2fc424-f82d-4505-8731-ac55833d81b3']));
         $manager->persist($processType);
@@ -635,6 +641,7 @@ class SaraiFixtures extends Fixture
         $processType = new ProcessType();
         $processType->setSourceOrganization($this->commonGroundService->cleanUrl(['component'=>'vtc', 'type'=>'request_types', 'id'=>'4d1eded3-fbdf-438f-9536-8747dd8ab591']));
         $processType->setName('Aanvragen tegemoetkoming in schade (planschadevergoeding)');
+        $processType->setIcon('fas fa-car-crash');
         $processType->setDescription('Via dit formulier kunt u een tegemoetkoming in schade aanvragen');
         $processType->setRequestType($this->commonGroundService->cleanUrl(['component' => 'vtc', 'type' => 'request_types', 'id' => '3bb7a27a-82a0-4e38-afba-b4b3a9de4306']));
         $manager->persist($processType);
@@ -736,6 +743,7 @@ class SaraiFixtures extends Fixture
         $processType = new ProcessType();
         $processType->setSourceOrganization($this->commonGroundService->cleanUrl(['component'=>'vtc', 'type'=>'request_types', 'id'=>'4d1eded3-fbdf-438f-9536-8747dd8ab591']));
         $processType->setName('Parkeervergunning Incidenteel');
+        $processType->setIcon('fas fa-parking');
         $processType->setDescription('Via dit formulier vraagt u Indicenteel een parkeervergunning aan');
         $processType->setRequestType($this->commonGroundService->cleanUrl(['component' => 'vtc', 'type' => 'request_types', 'id' => '06ede3d9-2146-4250-a06b-00d1d4822a78']));
         $manager->persist($processType);
@@ -828,7 +836,8 @@ class SaraiFixtures extends Fixture
         $id = Uuid::fromString('49234bba-d0db-4b1e-acef-7208e0dc429e');
         $processType = new ProcessType();
         $processType->setSourceOrganization($this->commonGroundService->cleanUrl(['component'=>'vtc', 'type'=>'request_types', 'id'=>'4d1eded3-fbdf-438f-9536-8747dd8ab591']));
-        $processType->setName('Aanvraag ligplaats klein bootje');
+        $processType->setName('Ligplaats klein bootje');
+        $processType->setIcon('fas fa-anchor');
         $processType->setDescription('Via dit formulier vraagt u een ligplaats voor een klein bootje aan');
         $processType->setRequestType($this->commonGroundService->cleanUrl(['component' => 'vtc', 'type' => 'request_types', 'id' => 'ebff7783-2a8a-482c-882b-9d478e7d0a12']));
         $manager->persist($processType);
@@ -943,6 +952,7 @@ class SaraiFixtures extends Fixture
         $processType = new ProcessType();
         $processType->setSourceOrganization($this->commonGroundService->cleanUrl(['component'=>'vtc', 'type'=>'request_types', 'id'=>'4d1eded3-fbdf-438f-9536-8747dd8ab591']));
         $processType->setName('Contactformulier schuldhulpverlening');
+        $processType->setIcon('fas fa-life-ring');
         $processType->setDescription('Via dit formulier kunt u schuldhulpverlening aanvragen');
         $processType->setRequestType($this->commonGroundService->cleanUrl(['component' => 'vtc', 'type' => 'request_types', 'id' => '16bb609d-cc5e-40ea-b0f9-a0d0b0fdd796']));
         $manager->persist($processType);
@@ -1064,6 +1074,7 @@ class SaraiFixtures extends Fixture
         $processType = new ProcessType();
         $processType->setSourceOrganization($this->commonGroundService->cleanUrl(['component'=>'vtc', 'type'=>'request_types', 'id'=>'4d1eded3-fbdf-438f-9536-8747dd8ab591']));
         $processType->setName('Verzoek tot geheimhouding persoonsgegevens');
+        $processType->setIcon('fas fa-user-secret');
         $processType->setDescription('Via dit formulier kunt u een verzoek tot geheimhouding van persoonsgegevens aanvragen');
         $processType->setRequestType($this->commonGroundService->cleanUrl(['component' => 'vtc', 'type' => 'request_types', 'id' => '07486a7d-6bd4-45b4-b3ab-14092267369f']));
         $manager->persist($processType);
@@ -1188,6 +1199,7 @@ class SaraiFixtures extends Fixture
         $processType = new ProcessType();
         $processType->setSourceOrganization($this->commonGroundService->cleanUrl(['component'=>'vtc', 'type'=>'request_types', 'id'=>'4d1eded3-fbdf-438f-9536-8747dd8ab591']));
         $processType->setName('Fraude melden');
+        $processType->setIcon('fas fa-hands-wash');
         $processType->setDescription('Via dit formulier kunt u fraude melden');
         $processType->setRequestType($this->commonGroundService->cleanUrl(['component' => 'vtc', 'type' => 'request_types', 'id' => 'db64d35b-b6da-4cac-af5d-7d4360d0281f']));
         $manager->persist($processType);
@@ -1275,6 +1287,7 @@ class SaraiFixtures extends Fixture
         $processType = new ProcessType();
         $processType->setSourceOrganization($this->commonGroundService->cleanUrl(['component'=>'vtc', 'type'=>'request_types', 'id'=>'4d1eded3-fbdf-438f-9536-8747dd8ab591']));
         $processType->setName('Subsidie verantwoording');
+        $processType->setIcon('fas fa-money-bill-alt');
         $processType->setDescription('Via dit formulier kunt u subsidie verantwoording afleggen');
         $processType->setRequestType($this->commonGroundService->cleanUrl(['component' => 'vtc', 'type' => 'request_types', 'id' => '98901f8f-12ed-4dff-b8f2-ff81842e6b19']));
         $manager->persist($processType);
@@ -1982,6 +1995,5 @@ class SaraiFixtures extends Fixture
         $processType->addStage($stage);
         $manager->persist($processType);
         $manager->flush();
-
     }
 }
