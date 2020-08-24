@@ -2107,6 +2107,33 @@ paths:
               - asc
               - desc
         -
+          name: 'order[deposit]'
+          in: query
+          required: false
+          schema:
+            type: string
+            enum:
+              - asc
+              - desc
+        -
+          name: 'order[depositCurrency]'
+          in: query
+          required: false
+          schema:
+            type: string
+            enum:
+              - asc
+              - desc
+        -
+          name: 'order[depositPercentage]'
+          in: query
+          required: false
+          schema:
+            type: string
+            enum:
+              - asc
+              - desc
+        -
           name: 'order[properties]'
           in: query
           required: false
@@ -2316,6 +2343,54 @@ paths:
             type: array
             items:
               type: string
+          style: form
+          explode: true
+        -
+          name: deposit
+          in: query
+          required: false
+          schema:
+            type: string
+        -
+          name: 'deposit[]'
+          in: query
+          required: false
+          schema:
+            type: array
+            items:
+              type: string
+          style: form
+          explode: true
+        -
+          name: depositCurrency
+          in: query
+          required: false
+          schema:
+            type: string
+        -
+          name: 'depositCurrency[]'
+          in: query
+          required: false
+          schema:
+            type: array
+            items:
+              type: string
+          style: form
+          explode: true
+        -
+          name: depositPercentage
+          in: query
+          required: false
+          schema:
+            type: integer
+        -
+          name: 'depositPercentage[]'
+          in: query
+          required: false
+          schema:
+            type: array
+            items:
+              type: integer
           style: form
           explode: true
         -
@@ -5870,6 +5945,20 @@ components:
           items:
             type: string
           nullable: true
+        deposit:
+          description: 'The deposit requered for this process'
+          type: string
+          nullable: true
+        depositCurrency:
+          description: 'The currency of the deposit price in an [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) format'
+          externalDocs:
+            url: 'http://schema.org/priceCurrency'
+          type: string
+          nullable: true
+        depositPercentage:
+          description: 'The deposit percentage requered for this proces'
+          type: integer
+          nullable: true
         properties:
           type: array
           items:
@@ -5942,6 +6031,20 @@ components:
           items:
             type: string
           nullable: true
+        deposit:
+          description: 'The deposit requered for this process'
+          type: string
+          nullable: true
+        depositCurrency:
+          description: 'The currency of the deposit price in an [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) format'
+          externalDocs:
+            url: 'http://schema.org/priceCurrency'
+          type: string
+          nullable: true
+        depositPercentage:
+          description: 'The deposit percentage requered for this proces'
+          type: integer
+          nullable: true
         properties:
           type: array
           items:
@@ -6007,6 +6110,20 @@ components:
           type: array
           items:
             type: string
+          nullable: true
+        deposit:
+          description: 'The deposit requered for this process'
+          type: string
+          nullable: true
+        depositCurrency:
+          description: 'The currency of the deposit price in an [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) format'
+          externalDocs:
+            url: 'http://schema.org/priceCurrency'
+          type: string
+          nullable: true
+        depositPercentage:
+          description: 'The deposit percentage requered for this proces'
+          type: integer
           nullable: true
         properties:
           type: array
@@ -6088,6 +6205,20 @@ components:
           type: array
           items:
             type: string
+          nullable: true
+        deposit:
+          description: 'The deposit requered for this process'
+          type: string
+          nullable: true
+        depositCurrency:
+          description: 'The currency of the deposit price in an [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) format'
+          externalDocs:
+            url: 'http://schema.org/priceCurrency'
+          type: string
+          nullable: true
+        depositPercentage:
+          description: 'The deposit percentage requered for this proces'
+          type: integer
           nullable: true
         properties:
           type: array
@@ -6561,6 +6692,18 @@ definitions:
       audience:
         description: 'The audience this processType is intended for'
         type: string
+      deposit:
+        description: 'The deposit requered for this process'
+        type: string
+        example: '50.00'
+      depositCurrency:
+        description: 'The currency of the deposit price in an [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) format'
+        type: string
+        example: EUR
+      depositPercentage:
+        description: 'The deposit percentage requered for this proces'
+        type: int
+        example: '25'
       properties: []
       documents: []
       dateCreated:
@@ -6609,6 +6752,18 @@ definitions:
       audience:
         description: 'The audience this processType is intended for'
         type: string
+      deposit:
+        description: 'The deposit requered for this process'
+        type: string
+        example: '50.00'
+      depositCurrency:
+        description: 'The currency of the deposit price in an [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) format'
+        type: string
+        example: EUR
+      depositPercentage:
+        description: 'The deposit percentage requered for this proces'
+        type: int
+        example: '25'
       properties: []
       documents: []
       stages:
@@ -6620,65 +6775,6 @@ definitions:
     required:
       - name
       - sourceOrganization
-  Section-read:
-    properties:
-      id:
-        description: 'The UUID identifier of this object'
-        type: string
-        example: e2984465-190a-4562-829e-a8cca81aa35d
-        format: uuid
-      name:
-        description: 'the name of this Section'
-        type: string
-        example: 'Section 1'
-        maxLength: 255
-      description:
-        description: 'the description for this section'
-        type: string
-        example: 'this section is for the personal data of the client'
-      properties:
-        description: 'The properties that are treated in this section, as references to the VTC component'
-        type: array
-        example: 'https://vtc.processen.zaakonline.nl/properties/1'
-      dateCreated:
-        description: 'The moment this request was created'
-        type: \DateTime
-      dateModified:
-        description: 'The moment this request last Modified'
-        type: \DateTime
-      orderNumber:
-        description: 'The place in the order where the section should be rendered'
-        type: int
-      stage:
-        description: 'the stage this section belongs to'
-        type: \Stage
-    required:
-      - name
-      - orderNumber
-  Section-write:
-    properties:
-      name:
-        description: 'the name of this Section'
-        type: string
-        example: 'Section 1'
-        maxLength: 255
-      description:
-        description: 'the description for this section'
-        type: string
-        example: 'this section is for the personal data of the client'
-      properties:
-        description: 'The properties that are treated in this section, as references to the VTC component'
-        type: array
-        example: 'https://vtc.processen.zaakonline.nl/properties/1'
-      orderNumber:
-        description: 'The place in the order where the section should be rendered'
-        type: int
-      stage:
-        description: 'the stage this section belongs to'
-        type: \Stage
-    required:
-      - name
-      - orderNumber
   Stage-read:
     properties:
       id:
@@ -6764,6 +6860,118 @@ definitions:
     required:
       - name
       - orderNumber
+  Section-read:
+    properties:
+      id:
+        description: 'The UUID identifier of this object'
+        type: string
+        example: e2984465-190a-4562-829e-a8cca81aa35d
+        format: uuid
+      name:
+        description: 'the name of this Section'
+        type: string
+        example: 'Section 1'
+        maxLength: 255
+      description:
+        description: 'the description for this section'
+        type: string
+        example: 'this section is for the personal data of the client'
+      properties:
+        description: 'The properties that are treated in this section, as references to the VTC component'
+        type: array
+        example: 'https://vtc.processen.zaakonline.nl/properties/1'
+      dateCreated:
+        description: 'The moment this request was created'
+        type: \DateTime
+      dateModified:
+        description: 'The moment this request last Modified'
+        type: \DateTime
+      orderNumber:
+        description: 'The place in the order where the section should be rendered'
+        type: int
+      stage:
+        description: 'the stage this section belongs to'
+        type: \Stage
+    required:
+      - name
+      - orderNumber
+  Section-write:
+    properties:
+      name:
+        description: 'the name of this Section'
+        type: string
+        example: 'Section 1'
+        maxLength: 255
+      description:
+        description: 'the description for this section'
+        type: string
+        example: 'this section is for the personal data of the client'
+      properties:
+        description: 'The properties that are treated in this section, as references to the VTC component'
+        type: array
+        example: 'https://vtc.processen.zaakonline.nl/properties/1'
+      orderNumber:
+        description: 'The place in the order where the section should be rendered'
+        type: int
+      stage:
+        description: 'the stage this section belongs to'
+        type: \Stage
+    required:
+      - name
+      - orderNumber
+  ChangeLog-read:
+    properties:
+      id:
+        description: 'The UUID identifier of this object'
+        type: string
+        example: e2984465-190a-4562-829e-a8cca81aa35d
+        format: uuid
+      note:
+        description: 'A note conserning this log lin'
+        type: string
+        example: 'This log line is suspicius'
+        maxLength: 2555
+      action:
+        description: ''
+        type: string
+      objectId:
+        description: ''
+        type: string
+      objectClass:
+        description: ''
+        type: string
+      version:
+        description: ''
+        type: int
+      data:
+        description: ''
+        type: array
+      username:
+        description: ''
+        type: string
+      session:
+        description: 'The moment this request was created'
+        type: string
+        maxLength: 255
+      dateCreated:
+        description: 'The moment this request was created'
+        type: string
+        format: date-time
+        example: '2020-08-19 15:30:21'
+      dateModified:
+        description: 'The moment this request last Modified'
+        type: string
+        format: date-time
+        example: '2020-08-19 15:30:21'
+    required: []
+  ChangeLog-write:
+    properties:
+      note:
+        description: 'A note conserning this log lin'
+        type: string
+        example: 'This log line is suspicius'
+        maxLength: 2555
+    required: []
   AuditTrail-read:
     properties:
       id:
@@ -6869,18 +7077,18 @@ definitions:
         type: string
         format: date-time
 <<<<<<< HEAD
-        example: '2020-08-14 15:13:11'
+        example: '2020-08-21 08:56:35'
 =======
-        example: '2020-08-14 08:03:47'
+        example: '2020-08-19 15:30:21'
 >>>>>>> development
       dateModified:
         description: 'The moment this request last Modified'
         type: string
         format: date-time
 <<<<<<< HEAD
-        example: '2020-08-14 15:13:11'
+        example: '2020-08-21 08:56:35'
 =======
-        example: '2020-08-14 08:03:47'
+        example: '2020-08-19 15:30:21'
 >>>>>>> development
     required: []
   AuditTrail-write:
@@ -6891,6 +7099,7 @@ definitions:
         example: 'This log line looks suspicius'
         maxLength: 2555
     required: []
+<<<<<<< HEAD
   ChangeLog-read:
     properties:
       id:
@@ -6929,20 +7138,12 @@ definitions:
         description: 'The moment this request was created'
         type: string
         format: date-time
-<<<<<<< HEAD
-        example: '2020-08-14 15:13:11'
-=======
-        example: '2020-08-14 08:03:47'
->>>>>>> development
+        example: '2020-08-21 08:56:35'
       dateModified:
         description: 'The moment this request last Modified'
         type: string
         format: date-time
-<<<<<<< HEAD
-        example: '2020-08-14 15:13:11'
-=======
-        example: '2020-08-14 08:03:47'
->>>>>>> development
+        example: '2020-08-21 08:56:35'
     required: []
   ChangeLog-write:
     properties:
@@ -6952,17 +7153,13 @@ definitions:
         example: 'This log line is suspicius'
         maxLength: 2555
     required: []
+=======
+>>>>>>> development
 tags:
   -
     name: ProcessType
     description: |
       A process.
-      
-      
-  -
-    name: Section
-    description: |
-      
       
       
   -
@@ -6972,13 +7169,19 @@ tags:
       
       
   -
-    name: AuditTrail
+    name: Section
+    description: |
+      
+      
+      
+  -
+    name: ChangeLog
     description: |
       An resource representing a log line.
       
       This entity represents a product that can be ordered via the OrderRegistratieComponent.
   -
-    name: ChangeLog
+    name: AuditTrail
     description: |
       An resource representing a log line.
       
@@ -6989,15 +7192,15 @@ securityDefinitions:
     authorizationUrl: 'http://petstore.swagger.io/api/oauth/dialog'
     flow: implicit
     scopes:
-      read: 'read right to the ChangeLog resource'
-      write: 'write right to the ChangeLog resource'
+      read: 'read right to the AuditTrail resource'
+      write: 'write right to the AuditTrail resource'
   JWT-Token:
     type: apiKey
     in: header
     name: Authorization
     scopes:
-      read: 'read right to the ChangeLog resource'
-      write: 'write right to the ChangeLog resource'
+      read: 'read right to the AuditTrail resource'
+      write: 'write right to the AuditTrail resource'
 host: irc.zaakonline.nl
 servers:
   -
