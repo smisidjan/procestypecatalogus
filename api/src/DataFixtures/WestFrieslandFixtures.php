@@ -40,7 +40,7 @@ class WestFrieslandFixtures extends Fixture
          */
         $id = Uuid::fromString('a8b8ce49-d5db-4270-9e42-4b47902fc817');
         $processType = new ProcessType();
-        $processType->setIcon('fal fa-tombstone');
+        $processType->setIcon('fas fa-monument');
         $processType->setRequireLogin(true);
         $processType->setAudience('organization');
         $processType->setSourceOrganization($this->commonGroundService->cleanUrl(['component'=>'wrc', 'type'=>'organizations', 'id'=>'d280c4d3-6310-46db-9934-5285ec7d0d5e']));
@@ -122,11 +122,11 @@ class WestFrieslandFixtures extends Fixture
         $stage->setName('Artikelen');
         $stage->setIcon('fal fa-map-tasks');
         $stage->setSlug('artikelen');
-        $stage->setDescription('Selecteer hier de artikelen voor de begrafenis.');
+        $stage->setDescription('Selecteer hier de gewenste artikelen voor de begrafenis.');
 
         $section = new Section();
         $section->setName('Artikelen');
-        $section->setDescription('Selecteer hier de artikelen voor de begrafenis.');
+        $section->setDescription('Selecteer hier de gewenste artikelen voor de begrafenis.');
         $section->setProperties([$this->commonGroundService->cleanUrl(['component'=>'vtc', 'type'=>'properties', 'id'=>'8f9adb13-d5e0-40de-a08c-a2ce5a648b1e'])]);
         // $section->setProperties(["https://vtc.westfriesland.commonground.nu/properties/8f9adb13-d5e0-40de-a08c-a2ce5a648b1e"]);
         $stage->addSection($section);
@@ -181,7 +181,7 @@ class WestFrieslandFixtures extends Fixture
          */
         $id = Uuid::fromString('7216b69d-e245-488e-af8f-0969241926e7');
         $processType = new ProcessType();
-        $processType->setIcon('fal fa-edit');
+        $processType->setIcon('far fa-edit');
         $processType->setRequireLogin(true);
         $processType->setAudience('organization');
         $processType->setSourceOrganization($this->commonGroundService->cleanUrl(['component'=>'wrc', 'type'=>'organizations', 'id'=>'d280c4d3-6310-46db-9934-5285ec7d0d5e']));
@@ -229,7 +229,7 @@ class WestFrieslandFixtures extends Fixture
          */
         $id = Uuid::fromString('2a95ba3e-a3f9-4fdf-8a6d-005d96aad405');
         $processType = new ProcessType();
-        $processType->setIcon('fal fa-hand-paper');
+        $processType->setIcon('far fa-hand-paper');
         $processType->setRequireLogin(true);
         $processType->setAudience('organization');
         $processType->setSourceOrganization($this->commonGroundService->cleanUrl(['component'=>'wrc', 'type'=>'organizations', 'id'=>'d280c4d3-6310-46db-9934-5285ec7d0d5e']));
@@ -265,6 +265,5 @@ class WestFrieslandFixtures extends Fixture
         $processType = $manager->getRepository('App:ProcessType')->findOneBy(['id'=> $id]);
 
         $manager->flush();
-
     }
 }
