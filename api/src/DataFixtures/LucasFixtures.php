@@ -75,7 +75,7 @@ class LucasFixtures extends Fixture
 
         // formulier Jeugdlintje – neem contact met mij op
         // Jeugdlintje
-        $id = Uuid::fromString('9f7a7616-179f-4ca1-b91f-1ac73222fe0e');
+        $id = Uuid::fromString('1f7a7616-179f-4ca1-b91f-1ac73222fe0e');
         $processType = new ProcessType();
         $processType->setName('Aanmeldformulier jeugdlintje');
         $processType->setDescription('Doe hier een aanvraag voor een jeugdlintje voor iemand in de gemeenschap');

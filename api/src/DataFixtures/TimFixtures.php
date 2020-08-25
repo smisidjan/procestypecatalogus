@@ -536,6 +536,5 @@ class TimFixtures extends Fixture
         $manager->persist($processType);
         $manager->flush();
 
-
     }
 }
