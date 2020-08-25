@@ -444,24 +444,24 @@ class TimFixtures extends Fixture
         $manager->flush();
         $processType = $manager->getRepository('App:ProcessType')->findOneBy(['id' => $id]);
 
-//        //1e pagina
-//        $stage = new Stage();
-//        $stage->setName('belangrijke informatie');
-//        $stage->setIcon('fal fa-users');
-//        $stage->setSlug('belangrijke-informatie');
-//        $stage->setProcess($processType);
-//
-//
-//        $section = new Section();
-//        $section->setName('belangrijke informatie');
-//        $section->setProperties([]);
-//        $section->setStage($stage);
-//
-//        $section->setStage($stage);
-//        $stage->addSection($section);
-//        $processType->addStage($stage);
-//        $manager->persist($processType);
-//        $manager->flush();
+        //1e pagina
+        $stage = new Stage();
+        $stage->setName('belangrijke informatie');
+        $stage->setIcon('fal fa-users');
+        $stage->setSlug('belangrijke-informatie');
+        $stage->setProcess($processType);
+
+
+        $section = new Section();
+        $section->setName('belangrijke informatie');
+        $section->setProperties([]);
+        $section->setStage($stage);
+
+        $section->setStage($stage);
+        $stage->addSection($section);
+        $processType->addStage($stage);
+        $manager->persist($processType);
+        $manager->flush();
 
         //2e pagina
         $stage = new Stage();
