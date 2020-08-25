@@ -73,8 +73,6 @@ class LucasFixtures extends Fixture
         $manager->persist($processType);
         $manager->flush();
 
-<<<<<<< HEAD
-
         // formulier Jeugdlintje – neem contact met mij op
         // Jeugdlintje
         $id = Uuid::fromString('9f7a7616-179f-4ca1-b91f-1ac73222fe0e');
@@ -195,8 +193,6 @@ class LucasFixtures extends Fixture
         $processType->addStage($stage);
         $manager->persist($processType);
         $manager->flush();
-=======
->>>>>>> development
 
         // formulier Vraag Stellen
         $id = Uuid::fromString('3e758293-b910-490d-bc22-3941d61f9363');
