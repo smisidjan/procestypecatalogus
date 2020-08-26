@@ -719,7 +719,7 @@ class SaraiFixtures extends Fixture
         $stage = new Stage();
         $stage->setName('Aard van schade');
         $stage->setIcon('fal fa-users');
-        $stage->setSlug('aanvraag');
+        $stage->setSlug('aard-van-schade');
         $stage->setProcess($processType);
 
         $section = new Section();
@@ -797,10 +797,21 @@ class SaraiFixtures extends Fixture
         $section->setProperties([
             $this->commonGroundService->cleanUrl(['component' => 'vtc', 'type' => 'properties', 'id' => '4214131b-33c6-491d-a1ff-6631855a006d']),
             $this->commonGroundService->cleanUrl(['component' => 'vtc', 'type' => 'properties', 'id' => '55c56c50-1f9f-48fc-ba0c-303386bf296c']),
-            ////Voor welke periode heeft u de vergunning nodig?
-            ////De vergunning meot minimaal 1 week en mag maximaal 3 maanden van tevoren aangevraagd worden.
-            ////De vergunning kan maximaal voor de duur van 1 jaar aangevraagd worden.
+
+        ]);
+        $section->setStage($stage);
+        $stage->addSection($section);
+        $processType->addStage($stage);
+        $manager->persist($processType);
+        $manager->flush();
+
+        $section = new Section();
+        $section->setName('Voor welke periode heeft u de vergunning nodig?');
+        $section->setDescription('De vergunning meot minimaal 1 week en mag maximaal 3 maanden van tevoren aangevraagd worden. De vergunning kan maximaal voor de duur van 1 jaar aangevraagd worden.');
+        $section->setProperties([
             $this->commonGroundService->cleanUrl(['component' => 'vtc', 'type' => 'properties', 'id' => '9a5e4cfc-e67e-4163-a516-f1c133e49f59']),
+            $this->commonGroundService->cleanUrl(['component' => 'vtc', 'type' => 'properties', 'id' => '39522b70-6f87-4b99-9d9d-5037ce020c49']),
+
         ]);
         $section->setStage($stage);
         $stage->addSection($section);
