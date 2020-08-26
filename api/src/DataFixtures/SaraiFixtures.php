@@ -717,7 +717,7 @@ class SaraiFixtures extends Fixture
         $stage = new Stage();
         $stage->setName('Aard van schade');
         $stage->setIcon('fal fa-users');
-        $stage->setSlug('aanvraag');
+        $stage->setSlug('aard-van-schade');
         $stage->setProcess($processType);
 
         $section = new Section();
