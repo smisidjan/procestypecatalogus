@@ -575,7 +575,6 @@ class SaraiFixtures extends Fixture
         $stage->setSlug('gegevens-contact-persoon');
         $stage->setProcess($processType);
 
-
         $section = new Section();
         $section->setName('Gegevens secretaris/contactpersoon');
         $section->setProperties([
