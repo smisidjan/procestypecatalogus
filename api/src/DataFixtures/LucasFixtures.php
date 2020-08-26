@@ -73,8 +73,127 @@ class LucasFixtures extends Fixture
         $manager->persist($processType);
         $manager->flush();
 
+        // formulier Jeugdlintje – neem contact met mij op
+        // Jeugdlintje
+        $id = Uuid::fromString('1f7a7616-179f-4ca1-b91f-1ac73222fe0e');
+        $processType = new ProcessType();
+        $processType->setName('Aanmeldformulier jeugdlintje');
+        $processType->setDescription('Doe hier een aanvraag voor een jeugdlintje voor iemand in de gemeenschap');
+        $processType->setSourceOrganization($this->commonGroundService->cleanUrl(['component'=>'vtc', 'type'=>'request_types', 'id'=>'4d1eded3-fbdf-438f-9536-8747dd8ab591']));
+        $processType->setRequestType($this->commonGroundService->cleanUrl(['component'=>'vtc', 'type'=>'request_types', 'id'=>'466e7a07-1388-40f7-964b-b9d8725d4a60']));
+        $manager->persist($processType);
+        $processType->setId($id);
+        $manager->persist($processType);
+        $manager->flush();
+        $processType = $manager->getRepository('App:ProcessType')->findOneBy(['id'=> $id]);
 
-        // Vraag Stellen
+        //pagina 1
+        $stage = new Stage();
+        $stage->setName('Gegevens van de jeugdige');
+        $stage->setSlug('jeugdige-jeugdlintje');
+        $stage->setDescription('Gegevens van de jeugdige');
+        $stage->setProcess($processType);
+
+        $section = new Section();
+        $section->setStage($stage);
+        $section->setName('Gegevens van de jeugdige:');
+        $section->setProperties([
+            $this->commonGroundService->cleanUrl(['component'=>'vtc', 'type'=>'properties', 'id'=>'58240c06-894b-46b0-a1bf-bb7b1782b9c4']),
+            $this->commonGroundService->cleanUrl(['component'=>'vtc', 'type'=>'properties', 'id'=>'f52be373-1cda-4361-80c8-e410200c3c70']),
+            $this->commonGroundService->cleanUrl(['component'=>'vtc', 'type'=>'properties', 'id'=>'5843033d-da97-487f-8415-92b3b524e7b3']),
+            $this->commonGroundService->cleanUrl(['component'=>'vtc', 'type'=>'properties', 'id'=>'198cc25b-1ce3-4e9b-a468-0796527574b8']),
+            $this->commonGroundService->cleanUrl(['component'=>'vtc', 'type'=>'properties', 'id'=>'346727c4-2fb6-4fe5-bd5f-edcc209bad43']),
+            $this->commonGroundService->cleanUrl(['component'=>'vtc', 'type'=>'properties', 'id'=>'909cb100-fb61-4829-ae40-de5bf0480746']),
+        ]);
+        $stage->addSection($section);
+
+        $processType->addStage($stage);
+        $manager->persist($processType);
+        $manager->flush();
+
+        //pagina 2
+        $stage = new Stage();
+        $stage->setName('Gegevens van de aanmelder');
+        $stage->setSlug('aanmelder-jeugdlintje');
+        $stage->setDescription('Gegevens van de aanmelder');
+        $stage->setProcess($processType);
+
+        $section = new Section();
+        $section->setStage($stage);
+        $section->setName('Gegevens aanmelder:');
+        $section->setProperties([
+            $this->commonGroundService->cleanUrl(['component'=>'vtc', 'type'=>'properties', 'id'=>'9cca2fd5-1f93-444d-938a-f801aea96e3a']),
+            $this->commonGroundService->cleanUrl(['component'=>'vtc', 'type'=>'properties', 'id'=>'4c268c2f-0a79-4c88-a0dc-beb4c389064b']),
+            $this->commonGroundService->cleanUrl(['component'=>'vtc', 'type'=>'properties', 'id'=>'57c7dc2c-4ae4-47ef-97ad-af87ed5206a0']),
+            $this->commonGroundService->cleanUrl(['component'=>'vtc', 'type'=>'properties', 'id'=>'fad0ad0c-6b56-4a52-bd65-db0fd630a3d7']),
+        ]);
+        $stage->addSection($section);
+
+        $processType->addStage($stage);
+        $manager->persist($processType);
+        $manager->flush();
+
+        //pagina 3
+        $stage = new Stage();
+        $stage->setName('Motivatie voor het jeugdlintje');
+        $stage->setSlug('Motivatie-jeugdlintje');
+        $stage->setDescription('Motiveert u hier zo uitgebreid mogelijk waarom u vindt dat de door u genomineerde jeugdige het jeugdlintje verdient.:');
+        $stage->setProcess($processType);
+
+        $section = new Section();
+        $section->setStage($stage);
+        $section->setName('Laat ons weten waarom de jeugdige een lintje verdient');
+        $section->setProperties([
+            $this->commonGroundService->cleanUrl(['component'=>'vtc', 'type'=>'properties', 'id'=>'666f81ee-8ed5-4533-9789-ce68ac34b708']),
+        ]);
+        $stage->addSection($section);
+
+        $processType->addStage($stage);
+        $manager->persist($processType);
+        $manager->flush();
+
+        //pagina 4
+        $stage = new Stage();
+        $stage->setName('Referenties voor het jeugdlintje');
+        $stage->setSlug('referenties-jeugdlintje');
+        $stage->setDescription('Referenties voor het jeugdlintje');
+        $stage->setProcess($processType);
+
+        $section = new Section();
+        $section->setStage($stage);
+        $section->setName('Referentie 1:');
+        $section->setProperties([
+            $this->commonGroundService->cleanUrl(['component'=>'vtc', 'type'=>'properties', 'id'=>'185e24de-1f32-4da3-a81c-0993941b8419']),
+            $this->commonGroundService->cleanUrl(['component'=>'vtc', 'type'=>'properties', 'id'=>'a0602115-6d16-41c4-97ef-81de1d4a32d9']),
+            $this->commonGroundService->cleanUrl(['component'=>'vtc', 'type'=>'properties', 'id'=>'580ff714-0ce6-4398-93a2-d5a036609c3f']),
+            $this->commonGroundService->cleanUrl(['component'=>'vtc', 'type'=>'properties', 'id'=>'8f414746-89fe-440b-a3f0-6c920cab48de']),
+        ]);
+        $stage->addSection($section);
+
+        $section = new Section();
+        $section->setStage($stage);
+        $section->setName('Referentie 2:');
+        $section->setProperties([
+            $this->commonGroundService->cleanUrl(['component'=>'vtc', 'type'=>'properties', 'id'=>'99fe1089-bdf4-4db1-be70-fcb85d19efdf']),
+            $this->commonGroundService->cleanUrl(['component'=>'vtc', 'type'=>'properties', 'id'=>'5a6f7003-ec42-46fd-b595-ff05dbd01f2e']),
+            $this->commonGroundService->cleanUrl(['component'=>'vtc', 'type'=>'properties', 'id'=>'6ee02cdf-b3df-484f-bf6d-d9a309f3f3b0']),
+            $this->commonGroundService->cleanUrl(['component'=>'vtc', 'type'=>'properties', 'id'=>'313d1d67-20ef-4886-86b8-ca682099a0a4']),
+        ]);
+        $stage->addSection($section);
+
+        $section = new Section();
+        $section->setStage($stage);
+        $section->setName('Datum aanmelding');
+        $section->setProperties([
+            $this->commonGroundService->cleanUrl(['component'=>'vtc', 'type'=>'properties', 'id'=>'e1df079b-22b1-4952-a333-b70384a93f01']),
+        ]);
+        $stage->addSection($section);
+
+        $processType->addStage($stage);
+        $manager->persist($processType);
+        $manager->flush();
+
+        // formulier Vraag Stellen
         $id = Uuid::fromString('3e758293-b910-490d-bc22-3941d61f9363');
         $processType = new ProcessType();
         $processType->setName('Vraag stellen');
@@ -88,6 +207,7 @@ class LucasFixtures extends Fixture
         $manager->flush();
         $processType = $manager->getRepository('App:ProcessType')->findOneBy(['id'=> $id]);
 
+        //1e pagina
         $stage = new Stage();
         $stage->setName('Omschrijving');
         $stage->setDescription('De omschrijving van de vraag die u heeft.');
@@ -109,6 +229,7 @@ class LucasFixtures extends Fixture
         $manager->persist($processType);
         $manager->flush();
 
+        //2e pagina
         $stage = new Stage();
         $stage->setName('Uw gegevens');
         $stage->setDescription('Uw gegevens invullen.');
@@ -190,7 +311,7 @@ class LucasFixtures extends Fixture
         $manager->persist($processType);
         $manager->flush();
 
-        // Starterslening
+        // formulier Starterslening
         $id = Uuid::fromString('3bfc975f-6ca6-4c65-813a-6c4da973f6e0');
         $processType = new ProcessType();
         $processType->setName('Starterslening');
@@ -204,6 +325,7 @@ class LucasFixtures extends Fixture
         $manager->flush();
         $processType = $manager->getRepository('App:ProcessType')->findOneBy(['id'=> $id]);
 
+        //1e pagina
         $stage = new Stage();
         $stage->setName('Uw gegevens');
         $stage->setDescription('Uw persoonlijke gegevens invullen.');
@@ -225,6 +347,7 @@ class LucasFixtures extends Fixture
         $manager->persist($processType);
         $manager->flush();
 
+        //2e pagina
         $stage = new Stage();
         $stage->setName('Uw aanvraag');
         $stage->setDescription('Uw aanvraag invullen');
@@ -244,7 +367,7 @@ class LucasFixtures extends Fixture
         $section = new Section();
         $section->setStage($stage);
         $section->setName('Bestaand of nieuw');
-        $section->setDescription('Is het bestaand of nieuw!');
+        $section->setDescription('Is het bestaand of nieuw?');
         $section->setProperties([
             $this->commonGroundService->cleanUrl(['component'=>'vtc', 'type'=>'properties', 'id'=>'56373990-5ec5-4b38-83ac-b01d8a803e54']),
         ]);

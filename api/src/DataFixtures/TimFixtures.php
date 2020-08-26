@@ -88,13 +88,13 @@ class TimFixtures extends Fixture
 
         //3e pagina
         $stage = new Stage();
-        $stage->setName('bijlage toevoegen');
+        $stage->setName('bijlagen toevoegen');
         $stage->setIcon('fal fa-users');
-        $stage->setSlug('bijlage-toevoegen');
+        $stage->setSlug('bijlagen-toevoegen');
         $stage->setProcess($processType);
 
         $section = new Section();
-        $section->setName('bijlage toevoegen');
+        $section->setName('bijlagen toevoegen');
         $section->setProperties([
             $this->commonGroundService->cleanUrl(['component' => 'vtc', 'type' => 'properties', 'id' => '9b72c217-3186-4378-99b1-48cb74438f81']),
         ]);
@@ -443,23 +443,24 @@ class TimFixtures extends Fixture
         $manager->flush();
         $processType = $manager->getRepository('App:ProcessType')->findOneBy(['id' => $id]);
 
-        //1e pagina
-        $stage = new Stage();
-        $stage->setName('belangrijke informatie');
-        $stage->setIcon('fal fa-users');
-        $stage->setSlug('belangrijke-informatie');
-        $stage->setProcess($processType);
-
-        $section = new Section();
-        $section->setName('belangrijke informatie');
-        $section->setProperties([]);
-        $section->setStage($stage);
-
-        $section->setStage($stage);
-        $stage->addSection($section);
-        $processType->addStage($stage);
-        $manager->persist($processType);
-        $manager->flush();
+//        //1e pagina
+//        $stage = new Stage();
+//        $stage->setName('belangrijke informatie');
+//        $stage->setIcon('fal fa-users');
+//        $stage->setSlug('belangrijke-informatie');
+//        $stage->setProcess($processType);
+//
+//
+//        $section = new Section();
+//        $section->setName('belangrijke informatie');
+//        $section->setProperties([]);
+//        $section->setStage($stage);
+//
+//        $section->setStage($stage);
+//        $stage->addSection($section);
+//        $processType->addStage($stage);
+//        $manager->persist($processType);
+//        $manager->flush();
 
         //2e pagina
         $stage = new Stage();
@@ -496,7 +497,7 @@ class TimFixtures extends Fixture
         $stage->setProcess($processType);
 
         $section = new Section();
-        $section->setName('');
+        $section->setName('schade beschrijven');
         $section->setProperties([
             $this->commonGroundService->cleanUrl(['component' => 'vtc', 'type' => 'properties', 'id' => '0aea6d71-cc37-4385-96aa-d0840ec98c63']),
             $this->commonGroundService->cleanUrl(['component' => 'vtc', 'type' => 'properties', 'id' => '76eef960-8900-4a48-8d4f-e713bf0482b9']),
@@ -527,5 +528,11 @@ class TimFixtures extends Fixture
             $this->commonGroundService->cleanUrl(['component' => 'vtc', 'type' => 'properties', 'id' => '1a195ef3-670b-40f6-8b69-c3f4e35a97d9']),
         ]);
         $section->setStage($stage);
+
+        $section->setStage($stage);
+        $stage->addSection($section);
+        $processType->addStage($stage);
+        $manager->persist($processType);
+        $manager->flush();
     }
 }
