@@ -299,12 +299,13 @@ class MarkFixtures extends Fixture
 
         $section = new Section();
         $section->setStage($stage);
-        $section->setName('Vul de bedrijfsgegevens in:');
+        $section->setName('Vul de bedrijfsgegevens in');
         $section->setProperties([
             $this->commonGroundService->cleanUrl(['component'=>'vtc', 'type'=>'properties', 'id'=>'889d5fc0-6709-42c5-b910-b992638e2755']),
             $this->commonGroundService->cleanUrl(['component'=>'vtc', 'type'=>'properties', 'id'=>'7130e972-64e1-4e8b-8a6e-fe6f61ad4db3']),
             $this->commonGroundService->cleanUrl(['component'=>'vtc', 'type'=>'properties', 'id'=>'b2163bf1-1247-4670-a146-d9bd2ce703ef']),
             $this->commonGroundService->cleanUrl(['component'=>'vtc', 'type'=>'properties', 'id'=>'9d3e1f91-51c3-4c55-9440-0e09aa19957a']),
+            $this->commonGroundService->cleanUrl(['component'=>'vtc', 'type'=>'properties', 'id'=>'2913ff39-5888-452c-9171-0594d47c9513']),
             $this->commonGroundService->cleanUrl(['component'=>'vtc', 'type'=>'properties', 'id'=>'01a07273-6977-4b1b-87e6-96cf4930552d']),
             $this->commonGroundService->cleanUrl(['component'=>'vtc', 'type'=>'properties', 'id'=>'cb87cae2-1a8c-42de-8587-ee821b400032']),
         ]);
@@ -322,7 +323,7 @@ class MarkFixtures extends Fixture
 
         $section = new Section();
         $section->setStage($stage);
-        $section->setName('Vergunninghouder:');
+        $section->setName('Vergunninghouder');
         $section->setProperties([
             $this->commonGroundService->cleanUrl(['component'=>'vtc', 'type'=>'properties', 'id'=>'574e80ce-8ec5-4c85-9a06-0057d6c20b5e']),
         ]);
@@ -330,7 +331,7 @@ class MarkFixtures extends Fixture
 
         $section = new Section();
         $section->setStage($stage);
-        $section->setName('Algemene vragen over de aanvraag:');
+        $section->setName('Algemene vragen over de aanvraag');
         $section->setProperties([
             $this->commonGroundService->cleanUrl(['component'=>'vtc', 'type'=>'properties', 'id'=>'d739487d-6e6a-4dce-be87-58b52194e955']),
             $this->commonGroundService->cleanUrl(['component'=>'vtc', 'type'=>'properties', 'id'=>'55de8ff7-0513-4b09-b8de-dbec3f1ae343']),
@@ -339,7 +340,7 @@ class MarkFixtures extends Fixture
 
         $section = new Section();
         $section->setStage($stage);
-        $section->setName('Vragen over de inselling:');
+        $section->setName('Vragen over de inselling');
         $section->setProperties([
             $this->commonGroundService->cleanUrl(['component'=>'vtc', 'type'=>'properties', 'id'=>'9f05249d-bcc2-4f24-8580-0fd3de0a6d4d']),
         ]);
