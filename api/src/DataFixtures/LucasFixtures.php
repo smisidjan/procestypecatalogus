@@ -152,7 +152,6 @@ class LucasFixtures extends Fixture
         $manager->persist($processType);
         $manager->flush();
 
-
         //pagina 4
         $stage = new Stage();
         $stage->setName('Referenties voor het jeugdlintje');
