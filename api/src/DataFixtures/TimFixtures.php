@@ -88,13 +88,13 @@ class TimFixtures extends Fixture
 
         //3e pagina
         $stage = new Stage();
-        $stage->setName('bijlage toevoegen');
+        $stage->setName('bijlagen toevoegen');
         $stage->setIcon('fal fa-users');
-        $stage->setSlug('bijlage-toevoegen');
+        $stage->setSlug('bijlagen-toevoegen');
         $stage->setProcess($processType);
 
         $section = new Section();
-        $section->setName('bijlage toevoegen');
+        $section->setName('bijlagen toevoegen');
         $section->setProperties([
             $this->commonGroundService->cleanUrl(['component' => 'vtc', 'type' => 'properties', 'id' => '9b72c217-3186-4378-99b1-48cb74438f81']),
         ]);
