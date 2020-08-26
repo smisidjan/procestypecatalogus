@@ -289,7 +289,7 @@ class SaraiFixtures extends Fixture
         $processType->setSourceOrganization($this->commonGroundService->cleanUrl(['component'=>'vtc', 'type'=>'request_types', 'id'=>'4d1eded3-fbdf-438f-9536-8747dd8ab591']));
         $processType->setName('Leerlingen vervoer wijziging doorgeven');
         $processType->setIcon('fas fa-bus');
-        $processType->setDescription('Geef hier uw leerlingen vervoer wijziging door');
+        $processType->setDescription('Via dit formulier kunt u uw leerlingen vervoer wijziging doorgeven');
         $processType->setRequestType($this->commonGroundService->cleanUrl(['component' => 'vtc', 'type' => 'request_types', 'id' => '51665b5d-e727-442c-9b48-cf704d1f958c']));
         $manager->persist($processType);
         $processType->setId($id);
@@ -568,8 +568,15 @@ class SaraiFixtures extends Fixture
         $manager->persist($processType);
         $manager->flush();
 
+        //2e pagina
+        $stage = new Stage();
+        $stage->setName('Gegevens secretaris/contactpersoon');
+        $stage->setIcon('fal fa-users');
+        $stage->setSlug('gegevens-contact-persoon');
+        $stage->setProcess($processType);
+
         $section = new Section();
-        $section->setName('Gegevens secretaris/contact persoon');
+        $section->setName('Gegevens secretaris/contactpersoon');
         $section->setProperties([
             $this->commonGroundService->cleanUrl(['component' => 'vtc', 'type' => 'properties', 'id' => 'ee598e5b-db66-4f4d-a12b-aee5069a0ca2']),
             $this->commonGroundService->cleanUrl(['component' => 'vtc', 'type' => 'properties', 'id' => 'e9d11008-fa0a-4c10-b69b-e6b73ec2c78e']),
@@ -585,7 +592,7 @@ class SaraiFixtures extends Fixture
         $manager->persist($processType);
         $manager->flush();
 
-        //2e pagina
+        //3e pagina
         $stage = new Stage();
         $stage->setName('Aanvullende gegevens');
         $stage->setIcon('fal fa-users');
@@ -616,6 +623,13 @@ class SaraiFixtures extends Fixture
         $processType->addStage($stage);
         $manager->persist($processType);
         $manager->flush();
+
+        //4e pagina
+        $stage = new Stage();
+        $stage->setName('Postadres sportvereniging');
+        $stage->setIcon('fal fa-users');
+        $stage->setSlug('postadres');
+        $stage->setProcess($processType);
 
         $section = new Section();
         $section->setName('Postadres');
