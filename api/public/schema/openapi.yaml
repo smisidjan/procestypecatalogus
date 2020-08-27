@@ -2107,6 +2107,33 @@ paths:
               - asc
               - desc
         -
+          name: 'order[deposit]'
+          in: query
+          required: false
+          schema:
+            type: string
+            enum:
+              - asc
+              - desc
+        -
+          name: 'order[depositCurrency]'
+          in: query
+          required: false
+          schema:
+            type: string
+            enum:
+              - asc
+              - desc
+        -
+          name: 'order[depositPercentage]'
+          in: query
+          required: false
+          schema:
+            type: string
+            enum:
+              - asc
+              - desc
+        -
           name: 'order[properties]'
           in: query
           required: false
@@ -2316,6 +2343,54 @@ paths:
             type: array
             items:
               type: string
+          style: form
+          explode: true
+        -
+          name: deposit
+          in: query
+          required: false
+          schema:
+            type: string
+        -
+          name: 'deposit[]'
+          in: query
+          required: false
+          schema:
+            type: array
+            items:
+              type: string
+          style: form
+          explode: true
+        -
+          name: depositCurrency
+          in: query
+          required: false
+          schema:
+            type: string
+        -
+          name: 'depositCurrency[]'
+          in: query
+          required: false
+          schema:
+            type: array
+            items:
+              type: string
+          style: form
+          explode: true
+        -
+          name: depositPercentage
+          in: query
+          required: false
+          schema:
+            type: integer
+        -
+          name: 'depositPercentage[]'
+          in: query
+          required: false
+          schema:
+            type: array
+            items:
+              type: integer
           style: form
           explode: true
         -
@@ -5870,6 +5945,20 @@ components:
           items:
             type: string
           nullable: true
+        deposit:
+          description: 'The deposit requered for this process'
+          type: string
+          nullable: true
+        depositCurrency:
+          description: 'The currency of the deposit price in an [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) format'
+          externalDocs:
+            url: 'http://schema.org/priceCurrency'
+          type: string
+          nullable: true
+        depositPercentage:
+          description: 'The deposit percentage requered for this proces'
+          type: integer
+          nullable: true
         properties:
           type: array
           items:
@@ -5942,6 +6031,20 @@ components:
           items:
             type: string
           nullable: true
+        deposit:
+          description: 'The deposit requered for this process'
+          type: string
+          nullable: true
+        depositCurrency:
+          description: 'The currency of the deposit price in an [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) format'
+          externalDocs:
+            url: 'http://schema.org/priceCurrency'
+          type: string
+          nullable: true
+        depositPercentage:
+          description: 'The deposit percentage requered for this proces'
+          type: integer
+          nullable: true
         properties:
           type: array
           items:
@@ -6007,6 +6110,20 @@ components:
           type: array
           items:
             type: string
+          nullable: true
+        deposit:
+          description: 'The deposit requered for this process'
+          type: string
+          nullable: true
+        depositCurrency:
+          description: 'The currency of the deposit price in an [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) format'
+          externalDocs:
+            url: 'http://schema.org/priceCurrency'
+          type: string
+          nullable: true
+        depositPercentage:
+          description: 'The deposit percentage requered for this proces'
+          type: integer
           nullable: true
         properties:
           type: array
@@ -6088,6 +6205,20 @@ components:
           type: array
           items:
             type: string
+          nullable: true
+        deposit:
+          description: 'The deposit requered for this process'
+          type: string
+          nullable: true
+        depositCurrency:
+          description: 'The currency of the deposit price in an [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) format'
+          externalDocs:
+            url: 'http://schema.org/priceCurrency'
+          type: string
+          nullable: true
+        depositPercentage:
+          description: 'The deposit percentage requered for this proces'
+          type: integer
           nullable: true
         properties:
           type: array
@@ -6561,6 +6692,18 @@ definitions:
       audience:
         description: 'The audience this processType is intended for'
         type: string
+      deposit:
+        description: 'The deposit requered for this process'
+        type: string
+        example: '50.00'
+      depositCurrency:
+        description: 'The currency of the deposit price in an [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) format'
+        type: string
+        example: EUR
+      depositPercentage:
+        description: 'The deposit percentage requered for this proces'
+        type: int
+        example: '25'
       properties: []
       documents: []
       dateCreated:
@@ -6609,6 +6752,18 @@ definitions:
       audience:
         description: 'The audience this processType is intended for'
         type: string
+      deposit:
+        description: 'The deposit requered for this process'
+        type: string
+        example: '50.00'
+      depositCurrency:
+        description: 'The currency of the deposit price in an [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) format'
+        type: string
+        example: EUR
+      depositPercentage:
+        description: 'The deposit percentage requered for this proces'
+        type: int
+        example: '25'
       properties: []
       documents: []
       stages:
@@ -6868,12 +7023,12 @@ definitions:
         description: 'The moment this request was created'
         type: string
         format: date-time
-        example: '2020-08-14 08:03:47'
+        example: '2020-08-25 08:19:05'
       dateModified:
         description: 'The moment this request last Modified'
         type: string
         format: date-time
-        example: '2020-08-14 08:03:47'
+        example: '2020-08-25 08:19:05'
     required: []
   AuditTrail-write:
     properties:
@@ -6921,12 +7076,12 @@ definitions:
         description: 'The moment this request was created'
         type: string
         format: date-time
-        example: '2020-08-14 08:03:47'
+        example: '2020-08-25 08:19:05'
       dateModified:
         description: 'The moment this request last Modified'
         type: string
         format: date-time
-        example: '2020-08-14 08:03:47'
+        example: '2020-08-25 08:19:05'
     required: []
   ChangeLog-write:
     properties:
