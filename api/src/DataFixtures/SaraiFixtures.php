@@ -525,6 +525,7 @@ class SaraiFixtures extends Fixture
         $processType->setSourceOrganization($this->commonGroundService->cleanUrl(['component'=>'vtc', 'type'=>'request_types', 'id'=>'4d1eded3-fbdf-438f-9536-8747dd8ab591']));
         $processType->setName('Samenstelling sportvereniging');
         $processType->setIcon('fas fa-futbol');
+        $processType->setAudience('organization');
         $processType->setDescription('Via dit formulier kunt u een samenstelling sportvereniging aanvragen');
         $processType->setRequestType($this->commonGroundService->cleanUrl(['component' => 'vtc', 'type' => 'request_types', 'id' => '1f2fc424-f82d-4505-8731-ac55833d81b3']));
         $manager->persist($processType);
