@@ -64,6 +64,9 @@ class SaraiFixtures extends Fixture
             $this->commonGroundService->cleanUrl(['component' => 'vtc', 'type' => 'properties', 'id' => '621a9799-0eb8-4242-b2d5-aa4c7ac5e62b']),
             $this->commonGroundService->cleanUrl(['component' => 'vtc', 'type' => 'properties', 'id' => 'e5b77291-5ba1-49f3-a8c7-0e94a1df0dfe']),
             $this->commonGroundService->cleanUrl(['component' => 'vtc', 'type' => 'properties', 'id' => '5e286dc3-c7b8-4f09-8bd0-7daa0db21881']),
+            $this->commonGroundService->cleanUrl(['component' => 'vtc', 'type' => 'properties', 'id' => 'aa6703c7-b631-4384-8542-51242ffcc8d2']),
+            $this->commonGroundService->cleanUrl(['component' => 'vtc', 'type' => 'properties', 'id' => '886b7291-b02a-4240-a766-58be9d1b8bdb']),
+            $this->commonGroundService->cleanUrl(['component' => 'vtc', 'type' => 'properties', 'id' => '1579d7d1-60a6-49f0-a543-ba75d55802c0']),
         ]);
         $section->setStage($stage);
         $stage->addSection($section);
@@ -81,12 +84,19 @@ class SaraiFixtures extends Fixture
         $section = new Section();
         $section->setName('Uw contactgegevens');
         $section->setProperties([
+            $this->commonGroundService->cleanUrl(['component' => 'vtc', 'type' => 'properties', 'id' => '21d83244-73b5-4224-86f7-8467250842c2']),
+            $this->commonGroundService->cleanUrl(['component' => 'vtc', 'type' => 'properties', 'id' => '455229ec-fa28-4486-a577-7bf960adb03b']),
+            $this->commonGroundService->cleanUrl(['component' => 'vtc', 'type' => 'properties', 'id' => '823b964e-6d61-403a-b5a7-aa3fde5584f9']),
             $this->commonGroundService->cleanUrl(['component' => 'vtc', 'type' => 'properties', 'id' => '2a33e22a-b9de-46e9-89d5-0bd2da2cceba']),
             $this->commonGroundService->cleanUrl(['component' => 'vtc', 'type' => 'properties', 'id' => '29377e0f-3973-4df2-a2d8-bd3ce574af66']),
             $this->commonGroundService->cleanUrl(['component' => 'vtc', 'type' => 'properties', 'id' => '7bf4f9a1-a78a-40f9-b76c-fcd77027ce6f']),
             $this->commonGroundService->cleanUrl(['component' => 'vtc', 'type' => 'properties', 'id' => 'f2fa150a-e180-4f48-b879-c5a4fb1a93bb']),
             $this->commonGroundService->cleanUrl(['component' => 'vtc', 'type' => 'properties', 'id' => '02980ace-1760-4ea3-8cf5-29fec39b948f']),
             $this->commonGroundService->cleanUrl(['component' => 'vtc', 'type' => 'properties', 'id' => '81addb3a-b43f-40c3-a56f-64e65def1709']),
+            $this->commonGroundService->cleanUrl(['component' => 'vtc', 'type' => 'properties', 'id' => '1b440979-1d35-4b5f-a8a1-1aa6e24cb452']),
+            $this->commonGroundService->cleanUrl(['component' => 'vtc', 'type' => 'properties', 'id' => '25e3f002-9ea6-4df6-b31d-6ab84639d885']),
+            $this->commonGroundService->cleanUrl(['component' => 'vtc', 'type' => 'properties', 'id' => '462b9fa8-8161-4a7a-a56d-2009e4e1a612']),
+            $this->commonGroundService->cleanUrl(['component' => 'vtc', 'type' => 'properties', 'id' => 'dcd1852f-c5ee-4b35-a5f3-df8c3ee5a460']),
         ]);
         $section->setStage($stage);
         $stage->addSection($section);
@@ -105,6 +115,7 @@ class SaraiFixtures extends Fixture
         $section->setName('Spreekt u de Nederlandse taal');
         $section->setProperties([
             $this->commonGroundService->cleanUrl(['component' => 'vtc', 'type' => 'properties', 'id' => '688a2e68-55c3-4dde-aaf6-339b918ae137']),
+            $this->commonGroundService->cleanUrl(['component' => 'vtc', 'type' => 'properties', 'id' => '17042565-56ed-4eac-946f-76372d55f42c']),
         ]);
         $section->setStage($stage);
         $stage->addSection($section);
@@ -125,7 +136,6 @@ class SaraiFixtures extends Fixture
             $this->commonGroundService->cleanUrl(['component' => 'vtc', 'type' => 'properties', 'id' => '5c3ba3db-bf7a-40d3-8f94-201a885f8df0']),
             $this->commonGroundService->cleanUrl(['component' => 'vtc', 'type' => 'properties', 'id' => '88f0d590-7fc4-4097-90fa-8406799ea13c']),
             $this->commonGroundService->cleanUrl(['component' => 'vtc', 'type' => 'properties', 'id' => '0d1ffdb0-23cf-4431-8c6e-1db2a88b7e4c']),
-
         ]);
         $section->setStage($stage);
         $stage->addSection($section);
@@ -147,7 +157,6 @@ class SaraiFixtures extends Fixture
             $this->commonGroundService->cleanUrl(['component' => 'vtc', 'type' => 'properties', 'id' => '0a2ff1c2-0712-4c08-964e-524b1ad66513']),
             $this->commonGroundService->cleanUrl(['component' => 'vtc', 'type' => 'properties', 'id' => '4276abce-e9b5-4360-a255-1d45a4a94bcc']),
             $this->commonGroundService->cleanUrl(['component' => 'vtc', 'type' => 'properties', 'id' => 'cc9d2eba-b050-46e2-bc90-407e0bde4baf']),
-
         ]);
         $section->setStage($stage);
         $stage->addSection($section);
@@ -178,7 +187,6 @@ class SaraiFixtures extends Fixture
          * Afschrift burgelijke stand
          *
          */
-
         $id = Uuid::fromString('e80093de-813f-4822-8ffe-d0de2afb3f43');
         $processType = new ProcessType();
         $processType->setSourceOrganization($this->commonGroundService->cleanUrl(['component'=>'vtc', 'type'=>'request_types', 'id'=>'4d1eded3-fbdf-438f-9536-8747dd8ab591']));
@@ -259,7 +267,6 @@ class SaraiFixtures extends Fixture
         $manager->flush();
 
         //2e pagina
-
         $stage = new Stage();
         $stage->setName('Uw gegevens');
         $stage->setIcon('fal fa-users');
@@ -283,6 +290,8 @@ class SaraiFixtures extends Fixture
          *
          * Leerlingen vervoer wijziging doorgeven
          */
+        //gegevens ouder voor invullen
+        //gegevens kind - en voor invullen
 
         $id = Uuid::fromString('b79b3b4d-78f8-4b18-be86-dcace8d838a7');
         $processType = new ProcessType();
@@ -318,7 +327,7 @@ class SaraiFixtures extends Fixture
         $manager->flush();
 
         $section = new Section();
-        $section->setName('Gegevens leerling');
+        $section->setName('Gegevens kind(eren)');
         $section->setProperties([
             $this->commonGroundService->cleanUrl(['component' => 'vtc', 'type' => 'properties', 'id' => 'bc2434be-bae8-4e5d-992a-522e1306c350']),
             $this->commonGroundService->cleanUrl(['component' => 'vtc', 'type' => 'properties', 'id' => '50385e5e-d172-467b-a88c-d23fea1381f3']),
