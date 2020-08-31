@@ -51,20 +51,27 @@ class ZuiddrechtFixtures extends Fixture
         $processType = $manager->getRepository('App:ProcessType')->findOneBy(['id'=> $id]);
 
         $stage = new Stage();
-        $stage->setName('Deelname verzoek');
-        $stage->setDescription('deelname verzoek');
-        $stage->setIcon('fa fa-user');
-        $stage->setSlug('deelnameverzoek');
+        $stage->setName('Ondernemer');
+        $stage->setDescription('ondernemer');
+        $stage->setIcon('fas fa-user');
+        $stage->setSlug('ondernemer');
         $stage->setProcess($processType);
 
         $section = new Section();
         $section->setStage($stage);
         $section->setName('Ondernemer');
-        $section->setDescription('Wat is uw naam?');
+        $section->setDescription('Wat zijn uw contactgegevens?');
         $section->setProperties([
             $this->commonGroundService->cleanUrl(['component'=>'vtc', 'type'=>'properties', 'id'=>'5fe949b5-6ce7-4394-a4c9-6ae0297dad5d']),
         ]);
         $stage->addSection($section);
+
+        $stage = new Stage();
+        $stage->setName('Firma');
+        $stage->setDescription('firma');
+        $stage->setIcon('fas fa-building');
+        $stage->setSlug('firma');
+        $stage->setProcess($processType);
 
         $section = new Section();
         $section->setStage($stage);
