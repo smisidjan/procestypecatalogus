@@ -142,10 +142,15 @@ class WestFrieslandFixtures extends Fixture
         $stage->setDescription('Wie wordt er begraven?');
 
         $section = new Section();
-        $section->setName('Overledene');
+        $section->setName('Overledene met bsn');
         $section->setDescription('Wie is er overleden?');
         $section->setProperties([$this->commonGroundService->cleanUrl(['component'=>'vtc', 'type'=>'properties', 'id'=>'db69ce35-4ae1-4aac-936f-bdb5d4d1ff18'])]);
-        //$section->setProperties(["https://vtc.westfriesland.commonground.nu/properties/db69ce35-4ae1-4aac-936f-bdb5d4d1ff18"]);
+        $stage->addSection($section);
+
+        $section = new Section();
+        $section->setName('Overledene zonder bsn');
+        $section->setDescription('Wie is er overleden?');
+        $section->setProperties([$this->commonGroundService->cleanUrl(['component'=>'vtc', 'type'=>'properties', 'id'=>'e532635f-70d2-4a4a-9245-b28d8a4a6ad6'])]);
         $stage->addSection($section);
 
         // Add the stage to the procces type
