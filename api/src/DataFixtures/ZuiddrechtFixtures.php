@@ -66,6 +66,10 @@ class ZuiddrechtFixtures extends Fixture
         ]);
         $stage->addSection($section);
 
+        $processType->addStage($stage);
+        $manager->persist($processType);
+        $manager->flush();
+
         $stage = new Stage();
         $stage->setName('Firma');
         $stage->setDescription('firma');
@@ -79,6 +83,26 @@ class ZuiddrechtFixtures extends Fixture
         $section->setDescription('Wat zijn de gegevens van uw horeca firma?');
         $section->setProperties([
             $this->commonGroundService->cleanUrl(['component'=>'vtc', 'type'=>'properties', 'id'=>'49170072-00f1-4b68-a926-5e6e6e49e946']),
+        ]);
+        $stage->addSection($section);
+
+        $processType->addStage($stage);
+        $manager->persist($processType);
+        $manager->flush();
+
+        $stage = new Stage();
+        $stage->setName('Locatie');
+        $stage->setDescription('locatie');
+        $stage->setIcon('fas fa-building');
+        $stage->setSlug('locatie');
+        $stage->setProcess($processType);
+
+        $section = new Section();
+        $section->setStage($stage);
+        $section->setName('Uw locatie');
+        $section->setDescription('Wat zijn de gegevens van uw locatie?');
+        $section->setProperties([
+            $this->commonGroundService->cleanUrl(['component'=>'vtc', 'type'=>'properties', 'id'=>'5c5f8837-c42c-4b83-8bec-6d1760e0e0f7']),
         ]);
         $stage->addSection($section);
 
