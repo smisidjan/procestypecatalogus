@@ -190,6 +190,59 @@ class ProcessType
     private $extendedBy;
 
     /**
+     * @var bool If being logged in for process is required.
+     *
+     * @example false
+     *
+     * @Assert\Type("bool")
+     * @Groups({"read", "write"})
+     * @ORM\Column(type="boolean", nullable=true)
+     */
+    private $requireLogin = false;
+
+    /**
+     * @var string The audience this processType is intended for
+     *
+     * @Groups({"read","write"})
+     * @ORM\Column(type="json_array", nullable=true)
+     */
+    private $audience;
+
+    /**
+     * @var string The deposit requered for this process
+     *
+     * @example 50.00
+     *
+     * @Gedmo\Versioned
+     * @Groups({"read", "write"})
+     * @ORM\Column(type="decimal", precision=8, scale=2, nullable=true)
+     */
+    private $deposit;
+
+    /**
+     * @var string The currency of the deposit price in an [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) format
+     *
+     * @example EUR
+     *
+     * @Gedmo\Versioned
+     * @Assert\Currency
+     * @Groups({"read", "write"})
+     * @ORM\Column(type="string", nullable=true)
+     */
+    private $depositCurrency;
+
+    /**
+     * @var int The deposit percentage requered for this proces
+     *
+     * @example 25
+     *
+     * @Gedmo\Versioned
+     * @Groups({"read", "write"})
+     * @ORM\Column(type="integer", nullable=true)
+     */
+    private $depositPercentage;
+
+    /**
      * @param array|string[] The request properties that are used for this process
      *
      * @Gedmo\Versioned
@@ -299,6 +352,66 @@ class ProcessType
     public function setSourceOrganization(string $sourceOrganization): self
     {
         $this->sourceOrganization = $sourceOrganization;
+
+        return $this;
+    }
+
+    public function getRequireLogin(): ?bool
+    {
+        return $this->requireLogin;
+    }
+
+    public function setRequireLogin(?bool $requireLogin): self
+    {
+        $this->requireLogin = $requireLogin;
+
+        return $this;
+    }
+
+    public function getAudience()
+    {
+        return $this->audience;
+    }
+
+    public function setAudience($audience): self
+    {
+        $this->audience = $audience;
+
+        return $this;
+    }
+
+    public function getDeposit()
+    {
+        return $this->deposit;
+    }
+
+    public function setDeposit($deposit): self
+    {
+        $this->deposit = $deposit;
+
+        return $this;
+    }
+
+    public function getDepositCurrency(): ?string
+    {
+        return $this->depositCurrency;
+    }
+
+    public function setDepositCurrency(string $depositCurrency): self
+    {
+        $this->depositCurrency = $depositCurrency;
+
+        return $this;
+    }
+
+    public function getDepositPercentage()
+    {
+        return $this->depositPercentage;
+    }
+
+    public function setDepositPercentage($depositPercentage): self
+    {
+        $this->depositPercentage = $depositPercentage;
 
         return $this;
     }

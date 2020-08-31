@@ -12,7 +12,7 @@ info:
     - Docker Image: [online](https://hub.docker.com/repository/docker/conduction/ptc-php) 
     - Datamodel: [postman](/schema/ptc.postman_collection.json) / [oas](/schema/openapi.yaml) / [pdf](/schema/datamodel.pdf) / [modelio (zip)](/schema/Datamodel_Modelio.zip) 
     
-    'Naast deze JSON rest API is er ook een [graphql](/graphql) interface beschikbaar.'         
+    Naast deze JSON rest API is er ook een [graphql](/graphql) interface beschikbaar.         
     
 paths:
   /audit_trails:
@@ -2029,6 +2029,12 @@ paths:
                   $ref: '#/components/schemas/ProcessType-read'
       parameters:
         -
+          name: requireLogin
+          in: query
+          required: false
+          schema:
+            type: boolean
+        -
           name: 'order[id]'
           in: query
           required: false
@@ -2075,6 +2081,51 @@ paths:
               - desc
         -
           name: 'order[requestType]'
+          in: query
+          required: false
+          schema:
+            type: string
+            enum:
+              - asc
+              - desc
+        -
+          name: 'order[requireLogin]'
+          in: query
+          required: false
+          schema:
+            type: string
+            enum:
+              - asc
+              - desc
+        -
+          name: 'order[audience]'
+          in: query
+          required: false
+          schema:
+            type: string
+            enum:
+              - asc
+              - desc
+        -
+          name: 'order[deposit]'
+          in: query
+          required: false
+          schema:
+            type: string
+            enum:
+              - asc
+              - desc
+        -
+          name: 'order[depositCurrency]'
+          in: query
+          required: false
+          schema:
+            type: string
+            enum:
+              - asc
+              - desc
+        -
+          name: 'order[depositPercentage]'
           in: query
           required: false
           schema:
@@ -2167,6 +2218,70 @@ paths:
           schema:
             type: string
         -
+          name: id
+          in: query
+          required: false
+          schema:
+            type: string
+        -
+          name: 'id[]'
+          in: query
+          required: false
+          schema:
+            type: array
+            items:
+              type: string
+          style: form
+          explode: true
+        -
+          name: name
+          in: query
+          required: false
+          schema:
+            type: string
+        -
+          name: 'name[]'
+          in: query
+          required: false
+          schema:
+            type: array
+            items:
+              type: string
+          style: form
+          explode: true
+        -
+          name: description
+          in: query
+          required: false
+          schema:
+            type: string
+        -
+          name: 'description[]'
+          in: query
+          required: false
+          schema:
+            type: array
+            items:
+              type: string
+          style: form
+          explode: true
+        -
+          name: icon
+          in: query
+          required: false
+          schema:
+            type: string
+        -
+          name: 'icon[]'
+          in: query
+          required: false
+          schema:
+            type: array
+            items:
+              type: string
+          style: form
+          explode: true
+        -
           name: sourceOrganization
           in: query
           required: false
@@ -2182,6 +2297,158 @@ paths:
               type: string
           style: form
           explode: true
+        -
+          name: requestType
+          in: query
+          required: false
+          schema:
+            type: string
+        -
+          name: 'requestType[]'
+          in: query
+          required: false
+          schema:
+            type: array
+            items:
+              type: string
+          style: form
+          explode: true
+        -
+          name: requireLogin
+          in: query
+          required: false
+          schema:
+            type: boolean
+        -
+          name: 'requireLogin[]'
+          in: query
+          required: false
+          schema:
+            type: array
+            items:
+              type: boolean
+          style: form
+          explode: true
+        -
+          name: audience
+          in: query
+          required: false
+          schema:
+            type: string
+        -
+          name: 'audience[]'
+          in: query
+          required: false
+          schema:
+            type: array
+            items:
+              type: string
+          style: form
+          explode: true
+        -
+          name: deposit
+          in: query
+          required: false
+          schema:
+            type: string
+        -
+          name: 'deposit[]'
+          in: query
+          required: false
+          schema:
+            type: array
+            items:
+              type: string
+          style: form
+          explode: true
+        -
+          name: depositCurrency
+          in: query
+          required: false
+          schema:
+            type: string
+        -
+          name: 'depositCurrency[]'
+          in: query
+          required: false
+          schema:
+            type: array
+            items:
+              type: string
+          style: form
+          explode: true
+        -
+          name: depositPercentage
+          in: query
+          required: false
+          schema:
+            type: integer
+        -
+          name: 'depositPercentage[]'
+          in: query
+          required: false
+          schema:
+            type: array
+            items:
+              type: integer
+          style: form
+          explode: true
+        -
+          name: properties
+          in: query
+          required: false
+          schema:
+            type: string
+        -
+          name: 'properties[]'
+          in: query
+          required: false
+          schema:
+            type: array
+            items:
+              type: string
+          style: deepObject
+          explode: true
+        -
+          name: documents
+          in: query
+          required: false
+          schema:
+            type: string
+        -
+          name: 'documents[]'
+          in: query
+          required: false
+          schema:
+            type: array
+            items:
+              type: string
+          style: deepObject
+          explode: true
+        -
+          name: dateCreated
+          in: query
+          required: false
+          schema:
+            type: string
+        -
+          name: 'dateCreated[]'
+          in: query
+          required: false
+          schema:
+            type: string
+        -
+          name: dateModified
+          in: query
+          required: false
+          schema:
+            type: string
+        -
+          name: 'dateModified[]'
+          in: query
+          required: false
+          schema:
+            type: string
         -
           name: page
           in: query
@@ -5654,7 +5921,9 @@ components:
           type: string
           nullable: true
         sourceOrganization:
-          description: 'The RSIN of the organization that owns this process'
+          description: 'A specific commonground organisation that is being reviewd, e.g a single product'
+          externalDocs:
+            url: 'http://schema.org/url'
           type: string
         stages:
           description: 'The stages of this process'
@@ -5666,6 +5935,30 @@ components:
           externalDocs:
             url: 'http://schema.org/url'
           type: string
+        requireLogin:
+          description: 'If being logged in for process is required.'
+          type: boolean
+          nullable: true
+        audience:
+          description: 'The audience this processType is intended for'
+          type: array
+          items:
+            type: string
+          nullable: true
+        deposit:
+          description: 'The deposit requered for this process'
+          type: string
+          nullable: true
+        depositCurrency:
+          description: 'The currency of the deposit price in an [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) format'
+          externalDocs:
+            url: 'http://schema.org/priceCurrency'
+          type: string
+          nullable: true
+        depositPercentage:
+          description: 'The deposit percentage requered for this proces'
+          type: integer
+          nullable: true
         properties:
           type: array
           items:
@@ -5699,12 +5992,18 @@ components:
         name:
           description: 'The name of this process'
           type: string
+        description:
+          description: 'An short description of this process'
+          type: string
+          nullable: true
         icon:
           description: 'The icon of this property'
           type: string
           nullable: true
         sourceOrganization:
-          description: 'The RSIN of the organization that owns this process'
+          description: 'A specific commonground organisation that is being reviewd, e.g a single product'
+          externalDocs:
+            url: 'http://schema.org/url'
           type: string
         stages:
           description: 'The stages of this process'
@@ -5722,6 +6021,30 @@ components:
           anyOf:
             -
               $ref: '#/components/schemas/ProcessType-write'
+        requireLogin:
+          description: 'If being logged in for process is required.'
+          type: boolean
+          nullable: true
+        audience:
+          description: 'The audience this processType is intended for'
+          type: array
+          items:
+            type: string
+          nullable: true
+        deposit:
+          description: 'The deposit requered for this process'
+          type: string
+          nullable: true
+        depositCurrency:
+          description: 'The currency of the deposit price in an [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) format'
+          externalDocs:
+            url: 'http://schema.org/priceCurrency'
+          type: string
+          nullable: true
+        depositPercentage:
+          description: 'The deposit percentage requered for this proces'
+          type: integer
+          nullable: true
         properties:
           type: array
           items:
@@ -5764,7 +6087,9 @@ components:
           type: string
           nullable: true
         sourceOrganization:
-          description: 'The RSIN of the organization that owns this process'
+          description: 'A specific commonground organisation that is being reviewd, e.g a single product'
+          externalDocs:
+            url: 'http://schema.org/url'
           type: string
         stages:
           description: 'The stages of this process'
@@ -5776,6 +6101,30 @@ components:
           externalDocs:
             url: 'http://schema.org/url'
           type: string
+        requireLogin:
+          description: 'If being logged in for process is required.'
+          type: boolean
+          nullable: true
+        audience:
+          description: 'The audience this processType is intended for'
+          type: array
+          items:
+            type: string
+          nullable: true
+        deposit:
+          description: 'The deposit requered for this process'
+          type: string
+          nullable: true
+        depositCurrency:
+          description: 'The currency of the deposit price in an [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) format'
+          externalDocs:
+            url: 'http://schema.org/priceCurrency'
+          type: string
+          nullable: true
+        depositPercentage:
+          description: 'The deposit percentage requered for this proces'
+          type: integer
+          nullable: true
         properties:
           type: array
           items:
@@ -5818,12 +6167,18 @@ components:
         name:
           description: 'The name of this process'
           type: string
+        description:
+          description: 'An short description of this process'
+          type: string
+          nullable: true
         icon:
           description: 'The icon of this property'
           type: string
           nullable: true
         sourceOrganization:
-          description: 'The RSIN of the organization that owns this process'
+          description: 'A specific commonground organisation that is being reviewd, e.g a single product'
+          externalDocs:
+            url: 'http://schema.org/url'
           type: string
         stages:
           description: 'The stages of this process'
@@ -5841,6 +6196,30 @@ components:
           anyOf:
             -
               $ref: '#/components/schemas/ProcessType:jsonld-write'
+        requireLogin:
+          description: 'If being logged in for process is required.'
+          type: boolean
+          nullable: true
+        audience:
+          description: 'The audience this processType is intended for'
+          type: array
+          items:
+            type: string
+          nullable: true
+        deposit:
+          description: 'The deposit requered for this process'
+          type: string
+          nullable: true
+        depositCurrency:
+          description: 'The currency of the deposit price in an [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) format'
+          externalDocs:
+            url: 'http://schema.org/priceCurrency'
+          type: string
+          nullable: true
+        depositPercentage:
+          description: 'The deposit percentage requered for this proces'
+          type: integer
+          nullable: true
         properties:
           type: array
           items:
@@ -6295,20 +6674,36 @@ definitions:
         description: 'The icon of this property'
         type: string
         example: 'My Property'
-        maxLength: 255
-        minLength: 5
       sourceOrganization:
-        description: 'The RSIN of the organization that owns this process'
+        description: 'A specific commonground organisation that is being reviewd, e.g a single product'
         type: string
-        example: '002851234'
-        maxLength: 11
-        minLength: 8
+        example: 'https://wrc.zaakonline.nl/organisations/16353702-4614-42ff-92af-7dd11c8eef9f'
+        format: url
       requestType:
         description: 'The request that is used for this process'
         type: string
         example: 'http://rtc.zaakonline.nl/9bd169ef-bc8c-4422-86ce-a0e7679ab67a'
         format: url
         maxLength: 255
+      requireLogin:
+        description: 'If being logged in for process is required.'
+        type: bool
+        example: 'false'
+      audience:
+        description: 'The audience this processType is intended for'
+        type: string
+      deposit:
+        description: 'The deposit requered for this process'
+        type: string
+        example: '50.00'
+      depositCurrency:
+        description: 'The currency of the deposit price in an [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) format'
+        type: string
+        example: EUR
+      depositPercentage:
+        description: 'The deposit percentage requered for this proces'
+        type: int
+        example: '25'
       properties: []
       documents: []
       dateCreated:
@@ -6330,24 +6725,45 @@ definitions:
         type: string
         example: 'My process'
         maxLength: 255
+      description:
+        description: 'An short description of this process'
+        type: string
+        example: 'This is the best process ever'
+        maxLength: 2550
       icon:
         description: 'The icon of this property'
         type: string
         example: 'My Property'
-        maxLength: 255
-        minLength: 5
       sourceOrganization:
-        description: 'The RSIN of the organization that owns this process'
+        description: 'A specific commonground organisation that is being reviewd, e.g a single product'
         type: string
-        example: '002851234'
-        maxLength: 11
-        minLength: 8
+        example: 'https://wrc.zaakonline.nl/organisations/16353702-4614-42ff-92af-7dd11c8eef9f'
+        format: url
       requestType:
         description: 'The request that is used for this process'
         type: string
         example: 'http://rtc.zaakonline.nl/9bd169ef-bc8c-4422-86ce-a0e7679ab67a'
         format: url
         maxLength: 255
+      requireLogin:
+        description: 'If being logged in for process is required.'
+        type: bool
+        example: 'false'
+      audience:
+        description: 'The audience this processType is intended for'
+        type: string
+      deposit:
+        description: 'The deposit requered for this process'
+        type: string
+        example: '50.00'
+      depositCurrency:
+        description: 'The currency of the deposit price in an [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) format'
+        type: string
+        example: EUR
+      depositPercentage:
+        description: 'The deposit percentage requered for this proces'
+        type: int
+        example: '25'
       properties: []
       documents: []
       stages:
@@ -6439,8 +6855,6 @@ definitions:
         description: 'The icon of this property'
         type: string
         example: 'My Property'
-        maxLength: 255
-        minLength: 15
       options:
         description: 'The options or configuration for this stage'
         type: object
@@ -6455,8 +6869,6 @@ definitions:
         description: 'The slug of this property'
         type: string
         example: my-slug
-        maxLength: 255
-        minLength: 15
       dateCreated:
         description: 'The moment this request was created'
         type: \Datetime
@@ -6486,8 +6898,6 @@ definitions:
         description: 'The icon of this property'
         type: string
         example: 'My Property'
-        maxLength: 255
-        minLength: 15
       options:
         description: 'The options or configuration for this stage'
         type: object
@@ -6497,8 +6907,6 @@ definitions:
         description: 'The slug of this property'
         type: string
         example: my-slug
-        maxLength: 255
-        minLength: 15
       orderNumber:
         description: 'The place in the order where the stage should be rendered'
         type: int
@@ -6615,20 +7023,12 @@ definitions:
         description: 'The moment this request was created'
         type: string
         format: date-time
-<<<<<<< Updated upstream
-        example: '2020-07-28 12:29:23'
-=======
-        example: '2020-07-27 09:56:12'
->>>>>>> Stashed changes
+        example: '2020-08-25 08:19:05'
       dateModified:
         description: 'The moment this request last Modified'
         type: string
         format: date-time
-<<<<<<< Updated upstream
-        example: '2020-07-28 12:29:23'
-=======
-        example: '2020-07-27 09:56:12'
->>>>>>> Stashed changes
+        example: '2020-08-25 08:19:05'
     required: []
   AuditTrail-write:
     properties:
@@ -6676,20 +7076,12 @@ definitions:
         description: 'The moment this request was created'
         type: string
         format: date-time
-<<<<<<< Updated upstream
-        example: '2020-07-28 12:29:23'
-=======
-        example: '2020-07-27 09:56:12'
->>>>>>> Stashed changes
+        example: '2020-08-25 08:19:05'
       dateModified:
         description: 'The moment this request last Modified'
         type: string
         format: date-time
-<<<<<<< Updated upstream
-        example: '2020-07-28 12:29:23'
-=======
-        example: '2020-07-27 09:56:12'
->>>>>>> Stashed changes
+        example: '2020-08-25 08:19:05'
     required: []
   ChangeLog-write:
     properties:
