@@ -837,8 +837,8 @@ class MarkFixtures extends Fixture
         $id = Uuid::fromString('2e9b0775-5efc-4954-b1e4-da0382db2fbf');
         $processType = new ProcessType();
         $processType->setSourceOrganization($this->commonGroundService->cleanUrl(['component'=>'vtc', 'type'=>'request_types', 'id'=>'4d1eded3-fbdf-438f-9536-8747dd8ab591']));
-        $processType->setName('Aangeven overleiden');
-        $processType->setIcon('fas fa-skull-crossbones');
+        $processType->setName('Aangeven overlijden');
+        $processType->setIcon('fal fa-tombstone');
         $processType->setDescription('Met dit formulier kan de uitvaartverzorger een overleden persoon digitaal aangeven bij de gemeente Zuid-Drecht.');
         $processType->setRequestType($this->commonGroundService->cleanUrl(['component' => 'vtc', 'type' => 'request_types', 'id' => '24962583-a3a2-4453-88b8-970114ebb89b']));
         $manager->persist($processType);
