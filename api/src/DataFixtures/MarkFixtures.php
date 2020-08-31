@@ -824,7 +824,7 @@ class MarkFixtures extends Fixture
         $section->setName('Bedrijfsgegevens');
         $section->setProperties([
             $this->commonGroundService->cleanUrl(['component' => 'vtc', 'type' => 'properties', 'id' => '486950fe-f884-4f28-99d4-82058a29cbca']),
-            ]);
+        ]);
         $section->setStage($stage);
         $stage->addSection($section);
 
