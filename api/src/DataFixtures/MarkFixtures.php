@@ -162,7 +162,7 @@ class MarkFixtures extends Fixture
         $section->setName('Gegevens contactpersoon');
         $section->setProperties([
             $this->commonGroundService->cleanUrl(['component'=>'vtc', 'type'=>'properties', 'id'=>'9410db4d-331f-4a54-9322-5db9148b9c90']),
-``        ]);
+        ]);
         $stage->addSection($section);
 
         $section = new Section();
@@ -432,7 +432,7 @@ class MarkFixtures extends Fixture
         $processType = new ProcessType();
         $processType->setSourceOrganization($this->commonGroundService->cleanUrl(['component'=>'vtc', 'type'=>'request_types', 'id'=>'4d1eded3-fbdf-438f-9536-8747dd8ab591']));
         $processType->setName('Aanvraag Blijverslening');
-        $processType->setIcon('fas fa-clinic-medical');
+        $processType->setIcon('fas fa-money-check-alt');
         $processType->setDescription('Via dit formulier vraagt u een Blijverslening aan');
         $processType->setRequestType($this->commonGroundService->cleanUrl(['component' => 'vtc', 'type' => 'request_types', 'id' => '1dcfbd45-3140-4d9b-ba20-7fb97dfc32b6']));
         $manager->persist($processType);
