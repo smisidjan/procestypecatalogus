@@ -135,7 +135,7 @@ class TimFixtures extends Fixture
         $section->setName('bedrijfsgegevens');
         $section->setProperties([
             $this->commonGroundService->cleanUrl(['component' => 'vtc', 'type' => 'properties', 'id' => '17e61185-a7eb-49f7-98ff-c88a5acd69a6']),
-            $this->commonGroundService->cleanUrl(['component' => 'vtc', 'type' => 'properties', 'id' => '2384f44d-4090-4029-b5c3-8c90680daeaf']),
+            $this->commonGroundService->cleanUrl(['component' => 'vtc', 'type' => 'properties', 'id' => '38f796bc-d31c-4285-957b-1efbec38a653']),
         ]);
         $section->setStage($stage);
 
