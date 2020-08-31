@@ -348,7 +348,7 @@ class TimFixtures extends Fixture
         $section->setProperties([
             $this->commonGroundService->cleanUrl(['component' => 'vtc', 'type' => 'properties', 'id' => '1fb54451-4622-4c44-93b0-5b47d0718f99']),
             $this->commonGroundService->cleanUrl(['component' => 'vtc', 'type' => 'properties', 'id' => 'd0322d63-d10f-4463-998e-09b569625c37']),
-           ]);
+        ]);
         $section->setStage($stage);
 
         $section->setStage($stage);
