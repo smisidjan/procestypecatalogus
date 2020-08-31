@@ -29,7 +29,9 @@ class MarkFixtures extends Fixture
             !$this->params->get('app_build_all_fixtures') &&
             // Specific domain names
             $this->params->get('app_domain') != 'zuiddrecht.nl' && strpos($this->params->get('app_domain'), 'zuiddrecht.nl') == false &&
-            $this->params->get('app_domain') != 'zuid-drecht.nl' && strpos($this->params->get('app_domain'), 'zuid-drecht.nl') == false
+            $this->params->get('app_domain') != 'zuid-drecht.nl' && strpos($this->params->get('app_domain'), 'zuid-drecht.nl') == false &&
+            // Dev enviroment
+            $this->params->get('app_env') != 'dev' && strpos($this->params->get('app_env'), 'dev') == false
         ) {
             return false;
         }
@@ -37,6 +39,7 @@ class MarkFixtures extends Fixture
         $id = Uuid::fromString('5b24880e-708a-4fd9-84e7-c5427740fad6');
         $processType = new ProcessType();
         $processType->setName('Aanvraag JA/NEE of NEE/NEE sticker');
+        $processType->setIcon('fas fa-mail-bulk');
         $processType->setDescription('Hier kunt u een JA/NEE NEE/NEE sticker aanvragen.');
         $processType->setSourceOrganization($this->commonGroundService->cleanUrl(['component'=>'vtc', 'type'=>'request_types', 'id'=>'4d1eded3-fbdf-438f-9536-8747dd8ab591']));
         $processType->setRequestType($this->commonGroundService->cleanUrl(['component'=>'vtc', 'type'=>'request_types', 'id'=>'7e3998c0-4e9d-41e2-b9dc-f0840efc44d9']));
@@ -94,6 +97,7 @@ class MarkFixtures extends Fixture
         $id = Uuid::fromString('f7e630cb-c521-4e53-83ed-33775a50f9d1');
         $processType = new ProcessType();
         $processType->setName('Contactformulier bijzondere bijstand');
+        $processType->setIcon('fas fa-comments-dollar');
         $processType->setDescription('Wilt u weten of u in aanmerking komt voor bijzondere bijstand? Dat kan via dit contactformulier. Let op: dit is alleen een contactformulier en nog geen aanvraag.');
         $processType->setSourceOrganization($this->commonGroundService->cleanUrl(['component'=>'vtc', 'type'=>'request_types', 'id'=>'4d1eded3-fbdf-438f-9536-8747dd8ab591']));
         $processType->setRequestType($this->commonGroundService->cleanUrl(['component'=>'vtc', 'type'=>'request_types', 'id'=>'2d39a167-ea2e-49d9-96aa-fc5d199bd57c']));
@@ -143,6 +147,7 @@ class MarkFixtures extends Fixture
         $id = Uuid::fromString('c09fc57f-f03a-42fc-9d1f-e6e1f73e8002');
         $processType = new ProcessType();
         $processType->setName('Stel uw vraag aan Zuid-Drecht');
+        $processType->setIcon('fas fa-question');
         $processType->setDescription('Dit formulier gebruikt u als u een algemene vraag over zorg en ondersteuning wilt stellen. Als u uw gegevens invult, ontvangt u een antwoord via e-mail of telefoon. U kunt ook anoniem een melding maken. Als u hiervoor kiest, kunnen wij geen contact met u opnemen.');
         $processType->setSourceOrganization($this->commonGroundService->cleanUrl(['component'=>'vtc', 'type'=>'request_types', 'id'=>'4d1eded3-fbdf-438f-9536-8747dd8ab591']));
         $processType->setRequestType($this->commonGroundService->cleanUrl(['component'=>'vtc', 'type'=>'request_types', 'id'=>'a3844f30-74d7-4fcc-84c0-5c81fea5dc2e']));
@@ -185,6 +190,7 @@ class MarkFixtures extends Fixture
         $id = Uuid::fromString('f4a93355-7298-46ec-abfd-89b5da4db012');
         $processType = new ProcessType();
         $processType->setName('Activiteit organiseren');
+        $processType->setIcon('fas fa-birthday-cake');
         $processType->setDescription('Is de criteria voor een groot evenement niet voor u van toepassing dan kunt u volstaan met een melding. Zeven dagen voorafgaand aan het evenement.');
         $processType->setSourceOrganization($this->commonGroundService->cleanUrl(['component'=>'vtc', 'type'=>'request_types', 'id'=>'4d1eded3-fbdf-438f-9536-8747dd8ab591']));
         $processType->setRequestType($this->commonGroundService->cleanUrl(['component'=>'vtc', 'type'=>'request_types', 'id'=>'6a2b39fc-669d-4b6e-bbcc-27c8d8063f4e']));
@@ -282,6 +288,7 @@ class MarkFixtures extends Fixture
         $id = Uuid::fromString('c47285f2-90b4-4080-be56-c2992f677b41');
         $processType = new ProcessType();
         $processType->setName('Aanvragen vergunning Drank en Horecawet');
+        $processType->setIcon('fas fa-glass-cheers');
         $processType->setDescription('Een ondernemer moet een drank- en horecavergunning hebben om alcoholische dranken te schenken, vraag deze aan met dit formulier.');
         $processType->setSourceOrganization($this->commonGroundService->cleanUrl(['component'=>'vtc', 'type'=>'request_types', 'id'=>'4d1eded3-fbdf-438f-9536-8747dd8ab591']));
         $processType->setRequestType($this->commonGroundService->cleanUrl(['component'=>'vtc', 'type'=>'request_types', 'id'=>'30d63557-53e5-4393-a613-ca1debf278f4']));
@@ -439,6 +446,7 @@ class MarkFixtures extends Fixture
         $processType = new ProcessType();
         $processType->setSourceOrganization($this->commonGroundService->cleanUrl(['component'=>'vtc', 'type'=>'request_types', 'id'=>'4d1eded3-fbdf-438f-9536-8747dd8ab591']));
         $processType->setName('Aanvraag Blijverslening');
+        $processType->setIcon('fas fa-clinic-medical');
         $processType->setDescription('Via dit formulier vraagt u een Blijverslening aan');
         $processType->setRequestType($this->commonGroundService->cleanUrl(['component' => 'vtc', 'type' => 'request_types', 'id' => '1dcfbd45-3140-4d9b-ba20-7fb97dfc32b6']));
         $manager->persist($processType);
@@ -601,6 +609,7 @@ class MarkFixtures extends Fixture
         $id = Uuid::fromString('9b3c3c9c-b128-4d37-900e-b86203c37fb5');
         $processType = new ProcessType();
         $processType->setName('Vraag stellen over (ver)bouwen');
+        $processType->setIcon('fas fa-house-damage');
         $processType->setDescription('Wilt u iets (ver)bouwen vraag dit hier aan.');
         $processType->setSourceOrganization($this->commonGroundService->cleanUrl(['component'=>'vtc', 'type'=>'request_types', 'id'=>'4d1eded3-fbdf-438f-9536-8747dd8ab591']));
         $processType->setRequestType($this->commonGroundService->cleanUrl(['component'=>'vtc', 'type'=>'request_types', 'id'=>'15fa03c2-a654-45be-8153-f2df32bcc6cb']));
@@ -666,6 +675,7 @@ class MarkFixtures extends Fixture
         $processType = new ProcessType();
         $processType->setSourceOrganization($this->commonGroundService->cleanUrl(['component'=>'vtc', 'type'=>'request_types', 'id'=>'4d1eded3-fbdf-438f-9536-8747dd8ab591']));
         $processType->setName('Melden begraafenis');
+        $processType->setIcon('fas fa-monument');
         $processType->setDescription('Hier kunt u een begravenis melden');
         $processType->setRequestType($this->commonGroundService->cleanUrl(['component' => 'vtc', 'type' => 'request_types', 'id' => 'b24a6663-2691-4568-8b3e-74e8e1b17c3f']));
         $manager->persist($processType);
@@ -827,7 +837,8 @@ class MarkFixtures extends Fixture
         $id = Uuid::fromString('2e9b0775-5efc-4954-b1e4-da0382db2fbf');
         $processType = new ProcessType();
         $processType->setSourceOrganization($this->commonGroundService->cleanUrl(['component'=>'vtc', 'type'=>'request_types', 'id'=>'4d1eded3-fbdf-438f-9536-8747dd8ab591']));
-        $processType->setName('Aangeven overleiden');
+        $processType->setName('Aangeven overlijden');
+        $processType->setIcon('fas fa-tombstone-alt');
         $processType->setDescription('Met dit formulier kan de uitvaartverzorger een overleden persoon digitaal aangeven bij de gemeente Zuid-Drecht.');
         $processType->setRequestType($this->commonGroundService->cleanUrl(['component' => 'vtc', 'type' => 'request_types', 'id' => '24962583-a3a2-4453-88b8-970114ebb89b']));
         $manager->persist($processType);

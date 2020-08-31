@@ -29,16 +29,19 @@ class LucasFixtures extends Fixture
             !$this->params->get('app_build_all_fixtures') &&
             // Specific domain names
             $this->params->get('app_domain') != 'zuiddrecht.nl' && strpos($this->params->get('app_domain'), 'zuiddrecht.nl') == false &&
-            $this->params->get('app_domain') != 'zuid-drecht.nl' && strpos($this->params->get('app_domain'), 'zuid-drecht.nl') == false
+            $this->params->get('app_domain') != 'zuid-drecht.nl' && strpos($this->params->get('app_domain'), 'zuid-drecht.nl') == false &&
+            // Dev enviroment
+            $this->params->get('app_env') != 'dev' && strpos($this->params->get('app_env'), 'dev') == false
+
         ) {
             return false;
         }
 
         // Documenten Inleveren
-
         $id = Uuid::fromString('f5b473e9-a2d8-4383-b268-265c340f4bc5');
         $processType = new ProcessType();
         $processType->setName('Documenten inleveren');
+        $processType->setIcon('fas fa-file-alt');
         $processType->setDescription('Hier kunt u aanvullende documenten of informatie inleveren.');
         $processType->setSourceOrganization($this->commonGroundService->cleanUrl(['component'=>'vtc', 'type'=>'request_types', 'id'=>'4d1eded3-fbdf-438f-9536-8747dd8ab591']));
         $processType->setRequestType($this->commonGroundService->cleanUrl(['component'=>'vtc', 'type'=>'request_types', 'id'=>'ff3a0263-350f-407a-84d4-bd12e89ce040']));
@@ -70,8 +73,9 @@ class LucasFixtures extends Fixture
         $manager->persist($processType);
         $manager->flush();
 
+        // formulier Jeugdlintje – neem contact met mij op
         // Jeugdlintje
-        $id = Uuid::fromString('9f7a7616-179f-4ca1-b91f-1ac73222fe0e');
+        $id = Uuid::fromString('1f7a7616-179f-4ca1-b91f-1ac73222fe0e');
         $processType = new ProcessType();
         $processType->setName('Aanmeldformulier jeugdlintje');
         $processType->setDescription('Doe hier een aanvraag voor een jeugdlintje voor iemand in de gemeenschap');
@@ -83,6 +87,7 @@ class LucasFixtures extends Fixture
         $manager->flush();
         $processType = $manager->getRepository('App:ProcessType')->findOneBy(['id'=> $id]);
 
+        //pagina 1
         $stage = new Stage();
         $stage->setName('Gegevens van de jeugdige');
         $stage->setSlug('jeugdige-jeugdlintje');
@@ -106,6 +111,7 @@ class LucasFixtures extends Fixture
         $manager->persist($processType);
         $manager->flush();
 
+        //pagina 2
         $stage = new Stage();
         $stage->setName('Gegevens van de aanmelder');
         $stage->setSlug('aanmelder-jeugdlintje');
@@ -127,6 +133,7 @@ class LucasFixtures extends Fixture
         $manager->persist($processType);
         $manager->flush();
 
+        //pagina 3
         $stage = new Stage();
         $stage->setName('Motivatie voor het jeugdlintje');
         $stage->setSlug('Motivatie-jeugdlintje');
@@ -145,6 +152,7 @@ class LucasFixtures extends Fixture
         $manager->persist($processType);
         $manager->flush();
 
+        //pagina 4
         $stage = new Stage();
         $stage->setName('Referenties voor het jeugdlintje');
         $stage->setSlug('referenties-jeugdlintje');
@@ -185,10 +193,11 @@ class LucasFixtures extends Fixture
         $manager->persist($processType);
         $manager->flush();
 
-        // Vraag Stellen
+        // formulier Vraag Stellen
         $id = Uuid::fromString('3e758293-b910-490d-bc22-3941d61f9363');
         $processType = new ProcessType();
         $processType->setName('Vraag stellen');
+        $processType->setIcon('fas fa-question');
         $processType->setDescription('Algemeen contactformulier');
         $processType->setSourceOrganization($this->commonGroundService->cleanUrl(['component'=>'vtc', 'type'=>'request_types', 'id'=>'4d1eded3-fbdf-438f-9536-8747dd8ab591']));
         $processType->setRequestType($this->commonGroundService->cleanUrl(['component'=>'vtc', 'type'=>'request_types', 'id'=>'cf2482fd-5bed-4843-8f54-895cabdf6251']));
@@ -198,6 +207,7 @@ class LucasFixtures extends Fixture
         $manager->flush();
         $processType = $manager->getRepository('App:ProcessType')->findOneBy(['id'=> $id]);
 
+        //1e pagina
         $stage = new Stage();
         $stage->setName('Omschrijving');
         $stage->setDescription('De omschrijving van de vraag die u heeft.');
@@ -219,6 +229,7 @@ class LucasFixtures extends Fixture
         $manager->persist($processType);
         $manager->flush();
 
+        //2e pagina
         $stage = new Stage();
         $stage->setName('Uw gegevens');
         $stage->setDescription('Uw gegevens invullen.');
@@ -247,6 +258,7 @@ class LucasFixtures extends Fixture
         $id = Uuid::fromString('30f26d23-acb4-4dda-b944-b336ef00ff52');
         $processType = new ProcessType();
         $processType->setName('Kraskaarten');
+        $processType->setIcon('fas fa-money-check-alt');
         $processType->setDescription('Via dit formulier kunt u kraskaarten aanvragen.');
         $processType->setSourceOrganization($this->commonGroundService->cleanUrl(['component'=>'vtc', 'type'=>'request_types', 'id'=>'4d1eded3-fbdf-438f-9536-8747dd8ab591']));
         $processType->setRequestType($this->commonGroundService->cleanUrl(['component'=>'vtc', 'type'=>'request_types', 'id'=>'c64bb62c-670a-4cde-bd29-f50c220a6442']));
@@ -299,10 +311,11 @@ class LucasFixtures extends Fixture
         $manager->persist($processType);
         $manager->flush();
 
-        // Starterslening
+        // formulier Starterslening
         $id = Uuid::fromString('3bfc975f-6ca6-4c65-813a-6c4da973f6e0');
         $processType = new ProcessType();
         $processType->setName('Starterslening');
+        $processType->setIcon('fas fa-piggy-bank');
         $processType->setDescription('Een starterslening aanvragen');
         $processType->setSourceOrganization($this->commonGroundService->cleanUrl(['component'=>'vtc', 'type'=>'request_types', 'id'=>'4d1eded3-fbdf-438f-9536-8747dd8ab591']));
         $processType->setRequestType($this->commonGroundService->cleanUrl(['component'=>'vtc', 'type'=>'request_types', 'id'=>'2f3f2c71-f9b0-463d-8cf3-8dc5cdfeeaeb']));
@@ -312,6 +325,7 @@ class LucasFixtures extends Fixture
         $manager->flush();
         $processType = $manager->getRepository('App:ProcessType')->findOneBy(['id'=> $id]);
 
+        //1e pagina
         $stage = new Stage();
         $stage->setName('Uw gegevens');
         $stage->setDescription('Uw persoonlijke gegevens invullen.');
@@ -333,6 +347,7 @@ class LucasFixtures extends Fixture
         $manager->persist($processType);
         $manager->flush();
 
+        //2e pagina
         $stage = new Stage();
         $stage->setName('Uw aanvraag');
         $stage->setDescription('Uw aanvraag invullen');
@@ -352,7 +367,7 @@ class LucasFixtures extends Fixture
         $section = new Section();
         $section->setStage($stage);
         $section->setName('Bestaand of nieuw');
-        $section->setDescription('Is het bestaand of nieuw!');
+        $section->setDescription('Is het bestaand of nieuw?');
         $section->setProperties([
             $this->commonGroundService->cleanUrl(['component'=>'vtc', 'type'=>'properties', 'id'=>'56373990-5ec5-4b38-83ac-b01d8a803e54']),
         ]);
