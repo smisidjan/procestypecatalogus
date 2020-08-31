@@ -35,6 +35,51 @@ class ZuiddrechtFixtures extends Fixture
         }
 
         /*
+         *  Deelname verzoek horeca ondernemer (Checkin)
+         */
+        $id = Uuid::fromString('fdb7186c-0ce9-4050-bd6d-cf83b0c162eb');
+        $processType = new ProcessType();
+        $processType->setName('Onboarding');
+        $processType->setIcon('fa fa-user');
+        $processType->setDescription('Verzoek tot deelname indienen');
+        $processType->setSourceOrganization($this->commonGroundService->cleanUrl(['component'=>'wrc', 'type'=>'organizations', 'id'=>'4d1eded3-fbdf-438f-9536-8747dd8ab591']));
+        $processType->setRequestType($this->commonGroundService->cleanUrl(['component'=>'vtc', 'type'=>'request_types', 'id'=>'c328e6b4-77f6-4c58-8544-4128452acc80']));
+        $manager->persist($processType);
+        $processType->setId($id);
+        $manager->persist($processType);
+        $manager->flush();
+        $processType = $manager->getRepository('App:ProcessType')->findOneBy(['id'=> $id]);
+
+        $stage = new Stage();
+        $stage->setName('Deelname verzoek');
+        $stage->setDescription('deelname verzoek');
+        $stage->setIcon('fa fa-user');
+        $stage->setSlug('deelnameverzoek');
+        $stage->setProcess($processType);
+
+        $section = new Section();
+        $section->setStage($stage);
+        $section->setName('Ondernemer');
+        $section->setDescription('Wat is uw naam?');
+        $section->setProperties([
+            $this->commonGroundService->cleanUrl(['component'=>'vtc', 'type'=>'properties', 'id'=>'5fe949b5-6ce7-4394-a4c9-6ae0297dad5d']),
+        ]);
+        $stage->addSection($section);
+
+        $section = new Section();
+        $section->setStage($stage);
+        $section->setName('Uw horeca firma');
+        $section->setDescription('Wat zijn de gegevens van uw horeca firma?');
+        $section->setProperties([
+            $this->commonGroundService->cleanUrl(['component'=>'vtc', 'type'=>'properties', 'id'=>'49170072-00f1-4b68-a926-5e6e6e49e946']),
+        ]);
+        $stage->addSection($section);
+
+        $processType->addStage($stage);
+        $manager->persist($processType);
+        $manager->flush();
+
+        /*
          *  Parkeervergunning
          */
         $id = Uuid::fromString('993cefcc-de42-46f5-9289-5f24df5dd3c7');
