@@ -59,7 +59,7 @@ class ZuiddrechtFixtures extends Fixture
 
         $section = new Section();
         $section->setStage($stage);
-        $section->setName('Ondernemer');
+        $section->setName('Uw gegevens');
         $section->setDescription('Wat zijn uw contactgegevens?');
         $section->setProperties([
             $this->commonGroundService->cleanUrl(['component'=>'vtc', 'type'=>'properties', 'id'=>'5fe949b5-6ce7-4394-a4c9-6ae0297dad5d']),
@@ -103,6 +103,26 @@ class ZuiddrechtFixtures extends Fixture
         $section->setDescription('Wat zijn de gegevens van uw locatie?');
         $section->setProperties([
             $this->commonGroundService->cleanUrl(['component'=>'vtc', 'type'=>'properties', 'id'=>'5c5f8837-c42c-4b83-8bec-6d1760e0e0f7']),
+        ]);
+        $stage->addSection($section);
+
+        $processType->addStage($stage);
+        $manager->persist($processType);
+        $manager->flush();
+
+        $stage = new Stage();
+        $stage->setName('Abbonnement');
+        $stage->setDescription('abbonnement');
+        $stage->setIcon('fas fa-money-check');
+        $stage->setSlug('abbonnement');
+        $stage->setProcess($processType);
+
+        $section = new Section();
+        $section->setStage($stage);
+        $section->setName('Uw abbonement');
+        $section->setDescription('Welk abbonnement wilt u?');
+        $section->setProperties([
+            $this->commonGroundService->cleanUrl(['component'=>'vtc', 'type'=>'properties', 'id'=>'3fbb0356-a362-4b70-b914-dd27919ff99c']),
         ]);
         $stage->addSection($section);
 
