@@ -1455,98 +1455,6 @@ class SaraiFixtures extends Fixture
         $manager->flush();
 
         /*
-         * Naamwijziging
-         * Advocaat voor jezelf en voor een ander
-         */
-        $id = Uuid::fromString('fb850b65-893e-42bb-8d16-7defdf57d0ba');
-        $processType = new ProcessType();
-        $processType->setSourceOrganization($this->commonGroundService->cleanUrl(['component'=>'vtc', 'type'=>'request_types', 'id'=>'4d1eded3-fbdf-438f-9536-8747dd8ab591']));
-        $processType->setName('Akkoord geven naamwijziging advocaat');
-        $processType->setDescription('');
-        $processType->setRequestType($this->commonGroundService->cleanUrl(['component' => 'vtc', 'type' => 'request_types', 'id' => 'b5f7d6a4-9dbf-4767-befe-91c26f1a4d9b']));
-        $manager->persist($processType);
-        $processType->setId($id);
-        $manager->persist($processType);
-        $manager->flush();
-        $processType = $manager->getRepository('App:ProcessType')->findOneBy(['id' => $id]);
-
-        $stage = new Stage();
-        $stage->setName('Gegevens advocaat');
-        $stage->setSlug('gegevens-advocaat');
-        $stage->setProcess($processType);
-
-        $section = new Section();
-        $section->setName('Gegevens advocaat');
-        $section->setProperties([
-            //inloggen met E-herkenning
-            $this->commonGroundService->cleanUrl(['component' => 'vtc', 'type' => 'properties', 'id' => '2d81c6a8-8324-4822-8bc3-ac0bdd1b6fc3']),
-            $this->commonGroundService->cleanUrl(['component' => 'vtc', 'type' => 'properties', 'id' => '9288e000-7538-47fe-9ef7-c9f3b39f2a78']),
-            $this->commonGroundService->cleanUrl(['component' => 'vtc', 'type' => 'properties', 'id' => 'e5804e0d-af92-44ce-a2f4-db8abb388c47']),
-            $this->commonGroundService->cleanUrl(['component' => 'vtc', 'type' => 'properties', 'id' => 'f42bf65d-3e39-4723-9909-5199e9f66233']),
-            $this->commonGroundService->cleanUrl(['component' => 'vtc', 'type' => 'properties', 'id' => '631f408c-8380-45ac-a790-6c58e74fce2e']),
-            $this->commonGroundService->cleanUrl(['component' => 'vtc', 'type' => 'properties', 'id' => '35363a74-3778-4bcb-bb45-24be19a5a1b2']),
-        ]);
-        $section->setStage($stage);
-        $stage->addSection($section);
-        $processType->addStage($stage);
-        $manager->persist($processType);
-        $manager->flush();
-
-        $stage = new Stage();
-        $stage->setName('Bijlagen en akkoord');
-        $stage->setSlug('bijlagen-en-akkoord');
-        $stage->setProcess($processType);
-
-        $section = new Section();
-        $section->setName('Bijlagen en akkoord');
-        $section->setProperties([
-            $this->commonGroundService->cleanUrl(['component' => 'vtc', 'type' => 'properties', 'id' => '453f45e0-e1f8-420b-a894-02376c73598a']),
-            $this->commonGroundService->cleanUrl(['component' => 'vtc', 'type' => 'properties', 'id' => '9899c0f7-1f5f-4144-8506-ba9d949c3b51']),
-        ]);
-        $section->setStage($stage);
-        $stage->addSection($section);
-        $processType->addStage($stage);
-        $manager->persist($processType);
-        $manager->flush();
-
-        /*
-         * Naamswijziging
-         * akkoord geven andere ouder
-         */
-        $id = Uuid::fromString('a8c7c6f0-1fa2-4c31-ab14-e2b3af2750f3');
-        $processType = new ProcessType();
-        $processType->setSourceOrganization($this->commonGroundService->cleanUrl(['component'=>'vtc', 'type'=>'request_types', 'id'=>'4d1eded3-fbdf-438f-9536-8747dd8ab591']));
-        $processType->setName('Akkoord geven naamwijziging andere ouder');
-        $processType->setDescription('');
-        $processType->setRequestType($this->commonGroundService->cleanUrl(['component' => 'vtc', 'type' => 'request_types', 'id' => 'bea50404-05fb-4e14-a264-3cd0ac6fb745']));
-        $manager->persist($processType);
-        $processType->setId($id);
-        $manager->persist($processType);
-        $manager->flush();
-        $processType = $manager->getRepository('App:ProcessType')->findOneBy(['id' => $id]);
-
-        $stage = new Stage();
-        $stage->setName('Gegevens andere ouder');
-        $stage->setSlug('gegevens-andere-ouder');
-        $stage->setProcess($processType);
-
-        $section = new Section();
-        $section->setName('Gegevens andere ouder');
-        $section->setProperties([
-            //inloggen met digid
-            $this->commonGroundService->cleanUrl(['component' => 'vtc', 'type' => 'properties', 'id' => '90c0342b-e2ab-45f2-adbb-cc176820a8b9']),
-            $this->commonGroundService->cleanUrl(['component' => 'vtc', 'type' => 'properties', 'id' => '03453a36-eff7-496f-a6a8-b53da2fb9097']),
-            $this->commonGroundService->cleanUrl(['component' => 'vtc', 'type' => 'properties', 'id' => '952e5055-756e-4120-b82b-ff6baed34986']),
-            $this->commonGroundService->cleanUrl(['component' => 'vtc', 'type' => 'properties', 'id' => '008312f9-58b5-443c-8dbc-d03db65ca562']),
-            $this->commonGroundService->cleanUrl(['component' => 'vtc', 'type' => 'properties', 'id' => '9337ada0-9cb7-456d-8bf2-82604cd4b44b']),
-        ]);
-        $section->setStage($stage);
-        $stage->addSection($section);
-        $processType->addStage($stage);
-        $manager->persist($processType);
-        $manager->flush();
-
-        /*
        * Nederlander worden
        *
        */
@@ -1555,6 +1463,7 @@ class SaraiFixtures extends Fixture
         $processType->setSourceOrganization($this->commonGroundService->cleanUrl(['component'=>'vtc', 'type'=>'request_types', 'id'=>'4d1eded3-fbdf-438f-9536-8747dd8ab591']));
         $processType->setName('Nederlander worden');
         $processType->setDescription('Via dit formulier kunt u aanvragen om een Nederlander te worden');
+        $processType->setIcon('fas fa-passport');
         $processType->setRequestType($this->commonGroundService->cleanUrl(['component' => 'vtc', 'type' => 'request_types', 'id' => '19b72d6b-1614-43cd-8ea0-d99d006d0eff']));
         $manager->persist($processType);
         $processType->setId($id);
@@ -1626,6 +1535,7 @@ class SaraiFixtures extends Fixture
         $processType->setSourceOrganization($this->commonGroundService->cleanUrl(['component'=>'vtc', 'type'=>'request_types', 'id'=>'4d1eded3-fbdf-438f-9536-8747dd8ab591']));
         $processType->setName('Kwijtscheldingsberekening');
         $processType->setDescription('Via dit formulier kunt u uw kwijtscheldingsberekenen');
+        $processType->setIcon('fas fa-balance-scale-left');
         $processType->setRequestType($this->commonGroundService->cleanUrl(['component' => 'vtc', 'type' => 'request_types', 'id' => '92f2c3fd-236a-4cf7-adb2-8c5d27424f62']));
         $manager->persist($processType);
         $processType->setId($id);
@@ -1711,6 +1621,7 @@ class SaraiFixtures extends Fixture
         $processType->setSourceOrganization($this->commonGroundService->cleanUrl(['component'=>'vtc', 'type'=>'request_types', 'id'=>'4d1eded3-fbdf-438f-9536-8747dd8ab591']));
         $processType->setName('Verhuizing naar de gemeente Zuid-Drecht');
         $processType->setDescription('Via dit formulier kunt u de verhuizing naar de gemeente Zuid-Drecht aangeven');
+        $processType->setIcon('fas fa-people-carry');
         $processType->setRequestType($this->commonGroundService->cleanUrl(['component' => 'vtc', 'type' => 'request_types', 'id' => 'df920444-7783-477a-97fd-6a7ef839345c']));
         $manager->persist($processType);
         $processType->setId($id);
@@ -1830,5 +1741,98 @@ class SaraiFixtures extends Fixture
         $processType->addStage($stage);
         $manager->persist($processType);
         $manager->flush();
+
+        /*
+      * Naamwijziging
+      * Advocaat voor jezelf en voor een ander
+      */
+//        $id = Uuid::fromString('fb850b65-893e-42bb-8d16-7defdf57d0ba');
+//        $processType = new ProcessType();
+//        $processType->setSourceOrganization($this->commonGroundService->cleanUrl(['component'=>'vtc', 'type'=>'request_types', 'id'=>'4d1eded3-fbdf-438f-9536-8747dd8ab591']));
+//        $processType->setName('Akkoord geven naamwijziging advocaat');
+//        $processType->setDescription('');
+//        $processType->setRequestType($this->commonGroundService->cleanUrl(['component' => 'vtc', 'type' => 'request_types', 'id' => 'b5f7d6a4-9dbf-4767-befe-91c26f1a4d9b']));
+//        $manager->persist($processType);
+//        $processType->setId($id);
+//        $manager->persist($processType);
+//        $manager->flush();
+//        $processType = $manager->getRepository('App:ProcessType')->findOneBy(['id' => $id]);
+//
+//        $stage = new Stage();
+//        $stage->setName('Gegevens advocaat');
+//        $stage->setSlug('gegevens-advocaat');
+//        $stage->setProcess($processType);
+//
+//        $section = new Section();
+//        $section->setName('Gegevens advocaat');
+//        $section->setProperties([
+//            //inloggen met E-herkenning
+//            $this->commonGroundService->cleanUrl(['component' => 'vtc', 'type' => 'properties', 'id' => '2d81c6a8-8324-4822-8bc3-ac0bdd1b6fc3']),
+//            $this->commonGroundService->cleanUrl(['component' => 'vtc', 'type' => 'properties', 'id' => '9288e000-7538-47fe-9ef7-c9f3b39f2a78']),
+//            $this->commonGroundService->cleanUrl(['component' => 'vtc', 'type' => 'properties', 'id' => 'e5804e0d-af92-44ce-a2f4-db8abb388c47']),
+//            $this->commonGroundService->cleanUrl(['component' => 'vtc', 'type' => 'properties', 'id' => 'f42bf65d-3e39-4723-9909-5199e9f66233']),
+//            $this->commonGroundService->cleanUrl(['component' => 'vtc', 'type' => 'properties', 'id' => '631f408c-8380-45ac-a790-6c58e74fce2e']),
+//            $this->commonGroundService->cleanUrl(['component' => 'vtc', 'type' => 'properties', 'id' => '35363a74-3778-4bcb-bb45-24be19a5a1b2']),
+//        ]);
+//        $section->setStage($stage);
+//        $stage->addSection($section);
+//        $processType->addStage($stage);
+//        $manager->persist($processType);
+//        $manager->flush();
+//
+//        $stage = new Stage();
+//        $stage->setName('Bijlagen en akkoord');
+//        $stage->setSlug('bijlagen-en-akkoord');
+//        $stage->setProcess($processType);
+//
+//        $section = new Section();
+//        $section->setName('Bijlagen en akkoord');
+//        $section->setProperties([
+//            $this->commonGroundService->cleanUrl(['component' => 'vtc', 'type' => 'properties', 'id' => '453f45e0-e1f8-420b-a894-02376c73598a']),
+//            $this->commonGroundService->cleanUrl(['component' => 'vtc', 'type' => 'properties', 'id' => '9899c0f7-1f5f-4144-8506-ba9d949c3b51']),
+//        ]);
+//        $section->setStage($stage);
+//        $stage->addSection($section);
+//        $processType->addStage($stage);
+//        $manager->persist($processType);
+//        $manager->flush();
+//
+//        /*
+//         * Naamswijziging
+//         * akkoord geven andere ouder
+//         */
+//        $id = Uuid::fromString('a8c7c6f0-1fa2-4c31-ab14-e2b3af2750f3');
+//        $processType = new ProcessType();
+//        $processType->setSourceOrganization($this->commonGroundService->cleanUrl(['component'=>'vtc', 'type'=>'request_types', 'id'=>'4d1eded3-fbdf-438f-9536-8747dd8ab591']));
+//        $processType->setName('Akkoord geven naamwijziging andere ouder');
+//        $processType->setDescription('');
+//        $processType->setRequestType($this->commonGroundService->cleanUrl(['component' => 'vtc', 'type' => 'request_types', 'id' => 'bea50404-05fb-4e14-a264-3cd0ac6fb745']));
+//        $manager->persist($processType);
+//        $processType->setId($id);
+//        $manager->persist($processType);
+//        $manager->flush();
+//        $processType = $manager->getRepository('App:ProcessType')->findOneBy(['id' => $id]);
+//
+//        $stage = new Stage();
+//        $stage->setName('Gegevens andere ouder');
+//        $stage->setSlug('gegevens-andere-ouder');
+//        $stage->setProcess($processType);
+//
+//        $section = new Section();
+//        $section->setName('Gegevens andere ouder');
+//        $section->setProperties([
+//            //inloggen met digid
+//            $this->commonGroundService->cleanUrl(['component' => 'vtc', 'type' => 'properties', 'id' => '90c0342b-e2ab-45f2-adbb-cc176820a8b9']),
+//            $this->commonGroundService->cleanUrl(['component' => 'vtc', 'type' => 'properties', 'id' => '03453a36-eff7-496f-a6a8-b53da2fb9097']),
+//            $this->commonGroundService->cleanUrl(['component' => 'vtc', 'type' => 'properties', 'id' => '952e5055-756e-4120-b82b-ff6baed34986']),
+//            $this->commonGroundService->cleanUrl(['component' => 'vtc', 'type' => 'properties', 'id' => '008312f9-58b5-443c-8dbc-d03db65ca562']),
+//            $this->commonGroundService->cleanUrl(['component' => 'vtc', 'type' => 'properties', 'id' => '9337ada0-9cb7-456d-8bf2-82604cd4b44b']),
+//        ]);
+//        $section->setStage($stage);
+//        $stage->addSection($section);
+//        $processType->addStage($stage);
+//        $manager->persist($processType);
+//        $manager->flush();
+
     }
 }
