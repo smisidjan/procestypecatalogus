@@ -83,6 +83,7 @@ class ZuiddrechtFixtures extends Fixture
         $section->setDescription('Wat zijn de gegevens van uw horeca firma?');
         $section->setProperties([
             $this->commonGroundService->cleanUrl(['component'=>'vtc', 'type'=>'properties', 'id'=>'49170072-00f1-4b68-a926-5e6e6e49e946']),
+            $this->commonGroundService->cleanUrl(['component'=>'vtc', 'type'=>'properties', 'id'=>'55dde78d-4a14-43c6-a0ff-d33b7b5f8bae']),
         ]);
         $stage->addSection($section);
 
