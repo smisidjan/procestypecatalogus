@@ -51,20 +51,31 @@ class ZuiddrechtFixtures extends Fixture
         $processType = $manager->getRepository('App:ProcessType')->findOneBy(['id'=> $id]);
 
         $stage = new Stage();
-        $stage->setName('Deelname verzoek');
-        $stage->setDescription('deelname verzoek');
-        $stage->setIcon('fa fa-user');
-        $stage->setSlug('deelnameverzoek');
+        $stage->setName('Ondernemer');
+        $stage->setDescription('ondernemer');
+        $stage->setIcon('fas fa-user');
+        $stage->setSlug('ondernemer');
         $stage->setProcess($processType);
 
         $section = new Section();
         $section->setStage($stage);
-        $section->setName('Ondernemer');
-        $section->setDescription('Wat is uw naam?');
+        $section->setName('Uw gegevens');
+        $section->setDescription('Wat zijn uw contactgegevens?');
         $section->setProperties([
             $this->commonGroundService->cleanUrl(['component'=>'vtc', 'type'=>'properties', 'id'=>'5fe949b5-6ce7-4394-a4c9-6ae0297dad5d']),
         ]);
         $stage->addSection($section);
+
+        $processType->addStage($stage);
+        $manager->persist($processType);
+        $manager->flush();
+
+        $stage = new Stage();
+        $stage->setName('Firma');
+        $stage->setDescription('firma');
+        $stage->setIcon('fas fa-building');
+        $stage->setSlug('firma');
+        $stage->setProcess($processType);
 
         $section = new Section();
         $section->setStage($stage);
@@ -72,6 +83,47 @@ class ZuiddrechtFixtures extends Fixture
         $section->setDescription('Wat zijn de gegevens van uw horeca firma?');
         $section->setProperties([
             $this->commonGroundService->cleanUrl(['component'=>'vtc', 'type'=>'properties', 'id'=>'49170072-00f1-4b68-a926-5e6e6e49e946']),
+            $this->commonGroundService->cleanUrl(['component'=>'vtc', 'type'=>'properties', 'id'=>'55dde78d-4a14-43c6-a0ff-d33b7b5f8bae']),
+        ]);
+        $stage->addSection($section);
+
+        $processType->addStage($stage);
+        $manager->persist($processType);
+        $manager->flush();
+
+        $stage = new Stage();
+        $stage->setName('Locatie');
+        $stage->setDescription('locatie');
+        $stage->setIcon('fas fa-building');
+        $stage->setSlug('locatie');
+        $stage->setProcess($processType);
+
+        $section = new Section();
+        $section->setStage($stage);
+        $section->setName('Uw locatie');
+        $section->setDescription('Wat zijn de gegevens van uw locatie?');
+        $section->setProperties([
+            $this->commonGroundService->cleanUrl(['component'=>'vtc', 'type'=>'properties', 'id'=>'5c5f8837-c42c-4b83-8bec-6d1760e0e0f7']),
+        ]);
+        $stage->addSection($section);
+
+        $processType->addStage($stage);
+        $manager->persist($processType);
+        $manager->flush();
+
+        $stage = new Stage();
+        $stage->setName('Abbonnement');
+        $stage->setDescription('abbonnement');
+        $stage->setIcon('fas fa-money-check');
+        $stage->setSlug('abbonnement');
+        $stage->setProcess($processType);
+
+        $section = new Section();
+        $section->setStage($stage);
+        $section->setName('Uw abbonement');
+        $section->setDescription('Welk abbonnement wilt u?');
+        $section->setProperties([
+            $this->commonGroundService->cleanUrl(['component'=>'vtc', 'type'=>'properties', 'id'=>'3fbb0356-a362-4b70-b914-dd27919ff99c']),
         ]);
         $stage->addSection($section);
 

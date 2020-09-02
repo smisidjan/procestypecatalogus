@@ -5898,6 +5898,86 @@ components:
         '@type':
           readOnly: true
           type: string
+    Condition-read:
+      type: object
+      properties:
+        id:
+          readOnly: true
+          description: 'The UUID identifier of this resource'
+          externalDocs:
+            url: 'http://schema.org/identifier'
+          type: string
+          format: uuid
+        property:
+          description: 'The property that is to be checked'
+          type: string
+        operation:
+          description: 'The operation to be checked'
+          type: string
+        value:
+          description: 'The value the property should have'
+          type: string
+    Condition-write:
+      type: object
+      properties:
+        property:
+          description: 'The property that is to be checked'
+          type: string
+        operation:
+          description: 'The operation to be checked'
+          type: string
+        value:
+          description: 'The value the property should have'
+          type: string
+    'Condition:jsonld-read':
+      type: object
+      properties:
+        '@context':
+          readOnly: true
+          type: string
+        '@id':
+          readOnly: true
+          type: string
+        '@type':
+          readOnly: true
+          type: string
+        id:
+          readOnly: true
+          description: 'The UUID identifier of this resource'
+          externalDocs:
+            url: 'http://schema.org/identifier'
+          type: string
+          format: uuid
+        property:
+          description: 'The property that is to be checked'
+          type: string
+        operation:
+          description: 'The operation to be checked'
+          type: string
+        value:
+          description: 'The value the property should have'
+          type: string
+    'Condition:jsonld-write':
+      type: object
+      properties:
+        '@context':
+          readOnly: true
+          type: string
+        '@id':
+          readOnly: true
+          type: string
+        '@type':
+          readOnly: true
+          type: string
+        property:
+          description: 'The property that is to be checked'
+          type: string
+        operation:
+          description: 'The operation to be checked'
+          type: string
+        value:
+          description: 'The value the property should have'
+          type: string
     ProcessType-read:
       type: object
       description: 'A process.'
@@ -6278,6 +6358,11 @@ components:
         orderNumber:
           description: 'The place in the order where the section should be rendered'
           type: integer
+        conditions:
+          description: 'The conditions that have to be met for showing this section'
+          type: array
+          items:
+            $ref: '#/components/schemas/Condition-read'
       required:
         - name
         - orderNumber
@@ -6315,6 +6400,11 @@ components:
         orderNumber:
           description: 'The place in the order where the section should be rendered'
           type: integer
+        conditions:
+          description: 'The conditions that have to be met for showing this section'
+          type: array
+          items:
+            $ref: '#/components/schemas/Condition-write'
     'Section:jsonld-read':
       type: object
       description: ''
@@ -6372,6 +6462,11 @@ components:
         orderNumber:
           description: 'The place in the order where the section should be rendered'
           type: integer
+        conditions:
+          description: 'The conditions that have to be met for showing this section'
+          type: array
+          items:
+            $ref: '#/components/schemas/Condition:jsonld-read'
       required:
         - name
         - orderNumber
@@ -6418,6 +6513,11 @@ components:
         orderNumber:
           description: 'The place in the order where the section should be rendered'
           type: integer
+        conditions:
+          description: 'The conditions that have to be met for showing this section'
+          type: array
+          items:
+            $ref: '#/components/schemas/Condition:jsonld-write'
     Stage-read:
       type: object
       description: 'A single stage within a process.'
@@ -6486,6 +6586,11 @@ components:
         orderNumber:
           description: 'The place in the order where the stage should be rendered'
           type: integer
+        conditions:
+          description: 'The conditions that have to be met for showing this section'
+          type: array
+          items:
+            $ref: '#/components/schemas/Condition-read'
       required:
         - name
         - process
@@ -6526,6 +6631,11 @@ components:
         orderNumber:
           description: 'The place in the order where the stage should be rendered'
           type: integer
+        conditions:
+          description: 'The conditions that have to be met for showing this section'
+          type: array
+          items:
+            $ref: '#/components/schemas/Condition-write'
     'Stage:jsonld-read':
       type: object
       description: 'A single stage within a process.'
@@ -6603,6 +6713,11 @@ components:
         orderNumber:
           description: 'The place in the order where the stage should be rendered'
           type: integer
+        conditions:
+          description: 'The conditions that have to be met for showing this section'
+          type: array
+          items:
+            $ref: '#/components/schemas/Condition:jsonld-read'
       required:
         - name
         - process
@@ -6652,6 +6767,11 @@ components:
         orderNumber:
           description: 'The place in the order where the stage should be rendered'
           type: integer
+        conditions:
+          description: 'The conditions that have to be met for showing this section'
+          type: array
+          items:
+            $ref: '#/components/schemas/Condition:jsonld-write'
 definitions:
   ProcessType-read:
     properties:
@@ -6807,6 +6927,9 @@ definitions:
       stage:
         description: 'the stage this section belongs to'
         type: \Stage
+      conditions:
+        description: 'The conditions that have to be met for showing this section'
+        type: '\ArrayCollection|\Condition[]'
     required:
       - name
       - orderNumber
@@ -6831,6 +6954,9 @@ definitions:
       stage:
         description: 'the stage this section belongs to'
         type: \Stage
+      conditions:
+        description: 'The conditions that have to be met for showing this section'
+        type: '\ArrayCollection|\Condition[]'
     required:
       - name
       - orderNumber
@@ -6884,6 +7010,9 @@ definitions:
       sections:
         description: 'the sections of this stage'
         type: \ArrayCollection
+      conditions:
+        description: 'The conditions that have to be met for showing this section'
+        type: '\ArrayCollection|\Condition[]'
     required:
       - name
       - orderNumber
@@ -6916,6 +7045,9 @@ definitions:
       sections:
         description: 'the sections of this stage'
         type: \ArrayCollection
+      conditions:
+        description: 'The conditions that have to be met for showing this section'
+        type: '\ArrayCollection|\Condition[]'
     required:
       - name
       - orderNumber
@@ -7023,20 +7155,12 @@ definitions:
         description: 'The moment this request was created'
         type: string
         format: date-time
-<<<<<<< HEAD
-        example: '2020-08-31 12:20:31'
-=======
-        example: '2020-08-31 10:28:41'
->>>>>>> development
+        example: '2020-09-01 13:42:44'
       dateModified:
         description: 'The moment this request last Modified'
         type: string
         format: date-time
-<<<<<<< HEAD
-        example: '2020-08-31 12:20:31'
-=======
-        example: '2020-08-31 10:28:41'
->>>>>>> development
+        example: '2020-09-01 13:42:44'
     required: []
   AuditTrail-write:
     properties:
@@ -7084,20 +7208,12 @@ definitions:
         description: 'The moment this request was created'
         type: string
         format: date-time
-<<<<<<< HEAD
-        example: '2020-08-31 12:20:31'
-=======
-        example: '2020-08-31 10:28:41'
->>>>>>> development
+        example: '2020-09-01 13:42:44'
       dateModified:
         description: 'The moment this request last Modified'
         type: string
         format: date-time
-<<<<<<< HEAD
-        example: '2020-08-31 12:20:31'
-=======
-        example: '2020-08-31 10:28:41'
->>>>>>> development
+        example: '2020-09-01 13:42:44'
     required: []
   ChangeLog-write:
     properties:
