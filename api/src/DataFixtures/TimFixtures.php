@@ -35,6 +35,8 @@ class TimFixtures extends Fixture
         ) {
             return false;
         }
+        */
+        return false;
 
         // formulier Inlichtingen BRP / Burgerlijke stand
         $id = Uuid::fromString('1d101ceb-e485-4e71-bd8c-8161fcc0c347');

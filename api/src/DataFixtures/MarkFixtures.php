@@ -35,6 +35,8 @@ class MarkFixtures extends Fixture
         ) {
             return false;
         }
+        */
+        return false;
         //JA/NEE sticker bestellen
         $id = Uuid::fromString('5b24880e-708a-4fd9-84e7-c5427740fad6');
         $processType = new ProcessType();
