@@ -77,7 +77,6 @@ class MarkFixtures extends Fixture
         $section = new Section();
         $section->setStage($stage);
         $section->setName('Uw gegevens');
-        $section->setDescription('Waar moet de sticker naartoe?');
         $section->setProperties([
             $this->commonGroundService->cleanUrl(['component'=>'vtc', 'type'=>'properties', 'id'=>'c9ed0d31-6296-4e65-9416-aa2a1c366ecd']),
             $this->commonGroundService->cleanUrl(['component'=>'vtc', 'type'=>'properties', 'id'=>'f0ab2b61-2a98-48c0-b984-58ab5fa8568f']),
@@ -194,7 +193,7 @@ class MarkFixtures extends Fixture
         $processType = $manager->getRepository('App:ProcessType')->findOneBy(['id'=> $id]);
 
         $stage = new Stage();
-        $stage->setName('Omschrijf uw evenement.');
+        $stage->setName('Omschrijf uw evenement');
         $stage->setSlug('omschrijf-evenement');
         $stage->setDescription('Omschrijf uw evenement.');
         $stage->setProcess($processType);
@@ -214,7 +213,7 @@ class MarkFixtures extends Fixture
         $manager->flush();
 
         $stage = new Stage();
-        $stage->setName('Wanneer vind uw evenement plaats.');
+        $stage->setName('Wanneer vind uw evenement plaats');
         $stage->setSlug('tijd-evenement');
         $stage->setDescription('Wanneer vind uw evenement plaats.');
         $stage->setProcess($processType);
@@ -277,7 +276,7 @@ class MarkFixtures extends Fixture
         //Formulier Drank en horecawet
         $id = Uuid::fromString('c47285f2-90b4-4080-be56-c2992f677b41');
         $processType = new ProcessType();
-        $processType->setName('Aanvragen vergunning Drank en Horecawet');
+        $processType->setName('Aanvraag vergunning drank -en horecawet');
         $processType->setIcon('fas fa-glass-cheers');
         $processType->setDescription('Een ondernemer moet een drank- en horecavergunning hebben om alcoholische dranken te schenken, vraag deze aan met dit formulier.');
         $processType->setSourceOrganization($this->commonGroundService->cleanUrl(['component'=>'vtc', 'type'=>'request_types', 'id'=>'4d1eded3-fbdf-438f-9536-8747dd8ab591']));
@@ -479,9 +478,7 @@ class MarkFixtures extends Fixture
 
         $section = new Section();
         $section->setName('Wat is het adres van de woning waarvoor u een blijverslening wilt aanvragen?');
-        $section->setDescription('gegevens woning:');
         $section->setProperties([
-            $this->commonGroundService->cleanUrl(['component' => 'vtc', 'type' => 'properties', 'id' => 'f9f7bf4e-a798-45b9-9fab-e5e68aa48718']),
             $this->commonGroundService->cleanUrl(['component' => 'vtc', 'type' => 'properties', 'id' => 'a012a629-3f02-43f8-8037-9f91609385fc']),
             $this->commonGroundService->cleanUrl(['component' => 'vtc', 'type' => 'properties', 'id' => 'c4c936c8-6973-4578-b6cb-1e63b94bb8f0']),
             $this->commonGroundService->cleanUrl(['component' => 'vtc', 'type' => 'properties', 'id' => '37a86de8-4c81-4fea-b311-4755e837d830']),
@@ -502,7 +499,7 @@ class MarkFixtures extends Fixture
 
         $section = new Section();
         $section->setName('Aanpassingen aan de woning');
-        $section->setDescription('Welke maatregelen of werkzaamheden aan uw woning gaat u uitvoeren?');
+        $section->setDescription('Welke maatregelen of werkzaamheden gaat u uitvoeren aan uw woning?');
         $section->setProperties([
             //formElement moet nog gemaakt worden
             $this->commonGroundService->cleanUrl(['component' => 'vtc', 'type' => 'properties', 'id' => '700d1c83-e911-4c2c-ad3b-ee9a5292b314']),
@@ -713,12 +710,12 @@ class MarkFixtures extends Fixture
         $manager->flush();
 
         $stage = new Stage();
-        $stage->setName('Persoonsgegevens van de overledene');
+        $stage->setName('Persoonsgegevens van de overledenen');
         $stage->setSlug('overledene');
         $stage->setProcess($processType);
 
         $section = new Section();
-        $section->setName('Gegevens van de overledene');
+        $section->setName('Gegevens van de overledenen');
         $section->setProperties([
             $this->commonGroundService->cleanUrl(['component' => 'vtc', 'type' => 'properties', 'id' => 'baea7811-3aef-447a-82e2-841f96e3e31d']),
             $this->commonGroundService->cleanUrl(['component' => 'vtc', 'type' => 'properties', 'id' => '734fc710-ce4d-4ee6-9b02-8e8288e99edd']),
@@ -850,12 +847,12 @@ class MarkFixtures extends Fixture
         $manager->flush();
 
         $stage = new Stage();
-        $stage->setName('Gegevens van de overledene');
+        $stage->setName('Gegevens van de overledenen');
         $stage->setSlug('overledene');
         $stage->setProcess($processType);
 
         $section = new Section();
-        $section->setName('Plaats overleiden');
+        $section->setName('Plaats overlijden');
         $section->setProperties([
             $this->commonGroundService->cleanUrl(['component' => 'vtc', 'type' => 'properties', 'id' => '1abb6b5a-4534-4957-8ab1-6e5a46a864bf']),
         ]);
@@ -863,7 +860,7 @@ class MarkFixtures extends Fixture
         $stage->addSection($section);
 
         $section = new Section();
-        $section->setName('Gegevens overledene:');
+        $section->setName('Gegevens overledenen:');
         $section->setProperties([
             $this->commonGroundService->cleanUrl(['component' => 'vtc', 'type' => 'properties', 'id' => '9c90a629-5aab-4194-a8bf-39ea57f219a6']),
             $this->commonGroundService->cleanUrl(['component' => 'vtc', 'type' => 'properties', 'id' => 'dd1bdc9a-87bd-429e-921c-7b39f53c6033']),
@@ -890,7 +887,7 @@ class MarkFixtures extends Fixture
         $stage->addSection($section);
 
         $section = new Section();
-        $section->setName('Gegevens overleiden');
+        $section->setName('Gegevens overlijden');
         $section->setProperties([
             $this->commonGroundService->cleanUrl(['component' => 'vtc', 'type' => 'properties', 'id' => 'eb896755-7731-4c9b-8b3d-57ccffce9e3b']),
             $this->commonGroundService->cleanUrl(['component' => 'vtc', 'type' => 'properties', 'id' => 'b6669bed-9c50-4bb5-9e9d-4c9a36e7ff2c']),
