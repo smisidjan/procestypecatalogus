@@ -325,7 +325,7 @@ class LucasFixtures extends Fixture
         $manager->flush();
         $processType = $manager->getRepository('App:ProcessType')->findOneBy(['id'=> $id]);
 
-        //1e pagina
+        //1e pagin
         $stage = new Stage();
         $stage->setName('Uw gegevens');
         $stage->setDescription('Uw persoonlijke gegevens invullen.');
@@ -338,8 +338,6 @@ class LucasFixtures extends Fixture
         $section->setDescription('Uw persoonlijke gegevens invullen.');
         $section->setProperties([
             $this->commonGroundService->cleanUrl(['component'=>'vtc', 'type'=>'properties', 'id'=>'3770c5d1-8f65-4621-96d1-d48fd2edc1bb']),
-            $this->commonGroundService->cleanUrl(['component'=>'vtc', 'type'=>'properties', 'id'=>'0ddd501e-e027-425f-a244-fa56f25e2fe8']),
-            $this->commonGroundService->cleanUrl(['component'=>'vtc', 'type'=>'properties', 'id'=>'0f733b39-345e-4932-aae3-aac2db039fc2']),
         ]);
         $stage->addSection($section);
 
@@ -357,7 +355,7 @@ class LucasFixtures extends Fixture
         $section = new Section();
         $section->setStage($stage);
         $section->setName('Uw aanvraag');
-        $section->setDescription('Uw aanvraag invullen!');
+        $section->setDescription('Uw aanvraag invullen');
         $section->setProperties([
             $this->commonGroundService->cleanUrl(['component'=>'vtc', 'type'=>'properties', 'id'=>'2c039392-2a56-44eb-bccd-abff50a738be']),
             $this->commonGroundService->cleanUrl(['component'=>'vtc', 'type'=>'properties', 'id'=>'3c202c35-e52f-4ff4-8b76-98ab89908453']),
@@ -379,18 +377,13 @@ class LucasFixtures extends Fixture
         $section->setDescription('Wat is het adres van het huis?');
         $section->setProperties([
             $this->commonGroundService->cleanUrl(['component'=>'vtc', 'type'=>'properties', 'id'=>'6f9aced9-6efe-40ff-b375-2d0b00681cc9']),
-            $this->commonGroundService->cleanUrl(['component'=>'vtc', 'type'=>'properties', 'id'=>'9195fc6b-a88b-495e-94d0-ba592f42deaf']),
-            $this->commonGroundService->cleanUrl(['component'=>'vtc', 'type'=>'properties', 'id'=>'13cfc0b4-c058-4f65-a249-aa0de1b8de1b']),
-            $this->commonGroundService->cleanUrl(['component'=>'vtc', 'type'=>'properties', 'id'=>'7532c9c8-a1bb-483b-8d77-57756080f9fc']),
-            $this->commonGroundService->cleanUrl(['component'=>'vtc', 'type'=>'properties', 'id'=>'bef59e64-9bad-41d0-b45d-f8c3dfa64e95']),
-            $this->commonGroundService->cleanUrl(['component'=>'vtc', 'type'=>'properties', 'id'=>'e0037ba7-84ce-4404-bd73-63fc5ce160f0']),
-        ]);
+            ]);
         $stage->addSection($section);
 
         $section = new Section();
         $section->setStage($stage);
         $section->setName('Informatie Betalen');
-        $section->setDescription('Uw betaalgegevens invullen!');
+        $section->setDescription('Uw betaalgegevens invullen');
         $section->setProperties([
             $this->commonGroundService->cleanUrl(['component'=>'vtc', 'type'=>'properties', 'id'=>'50c04e5d-b834-4d52-af52-86f76707b022']),
             $this->commonGroundService->cleanUrl(['component'=>'vtc', 'type'=>'properties', 'id'=>'04676a04-a19f-4766-9ead-f01cced3e965']),

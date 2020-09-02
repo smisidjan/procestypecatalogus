@@ -147,14 +147,14 @@ class TimFixtures extends Fixture
 
         //5e pagina
         $stage = new Stage();
-        $stage->setName('gegevens contact persoon');
+        $stage->setName('gegevens contactpersoon');
         $stage->setIcon('fal fa-users');
         $stage->setSlug('gegevens-contact-persoon');
-        $stage->setDescription('voer hier de gegevens van de contact persoon in');
+        $stage->setDescription('voer hier de gegevens van de contactpersoon in');
         $stage->setProcess($processType);
 
         $section = new Section();
-        $section->setName('gegevens contact persoon');
+        $section->setName('gegevens contactpersoon');
         $section->setProperties([
             $this->commonGroundService->cleanUrl(['component' => 'vtc', 'type' => 'properties', 'id' => '2d8a9acb-653b-468e-8d0d-d5beb16e1c26']),
             $this->commonGroundService->cleanUrl(['component' => 'vtc', 'type' => 'properties', 'id' => 'a32e1ed1-a03d-445d-a4c1-27d741a3329c']),
@@ -326,7 +326,7 @@ class TimFixtures extends Fixture
         $processType = new ProcessType();
         $processType->setSourceOrganization($this->commonGroundService->cleanUrl(['component'=>'vtc', 'type'=>'request_types', 'id'=>'4d1eded3-fbdf-438f-9536-8747dd8ab591']));
         $processType->setName('aanvraagformulier mantelzorgwaardering');
-        $processType->setDescription('Omring regelt de mantelzorgwaardering in opdracht van de gemeente Hoorn. Uw gegevens worden ook gebruikt om u te informeren over ondersteuning voor mantelzorgers. ');
+        $processType->setDescription('Omring regelt de mantelzorgwaardering in opdracht van de gemeente Zuid-Drecht. Uw gegevens worden ook gebruikt om u te informeren over ondersteuning voor mantelzorgers. ');
         $processType->setRequestType($this->commonGroundService->cleanUrl(['component' => 'vtc', 'type' => 'request_types', 'id' => 'b5007212-5a5d-4203-ba82-704111ed678a']));
         $processType->setIcon('fas fa-user-nurse');
         $manager->persist($processType);
@@ -337,7 +337,7 @@ class TimFixtures extends Fixture
 
         //1e pagina
         $stage = new Stage();
-        $stage->setName('gegevens invoeren');
+        $stage->setName('gegevens zorgvrager');
         $stage->setIcon('fal fa-users');
         $stage->setSlug('gegevens-invoeren');
         $stage->setDescription('voer hier uw gegevens in');
@@ -359,7 +359,7 @@ class TimFixtures extends Fixture
 
         //2e pagina
         $stage = new Stage();
-        $stage->setName('verzorger invoeren');
+        $stage->setName('gegevens mantelzorger');
         $stage->setIcon('fal fa-users');
         $stage->setSlug('verzorger-invoeren');
         $stage->setDescription('hier kunt u de informatie van uw mantelzorger invullen');
@@ -407,7 +407,7 @@ class TimFixtures extends Fixture
         $stage->setName('controleren van uw gegevens');
         $stage->setIcon('fal fa-users');
         $stage->setSlug('gegevens-controleren');
-        $stage->setDescription('controleer hier uw gevens');
+        $stage->setDescription('controleer hier uw gegevens');
         $stage->setProcess($processType);
 
         $section = new Section();
@@ -454,12 +454,12 @@ class TimFixtures extends Fixture
         $stage = new Stage();
         $stage->setName('uw gegevens');
         $stage->setIcon('fal fa-users');
-        $stage->setSlug('uw-gevens');
+        $stage->setSlug('uw-gegevens');
         $stage->setDescription('voer hier uw eigen gegevens in');
         $stage->setProcess($processType);
 
         $section = new Section();
-        $section->setName('uw gevens invullen');
+        $section->setName('uw gegevens invullen');
         $section->setProperties([
             $this->commonGroundService->cleanUrl(['component' => 'vtc', 'type' => 'properties', 'id' => 'b93ed2e5-28ea-4ea6-af32-2ff4e6f588c9']),
             $this->commonGroundService->cleanUrl(['component' => 'vtc', 'type' => 'properties', 'id' => '6442816e-4657-4eb2-9d1b-ace895d01bd0']),
@@ -508,7 +508,7 @@ class TimFixtures extends Fixture
         $stage->setProcess($processType);
 
         $section = new Section();
-        $section->setName('zijn uw gegevens juist ingevult');
+        $section->setName('zijn uw gegevens juist ingevuld');
         $section->setProperties([
             $this->commonGroundService->cleanUrl(['component' => 'vtc', 'type' => 'properties', 'id' => '1a195ef3-670b-40f6-8b69-c3f4e35a97d9']),
         ]);
