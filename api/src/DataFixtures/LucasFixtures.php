@@ -31,21 +31,23 @@ class LucasFixtures extends Fixture
             $this->params->get('app_domain') != 'zuiddrecht.nl' && strpos($this->params->get('app_domain'), 'zuiddrecht.nl') == false &&
             $this->params->get('app_domain') != 'zuid-drecht.nl' && strpos($this->params->get('app_domain'), 'zuid-drecht.nl') == false ||
             // Dev enviroment
-            $this->params->get('app_env') != 'dev' && strpos($this->params->get('app_env'), 'dev') == false
-
-        /*
-    if (
-        // If build all fixtures is true we build all the fixtures
-        !$this->params->get('app_build_all_fixtures') &&
-        // Specific domain names
-        ($this->params->get('app_domain') != 'begraven.zaakonline.nl' && strpos($this->params->get('app_domain'), 'begraven.zaakonline.nl') == false) &&
-        ($this->params->get('app_domain') != 'westfriesland.commonground.nu' && strpos($this->params->get('app_domain'), 'westfriesland.commonground.nu') == false) &&
-        ($this->params->get('app_domain') != 'zuid-drecht.nl' && strpos($this->params->get('app_domain'), 'zuid-drecht.nl') == false)
-        ) {
+            $this->params->get('app_env') != 'dev' && strpos($this->params->get('app_env'), 'dev') == false)
+        {
             return false;
         }
-        */
-        return false;
+
+            
+//        if (
+//            // If build all fixtures is true we build all the fixtures
+//            !$this->params->get('app_build_all_fixtures') &&
+//            // Specific domain names
+//            ($this->params->get('app_domain') != 'begraven.zaakonline.nl' && strpos($this->params->get('app_domain'), 'begraven.zaakonline.nl') == false) &&
+//            ($this->params->get('app_domain') != 'westfriesland.commonground.nu' && strpos($this->params->get('app_domain'), 'westfriesland.commonground.nu') == false) &&
+//            ($this->params->get('app_domain') != 'zuid-drecht.nl' && strpos($this->params->get('app_domain'), 'zuid-drecht.nl') == false)
+//            ) {
+//                return false;
+//            }
+//        return false;
 
         // Documenten Inleveren
         $id = Uuid::fromString('f5b473e9-a2d8-4383-b268-265c340f4bc5');
