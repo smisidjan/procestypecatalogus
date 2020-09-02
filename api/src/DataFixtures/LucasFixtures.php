@@ -24,6 +24,14 @@ class LucasFixtures extends Fixture
 
     public function load(ObjectManager $manager)
     {
+        if (
+            // If build all fixtures is true we build all the fixtures
+            !$this->params->get('app_build_all_fixtures') &&
+            // Specific domain names
+            $this->params->get('app_domain') != 'zuiddrecht.nl' && strpos($this->params->get('app_domain'), 'zuiddrecht.nl') == false &&
+            $this->params->get('app_domain') != 'zuid-drecht.nl' && strpos($this->params->get('app_domain'), 'zuid-drecht.nl') == false ||
+            // Dev enviroment
+            $this->params->get('app_env') != 'dev' && strpos($this->params->get('app_env'), 'dev') == false
 
         /*
     if (
