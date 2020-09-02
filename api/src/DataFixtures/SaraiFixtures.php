@@ -35,7 +35,7 @@ class SaraiFixtures extends Fixture
         ) {
             return false;
         }
-        */
+
         return false;
 
         //zorg formulier

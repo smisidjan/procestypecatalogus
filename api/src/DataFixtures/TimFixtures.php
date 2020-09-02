@@ -35,7 +35,7 @@ class TimFixtures extends Fixture
         ) {
             return false;
         }
-        */
+
         return false;
 
         // formulier Inlichtingen BRP / Burgerlijke stand
