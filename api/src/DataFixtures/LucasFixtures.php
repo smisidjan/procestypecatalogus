@@ -36,7 +36,7 @@ class LucasFixtures extends Fixture
             return false;
         }
 
-            
+
 //        if (
 //            // If build all fixtures is true we build all the fixtures
 //            !$this->params->get('app_build_all_fixtures') &&
