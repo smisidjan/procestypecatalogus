@@ -98,6 +98,8 @@ class CheckinFixtures extends Fixture
         $section->setDescription('Welk abbonnement wilt u?');
         $section->setProperties([
             $this->commonGroundService->cleanUrl(['component'=>'vtc', 'type'=>'properties', 'id'=>'3fbb0356-a362-4b70-b914-dd27919ff99c']),
+            $this->commonGroundService->cleanUrl(['component'=>'vtc', 'type'=>'properties', 'id'=>'fa79e0cd-2fcd-44bf-84e3-01e9253bdd7b']),
+            $this->commonGroundService->cleanUrl(['component'=>'vtc', 'type'=>'properties', 'id'=>'ce876e7e-8157-4468-b4ae-f72e04eabb74']),
         ]);
         $stage->addSection($section);
 
