@@ -106,6 +106,5 @@ class CheckinFixtures extends Fixture
         $processType->addStage($stage);
         $manager->persist($processType);
         $manager->flush();
-
     }
 }
