@@ -463,7 +463,7 @@ class ProcessType
 
     public function getSubmitText(): ?string
     {
-        return $this->SubmitText;
+        return $this->submitText;
     }
 
     public function setSubmitText(string $SubmitText): self
@@ -475,7 +475,7 @@ class ProcessType
 
     public function getSubmittedText(): ?string
     {
-        return $this->SubmittedText;
+        return $this->submittedText;
     }
 
     public function setSubmittedText(string $SubmittedText): self
