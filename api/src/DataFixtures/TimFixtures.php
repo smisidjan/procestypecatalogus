@@ -42,7 +42,8 @@ class TimFixtures extends Fixture
         $id = Uuid::fromString('1d101ceb-e485-4e71-bd8c-8161fcc0c347');
         $processType = new ProcessType();
         $processType->setSourceOrganization($this->commonGroundService->cleanUrl(['component'=>'vtc', 'type'=>'request_types', 'id'=>'4d1eded3-fbdf-438f-9536-8747dd8ab591']));
-        $processType->setName('Inlichtingen BRP / Burgerlijke stand');
+        $processType->setName('formulier Inlichtingen BRP / Burgerlijke stand');
+        $processType->setIcon('fas fa-info');
         $processType->setDescription('Advocaten, notarissen en gerechtsdeurwaarders gebruiken dit formulier voor een verzoek om inlichtingen uit de Basisregistratie Personen (BRP) of Burgerlijke stand');
         $processType->setRequestType($this->commonGroundService->cleanUrl(['component' => 'vtc', 'type' => 'request_types', 'id' => '4dcf25f2-c2dc-4a82-8a78-33e4d3d7241d']));
         $processType->setIcon('fas fa-info');
