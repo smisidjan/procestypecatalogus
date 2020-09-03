@@ -86,16 +86,16 @@ class CheckinFixtures extends Fixture
         $manager->flush();
 
         $stage = new Stage();
-        $stage->setName('Abbonnement');
-        $stage->setDescription('abbonnement');
+        $stage->setName('Abonnement');
+        $stage->setDescription('abonnement');
         $stage->setIcon('fas fa-money-check');
-        $stage->setSlug('abbonnement');
+        $stage->setSlug('abonnement');
         $stage->setProcess($processType);
 
         $section = new Section();
         $section->setStage($stage);
-        $section->setName('Uw abbonement');
-        $section->setDescription('Welk abbonnement wilt u?');
+        $section->setName('Uw abonnement');
+        $section->setDescription('Welk abonnement wilt u?');
         $section->setProperties([
             $this->commonGroundService->cleanUrl(['component'=>'vtc', 'type'=>'properties', 'id'=>'3fbb0356-a362-4b70-b914-dd27919ff99c']),
             $this->commonGroundService->cleanUrl(['component'=>'vtc', 'type'=>'properties', 'id'=>'fa79e0cd-2fcd-44bf-84e3-01e9253bdd7b']),
