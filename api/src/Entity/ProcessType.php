@@ -115,7 +115,7 @@ class ProcessType
      *
      * @Gedmo\Versioned
      * @Assert\Length(
-     *      max = 2550
+     *      max = 255
      * )
      * @Groups({"read", "write"})
      * @ORM\Column(type="text", nullable=true)
@@ -241,6 +241,39 @@ class ProcessType
      * @ORM\Column(type="integer", nullable=true)
      */
     private $depositPercentage;
+
+    /**
+     * @var string The text displayed at the instruction stage.
+     *
+     * @example Dit proces is bedoelt om X te doen. Hier kun je meer vinden over X. etc.
+     *
+     * @Gedmo\Versioned
+     * @Groups({"read", "write"})
+     * @ORM\Column(type="text", nullable=true)
+     */
+    private $instructionText;
+
+    /**
+     * @var string The text displayed at the submit stage.
+     *
+     * @example Na het indienen van dit verzoek zal uw verzoek binnen een week afgehandeld worden.
+     *
+     * @Gedmo\Versioned
+     * @Groups({"read", "write"})
+     * @ORM\Column(type="text", nullable=true)
+     */
+    private $submitText;
+
+    /**
+     * @var string The text displayed at the submitted stage.
+     *
+     * @example Uw verzoek zal binnen een week afgehandeld worden.
+     *
+     * @Gedmo\Versioned
+     * @Groups({"read", "write"})
+     * @ORM\Column(type="text", nullable=true)
+     */
+    private $submittedText;
 
     /**
      * @param array|string[] The request properties that are used for this process
@@ -412,6 +445,42 @@ class ProcessType
     public function setDepositPercentage($depositPercentage): self
     {
         $this->depositPercentage = $depositPercentage;
+
+        return $this;
+    }
+
+    public function getInstructionText(): ?string
+    {
+        return $this->instructionText;
+    }
+
+    public function setInstructionText(string $instructionText): self
+    {
+        $this->instructionText = $instructionText;
+
+        return $this;
+    }
+
+    public function getSubmitText(): ?string
+    {
+        return $this->SubmitText;
+    }
+
+    public function setSubmitText(string $SubmitText): self
+    {
+        $this->submitText = $SubmitText;
+
+        return $this;
+    }
+
+    public function getSubmittedText(): ?string
+    {
+        return $this->SubmittedText;
+    }
+
+    public function setSubmittedText(string $SubmittedText): self
+    {
+        $this->submittedText = $SubmittedText;
 
         return $this;
     }
