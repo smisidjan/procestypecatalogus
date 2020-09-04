@@ -115,7 +115,6 @@ class Stage
      * @example My Property
      *
      * @Gedmo\Versioned
-     * @Assert\Length(min = 15, max = 255)
      * @Groups({"read", "write"})
      * @ORM\Column(type="string", length=255, nullable=true)
      */
@@ -200,7 +199,6 @@ class Stage
      * @example my-slug
      *
      * @Gedmo\Versioned
-     * @Assert\Length(min = 15, max = 255)
      * @Groups({"read", "write"})
      * @ORM\Column(type="string", length=255, nullable=true)
      */
@@ -261,10 +259,20 @@ class Stage
      */
     private $orderNumber = 0;
 
+    /**
+     * @var ArrayCollection|Condition[] The conditions that have to be met for showing this section
+     *
+     * @Groups({"read","write"})
+     * @MaxDepth(1)
+     * @ORM\OneToMany(targetEntity=Condition::class, mappedBy="stage", cascade={"persist","remove"})
+     */
+    private $conditions;
+
     public function __construct()
     {
         $this->documents = new ArrayCollection();
         $this->sections = new ArrayCollection();
+        $this->conditions = new ArrayCollection();
     }
 
     public function getId()
@@ -520,5 +528,36 @@ class Stage
         if (!$this->orderNumber || $this->orderNumber <= 0) {
             $this->orderNumber = $this->getProcess()->getStages()->indexOf($this) + 1;
         }
+    }
+
+    /**
+     * @return Collection|Condition[]
+     */
+    public function getConditions(): Collection
+    {
+        return $this->conditions;
+    }
+
+    public function addCondition(Condition $condition): self
+    {
+        if (!$this->conditions->contains($condition)) {
+            $this->conditions[] = $condition;
+            $condition->setStage($this);
+        }
+
+        return $this;
+    }
+
+    public function removeCondition(Condition $condition): self
+    {
+        if ($this->conditions->contains($condition)) {
+            $this->conditions->removeElement($condition);
+            // set the owning side to null (unless already changed)
+            if ($condition->getStage() === $this) {
+                $condition->setStage(null);
+            }
+        }
+
+        return $this;
     }
 }
