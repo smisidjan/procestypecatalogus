@@ -8,6 +8,8 @@ use ApiPlatform\Core\Bridge\Doctrine\Orm\Filter\BooleanFilter;
 use ApiPlatform\Core\Bridge\Doctrine\Orm\Filter\DateFilter;
 use ApiPlatform\Core\Bridge\Doctrine\Orm\Filter\OrderFilter;
 use ApiPlatform\Core\Bridge\Doctrine\Orm\Filter\SearchFilter;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Gedmo\Mapping\Annotation as Gedmo;
 use Ramsey\Uuid\Uuid;
@@ -173,6 +175,20 @@ class Section
      */
     private $orderNumber = 0;
 
+    /**
+     * @var ArrayCollection|Condition[] The conditions that have to be met for showing this section
+     *
+     * @Groups({"read","write"})
+     * @MaxDepth(1)
+     * @ORM\OneToMany(targetEntity=Condition::class, mappedBy="section", cascade={"persist","remove"})
+     */
+    private $conditions;
+
+    public function __construct()
+    {
+        $this->conditions = new ArrayCollection();
+    }
+
     public function getId(): ?Uuid
     {
         return $this->id;
@@ -298,5 +314,36 @@ class Section
         if (!$this->orderNumber || $this->orderNumber <= 0) {
             $this->orderNumber = $this->getStage()->getSections()->indexOf($this) + 1;
         }
+    }
+
+    /**
+     * @return Collection|Condition[]
+     */
+    public function getConditions(): Collection
+    {
+        return $this->conditions;
+    }
+
+    public function addCondition(Condition $condition): self
+    {
+        if (!$this->conditions->contains($condition)) {
+            $this->conditions[] = $condition;
+            $condition->setSection($this);
+        }
+
+        return $this;
+    }
+
+    public function removeCondition(Condition $condition): self
+    {
+        if ($this->conditions->contains($condition)) {
+            $this->conditions->removeElement($condition);
+            // set the owning side to null (unless already changed)
+            if ($condition->getSection() === $this) {
+                $condition->setSection(null);
+            }
+        }
+
+        return $this;
     }
 }
