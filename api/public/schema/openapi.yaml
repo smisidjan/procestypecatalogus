@@ -2134,6 +2134,33 @@ paths:
               - asc
               - desc
         -
+          name: 'order[instructionText]'
+          in: query
+          required: false
+          schema:
+            type: string
+            enum:
+              - asc
+              - desc
+        -
+          name: 'order[submitText]'
+          in: query
+          required: false
+          schema:
+            type: string
+            enum:
+              - asc
+              - desc
+        -
+          name: 'order[submittedText]'
+          in: query
+          required: false
+          schema:
+            type: string
+            enum:
+              - asc
+              - desc
+        -
           name: 'order[properties]'
           in: query
           required: false
@@ -2391,6 +2418,54 @@ paths:
             type: array
             items:
               type: integer
+          style: form
+          explode: true
+        -
+          name: instructionText
+          in: query
+          required: false
+          schema:
+            type: string
+        -
+          name: 'instructionText[]'
+          in: query
+          required: false
+          schema:
+            type: array
+            items:
+              type: string
+          style: form
+          explode: true
+        -
+          name: submitText
+          in: query
+          required: false
+          schema:
+            type: string
+        -
+          name: 'submitText[]'
+          in: query
+          required: false
+          schema:
+            type: array
+            items:
+              type: string
+          style: form
+          explode: true
+        -
+          name: submittedText
+          in: query
+          required: false
+          schema:
+            type: string
+        -
+          name: 'submittedText[]'
+          in: query
+          required: false
+          schema:
+            type: array
+            items:
+              type: string
           style: form
           explode: true
         -
@@ -6039,6 +6114,18 @@ components:
           description: 'The deposit percentage requered for this proces'
           type: integer
           nullable: true
+        instructionText:
+          description: 'The text displayed at the instruction stage.'
+          type: string
+          nullable: true
+        submitText:
+          description: 'The text displayed at the submit stage.'
+          type: string
+          nullable: true
+        submittedText:
+          description: 'The text displayed at the submitted stage.'
+          type: string
+          nullable: true
         properties:
           type: array
           items:
@@ -6125,6 +6212,18 @@ components:
           description: 'The deposit percentage requered for this proces'
           type: integer
           nullable: true
+        instructionText:
+          description: 'The text displayed at the instruction stage.'
+          type: string
+          nullable: true
+        submitText:
+          description: 'The text displayed at the submit stage.'
+          type: string
+          nullable: true
+        submittedText:
+          description: 'The text displayed at the submitted stage.'
+          type: string
+          nullable: true
         properties:
           type: array
           items:
@@ -6204,6 +6303,18 @@ components:
         depositPercentage:
           description: 'The deposit percentage requered for this proces'
           type: integer
+          nullable: true
+        instructionText:
+          description: 'The text displayed at the instruction stage.'
+          type: string
+          nullable: true
+        submitText:
+          description: 'The text displayed at the submit stage.'
+          type: string
+          nullable: true
+        submittedText:
+          description: 'The text displayed at the submitted stage.'
+          type: string
           nullable: true
         properties:
           type: array
@@ -6299,6 +6410,18 @@ components:
         depositPercentage:
           description: 'The deposit percentage requered for this proces'
           type: integer
+          nullable: true
+        instructionText:
+          description: 'The text displayed at the instruction stage.'
+          type: string
+          nullable: true
+        submitText:
+          description: 'The text displayed at the submit stage.'
+          type: string
+          nullable: true
+        submittedText:
+          description: 'The text displayed at the submitted stage.'
+          type: string
           nullable: true
         properties:
           type: array
@@ -6789,7 +6912,7 @@ definitions:
         description: 'An short description of this process'
         type: string
         example: 'This is the best process ever'
-        maxLength: 2550
+        maxLength: 255
       icon:
         description: 'The icon of this property'
         type: string
@@ -6824,6 +6947,18 @@ definitions:
         description: 'The deposit percentage requered for this proces'
         type: int
         example: '25'
+      instructionText:
+        description: 'The text displayed at the instruction stage.'
+        type: string
+        example: 'Dit proces is bedoelt om X te doen. Hier kun je meer vinden over X. etc.'
+      submitText:
+        description: 'The text displayed at the submit stage.'
+        type: string
+        example: 'Na het indienen van dit verzoek zal uw verzoek binnen een week afgehandeld worden.'
+      submittedText:
+        description: 'The text displayed at the submitted stage.'
+        type: string
+        example: 'Uw verzoek zal binnen een week afgehandeld worden.'
       properties: []
       documents: []
       dateCreated:
@@ -6849,7 +6984,7 @@ definitions:
         description: 'An short description of this process'
         type: string
         example: 'This is the best process ever'
-        maxLength: 2550
+        maxLength: 255
       icon:
         description: 'The icon of this property'
         type: string
@@ -6884,6 +7019,18 @@ definitions:
         description: 'The deposit percentage requered for this proces'
         type: int
         example: '25'
+      instructionText:
+        description: 'The text displayed at the instruction stage.'
+        type: string
+        example: 'Dit proces is bedoelt om X te doen. Hier kun je meer vinden over X. etc.'
+      submitText:
+        description: 'The text displayed at the submit stage.'
+        type: string
+        example: 'Na het indienen van dit verzoek zal uw verzoek binnen een week afgehandeld worden.'
+      submittedText:
+        description: 'The text displayed at the submitted stage.'
+        type: string
+        example: 'Uw verzoek zal binnen een week afgehandeld worden.'
       properties: []
       documents: []
       stages:
@@ -7155,12 +7302,12 @@ definitions:
         description: 'The moment this request was created'
         type: string
         format: date-time
-        example: '2020-09-01 13:42:44'
+        example: '2020-09-03 12:36:32'
       dateModified:
         description: 'The moment this request last Modified'
         type: string
         format: date-time
-        example: '2020-09-01 13:42:44'
+        example: '2020-09-03 12:36:32'
     required: []
   AuditTrail-write:
     properties:
@@ -7208,12 +7355,12 @@ definitions:
         description: 'The moment this request was created'
         type: string
         format: date-time
-        example: '2020-09-01 13:42:44'
+        example: '2020-09-03 12:36:32'
       dateModified:
         description: 'The moment this request last Modified'
         type: string
         format: date-time
-        example: '2020-09-01 13:42:44'
+        example: '2020-09-03 12:36:32'
     required: []
   ChangeLog-write:
     properties:
