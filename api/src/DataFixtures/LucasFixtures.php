@@ -368,7 +368,7 @@ class LucasFixtures extends Fixture
         $section->setDescription('Wat is het adres van het huis?');
         $section->setProperties([
             $this->commonGroundService->cleanUrl(['component'=>'vtc', 'type'=>'properties', 'id'=>'6f9aced9-6efe-40ff-b375-2d0b00681cc9']),
-            ]);
+        ]);
         $stage->addSection($section);
 
         $section = new Section();
