@@ -646,7 +646,7 @@ class TimFixtures extends Fixture
         $section->setName('bijlagen toevoegen');
         $section->setProperties([
             $this->commonGroundService->cleanUrl(['component' => 'vtc', 'type' => 'properties', 'id' => '5cbd70b2-e4d3-4a78-ac7e-67cc91ca10ba']),
-            ]);
+        ]);
         $section->setStage($stage);
 
         $section->setStage($stage);
@@ -674,6 +674,5 @@ class TimFixtures extends Fixture
         $processType->addStage($stage);
         $manager->persist($processType);
         $manager->flush();
-
     }
 }

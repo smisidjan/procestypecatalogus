@@ -172,6 +172,22 @@ class WestFrieslandFixtures extends Fixture
         // Add the stage to the procces type
         $processType->addStage($stage);
 
+        $stage = new Stage();
+        $stage->setName('Contactpersoon');
+        $stage->setIcon('fal fa-users');
+        $stage->setSlug('contactpersoon');
+        $stage->setDescription('Wie treed op als contactpersoon?');
+
+        $section = new Section();
+        $section->setName('Contactpersoon');
+        $section->setDescription('Wie treed er op als contactpersoon?');
+        $section->setProperties([$this->commonGroundService->cleanUrl(['component'=>'vtc', 'type'=>'properties', 'id'=>'8110dc29-7b27-448e-8853-a8126c984ccb'])]);
+        //$section->setProperties(["https://vtc.westfriesland.commonground.nu/properties/8110dc29-7b27-448e-8853-a8126c984ccb"]);
+        $stage->addSection($section);
+
+        // Add the stage to the procces type
+        $processType->addStage($stage);
+
         // Save it all to the db
         $manager->persist($processType);
         $processType->setId($id);
