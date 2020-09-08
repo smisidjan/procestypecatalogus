@@ -95,7 +95,11 @@ class WestFrieslandFixtures extends Fixture
         $section = new Section();
         $section->setName('Soort graf');
         $section->setDescription('Wat voor soort graf wilt u iemand in begraven?');
-        $section->setProperties([$this->commonGroundService->cleanUrl(['component'=>'vtc', 'type'=>'properties', 'id'=>'3b6a637d-19c6-4730-b322-c03d0d8301b6'])]);
+        $section->setProperties(
+            [
+                $this->commonGroundService->cleanUrl(['component'=>'vtc', 'type'=>'properties', 'id'=>'3b6a637d-19c6-4730-b322-c03d0d8301b6']),
+                $this->commonGroundService->cleanUrl(['component'=>'vtc', 'type'=>'properties', 'id'=>'7c212e0e-46dc-4ce0-8cec-8fd0d2d2c99b'])
+            ]);
         //s$section->setProperties(["https://vtc.westfriesland.commonground.nu/properties/3b6a637d-19c6-4730-b322-c03d0d8301b6"]);
         $stage->addSection($section);
 
@@ -181,7 +185,11 @@ class WestFrieslandFixtures extends Fixture
         $section = new Section();
         $section->setName('Contactpersoon');
         $section->setDescription('Wie treed er op als contactpersoon?');
-        $section->setProperties([$this->commonGroundService->cleanUrl(['component'=>'vtc', 'type'=>'properties', 'id'=>'8110dc29-7b27-448e-8853-a8126c984ccb'])]);
+        $section->setProperties([
+            $this->commonGroundService->cleanUrl(['component'=>'vtc', 'type'=>'properties', 'id'=>'8110dc29-7b27-448e-8853-a8126c984ccb']),
+            $this->commonGroundService->cleanUrl(['component'=>'vtc', 'type'=>'properties', 'id'=>'baf2d8a5-250a-44f8-9a05-55af004d5d4f']),
+            $this->commonGroundService->cleanUrl(['component'=>'vtc', 'type'=>'properties', 'id'=>'dfc4b51d-f1ea-4137-8451-e18f5b58bb80'])
+        ]);
         //$section->setProperties(["https://vtc.westfriesland.commonground.nu/properties/8110dc29-7b27-448e-8853-a8126c984ccb"]);
         $stage->addSection($section);
 
