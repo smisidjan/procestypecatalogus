@@ -99,7 +99,7 @@ class WestFrieslandFixtures extends Fixture
         $section->setProperties(
             [
                 $this->commonGroundService->cleanUrl(['component'=>'vtc', 'type'=>'properties', 'id'=>'3b6a637d-19c6-4730-b322-c03d0d8301b6']),
-                $this->commonGroundService->cleanUrl(['component'=>'vtc', 'type'=>'properties', 'id'=>'7c212e0e-46dc-4ce0-8cec-8fd0d2d2c99b'])
+
             ]);
         //s$section->setProperties(["https://vtc.westfriesland.commonground.nu/properties/3b6a637d-19c6-4730-b322-c03d0d8301b6"]);
         $stage->addSection($section);
@@ -108,7 +108,7 @@ class WestFrieslandFixtures extends Fixture
         $processType->addStage($stage);
 
         $stage = new Stage();
-        $stage->setName('Bestaand of nieuw graf');
+        $stage->setName('Bestaand graf');
         $stage->setDescription('Moet de overledene in een bestaand of een nieuw graf worden begraven?');
         $stage->setIcon('fal fa-headstone');
         $stage->setSlug('bestaand-graf');
@@ -121,9 +121,9 @@ class WestFrieslandFixtures extends Fixture
         $stage->addCondition($condition);
 
         $section = new Section();
-        $section->setName('Datum');
-        $section->setDescription('Wanneer vindt het afscheid plaats?');
-        $section->setProperties([$this->commonGroundService->cleanUrl(['component'=>'vtc', 'type'=>'properties', 'id'=>'e0f14f62-763a-4870-be3d-e864971a6404'])]);
+        $section->setName('');
+        $section->setDescription('In het geval van een bijzetting dient u het graf waarin dient te worden bijgezet te identificeren met een grafnummer of naam van reeds geplaatste overledenen');
+        $section->setProperties([$this->commonGroundService->cleanUrl(['component'=>'vtc', 'type'=>'properties', 'id'=>'7c212e0e-46dc-4ce0-8cec-8fd0d2d2c99b'])]);
         //$section->setProperties(["https://vtc.westfriesland.commonground.nu/properties/b1fd7b38-384b-47ec-a0f2-6f81949cdece"]);
         $stage->addSection($section);
 
