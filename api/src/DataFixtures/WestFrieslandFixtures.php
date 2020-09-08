@@ -123,7 +123,7 @@ class WestFrieslandFixtures extends Fixture
         $section = new Section();
         $section->setName('Datum');
         $section->setDescription('Wanneer vindt het afscheid plaats?');
-        $section->setProperties([$this->commonGroundService->cleanUrl(['component'=>'vtc', 'type'=>'properties', 'id'=>'b1fd7b38-384b-47ec-a0f2-6f81949cdece'])]);
+        $section->setProperties([$this->commonGroundService->cleanUrl(['component'=>'vtc', 'type'=>'properties', 'id'=>'e0f14f62-763a-4870-be3d-e864971a6404'])]);
         //$section->setProperties(["https://vtc.westfriesland.commonground.nu/properties/b1fd7b38-384b-47ec-a0f2-6f81949cdece"]);
         $stage->addSection($section);
 
