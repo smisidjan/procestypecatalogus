@@ -2,6 +2,7 @@
 
 namespace App\DataFixtures;
 
+use App\Entity\Condition;
 use App\Entity\ProcessType;
 use App\Entity\Section;
 use App\Entity\Stage;
@@ -101,6 +102,29 @@ class WestFrieslandFixtures extends Fixture
                 $this->commonGroundService->cleanUrl(['component'=>'vtc', 'type'=>'properties', 'id'=>'7c212e0e-46dc-4ce0-8cec-8fd0d2d2c99b'])
             ]);
         //s$section->setProperties(["https://vtc.westfriesland.commonground.nu/properties/3b6a637d-19c6-4730-b322-c03d0d8301b6"]);
+        $stage->addSection($section);
+
+        // Add the stage to the procces type
+        $processType->addStage($stage);
+
+        $stage = new Stage();
+        $stage->setName('Bestaand of nieuw graf');
+        $stage->setDescription('Moet de overledene in een bestaand of een nieuw graf worden begraven?');
+        $stage->setIcon('fal fa-headstone');
+        $stage->setSlug('bestaand-graf');
+
+        $condition = new Condition();
+        $condition->setProperty('properties.soort_graf');
+        $condition->setOperation('==');
+        $condition->setValue($this->commonGroundService->cleanUrl(['component'=>'pdc', 'type'=>'offers', 'id'=>'606ca42a-3fb3-472a-b026-51aca794a588']));
+
+        $stage->addCondition($condition);
+
+        $section = new Section();
+        $section->setName('Datum');
+        $section->setDescription('Wanneer vindt het afscheid plaats?');
+        $section->setProperties([$this->commonGroundService->cleanUrl(['component'=>'vtc', 'type'=>'properties', 'id'=>'b1fd7b38-384b-47ec-a0f2-6f81949cdece'])]);
+        //$section->setProperties(["https://vtc.westfriesland.commonground.nu/properties/b1fd7b38-384b-47ec-a0f2-6f81949cdece"]);
         $stage->addSection($section);
 
         // Add the stage to the procces type
