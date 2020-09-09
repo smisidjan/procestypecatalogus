@@ -100,7 +100,8 @@ class WestFrieslandFixtures extends Fixture
             [
                 $this->commonGroundService->cleanUrl(['component'=>'vtc', 'type'=>'properties', 'id'=>'3b6a637d-19c6-4730-b322-c03d0d8301b6']),
 
-            ]);
+            ]
+        );
         //s$section->setProperties(["https://vtc.westfriesland.commonground.nu/properties/3b6a637d-19c6-4730-b322-c03d0d8301b6"]);
         $stage->addSection($section);
 
@@ -212,7 +213,6 @@ class WestFrieslandFixtures extends Fixture
         $section->setProperties([
             $this->commonGroundService->cleanUrl(['component'=>'vtc', 'type'=>'properties', 'id'=>'8110dc29-7b27-448e-8853-a8126c984ccb']),
             $this->commonGroundService->cleanUrl(['component'=>'vtc', 'type'=>'properties', 'id'=>'baf2d8a5-250a-44f8-9a05-55af004d5d4f']),
-            $this->commonGroundService->cleanUrl(['component'=>'vtc', 'type'=>'properties', 'id'=>'dfc4b51d-f1ea-4137-8451-e18f5b58bb80'])
         ]);
         //$section->setProperties(["https://vtc.westfriesland.commonground.nu/properties/8110dc29-7b27-448e-8853-a8126c984ccb"]);
         $stage->addSection($section);
