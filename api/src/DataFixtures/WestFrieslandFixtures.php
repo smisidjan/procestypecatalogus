@@ -116,7 +116,7 @@ class WestFrieslandFixtures extends Fixture
         $condition = new Condition();
         $condition->setProperty('properties.soort_graf');
         $condition->setOperation('==');
-        $condition->setValue($this->commonGroundService->cleanUrl(['component'=>'pdc', 'type'=>'offers', 'id'=>'606ca42a-3fb3-472a-b026-51aca794a588']));
+        $condition->setValue($this->commonGroundService->cleanUrl(['component'=>'pdc', 'type'=>'offers', 'id'=>'14569bf0-8f5e-4799-bdc5-376e71c620d0']));
 
         $stage->addCondition($condition);
 
