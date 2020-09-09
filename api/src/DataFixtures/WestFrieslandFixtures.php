@@ -161,14 +161,14 @@ class WestFrieslandFixtures extends Fixture
         $processType->addStage($stage);
 
         $stage = new Stage();
-        $stage->setName('Belanghebbende');
+        $stage->setName('Aanvrager/Rechthebbende');
         $stage->setIcon('fal fa-users');
-        $stage->setSlug('belanghebbende');
-        $stage->setDescription('Wie treed op als belanghebbende?');
+        $stage->setSlug('aanvrager/rechthebbende');
+        $stage->setDescription('Wie treed op als aanvrager/rechthebbende?');
 
         $section = new Section();
-        $section->setName('Belanghebbende');
-        $section->setDescription('Wie treed er op als belanghebbende?');
+        $section->setName('Aanvrager/Rechthebbende');
+        $section->setDescription('Wie treed er op als aanvrager/rechthebbende?');
         $section->setProperties([$this->commonGroundService->cleanUrl(['component'=>'vtc', 'type'=>'properties', 'id'=>'24d3e05d-26c2-4adb-acd4-08bde88b4526'])]);
         //$section->setProperties(["https://vtc.westfriesland.commonground.nu/properties/24d3e05d-26c2-4adb-acd4-08bde88b4526"]);
         $stage->addSection($section);
