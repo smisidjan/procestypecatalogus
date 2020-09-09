@@ -224,10 +224,10 @@ class WestFrieslandFixtures extends Fixture
         $processType = $manager->getRepository('App:ProcessType')->findOneBy(['id'=> $id]);
 
         $stage = new Stage();
-        $stage->setName('Belanghebbende');
+        $stage->setName('Aanvrager/Rechthebbende');
         $stage->setIcon('fal fa-users');
-        $stage->setSlug('belanghebbende');
-        $stage->setDescription('Wie treed op als belanghebbende?');
+        $stage->setSlug('aanvrager/rechthebbende');
+        $stage->setDescription('Wie treed op als aanvrager/rechthebbende?');
 
         $stage = new Stage();
         $stage->setName('gegevens');
