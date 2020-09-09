@@ -6,7 +6,6 @@ use App\Repository\ConditionRepository;
 use Doctrine\ORM\Mapping as ORM;
 use Ramsey\Uuid\UuidInterface;
 use Symfony\Component\Serializer\Annotation\Groups;
-use Symfony\Component\Serializer\Annotation\MaxDepth;
 use Symfony\Component\Validator\Constraints as Assert;
 
 /**
@@ -63,16 +62,6 @@ class Condition
      */
     private $section;
 
-//    /**
-//     * @var Rule The rules that use this condition
-//     *
-//     * @Groups({"read","write"})
-//     * @MaxDepth(1)
-//     * @ORM\ManyToOne(targetEntity=Rule::class, inversedBy="conditions")
-//     * @ORM\JoinColumn(nullable=false)
-//     */
-//    private $rule;
-
     public function getId(): ?UuidInterface
     {
         return $this->id;
@@ -110,18 +99,6 @@ class Condition
     public function setValue(string $value): self
     {
         $this->value = $value;
-
-        return $this;
-    }
-
-    public function getRule(): ?Rule
-    {
-        return $this->rule;
-    }
-
-    public function setRule(?Rule $rule): self
-    {
-        $this->rule = $rule;
 
         return $this;
     }

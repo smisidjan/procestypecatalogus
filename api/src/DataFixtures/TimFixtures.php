@@ -152,14 +152,14 @@ class TimFixtures extends Fixture
 
         //5e pagina
         $stage = new Stage();
-        $stage->setName('gegevens contact persoon');
+        $stage->setName('gegevens contactpersoon');
         $stage->setIcon('fal fa-users');
         $stage->setSlug('gegevens-contact-persoon');
-        $stage->setDescription('voer hier de gegevens van de contact persoon in');
+        $stage->setDescription('voer hier de gegevens van de contactpersoon in');
         $stage->setProcess($processType);
 
         $section = new Section();
-        $section->setName('gegevens contact persoon');
+        $section->setName('gegevens contactpersoon');
         $section->setProperties([
             $this->commonGroundService->cleanUrl(['component' => 'vtc', 'type' => 'properties', 'id' => '2d8a9acb-653b-468e-8d0d-d5beb16e1c26']),
             $this->commonGroundService->cleanUrl(['component' => 'vtc', 'type' => 'properties', 'id' => 'a32e1ed1-a03d-445d-a4c1-27d741a3329c']),
@@ -331,7 +331,7 @@ class TimFixtures extends Fixture
         $processType = new ProcessType();
         $processType->setSourceOrganization($this->commonGroundService->cleanUrl(['component'=>'vtc', 'type'=>'request_types', 'id'=>'4d1eded3-fbdf-438f-9536-8747dd8ab591']));
         $processType->setName('aanvraagformulier mantelzorgwaardering');
-        $processType->setDescription('Omring regelt de mantelzorgwaardering in opdracht van de gemeente Hoorn. Uw gegevens worden ook gebruikt om u te informeren over ondersteuning voor mantelzorgers. ');
+        $processType->setDescription('Omring regelt de mantelzorgwaardering in opdracht van de gemeente Zuid-Drecht. Uw gegevens worden ook gebruikt om u te informeren over ondersteuning voor mantelzorgers. ');
         $processType->setRequestType($this->commonGroundService->cleanUrl(['component' => 'vtc', 'type' => 'request_types', 'id' => 'b5007212-5a5d-4203-ba82-704111ed678a']));
         $processType->setIcon('fas fa-user-nurse');
         $manager->persist($processType);
@@ -342,7 +342,7 @@ class TimFixtures extends Fixture
 
         //1e pagina
         $stage = new Stage();
-        $stage->setName('gegevens invoeren');
+        $stage->setName('gegevens zorgvrager');
         $stage->setIcon('fal fa-users');
         $stage->setSlug('gegevens-invoeren');
         $stage->setDescription('voer hier uw gegevens in');
@@ -364,7 +364,7 @@ class TimFixtures extends Fixture
 
         //2e pagina
         $stage = new Stage();
-        $stage->setName('verzorger invoeren');
+        $stage->setName('gegevens mantelzorger');
         $stage->setIcon('fal fa-users');
         $stage->setSlug('verzorger-invoeren');
         $stage->setDescription('hier kunt u de informatie van uw mantelzorger invullen');
@@ -412,7 +412,7 @@ class TimFixtures extends Fixture
         $stage->setName('controleren van uw gegevens');
         $stage->setIcon('fal fa-users');
         $stage->setSlug('gegevens-controleren');
-        $stage->setDescription('controleer hier uw gevens');
+        $stage->setDescription('controleer hier uw gegevens');
         $stage->setProcess($processType);
 
         $section = new Section();
@@ -422,7 +422,7 @@ class TimFixtures extends Fixture
         ]);
         $section->setStage($stage);
 
-        //vormulier aansprakelijk stellen
+        //formulier aansprakelijk stellen
         $id = Uuid::fromString('942fee77-2cb7-420e-a03c-4b1e3a470ec4');
         $processType = new ProcessType();
         $processType->setSourceOrganization($this->commonGroundService->cleanUrl(['component'=>'vtc', 'type'=>'request_types', 'id'=>'4d1eded3-fbdf-438f-9536-8747dd8ab591']));
@@ -459,12 +459,12 @@ class TimFixtures extends Fixture
         $stage = new Stage();
         $stage->setName('uw gegevens');
         $stage->setIcon('fal fa-users');
-        $stage->setSlug('uw-gevens');
+        $stage->setSlug('uw-gegevens');
         $stage->setDescription('voer hier uw eigen gegevens in');
         $stage->setProcess($processType);
 
         $section = new Section();
-        $section->setName('uw gevens invullen');
+        $section->setName('uw gegevens invullen');
         $section->setProperties([
             $this->commonGroundService->cleanUrl(['component' => 'vtc', 'type' => 'properties', 'id' => 'b93ed2e5-28ea-4ea6-af32-2ff4e6f588c9']),
             $this->commonGroundService->cleanUrl(['component' => 'vtc', 'type' => 'properties', 'id' => '6442816e-4657-4eb2-9d1b-ace895d01bd0']),
@@ -513,9 +513,160 @@ class TimFixtures extends Fixture
         $stage->setProcess($processType);
 
         $section = new Section();
-        $section->setName('zijn uw gegevens juist ingevult');
+        $section->setName('zijn uw gegevens juist ingevuld');
         $section->setProperties([
             $this->commonGroundService->cleanUrl(['component' => 'vtc', 'type' => 'properties', 'id' => '1a195ef3-670b-40f6-8b69-c3f4e35a97d9']),
+        ]);
+        $section->setStage($stage);
+
+        $section->setStage($stage);
+        $stage->addSection($section);
+        $processType->addStage($stage);
+        $manager->persist($processType);
+        $manager->flush();
+
+        //formulier rioolaansluiting aanvragen
+        $id = Uuid::fromString('a46820e0-ade1-452c-9c93-9d825073b1fb');
+        $processType = new ProcessType();
+        $processType->setSourceOrganization($this->commonGroundService->cleanUrl(['component'=>'vtc', 'type'=>'request_types', 'id'=>'4d1eded3-fbdf-438f-9536-8747dd8ab591']));
+        $processType->setName('Rioolaansluiting aanvragen');
+        $processType->setDescription('met dit formulier kunt u een aansluiting aanvragen op het rioolnetwerk van de stad');
+        $processType->setRequestType($this->commonGroundService->cleanUrl(['component' => 'vtc', 'type' => 'request_types', 'id' => '7c19dc55-f2dd-403d-a317-768a043c302c']));
+        $manager->persist($processType);
+        $processType->setId($id);
+        $manager->persist($processType);
+        $manager->flush();
+        $processType = $manager->getRepository('App:ProcessType')->findOneBy(['id' => $id]);
+
+        //1e pagina
+        $stage = new Stage();
+        $stage->setName('belangrijke informatie en datum');
+        $stage->setIcon('fal fa-users');
+        $stage->setSlug('info_en_datum');
+        $stage->setProcess($processType);
+
+//        $section = new Section();
+//        $section->setName('Belangrijke informatie');
+//        $section->setProperties([
+//            $this->commonGroundService->cleanUrl(['component' => 'vtc', 'type' => 'properties', 'id' => '']),
+//        ]);
+//        $section->setStage($stage);
+
+        $section = new Section();
+        $section->setName('Datum van aansluiting');
+        $section->setProperties([
+            $this->commonGroundService->cleanUrl(['component' => 'vtc', 'type' => 'properties', 'id' => '0959b819-c203-417c-a5be-6626a785cb2e']),
+        ]);
+        $section->setStage($stage);
+
+        $section->setStage($stage);
+        $stage->addSection($section);
+        $processType->addStage($stage);
+        $manager->persist($processType);
+        $manager->flush();
+
+        //2e pagina
+        $stage = new Stage();
+        $stage->setName('uw gegevens invoeren');
+        $stage->setIcon('fal fa-users');
+        $stage->setSlug('invoeren_gegevens');
+        $stage->setProcess($processType);
+
+        $section = new Section();
+        $section->setName('vul hier uw gegevens in');
+        $section->setProperties([
+            $this->commonGroundService->cleanUrl(['component' => 'vtc', 'type' => 'properties', 'id' => 'dddeecc9-3f18-401e-835f-175f678b87e8']),
+            $this->commonGroundService->cleanUrl(['component' => 'vtc', 'type' => 'properties', 'id' => 'f0deada6-fc15-4935-b282-6b9f27bb5680']),
+        ]);
+        $section->setStage($stage);
+
+        $section->setStage($stage);
+        $stage->addSection($section);
+        $processType->addStage($stage);
+        $manager->persist($processType);
+        $manager->flush();
+
+        //3e pagina
+        $stage = new Stage();
+        $stage->setName('locatie rioolaansluiting');
+        $stage->setIcon('fal fa-users');
+        $stage->setSlug('locatie_rioolaansluiting');
+        $stage->setProcess($processType);
+
+        $section = new Section();
+        $section->setName('beantwoord de vragen over de rioolaansluiting');
+        $section->setProperties([
+            $this->commonGroundService->cleanUrl(['component' => 'vtc', 'type' => 'properties', 'id' => '72a28b02-37c4-4509-93db-061d2d76548e']),
+            $this->commonGroundService->cleanUrl(['component' => 'vtc', 'type' => 'properties', 'id' => 'f8c28a4c-f9f3-4c06-b774-bc65ceb7026e']),
+        ]);
+        $section->setStage($stage);
+
+        $section = new Section();
+        $section->setName('Adres van de aansluiting');
+        $section->setProperties([
+            $this->commonGroundService->cleanUrl(['component' => 'vtc', 'type' => 'properties', 'id' => '4b8e3d0b-c65c-4f2e-a253-1d94778b2f65']),
+        ]);
+        $section->setStage($stage);
+
+        $section->setStage($stage);
+        $stage->addSection($section);
+        $processType->addStage($stage);
+        $manager->persist($processType);
+        $manager->flush();
+
+        //4e pagina
+        $stage = new Stage();
+        $stage->setName('de aanvraag');
+        $stage->setIcon('fal fa-users');
+        $stage->setSlug('aanvraag');
+        $stage->setProcess($processType);
+
+        $section = new Section();
+        $section->setName('soort gebouw voor rioolaansluiting');
+        $section->setProperties([
+            $this->commonGroundService->cleanUrl(['component' => 'vtc', 'type' => 'properties', 'id' => '5ed9c4b1-2e59-4532-b6bf-14eb56eeba77']),
+            $this->commonGroundService->cleanUrl(['component' => 'vtc', 'type' => 'properties', 'id' => 'b979a4dd-ae8d-4d0b-94a4-9548a4a9d80f']),
+            $this->commonGroundService->cleanUrl(['component' => 'vtc', 'type' => 'properties', 'id' => 'a00f26c6-cb03-47f5-96ad-bf1c099a75e6']),
+        ]);
+        $section->setStage($stage);
+
+        $section->setStage($stage);
+        $stage->addSection($section);
+        $processType->addStage($stage);
+        $manager->persist($processType);
+        $manager->flush();
+
+        //5e pagina
+        $stage = new Stage();
+        $stage->setName('Bijlagen toevoegen');
+        $stage->setIcon('fal fa-users');
+        $stage->setSlug('bijlagen_toevoegen');
+        $stage->setProcess($processType);
+
+        $section = new Section();
+        $section->setName('bijlagen toevoegen');
+        $section->setProperties([
+            $this->commonGroundService->cleanUrl(['component' => 'vtc', 'type' => 'properties', 'id' => '5cbd70b2-e4d3-4a78-ac7e-67cc91ca10ba']),
+        ]);
+        $section->setStage($stage);
+
+        $section->setStage($stage);
+        $stage->addSection($section);
+        $processType->addStage($stage);
+        $manager->persist($processType);
+        $manager->flush();
+
+        //6e pagina
+        $stage = new Stage();
+        $stage->setName('controleren van gegevens');
+        $stage->setIcon('fal fa-users');
+        $stage->setSlug('controleren');
+        $stage->setProcess($processType);
+
+        $section = new Section();
+        $section->setName('gegevens controleren');
+        $section->setProperties([
+            $this->commonGroundService->cleanUrl(['component' => 'vtc', 'type' => 'properties', 'id' => '2df9cd9f-45f6-4aa5-a4d1-767c4a621ce7']),
         ]);
         $section->setStage($stage);
 
