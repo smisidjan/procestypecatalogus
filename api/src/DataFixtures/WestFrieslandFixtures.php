@@ -105,6 +105,15 @@ class WestFrieslandFixtures extends Fixture
 
             ]
         );
+
+        $section = new Section();
+        $section->setName('Kistmaat');
+        $section->setDescription('Valt de kist binnen de standaard afmetingen van 55cm bij 200cm?');
+        $section->setProperties(
+            [
+                $this->commonGroundService->cleanUrl(['component'=>'vtc', 'type'=>'properties', 'id'=>'4153ca80-55df-4a0e-9053-79f7db01bf4a']),
+            ]
+        );
         //s$section->setProperties(["https://vtc.westfriesland.commonground.nu/properties/3b6a637d-19c6-4730-b322-c03d0d8301b6"]);
         $stage->addSection($section);
 
