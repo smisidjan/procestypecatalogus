@@ -188,7 +188,7 @@ class WestFrieslandFixtures extends Fixture
         $stage = new Stage();
         $stage->setName('Aanvrager/Rechthebbende');
         $stage->setIcon('fal fa-users');
-        $stage->setSlug('aanvrager/rechthebbende');
+        $stage->setSlug('aanvrager-rechthebbende');
         $stage->setDescription('Wie treed op als aanvrager/rechthebbende?');
 
         $section = new Section();
