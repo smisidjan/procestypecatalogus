@@ -56,6 +56,7 @@ class WestFrieslandFixtures extends Fixture
 
         $stage = new Stage();
         $stage->setName('Gemeente');
+        $stage->setOrderNumber(0);
         $stage->setIcon('fal fa-headstone');
         $stage->setSlug('gemeente');
         $stage->setDescription('De gemeente waarin de begrafenis plaats moet vinden');
@@ -72,6 +73,7 @@ class WestFrieslandFixtures extends Fixture
 
         $stage = new Stage();
         $stage->setName('Begraafplaats');
+        $stage->setOrderNumber(1);
         $stage->setIcon('fal fa-headstone');
         $stage->setSlug('begraafplaats');
         $stage->setDescription('De gegevens van de begrafenis');
@@ -88,6 +90,7 @@ class WestFrieslandFixtures extends Fixture
 
         $stage = new Stage();
         $stage->setName('Grafsoort');
+        $stage->setOrderNumber(2);
         $stage->setIcon('fal fa-headstone');
         $stage->setSlug('grafsoort');
         $stage->setDescription('Het soort graf waarin de overledene wordt begraven');
@@ -110,6 +113,7 @@ class WestFrieslandFixtures extends Fixture
 
         $stage = new Stage();
         $stage->setName('Bestaand graf');
+        $stage->setOrderNumber(3);
         $stage->setDescription('Moet de overledene in een bestaand of een nieuw graf worden begraven?');
         $stage->setIcon('fal fa-headstone');
         $stage->setSlug('bestaand-graf');
@@ -133,6 +137,7 @@ class WestFrieslandFixtures extends Fixture
 
         $stage = new Stage();
         $stage->setName('Datum');
+        $stage->setOrderNumber(4);
         $stage->setDescription('Wanneer gaat het afscheid plaatsvinden?');
         $stage->setIcon('fal fa-calendar');
         $stage->setSlug('datum');
@@ -149,6 +154,7 @@ class WestFrieslandFixtures extends Fixture
 
         $stage = new Stage();
         $stage->setName('Artikelen');
+        $stage->setOrderNumber(5);
         $stage->setIcon('fal fa-map-tasks');
         $stage->setSlug('artikelen');
         $stage->setDescription('Selecteer hier de gewenste artikelen voor de begrafenis.');
@@ -166,6 +172,7 @@ class WestFrieslandFixtures extends Fixture
         $stage = new Stage();
         //$property->setId('');
         $stage->setName('Overledene');
+        $stage->setOrderNumber(6);
         $stage->setIcon('fal fa-users');
         $stage->setSlug('overledene');
         $stage->setDescription('Wie wordt er begraven?');
@@ -187,6 +194,7 @@ class WestFrieslandFixtures extends Fixture
 
         $stage = new Stage();
         $stage->setName('Aanvrager / Rechthebbende');
+        $stage->setOrderNumber(7);
         $stage->setIcon('fal fa-users');
         $stage->setSlug('aanvrager-rechthebbende');
         $stage->setDescription('Wie treed op als aanvrager/rechthebbende?');
@@ -203,6 +211,7 @@ class WestFrieslandFixtures extends Fixture
 
         $stage = new Stage();
         $stage->setName('Contactpersoon');
+        $stage->setOrderNumber(8);
         $stage->setIcon('fal fa-users');
         $stage->setSlug('contactpersoon');
         $stage->setDescription('Wie treed op als contactpersoon?');
