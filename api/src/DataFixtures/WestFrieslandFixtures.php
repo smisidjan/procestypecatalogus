@@ -117,7 +117,7 @@ class WestFrieslandFixtures extends Fixture
         $condition = new Condition();
         $condition->setProperty('properties.soort_graf');
         $condition->setOperation('==');
-        $condition->setValue($this->commonGroundService->cleanUrl(['component'=>'pdc', 'type'=>'offers', 'id'=>'606ca42a-3fb3-472a-b026-51aca794a588']));
+        $condition->setValue($this->commonGroundService->cleanUrl(['component'=>'pdc', 'type'=>'offers', 'id'=>'d4b24164-d9b1-4ba2-88d0-8b6fa824e4e1']));
 
         $stage->addCondition($condition);
 
@@ -186,14 +186,14 @@ class WestFrieslandFixtures extends Fixture
         $processType->addStage($stage);
 
         $stage = new Stage();
-        $stage->setName('Belanghebbende');
+        $stage->setName('Aanvrager / Rechthebbende');
         $stage->setIcon('fal fa-users');
-        $stage->setSlug('belanghebbende');
-        $stage->setDescription('Wie treed op als belanghebbende?');
+        $stage->setSlug('aanvrager-rechthebbende');
+        $stage->setDescription('Wie treed op als aanvrager/rechthebbende?');
 
         $section = new Section();
-        $section->setName('Belanghebbende');
-        $section->setDescription('Wie treed er op als belanghebbende?');
+        $section->setName('Aanvrager / Rechthebbende');
+        $section->setDescription('Wie treed er op als aanvrager/rechthebbende?');
         $section->setProperties([$this->commonGroundService->cleanUrl(['component'=>'vtc', 'type'=>'properties', 'id'=>'24d3e05d-26c2-4adb-acd4-08bde88b4526'])]);
         //$section->setProperties(["https://vtc.westfriesland.commonground.nu/properties/24d3e05d-26c2-4adb-acd4-08bde88b4526"]);
         $stage->addSection($section);
@@ -248,10 +248,10 @@ class WestFrieslandFixtures extends Fixture
         $processType = $manager->getRepository('App:ProcessType')->findOneBy(['id'=> $id]);
 
         $stage = new Stage();
-        $stage->setName('Belanghebbende');
+        $stage->setName('Aanvrager/Rechthebbende');
         $stage->setIcon('fal fa-users');
-        $stage->setSlug('belanghebbende');
-        $stage->setDescription('Wie treed op als belanghebbende?');
+        $stage->setSlug('aanvrager/rechthebbende');
+        $stage->setDescription('Wie treed op als aanvrager/rechthebbende?');
 
         $stage = new Stage();
         $stage->setName('gegevens');
