@@ -507,7 +507,7 @@ class SaraiFixtures extends Fixture
         $section->setProperties([
             $this->commonGroundService->cleanUrl(['component' => 'vtc', 'type' => 'properties', 'id' => 'f507af1e-bd2f-47ea-b9b5-306cf2e9836d']),
             $this->commonGroundService->cleanUrl(['component' => 'vtc', 'type' => 'properties', 'id' => '9e738fb2-819e-4c79-8860-07bc6567d6d9']),
-            ]);
+        ]);
         $section->setStage($stage);
         $stage->addSection($section);
         $processType->addStage($stage);
@@ -1835,6 +1835,5 @@ class SaraiFixtures extends Fixture
 //        $processType->addStage($stage);
 //        $manager->persist($processType);
 //        $manager->flush();
-
     }
 }
