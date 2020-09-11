@@ -105,6 +105,7 @@ class WestFrieslandFixtures extends Fixture
 
             ]
         );
+        $stage->addSection($section);
 
         $section = new Section();
         $section->setName('Kistmaat');
