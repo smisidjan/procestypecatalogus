@@ -249,7 +249,7 @@ class WestFrieslandFixtures extends Fixture
         $section->setName('Opmerkingen');
         $section->setDescription('Zijn er extra opmerkingen of wensen die u wilt meegeven?');
         $section->setProperties([
-            $this->commonGroundService->cleanUrl(['component'=>'vtc', 'type'=>'properties', 'id'=>'03d4460d-ce9b-4d5b-9063-e7856205273d'])
+            $this->commonGroundService->cleanUrl(['component'=>'vtc', 'type'=>'properties', 'id'=>'03d4460d-ce9b-4d5b-9063-e7856205273d']),
         ]);
         //$section->setProperties(["https://vtc.westfriesland.commonground.nu/properties/8110dc29-7b27-448e-8853-a8126c984ccb"]);
         $stage->addSection($section);
