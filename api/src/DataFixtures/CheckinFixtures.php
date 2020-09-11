@@ -88,6 +88,14 @@ class CheckinFixtures extends Fixture
 
         $section = new Section();
         $section->setStage($stage);
+        $section->setName('Abonnement');
+        $section->setDescription('Om deel te kunnen nemen aan dit platform heeft u een abonement nodig, dat kost €25 per maand (excl btw) en word vooraf gefacturerd. Daarnaast zijn er aditionele kosten voor het gebruik van IDIN en is er een fair use policy van 1500 checkins per maand. Meer details daarover vind u hier <a href=""></a>.</p><p>De eerste maand is echter een proef periode en (binnen de gestelde voorwaarde van het platform) gratis. Om na deze maand gebruik te kunnen maken van eht platform kunt u via de ondernemings pagina een abonement afsluiten');
+        $section->setProperties([]);
+
+        $stage->addSection($section);
+
+        $section = new Section();
+        $section->setStage($stage);
         $section->setName('Voorwaarden');
         $section->setDescription('Omdat we voor u gaan optreden als gegevens verwerker is het belangrijk dat we een aantal dingen goed regelen');
         $section->setProperties([
