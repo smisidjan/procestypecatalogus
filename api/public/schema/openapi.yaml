@@ -2134,6 +2134,33 @@ paths:
               - asc
               - desc
         -
+          name: 'order[instructionText]'
+          in: query
+          required: false
+          schema:
+            type: string
+            enum:
+              - asc
+              - desc
+        -
+          name: 'order[submitText]'
+          in: query
+          required: false
+          schema:
+            type: string
+            enum:
+              - asc
+              - desc
+        -
+          name: 'order[submittedText]'
+          in: query
+          required: false
+          schema:
+            type: string
+            enum:
+              - asc
+              - desc
+        -
           name: 'order[properties]'
           in: query
           required: false
@@ -2391,6 +2418,54 @@ paths:
             type: array
             items:
               type: integer
+          style: form
+          explode: true
+        -
+          name: instructionText
+          in: query
+          required: false
+          schema:
+            type: string
+        -
+          name: 'instructionText[]'
+          in: query
+          required: false
+          schema:
+            type: array
+            items:
+              type: string
+          style: form
+          explode: true
+        -
+          name: submitText
+          in: query
+          required: false
+          schema:
+            type: string
+        -
+          name: 'submitText[]'
+          in: query
+          required: false
+          schema:
+            type: array
+            items:
+              type: string
+          style: form
+          explode: true
+        -
+          name: submittedText
+          in: query
+          required: false
+          schema:
+            type: string
+        -
+          name: 'submittedText[]'
+          in: query
+          required: false
+          schema:
+            type: array
+            items:
+              type: string
           style: form
           explode: true
         -
@@ -5898,6 +5973,86 @@ components:
         '@type':
           readOnly: true
           type: string
+    Condition-read:
+      type: object
+      properties:
+        id:
+          readOnly: true
+          description: 'The UUID identifier of this resource'
+          externalDocs:
+            url: 'http://schema.org/identifier'
+          type: string
+          format: uuid
+        property:
+          description: 'The property that is to be checked'
+          type: string
+        operation:
+          description: 'The operation to be checked'
+          type: string
+        value:
+          description: 'The value the property should have'
+          type: string
+    Condition-write:
+      type: object
+      properties:
+        property:
+          description: 'The property that is to be checked'
+          type: string
+        operation:
+          description: 'The operation to be checked'
+          type: string
+        value:
+          description: 'The value the property should have'
+          type: string
+    'Condition:jsonld-read':
+      type: object
+      properties:
+        '@context':
+          readOnly: true
+          type: string
+        '@id':
+          readOnly: true
+          type: string
+        '@type':
+          readOnly: true
+          type: string
+        id:
+          readOnly: true
+          description: 'The UUID identifier of this resource'
+          externalDocs:
+            url: 'http://schema.org/identifier'
+          type: string
+          format: uuid
+        property:
+          description: 'The property that is to be checked'
+          type: string
+        operation:
+          description: 'The operation to be checked'
+          type: string
+        value:
+          description: 'The value the property should have'
+          type: string
+    'Condition:jsonld-write':
+      type: object
+      properties:
+        '@context':
+          readOnly: true
+          type: string
+        '@id':
+          readOnly: true
+          type: string
+        '@type':
+          readOnly: true
+          type: string
+        property:
+          description: 'The property that is to be checked'
+          type: string
+        operation:
+          description: 'The operation to be checked'
+          type: string
+        value:
+          description: 'The value the property should have'
+          type: string
     ProcessType-read:
       type: object
       description: 'A process.'
@@ -5958,6 +6113,18 @@ components:
         depositPercentage:
           description: 'The deposit percentage requered for this proces'
           type: integer
+          nullable: true
+        instructionText:
+          description: 'The text displayed at the instruction stage.'
+          type: string
+          nullable: true
+        submitText:
+          description: 'The text displayed at the submit stage.'
+          type: string
+          nullable: true
+        submittedText:
+          description: 'The text displayed at the submitted stage.'
+          type: string
           nullable: true
         properties:
           type: array
@@ -6045,6 +6212,18 @@ components:
           description: 'The deposit percentage requered for this proces'
           type: integer
           nullable: true
+        instructionText:
+          description: 'The text displayed at the instruction stage.'
+          type: string
+          nullable: true
+        submitText:
+          description: 'The text displayed at the submit stage.'
+          type: string
+          nullable: true
+        submittedText:
+          description: 'The text displayed at the submitted stage.'
+          type: string
+          nullable: true
         properties:
           type: array
           items:
@@ -6124,6 +6303,18 @@ components:
         depositPercentage:
           description: 'The deposit percentage requered for this proces'
           type: integer
+          nullable: true
+        instructionText:
+          description: 'The text displayed at the instruction stage.'
+          type: string
+          nullable: true
+        submitText:
+          description: 'The text displayed at the submit stage.'
+          type: string
+          nullable: true
+        submittedText:
+          description: 'The text displayed at the submitted stage.'
+          type: string
           nullable: true
         properties:
           type: array
@@ -6220,6 +6411,18 @@ components:
           description: 'The deposit percentage requered for this proces'
           type: integer
           nullable: true
+        instructionText:
+          description: 'The text displayed at the instruction stage.'
+          type: string
+          nullable: true
+        submitText:
+          description: 'The text displayed at the submit stage.'
+          type: string
+          nullable: true
+        submittedText:
+          description: 'The text displayed at the submitted stage.'
+          type: string
+          nullable: true
         properties:
           type: array
           items:
@@ -6278,6 +6481,11 @@ components:
         orderNumber:
           description: 'The place in the order where the section should be rendered'
           type: integer
+        conditions:
+          description: 'The conditions that have to be met for showing this section'
+          type: array
+          items:
+            $ref: '#/components/schemas/Condition-read'
       required:
         - name
         - orderNumber
@@ -6315,6 +6523,11 @@ components:
         orderNumber:
           description: 'The place in the order where the section should be rendered'
           type: integer
+        conditions:
+          description: 'The conditions that have to be met for showing this section'
+          type: array
+          items:
+            $ref: '#/components/schemas/Condition-write'
     'Section:jsonld-read':
       type: object
       description: ''
@@ -6372,6 +6585,11 @@ components:
         orderNumber:
           description: 'The place in the order where the section should be rendered'
           type: integer
+        conditions:
+          description: 'The conditions that have to be met for showing this section'
+          type: array
+          items:
+            $ref: '#/components/schemas/Condition:jsonld-read'
       required:
         - name
         - orderNumber
@@ -6418,6 +6636,11 @@ components:
         orderNumber:
           description: 'The place in the order where the section should be rendered'
           type: integer
+        conditions:
+          description: 'The conditions that have to be met for showing this section'
+          type: array
+          items:
+            $ref: '#/components/schemas/Condition:jsonld-write'
     Stage-read:
       type: object
       description: 'A single stage within a process.'
@@ -6486,6 +6709,11 @@ components:
         orderNumber:
           description: 'The place in the order where the stage should be rendered'
           type: integer
+        conditions:
+          description: 'The conditions that have to be met for showing this section'
+          type: array
+          items:
+            $ref: '#/components/schemas/Condition-read'
       required:
         - name
         - process
@@ -6526,6 +6754,11 @@ components:
         orderNumber:
           description: 'The place in the order where the stage should be rendered'
           type: integer
+        conditions:
+          description: 'The conditions that have to be met for showing this section'
+          type: array
+          items:
+            $ref: '#/components/schemas/Condition-write'
     'Stage:jsonld-read':
       type: object
       description: 'A single stage within a process.'
@@ -6603,6 +6836,11 @@ components:
         orderNumber:
           description: 'The place in the order where the stage should be rendered'
           type: integer
+        conditions:
+          description: 'The conditions that have to be met for showing this section'
+          type: array
+          items:
+            $ref: '#/components/schemas/Condition:jsonld-read'
       required:
         - name
         - process
@@ -6652,6 +6890,11 @@ components:
         orderNumber:
           description: 'The place in the order where the stage should be rendered'
           type: integer
+        conditions:
+          description: 'The conditions that have to be met for showing this section'
+          type: array
+          items:
+            $ref: '#/components/schemas/Condition:jsonld-write'
 definitions:
   ProcessType-read:
     properties:
@@ -6669,7 +6912,7 @@ definitions:
         description: 'An short description of this process'
         type: string
         example: 'This is the best process ever'
-        maxLength: 2550
+        maxLength: 255
       icon:
         description: 'The icon of this property'
         type: string
@@ -6704,6 +6947,18 @@ definitions:
         description: 'The deposit percentage requered for this proces'
         type: int
         example: '25'
+      instructionText:
+        description: 'The text displayed at the instruction stage.'
+        type: string
+        example: 'Dit proces is bedoelt om X te doen. Hier kun je meer vinden over X. etc.'
+      submitText:
+        description: 'The text displayed at the submit stage.'
+        type: string
+        example: 'Na het indienen van dit verzoek zal uw verzoek binnen een week afgehandeld worden.'
+      submittedText:
+        description: 'The text displayed at the submitted stage.'
+        type: string
+        example: 'Uw verzoek zal binnen een week afgehandeld worden.'
       properties: []
       documents: []
       dateCreated:
@@ -6729,7 +6984,7 @@ definitions:
         description: 'An short description of this process'
         type: string
         example: 'This is the best process ever'
-        maxLength: 2550
+        maxLength: 255
       icon:
         description: 'The icon of this property'
         type: string
@@ -6764,6 +7019,18 @@ definitions:
         description: 'The deposit percentage requered for this proces'
         type: int
         example: '25'
+      instructionText:
+        description: 'The text displayed at the instruction stage.'
+        type: string
+        example: 'Dit proces is bedoelt om X te doen. Hier kun je meer vinden over X. etc.'
+      submitText:
+        description: 'The text displayed at the submit stage.'
+        type: string
+        example: 'Na het indienen van dit verzoek zal uw verzoek binnen een week afgehandeld worden.'
+      submittedText:
+        description: 'The text displayed at the submitted stage.'
+        type: string
+        example: 'Uw verzoek zal binnen een week afgehandeld worden.'
       properties: []
       documents: []
       stages:
@@ -6807,6 +7074,9 @@ definitions:
       stage:
         description: 'the stage this section belongs to'
         type: \Stage
+      conditions:
+        description: 'The conditions that have to be met for showing this section'
+        type: '\ArrayCollection|\Condition[]'
     required:
       - name
       - orderNumber
@@ -6831,6 +7101,9 @@ definitions:
       stage:
         description: 'the stage this section belongs to'
         type: \Stage
+      conditions:
+        description: 'The conditions that have to be met for showing this section'
+        type: '\ArrayCollection|\Condition[]'
     required:
       - name
       - orderNumber
@@ -6884,6 +7157,9 @@ definitions:
       sections:
         description: 'the sections of this stage'
         type: \ArrayCollection
+      conditions:
+        description: 'The conditions that have to be met for showing this section'
+        type: '\ArrayCollection|\Condition[]'
     required:
       - name
       - orderNumber
@@ -6916,6 +7192,9 @@ definitions:
       sections:
         description: 'the sections of this stage'
         type: \ArrayCollection
+      conditions:
+        description: 'The conditions that have to be met for showing this section'
+        type: '\ArrayCollection|\Condition[]'
     required:
       - name
       - orderNumber
@@ -7023,12 +7302,12 @@ definitions:
         description: 'The moment this request was created'
         type: string
         format: date-time
-        example: '2020-09-01 08:11:23'
+        example: '2020-09-03 12:36:32'
       dateModified:
         description: 'The moment this request last Modified'
         type: string
         format: date-time
-        example: '2020-09-01 08:11:23'
+        example: '2020-09-03 12:36:32'
     required: []
   AuditTrail-write:
     properties:
@@ -7076,12 +7355,12 @@ definitions:
         description: 'The moment this request was created'
         type: string
         format: date-time
-        example: '2020-09-01 08:11:23'
+        example: '2020-09-03 12:36:32'
       dateModified:
         description: 'The moment this request last Modified'
         type: string
         format: date-time
-        example: '2020-09-01 08:11:23'
+        example: '2020-09-03 12:36:32'
     required: []
   ChangeLog-write:
     properties:
