@@ -105,6 +105,16 @@ class WestFrieslandFixtures extends Fixture
 
             ]
         );
+        $stage->addSection($section);
+
+        $section = new Section();
+        $section->setName('Kistmaat');
+        $section->setDescription('Valt de kist binnen de standaard afmetingen van 55cm bij 200cm?');
+        $section->setProperties(
+            [
+                $this->commonGroundService->cleanUrl(['component'=>'vtc', 'type'=>'properties', 'id'=>'4153ca80-55df-4a0e-9053-79f7db01bf4a']),
+            ]
+        );
         //s$section->setProperties(["https://vtc.westfriesland.commonground.nu/properties/3b6a637d-19c6-4730-b322-c03d0d8301b6"]);
         $stage->addSection($section);
 
@@ -222,6 +232,24 @@ class WestFrieslandFixtures extends Fixture
         $section->setProperties([
             $this->commonGroundService->cleanUrl(['component'=>'vtc', 'type'=>'properties', 'id'=>'8110dc29-7b27-448e-8853-a8126c984ccb']),
             $this->commonGroundService->cleanUrl(['component'=>'vtc', 'type'=>'properties', 'id'=>'baf2d8a5-250a-44f8-9a05-55af004d5d4f']),
+        ]);
+        //$section->setProperties(["https://vtc.westfriesland.commonground.nu/properties/8110dc29-7b27-448e-8853-a8126c984ccb"]);
+        $stage->addSection($section);
+
+        // Add the stage to the procces type
+        $processType->addStage($stage);
+
+        $stage = new Stage();
+        $stage->setName('Aanvullende informatie');
+        $stage->setOrderNumber(10);
+        $stage->setIcon('fal fa-info-circle');
+        $stage->setSlug('aanvullende-informatie');
+
+        $section = new Section();
+        $section->setName('Opmerkingen');
+        $section->setDescription('Zijn er extra opmerkingen of wensen die u wilt meegeven?');
+        $section->setProperties([
+            $this->commonGroundService->cleanUrl(['component'=>'vtc', 'type'=>'properties', 'id'=>'03d4460d-ce9b-4d5b-9063-e7856205273d']),
         ]);
         //$section->setProperties(["https://vtc.westfriesland.commonground.nu/properties/8110dc29-7b27-448e-8853-a8126c984ccb"]);
         $stage->addSection($section);
