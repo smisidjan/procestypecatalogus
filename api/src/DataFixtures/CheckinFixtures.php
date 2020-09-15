@@ -79,6 +79,7 @@ class CheckinFixtures extends Fixture
         $section->setDescription('Wat zijn de gegevens van uw onderneming');
         $section->setProperties([
             $this->commonGroundService->cleanUrl(['component'=>'vtc', 'type'=>'properties', 'id'=>'55dde78d-4a14-43c6-a0ff-d33b7b5f8bae']),
+            $this->commonGroundService->cleanUrl(['component'=>'vtc', 'type'=>'properties', 'id'=>'587babac-f23a-4fb0-8df8-ccd083a079cc']),
             $this->commonGroundService->cleanUrl(['component'=>'vtc', 'type'=>'properties', 'id'=>'9e5c34dc-99da-423d-9a88-a4a3875a66fb']),
             $this->commonGroundService->cleanUrl(['component'=>'vtc', 'type'=>'properties', 'id'=>'41122a46-4788-4ba1-aba9-b48f7f640ef8']),
         ]);
@@ -88,7 +89,7 @@ class CheckinFixtures extends Fixture
         $section = new Section();
         $section->setStage($stage);
         $section->setName('Abonnement');
-        $section->setDescription('Om deel te kunnen nemen aan dit platform heeft u een abonement nodig, dat kost €25 per maand (excl btw) en word vooraf gefacturerd. Daarnaast zijn er aditionele kosten voor het gebruik van IDIN en is er een fair use policy van 1500 checkins per maand. Meer details daarover vind u hier <a href=""></a>.</p><p>De eerste maand is echter een proef periode en (binnen de gestelde voorwaarde van het platform) gratis. Om na deze maand gebruik te kunnen maken van eht platform kunt u via de ondernemings pagina een abonement afsluiten');
+        $section->setDescription('Om deel te kunnen nemen aan dit platform heeft u een abonement nodig, dat kost €25 per maand (excl btw) en moet vooraf worden gefactureerd en betaald. Daarnaast zijn er aditionele kosten voor het gebruik van IDIN en is er een fair use policy van 1500 checkins per maand. Meer details daarover vind u hier <a href=""></a>.</p><p>De eerste maand is echter een proef periode en (binnen de gestelde voorwaarde van het platform) gratis. Om na deze maand gebruik te kunnen maken van het platform kunt u via de ondernemings pagina een abonement afsluiten');
         $section->setProperties([]);
 
         $stage->addSection($section);
