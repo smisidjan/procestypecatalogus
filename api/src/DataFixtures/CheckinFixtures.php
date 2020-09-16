@@ -48,6 +48,10 @@ class CheckinFixtures extends Fixture
         $processType->setSourceOrganization($this->commonGroundService->cleanUrl(['component'=>'wrc', 'type'=>'organizations', 'id'=>'4d1eded3-fbdf-438f-9536-8747dd8ab591']));
         $processType->setRequestType($this->commonGroundService->cleanUrl(['component'=>'vtc', 'type'=>'request_types', 'id'=>'c328e6b4-77f6-4c58-8544-4128452acc80']));
         $processType->setRequireLogin(false);
+        $processType->setShowInstructionStage(false);
+        $processType->setShowSubmitStage(false);
+        $processType->setShowSubmittedStage(false);
+        $processType->setSubmitText(false);
         $manager->persist($processType);
         $processType->setId($id);
         $manager->persist($processType);
@@ -122,6 +126,9 @@ class CheckinFixtures extends Fixture
         $processType->setSourceOrganization($this->commonGroundService->cleanUrl(['component'=>'wrc', 'type'=>'organizations', 'id'=>'4d1eded3-fbdf-438f-9536-8747dd8ab591']));
         $processType->setRequestType($this->commonGroundService->cleanUrl(['component'=>'vtc', 'type'=>'request_types', 'id'=>'c328e6b4-77f6-4c58-8544-4128452acc80']));
         $processType->setRequireLogin(true);
+        $processType->setShowInstructionStage(false);
+        $processType->setShowSubmitStage(false);
+        $processType->setShowSubmittedStage(false);
         $manager->persist($processType);
         $processType->setId($id);
         $manager->persist($processType);
@@ -172,6 +179,9 @@ class CheckinFixtures extends Fixture
         $processType->setSourceOrganization($this->commonGroundService->cleanUrl(['component'=>'wrc', 'type'=>'organizations', 'id'=>'4d1eded3-fbdf-438f-9536-8747dd8ab591']));
         $processType->setRequestType($this->commonGroundService->cleanUrl(['component'=>'vtc', 'type'=>'request_types', 'id'=>'c328e6b4-77f6-4c58-8544-4128452acc80']));
         $processType->setRequireLogin(false);
+        $processType->setShowInstructionStage(false);
+        $processType->setShowSubmitStage(false);
+        $processType->setShowSubmittedStage(false);
         $manager->persist($processType);
         $processType->setId($id);
         $manager->persist($processType);

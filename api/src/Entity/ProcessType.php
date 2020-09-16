@@ -254,6 +254,17 @@ class ProcessType
     private $instructionText;
 
     /**
+     * @var bool wheter or not to dispay the instruction stage of a procces
+     *
+     * @example false
+     *
+     * @Assert\Type("bool")
+     * @Groups({"read", "write"})
+     * @ORM\Column(type="boolean", nullable=true)
+     */
+    private $showInstructionStage = true;
+
+    /**
      * @var string The text displayed at the submit stage.
      *
      * @example Na het indienen van dit verzoek zal uw verzoek binnen een week afgehandeld worden.
@@ -265,6 +276,17 @@ class ProcessType
     private $submitText;
 
     /**
+     * @var bool wheter or not to dispay the submit stage of a procces
+     *
+     * @example false
+     *
+     * @Assert\Type("bool")
+     * @Groups({"read", "write"})
+     * @ORM\Column(type="boolean", nullable=true)
+     */
+    private $showSubmitStage = true;
+
+    /**
      * @var string The text displayed at the submitted stage.
      *
      * @example Uw verzoek zal binnen een week afgehandeld worden.
@@ -274,6 +296,17 @@ class ProcessType
      * @ORM\Column(type="text", nullable=true)
      */
     private $submittedText;
+
+    /**
+     * @var bool wheter or not to dispay the submitted stage of a procces
+     *
+     * @example false
+     *
+     * @Assert\Type("bool")
+     * @Groups({"read", "write"})
+     * @ORM\Column(type="boolean", nullable=true)
+     */
+    private $showSubmittedStage = true;
 
     /**
      * @param array|string[] The request properties that are used for this process
@@ -460,6 +493,17 @@ class ProcessType
 
         return $this;
     }
+    public function getShowInstructionStage(): ?bool
+    {
+        return $this->showInstructionStage;
+    }
+
+    public function setShowInstructionStage(?bool $showInstructionStage): self
+    {
+        $this->showInstructionStage = $showInstructionStage;
+
+        return $this;
+    }
 
     public function getSubmitText(): ?string
     {
@@ -473,6 +517,18 @@ class ProcessType
         return $this;
     }
 
+    public function getShowSubmitStage(): ?bool
+    {
+        return $this->showSubmitStage;
+    }
+
+    public function setShowSubmitStage(?bool $showSubmitStage): self
+    {
+        $this->showSubmitStage = $showSubmitStage;
+
+        return $this;
+    }
+
     public function getSubmittedText(): ?string
     {
         return $this->submittedText;
@@ -481,6 +537,18 @@ class ProcessType
     public function setSubmittedText(string $SubmittedText): self
     {
         $this->submittedText = $SubmittedText;
+
+        return $this;
+    }
+
+    public function getShowSubmittedStage(): ?bool
+    {
+        return $this->showSubmittedStage;
+    }
+
+    public function setShowSubmittedStage(?bool $showSubmittedStage): self
+    {
+        $this->showSubmittedStage = $showSubmittedStage;
 
         return $this;
     }
