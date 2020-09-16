@@ -154,6 +154,10 @@ class CheckinFixtures extends Fixture
         ]);
         $stage->addSection($section);
 
+        $processType->addStage($stage);
+        $manager->persist($processType);
+        $manager->flush();
+
         /*
        *  Opvragen gegevens door gebruiker (Checkin)
        */
@@ -188,5 +192,9 @@ class CheckinFixtures extends Fixture
             $this->commonGroundService->cleanUrl(['component'=>'vtc', 'type'=>'properties', 'id'=>'bf268ea7-4f08-4730-a5eb-fa6df870a24d']),
         ]);
         $stage->addSection($section);
+        
+        $processType->addStage($stage);
+        $manager->persist($processType);
+        $manager->flush();
     }
 }
