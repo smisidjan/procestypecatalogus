@@ -231,9 +231,24 @@ class WestFrieslandFixtures extends Fixture
         $section->setDescription('Wie treed er op als contactpersoon?');
         $section->setProperties([
             $this->commonGroundService->cleanUrl(['component'=>'vtc', 'type'=>'properties', 'id'=>'8110dc29-7b27-448e-8853-a8126c984ccb']),
-            $this->commonGroundService->cleanUrl(['component'=>'vtc', 'type'=>'properties', 'id'=>'baf2d8a5-250a-44f8-9a05-55af004d5d4f']),
         ]);
         //$section->setProperties(["https://vtc.westfriesland.commonground.nu/properties/8110dc29-7b27-448e-8853-a8126c984ccb"]);
+        $stage->addSection($section);
+
+        $section = new Section();
+        $section->setName('Factuuradres');
+        $section->setDescription('Wie moet de factuur ontvangen?');
+        $section->setProperties([
+            $this->commonGroundService->cleanUrl(['component'=>'vtc', 'type'=>'properties', 'id'=>'baf2d8a5-250a-44f8-9a05-55af004d5d4f']),
+        ]);
+
+        $condition = new Condition();
+        $condition->setOperation('!=');
+        $condition->setProperty('properties.gemeente');
+        $condition->getValue($this->commonGroundService->cleanUrl(['component'=>'wrc', 'type'=>'organizations', 'id'=>'d736013f-ad6d-4885-b816-ce72ac3e1384']));
+
+        $section->addCondition($condition);
+
         $stage->addSection($section);
 
         // Add the stage to the procces type
