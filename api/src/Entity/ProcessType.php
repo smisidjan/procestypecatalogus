@@ -493,6 +493,7 @@ class ProcessType
 
         return $this;
     }
+
     public function getShowInstructionStage(): ?bool
     {
         return $this->showInstructionStage;
