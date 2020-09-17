@@ -245,7 +245,7 @@ class WestFrieslandFixtures extends Fixture
         $condition = new Condition();
         $condition->setOperation('!=');
         $condition->setProperty('properties.gemeente');
-        $condition->getValue($this->commonGroundService->cleanUrl(['component'=>'wrc', 'type'=>'organizations', 'id'=>'d736013f-ad6d-4885-b816-ce72ac3e1384']));
+        $condition->setValue($this->commonGroundService->cleanUrl(['component'=>'wrc', 'type'=>'organizations', 'id'=>'d736013f-ad6d-4885-b816-ce72ac3e1384']));
 
         $section->addCondition($condition);
 
