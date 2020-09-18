@@ -28,7 +28,7 @@ class CheckinFixtures extends Fixture
             // If build all fixtures is true we build all the fixtures
             !$this->params->get('app_build_all_fixtures') &&
             // Specific domain names
-            $this->params->get('app_domain') != 'zuiddrecht.nl' && strpos($this->params->get('app_domain'), 'zuiddrecht.nl') == false &&
+            $this->params->get('app_domain') != 'checking.nu' && strpos($this->params->get('app_domain'), 'checking.nu') == false &&
             $this->params->get('app_domain') != 'zuid-drecht.nl' && strpos($this->params->get('app_domain'), 'zuid-drecht.nl') == false
         ) {
             return false;
@@ -39,14 +39,19 @@ class CheckinFixtures extends Fixture
          */
         $id = Uuid::fromString('fdb7186c-0ce9-4050-bd6d-cf83b0c162eb');
         $processType = new ProcessType();
-        $processType->setName('Onboarding');
+        $processType->setName('Deelnemen aan het checking platform');
         $processType->setIcon('fa fa-user');
-        $processType->setDescription('Verzoek tot deelname indienen');
+        $processType->setDescription('Om als ondernemer gebruik te kunnen maken van de checking functionaliteit moet u deelnemen aan het platform, en een abonement afsluiten.');
         $processType->setInstructionText(file_get_contents(dirname(__FILE__).'/Resources/chin/onboarding/instruction.html.twig', 'r'));
         $processType->setSubmitText(file_get_contents(dirname(__FILE__).'/Resources/chin/onboarding/submit.html.twig', 'r'));
         $processType->setSubmittedText(file_get_contents(dirname(__FILE__).'/Resources/chin/onboarding/submitted.html.twig', 'r'));
         $processType->setSourceOrganization($this->commonGroundService->cleanUrl(['component'=>'wrc', 'type'=>'organizations', 'id'=>'4d1eded3-fbdf-438f-9536-8747dd8ab591']));
         $processType->setRequestType($this->commonGroundService->cleanUrl(['component'=>'vtc', 'type'=>'request_types', 'id'=>'c328e6b4-77f6-4c58-8544-4128452acc80']));
+        $processType->setRequireLogin(false);
+        $processType->setShowInstructionStage(false);
+        $processType->setShowSubmitStage(false);
+        $processType->setShowSubmittedStage(false);
+        $processType->setSubmitText(false);
         $manager->persist($processType);
         $processType->setId($id);
         $manager->persist($processType);
@@ -65,45 +70,42 @@ class CheckinFixtures extends Fixture
         $section->setName('Uw gegevens');
         $section->setDescription('Wat zijn uw contactgegevens?');
         $section->setProperties([
-            $this->commonGroundService->cleanUrl(['component'=>'vtc', 'type'=>'properties', 'id'=>'5fe949b5-6ce7-4394-a4c9-6ae0297dad5d']),
+            $this->commonGroundService->cleanUrl(['component'=>'vtc', 'type'=>'properties', 'id'=>'55dde78d-4a14-43c6-a0ff-d33b7b5f8bae']),
         ]);
         $stage->addSection($section);
 
         $processType->addStage($stage);
         $manager->persist($processType);
         $manager->flush();
+
         $section = new Section();
         $section->setStage($stage);
         $section->setName('Onderneming');
         $section->setDescription('Wat zijn de gegevens van uw onderneming');
         $section->setProperties([
-            $this->commonGroundService->cleanUrl(['component'=>'vtc', 'type'=>'properties', 'id'=>'55dde78d-4a14-43c6-a0ff-d33b7b5f8bae']),
-            $this->commonGroundService->cleanUrl(['component'=>'vtc', 'type'=>'properties', 'id'=>'9e5c34dc-99da-423d-9a88-a4a3875a66fb']),
+            $this->commonGroundService->cleanUrl(['component'=>'vtc', 'type'=>'properties', 'id'=>'587babac-f23a-4fb0-8df8-ccd083a079cc']),
             $this->commonGroundService->cleanUrl(['component'=>'vtc', 'type'=>'properties', 'id'=>'41122a46-4788-4ba1-aba9-b48f7f640ef8']),
         ]);
+
         $stage->addSection($section);
-
-        $processType->addStage($stage);
-        $manager->persist($processType);
-        $manager->flush();
-
-        $stage = new Stage();
-        $stage->setName('Abonnement');
-        $stage->setDescription('abonnement');
-        $stage->setIcon('fas fa-money-check');
-        $stage->setSlug('abonnement');
-        $stage->setProcess($processType);
 
         $section = new Section();
         $section->setStage($stage);
-        $section->setName('Uw abonnement');
-        $section->setDescription('Welk abonnement wilt u?');
+        $section->setName('Abonnement');
+        $section->setDescription('Om deel te kunnen nemen aan dit platform heeft u een abonement nodig, dat kost €25 per maand (excl btw) en moet vooraf worden gefactureerd en betaald. Daarnaast zijn er aditionele kosten voor het gebruik van IDIN en is er een fair use policy van 1500 checkins per maand. Meer details daarover vind u hier <a href=""></a>.</p><p>De eerste maand is echter een proef periode en (binnen de gestelde voorwaarde van het platform) gratis. Om na deze maand gebruik te kunnen maken van het platform kunt u via de ondernemings pagina een abonement afsluiten');
+        $section->setProperties([]);
+
+        $stage->addSection($section);
+
+        $section = new Section();
+        $section->setStage($stage);
+        $section->setName('Voorwaarden');
+        $section->setDescription('Omdat we voor u gaan optreden als gegevens verwerker is het belangrijk dat we een aantal dingen goed regelen');
         $section->setProperties([
-            $this->commonGroundService->cleanUrl(['component'=>'vtc', 'type'=>'properties', 'id'=>'2abb52b1-bf30-4359-a027-fede87b63f64']),
-            $this->commonGroundService->cleanUrl(['component'=>'vtc', 'type'=>'properties', 'id'=>'3fbb0356-a362-4b70-b914-dd27919ff99c']),
             $this->commonGroundService->cleanUrl(['component'=>'vtc', 'type'=>'properties', 'id'=>'fa79e0cd-2fcd-44bf-84e3-01e9253bdd7b']),
             $this->commonGroundService->cleanUrl(['component'=>'vtc', 'type'=>'properties', 'id'=>'ce876e7e-8157-4468-b4ae-f72e04eabb74']),
         ]);
+
         $stage->addSection($section);
 
         $processType->addStage($stage);
@@ -123,6 +125,10 @@ class CheckinFixtures extends Fixture
         $processType->setSubmittedText(file_get_contents(dirname(__FILE__).'/Resources/chin/onboarding/submitted.html.twig', 'r'));
         $processType->setSourceOrganization($this->commonGroundService->cleanUrl(['component'=>'wrc', 'type'=>'organizations', 'id'=>'4d1eded3-fbdf-438f-9536-8747dd8ab591']));
         $processType->setRequestType($this->commonGroundService->cleanUrl(['component'=>'vtc', 'type'=>'request_types', 'id'=>'c328e6b4-77f6-4c58-8544-4128452acc80']));
+        $processType->setRequireLogin(true);
+        $processType->setShowInstructionStage(false);
+        $processType->setShowSubmitStage(false);
+        $processType->setShowSubmittedStage(false);
         $manager->persist($processType);
         $processType->setId($id);
         $manager->persist($processType);
@@ -155,6 +161,10 @@ class CheckinFixtures extends Fixture
         ]);
         $stage->addSection($section);
 
+        $processType->addStage($stage);
+        $manager->persist($processType);
+        $manager->flush();
+
         /*
        *  Opvragen gegevens door gebruiker (Checkin)
        */
@@ -168,6 +178,10 @@ class CheckinFixtures extends Fixture
         $processType->setSubmittedText(file_get_contents(dirname(__FILE__).'/Resources/chin/onboarding/submitted.html.twig', 'r'));
         $processType->setSourceOrganization($this->commonGroundService->cleanUrl(['component'=>'wrc', 'type'=>'organizations', 'id'=>'4d1eded3-fbdf-438f-9536-8747dd8ab591']));
         $processType->setRequestType($this->commonGroundService->cleanUrl(['component'=>'vtc', 'type'=>'request_types', 'id'=>'c328e6b4-77f6-4c58-8544-4128452acc80']));
+        $processType->setRequireLogin(false);
+        $processType->setShowInstructionStage(false);
+        $processType->setShowSubmitStage(false);
+        $processType->setShowSubmittedStage(false);
         $manager->persist($processType);
         $processType->setId($id);
         $manager->persist($processType);
@@ -189,5 +203,9 @@ class CheckinFixtures extends Fixture
             $this->commonGroundService->cleanUrl(['component'=>'vtc', 'type'=>'properties', 'id'=>'bf268ea7-4f08-4730-a5eb-fa6df870a24d']),
         ]);
         $stage->addSection($section);
+
+        $processType->addStage($stage);
+        $manager->persist($processType);
+        $manager->flush();
     }
 }
