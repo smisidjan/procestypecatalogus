@@ -207,5 +207,57 @@ class CheckinFixtures extends Fixture
         $processType->addStage($stage);
         $manager->persist($processType);
         $manager->flush();
+
+        /*
+       *  Contact Formulier (Checkin)
+       */
+        $id = Uuid::fromString('0465a588-b82a-436c-b9a5-2528c3608ec0');
+        $processType = new ProcessType();
+        $processType->setName('Contact formulier');
+        $processType->setIcon('fas fa-clipboard-list');
+        $processType->setDescription('Door dit proces te doorlopen kunt u contact opnemen met Conduction');
+        $processType->setSourceOrganization($this->commonGroundService->cleanUrl(['component'=>'wrc', 'type'=>'organizations', 'id'=>'4d1eded3-fbdf-438f-9536-8747dd8ab591']));
+        $processType->setRequestType($this->commonGroundService->cleanUrl(['component'=>'vtc', 'type'=>'request_types', 'id'=>'16b09e78-bca7-426d-b035-abfa101a9259']));
+        $processType->setRequireLogin(false);
+        $processType->setShowInstructionStage(false);
+        $processType->setShowSubmitStage(false);
+        $processType->setShowSubmittedStage(false);
+        $manager->persist($processType);
+        $processType->setId($id);
+        $manager->persist($processType);
+        $manager->flush();
+        $processType = $manager->getRepository('App:ProcessType')->findOneBy(['id'=> $id]);
+
+        $stage = new Stage();
+        $stage->setName('Formulier');
+        $stage->setDescription('Waarvoor wilt u contact opnemen? En wat zijn uw contact gegevens?');
+        $stage->setIcon('fas fa-money-check');
+        $stage->setSlug('gegevens');
+        $stage->setProcess($processType);
+
+        $section = new Section();
+        $section->setStage($stage);
+        $section->setName('Contact formulier');
+        $section->setProperties([
+            $this->commonGroundService->cleanUrl(['component'=>'vtc', 'type'=>'properties', 'id'=>'0586ea46-640f-43aa-af50-04c76268f912']),
+            $this->commonGroundService->cleanUrl(['component'=>'vtc', 'type'=>'properties', 'id'=>'20064385-f73b-401c-bfe3-2ec2b1fa6411']),
+        ]);
+        $stage->addSection($section);
+
+        $processType->addStage($stage);
+        $manager->persist($processType);
+        $manager->flush();
+
+        $section = new Section();
+        $section->setStage($stage);
+        $section->setName('Uw contact gegevens');
+        $section->setProperties([
+            $this->commonGroundService->cleanUrl(['component'=>'vtc', 'type'=>'properties', 'id'=>'54c7cfd5-bd6b-491e-a84e-047b26b4eebf']),
+        ]);
+        $stage->addSection($section);
+
+        $processType->addStage($stage);
+        $manager->persist($processType);
+        $manager->flush();
     }
 }
