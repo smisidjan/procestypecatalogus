@@ -231,8 +231,8 @@ class CheckinFixtures extends Fixture
         $stage = new Stage();
         $stage->setName('Formulier');
         $stage->setDescription('Waarvoor wilt u contact opnemen? En wat zijn uw contact gegevens?');
-        $stage->setIcon('fas fa-money-check');
-        $stage->setSlug('gegevens');
+        $stage->setIcon('fas fa-clipboard-list');
+        $stage->setSlug('contactformulier');
         $stage->setProcess($processType);
 
         $section = new Section();
@@ -253,6 +253,59 @@ class CheckinFixtures extends Fixture
         $section->setName('Uw contact gegevens');
         $section->setProperties([
             $this->commonGroundService->cleanUrl(['component'=>'vtc', 'type'=>'properties', 'id'=>'54c7cfd5-bd6b-491e-a84e-047b26b4eebf']),
+        ]);
+        $stage->addSection($section);
+
+        $processType->addStage($stage);
+        $manager->persist($processType);
+        $manager->flush();
+
+        /*
+       *  Idee Formulier (Checkin)
+       */
+        $id = Uuid::fromString('1e814be2-1a60-4869-9386-053826de19c4');
+        $processType = new ProcessType();
+        $processType->setName('Idee formulier');
+        $processType->setIcon('fas fa-clipboard-list');
+        $processType->setDescription('Door dit proces te doorlopen kunt u uw idee opsturen naar Conduction');
+        $processType->setSourceOrganization($this->commonGroundService->cleanUrl(['component'=>'wrc', 'type'=>'organizations', 'id'=>'4d1eded3-fbdf-438f-9536-8747dd8ab591']));
+        $processType->setRequestType($this->commonGroundService->cleanUrl(['component'=>'vtc', 'type'=>'request_types', 'id'=>'d92f1462-6a69-449f-8491-e6038af5ca82']));
+        $processType->setRequireLogin(false);
+        $processType->setShowInstructionStage(false);
+        $processType->setShowSubmitStage(false);
+        $processType->setShowSubmittedStage(false);
+        $manager->persist($processType);
+        $processType->setId($id);
+        $manager->persist($processType);
+        $manager->flush();
+        $processType = $manager->getRepository('App:ProcessType')->findOneBy(['id'=> $id]);
+
+        $stage = new Stage();
+        $stage->setName('Formulier');
+        $stage->setDescription('Wat is uw idee? En wat zijn uw contact gegevens?');
+        $stage->setIcon('fas fa-clipboard-list');
+        $stage->setSlug('ideeformulier');
+        $stage->setProcess($processType);
+
+        $section = new Section();
+        $section->setStage($stage);
+        $section->setName('Idee formulier');
+        $section->setProperties([
+            $this->commonGroundService->cleanUrl(['component'=>'vtc', 'type'=>'properties', 'id'=>'f7a04eea-8a00-46b1-bbe8-9ffd04fcb9c0']),
+            $this->commonGroundService->cleanUrl(['component'=>'vtc', 'type'=>'properties', 'id'=>'8dfc477e-dd31-43bb-8325-eac600a1f228']),
+            $this->commonGroundService->cleanUrl(['component'=>'vtc', 'type'=>'properties', 'id'=>'c8b4a8bf-f19c-4bd6-9e3f-3e7771cbf1b5']),
+        ]);
+        $stage->addSection($section);
+
+        $processType->addStage($stage);
+        $manager->persist($processType);
+        $manager->flush();
+
+        $section = new Section();
+        $section->setStage($stage);
+        $section->setName('Uw contact gegevens');
+        $section->setProperties([
+            $this->commonGroundService->cleanUrl(['component'=>'vtc', 'type'=>'properties', 'id'=>'c342f6c8-2cd6-4e11-96ae-20a26260fdf4']),
         ]);
         $stage->addSection($section);
 
