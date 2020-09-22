@@ -120,11 +120,8 @@ class CheckinFixtures extends Fixture
         $processType->setName('Aanvraag GGD');
         $processType->setIcon('fa fa-user');
         $processType->setDescription('Via dit process kunt een GGD aanvraag voor bezoekers gegevens aan ons doorgeven zodat wij deze gegevens bij de GGD kunnen aanleveren');
-        $processType->setInstructionText(file_get_contents(dirname(__FILE__).'/Resources/chin/onboarding/instruction.html.twig', 'r'));
-        $processType->setSubmitText(file_get_contents(dirname(__FILE__).'/Resources/chin/onboarding/submit.html.twig', 'r'));
-        $processType->setSubmittedText(file_get_contents(dirname(__FILE__).'/Resources/chin/onboarding/submitted.html.twig', 'r'));
         $processType->setSourceOrganization($this->commonGroundService->cleanUrl(['component'=>'wrc', 'type'=>'organizations', 'id'=>'4d1eded3-fbdf-438f-9536-8747dd8ab591']));
-        $processType->setRequestType($this->commonGroundService->cleanUrl(['component'=>'vtc', 'type'=>'request_types', 'id'=>'c328e6b4-77f6-4c58-8544-4128452acc80']));
+        $processType->setRequestType($this->commonGroundService->cleanUrl(['component'=>'vtc', 'type'=>'request_types', 'id'=>'b816e7d8-f7e3-4fd4-9e6f-5c5b29072b94']));
         $processType->setRequireLogin(true);
         $processType->setShowInstructionStage(false);
         $processType->setShowSubmitStage(false);
@@ -138,8 +135,8 @@ class CheckinFixtures extends Fixture
         $stage = new Stage();
         $stage->setName('Gemeentenlijke Gezondheids Dienst');
         $stage->setDescription('Om gegevens te verstrekken aan de GGD hebben wij twee zaken van u nodig, de gegevens van de GGD en een explicitie opdracht om deze gegevens te verstrekken');
-        $stage->setIcon('fas fa-money-check');
-        $stage->setSlug('gegevens');
+        $stage->setIcon('fa fa-user');
+        $stage->setSlug('gegevens-ggd');
         $stage->setProcess($processType);
 
         $section = new Section();
@@ -173,11 +170,8 @@ class CheckinFixtures extends Fixture
         $processType->setName('Gegevens opvragen');
         $processType->setIcon('fa fa-user');
         $processType->setDescription('Als u positief getest bent voor covid-19 zal de GGD bij u gegevens opvragen ivm een contact onderzoek. U kunt deze gegevens hier downloaden');
-        $processType->setInstructionText(file_get_contents(dirname(__FILE__).'/Resources/chin/onboarding/instruction.html.twig', 'r'));
-        $processType->setSubmitText(file_get_contents(dirname(__FILE__).'/Resources/chin/onboarding/submit.html.twig', 'r'));
-        $processType->setSubmittedText(file_get_contents(dirname(__FILE__).'/Resources/chin/onboarding/submitted.html.twig', 'r'));
         $processType->setSourceOrganization($this->commonGroundService->cleanUrl(['component'=>'wrc', 'type'=>'organizations', 'id'=>'4d1eded3-fbdf-438f-9536-8747dd8ab591']));
-        $processType->setRequestType($this->commonGroundService->cleanUrl(['component'=>'vtc', 'type'=>'request_types', 'id'=>'c328e6b4-77f6-4c58-8544-4128452acc80']));
+        $processType->setRequestType($this->commonGroundService->cleanUrl(['component'=>'vtc', 'type'=>'request_types', 'id'=>'39fe2fed-b5dc-42ce-9f9e-64101351b566']));
         $processType->setRequireLogin(false);
         $processType->setShowInstructionStage(false);
         $processType->setShowSubmitStage(false);
@@ -191,8 +185,8 @@ class CheckinFixtures extends Fixture
         $stage = new Stage();
         $stage->setName('Gegevens');
         $stage->setDescription('Waar moeten wij uw gevens naartoe verzenden?');
-        $stage->setIcon('fas fa-money-check');
-        $stage->setSlug('gegevens');
+        $stage->setIcon('fa fa-user');
+        $stage->setSlug('gegevens-gebruiker');
         $stage->setProcess($processType);
 
         $section = new Section();
