@@ -12,7 +12,7 @@ info:
     - Docker Image: [online](https://hub.docker.com/repository/docker/conduction/ptc-php) 
     - Datamodel: [postman](/schema/ptc.postman_collection.json) / [oas](/schema/openapi.yaml) / [pdf](/schema/datamodel.pdf) / [modelio (zip)](/schema/Datamodel_Modelio.zip) 
     
-    Naast deze JSON rest API is er ook een [graphql](/graphql) interface beschikbaar.         
+    'Naast deze JSON rest API is er ook een [graphql](/graphql) interface beschikbaar.'         
     
 paths:
   /audit_trails:
@@ -7207,6 +7207,71 @@ definitions:
     required:
       - name
       - sourceOrganization
+  Section-read:
+    properties:
+      id:
+        description: 'The UUID identifier of this object'
+        type: string
+        example: e2984465-190a-4562-829e-a8cca81aa35d
+        format: uuid
+      name:
+        description: 'the name of this Section'
+        type: string
+        example: 'Section 1'
+        maxLength: 255
+      description:
+        description: 'the description for this section'
+        type: string
+        example: 'this section is for the personal data of the client'
+      properties:
+        description: 'The properties that are treated in this section, as references to the VTC component'
+        type: array
+        example: 'https://vtc.processen.zaakonline.nl/properties/1'
+      dateCreated:
+        description: 'The moment this request was created'
+        type: \DateTime
+      dateModified:
+        description: 'The moment this request last Modified'
+        type: \DateTime
+      orderNumber:
+        description: 'The place in the order where the section should be rendered'
+        type: int
+      stage:
+        description: 'the stage this section belongs to'
+        type: \Stage
+      conditions:
+        description: 'The conditions that have to be met for showing this section'
+        type: '\ArrayCollection|\Condition[]'
+    required:
+      - name
+      - orderNumber
+  Section-write:
+    properties:
+      name:
+        description: 'the name of this Section'
+        type: string
+        example: 'Section 1'
+        maxLength: 255
+      description:
+        description: 'the description for this section'
+        type: string
+        example: 'this section is for the personal data of the client'
+      properties:
+        description: 'The properties that are treated in this section, as references to the VTC component'
+        type: array
+        example: 'https://vtc.processen.zaakonline.nl/properties/1'
+      orderNumber:
+        description: 'The place in the order where the section should be rendered'
+        type: int
+      stage:
+        description: 'the stage this section belongs to'
+        type: \Stage
+      conditions:
+        description: 'The conditions that have to be met for showing this section'
+        type: '\ArrayCollection|\Condition[]'
+    required:
+      - name
+      - orderNumber
   Stage-read:
     properties:
       id:
@@ -7298,124 +7363,6 @@ definitions:
     required:
       - name
       - orderNumber
-  Section-read:
-    properties:
-      id:
-        description: 'The UUID identifier of this object'
-        type: string
-        example: e2984465-190a-4562-829e-a8cca81aa35d
-        format: uuid
-      name:
-        description: 'the name of this Section'
-        type: string
-        example: 'Section 1'
-        maxLength: 255
-      description:
-        description: 'the description for this section'
-        type: string
-        example: 'this section is for the personal data of the client'
-      properties:
-        description: 'The properties that are treated in this section, as references to the VTC component'
-        type: array
-        example: 'https://vtc.processen.zaakonline.nl/properties/1'
-      dateCreated:
-        description: 'The moment this request was created'
-        type: \DateTime
-      dateModified:
-        description: 'The moment this request last Modified'
-        type: \DateTime
-      orderNumber:
-        description: 'The place in the order where the section should be rendered'
-        type: int
-      stage:
-        description: 'the stage this section belongs to'
-        type: \Stage
-      conditions:
-        description: 'The conditions that have to be met for showing this section'
-        type: '\ArrayCollection|\Condition[]'
-    required:
-      - name
-      - orderNumber
-  Section-write:
-    properties:
-      name:
-        description: 'the name of this Section'
-        type: string
-        example: 'Section 1'
-        maxLength: 255
-      description:
-        description: 'the description for this section'
-        type: string
-        example: 'this section is for the personal data of the client'
-      properties:
-        description: 'The properties that are treated in this section, as references to the VTC component'
-        type: array
-        example: 'https://vtc.processen.zaakonline.nl/properties/1'
-      orderNumber:
-        description: 'The place in the order where the section should be rendered'
-        type: int
-      stage:
-        description: 'the stage this section belongs to'
-        type: \Stage
-      conditions:
-        description: 'The conditions that have to be met for showing this section'
-        type: '\ArrayCollection|\Condition[]'
-    required:
-      - name
-      - orderNumber
-  ChangeLog-read:
-    properties:
-      id:
-        description: 'The UUID identifier of this object'
-        type: string
-        example: e2984465-190a-4562-829e-a8cca81aa35d
-        format: uuid
-      note:
-        description: 'A note conserning this log lin'
-        type: string
-        example: 'This log line is suspicius'
-        maxLength: 2555
-      action:
-        description: ''
-        type: string
-      objectId:
-        description: ''
-        type: string
-      objectClass:
-        description: ''
-        type: string
-      version:
-        description: ''
-        type: int
-      data:
-        description: ''
-        type: array
-      username:
-        description: ''
-        type: string
-      session:
-        description: 'The moment this request was created'
-        type: string
-        maxLength: 255
-      dateCreated:
-        description: 'The moment this request was created'
-        type: string
-        format: date-time
-        example: '2020-09-21 14:02:06'
-      dateModified:
-        description: 'The moment this request last Modified'
-        type: string
-        format: date-time
-        example: '2020-09-21 14:02:06'
-    required: []
-  ChangeLog-write:
-    properties:
-      note:
-        description: 'A note conserning this log lin'
-        type: string
-        example: 'This log line is suspicius'
-        maxLength: 2555
-    required: []
   AuditTrail-read:
     properties:
       id:
@@ -7520,12 +7467,12 @@ definitions:
         description: 'The moment this request was created'
         type: string
         format: date-time
-        example: '2020-09-21 14:02:06'
+        example: '2020-09-22 08:12:35'
       dateModified:
         description: 'The moment this request last Modified'
         type: string
         format: date-time
-        example: '2020-09-21 14:02:06'
+        example: '2020-09-22 08:12:35'
     required: []
   AuditTrail-write:
     properties:
@@ -7533,6 +7480,59 @@ definitions:
         description: 'A note conserning this log lin'
         type: string
         example: 'This log line looks suspicius'
+        maxLength: 2555
+    required: []
+  ChangeLog-read:
+    properties:
+      id:
+        description: 'The UUID identifier of this object'
+        type: string
+        example: e2984465-190a-4562-829e-a8cca81aa35d
+        format: uuid
+      note:
+        description: 'A note conserning this log lin'
+        type: string
+        example: 'This log line is suspicius'
+        maxLength: 2555
+      action:
+        description: ''
+        type: string
+      objectId:
+        description: ''
+        type: string
+      objectClass:
+        description: ''
+        type: string
+      version:
+        description: ''
+        type: int
+      data:
+        description: ''
+        type: array
+      username:
+        description: ''
+        type: string
+      session:
+        description: 'The moment this request was created'
+        type: string
+        maxLength: 255
+      dateCreated:
+        description: 'The moment this request was created'
+        type: string
+        format: date-time
+        example: '2020-09-22 08:12:35'
+      dateModified:
+        description: 'The moment this request last Modified'
+        type: string
+        format: date-time
+        example: '2020-09-22 08:12:35'
+    required: []
+  ChangeLog-write:
+    properties:
+      note:
+        description: 'A note conserning this log lin'
+        type: string
+        example: 'This log line is suspicius'
         maxLength: 2555
     required: []
 tags:
@@ -7543,25 +7543,25 @@ tags:
       
       
   -
-    name: Stage
-    description: |
-      A single stage within a process.
-      
-      
-  -
     name: Section
     description: |
       
       
       
   -
-    name: ChangeLog
+    name: Stage
+    description: |
+      A single stage within a process.
+      
+      
+  -
+    name: AuditTrail
     description: |
       An resource representing a log line.
       
       This entity represents a product that can be ordered via the OrderRegistratieComponent.
   -
-    name: AuditTrail
+    name: ChangeLog
     description: |
       An resource representing a log line.
       
@@ -7572,15 +7572,15 @@ securityDefinitions:
     authorizationUrl: 'http://petstore.swagger.io/api/oauth/dialog'
     flow: implicit
     scopes:
-      read: 'read right to the AuditTrail resource'
-      write: 'write right to the AuditTrail resource'
+      read: 'read right to the ChangeLog resource'
+      write: 'write right to the ChangeLog resource'
   JWT-Token:
     type: apiKey
     in: header
     name: Authorization
     scopes:
-      read: 'read right to the AuditTrail resource'
-      write: 'write right to the AuditTrail resource'
+      read: 'read right to the ChangeLog resource'
+      write: 'write right to the ChangeLog resource'
 host: irc.zaakonline.nl
 servers:
   -
