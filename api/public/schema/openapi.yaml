@@ -12,7 +12,7 @@ info:
     - Docker Image: [online](https://hub.docker.com/repository/docker/conduction/ptc-php) 
     - Datamodel: [postman](/schema/ptc.postman_collection.json) / [oas](/schema/openapi.yaml) / [pdf](/schema/datamodel.pdf) / [modelio (zip)](/schema/Datamodel_Modelio.zip) 
     
-    Naast deze JSON rest API is er ook een [graphql](/graphql) interface beschikbaar.         
+    'Naast deze JSON rest API is er ook een [graphql](/graphql) interface beschikbaar.'         
     
 paths:
   /audit_trails:
@@ -2035,6 +2035,24 @@ paths:
           schema:
             type: boolean
         -
+          name: showInstructionStage
+          in: query
+          required: false
+          schema:
+            type: boolean
+        -
+          name: showSubmitStage
+          in: query
+          required: false
+          schema:
+            type: boolean
+        -
+          name: showSubmittedStage
+          in: query
+          required: false
+          schema:
+            type: boolean
+        -
           name: 'order[id]'
           in: query
           required: false
@@ -2143,6 +2161,15 @@ paths:
               - asc
               - desc
         -
+          name: 'order[showInstructionStage]'
+          in: query
+          required: false
+          schema:
+            type: string
+            enum:
+              - asc
+              - desc
+        -
           name: 'order[submitText]'
           in: query
           required: false
@@ -2152,7 +2179,25 @@ paths:
               - asc
               - desc
         -
+          name: 'order[showSubmitStage]'
+          in: query
+          required: false
+          schema:
+            type: string
+            enum:
+              - asc
+              - desc
+        -
           name: 'order[submittedText]'
+          in: query
+          required: false
+          schema:
+            type: string
+            enum:
+              - asc
+              - desc
+        -
+          name: 'order[showSubmittedStage]'
           in: query
           required: false
           schema:
@@ -2437,6 +2482,22 @@ paths:
           style: form
           explode: true
         -
+          name: showInstructionStage
+          in: query
+          required: false
+          schema:
+            type: boolean
+        -
+          name: 'showInstructionStage[]'
+          in: query
+          required: false
+          schema:
+            type: array
+            items:
+              type: boolean
+          style: form
+          explode: true
+        -
           name: submitText
           in: query
           required: false
@@ -2453,6 +2514,22 @@ paths:
           style: form
           explode: true
         -
+          name: showSubmitStage
+          in: query
+          required: false
+          schema:
+            type: boolean
+        -
+          name: 'showSubmitStage[]'
+          in: query
+          required: false
+          schema:
+            type: array
+            items:
+              type: boolean
+          style: form
+          explode: true
+        -
           name: submittedText
           in: query
           required: false
@@ -2466,6 +2543,22 @@ paths:
             type: array
             items:
               type: string
+          style: form
+          explode: true
+        -
+          name: showSubmittedStage
+          in: query
+          required: false
+          schema:
+            type: boolean
+        -
+          name: 'showSubmittedStage[]'
+          in: query
+          required: false
+          schema:
+            type: array
+            items:
+              type: boolean
           style: form
           explode: true
         -
@@ -6118,13 +6211,25 @@ components:
           description: 'The text displayed at the instruction stage.'
           type: string
           nullable: true
+        showInstructionStage:
+          description: 'wheter or not to dispay the instruction stage of a procces'
+          type: boolean
+          nullable: true
         submitText:
           description: 'The text displayed at the submit stage.'
           type: string
           nullable: true
+        showSubmitStage:
+          description: 'wheter or not to dispay the submit stage of a procces'
+          type: boolean
+          nullable: true
         submittedText:
           description: 'The text displayed at the submitted stage.'
           type: string
+          nullable: true
+        showSubmittedStage:
+          description: 'wheter or not to dispay the submitted stage of a procces'
+          type: boolean
           nullable: true
         properties:
           type: array
@@ -6216,13 +6321,25 @@ components:
           description: 'The text displayed at the instruction stage.'
           type: string
           nullable: true
+        showInstructionStage:
+          description: 'wheter or not to dispay the instruction stage of a procces'
+          type: boolean
+          nullable: true
         submitText:
           description: 'The text displayed at the submit stage.'
           type: string
           nullable: true
+        showSubmitStage:
+          description: 'wheter or not to dispay the submit stage of a procces'
+          type: boolean
+          nullable: true
         submittedText:
           description: 'The text displayed at the submitted stage.'
           type: string
+          nullable: true
+        showSubmittedStage:
+          description: 'wheter or not to dispay the submitted stage of a procces'
+          type: boolean
           nullable: true
         properties:
           type: array
@@ -6308,13 +6425,25 @@ components:
           description: 'The text displayed at the instruction stage.'
           type: string
           nullable: true
+        showInstructionStage:
+          description: 'wheter or not to dispay the instruction stage of a procces'
+          type: boolean
+          nullable: true
         submitText:
           description: 'The text displayed at the submit stage.'
           type: string
           nullable: true
+        showSubmitStage:
+          description: 'wheter or not to dispay the submit stage of a procces'
+          type: boolean
+          nullable: true
         submittedText:
           description: 'The text displayed at the submitted stage.'
           type: string
+          nullable: true
+        showSubmittedStage:
+          description: 'wheter or not to dispay the submitted stage of a procces'
+          type: boolean
           nullable: true
         properties:
           type: array
@@ -6415,13 +6544,25 @@ components:
           description: 'The text displayed at the instruction stage.'
           type: string
           nullable: true
+        showInstructionStage:
+          description: 'wheter or not to dispay the instruction stage of a procces'
+          type: boolean
+          nullable: true
         submitText:
           description: 'The text displayed at the submit stage.'
           type: string
           nullable: true
+        showSubmitStage:
+          description: 'wheter or not to dispay the submit stage of a procces'
+          type: boolean
+          nullable: true
         submittedText:
           description: 'The text displayed at the submitted stage.'
           type: string
+          nullable: true
+        showSubmittedStage:
+          description: 'wheter or not to dispay the submitted stage of a procces'
+          type: boolean
           nullable: true
         properties:
           type: array
@@ -6951,14 +7092,26 @@ definitions:
         description: 'The text displayed at the instruction stage.'
         type: string
         example: 'Dit proces is bedoelt om X te doen. Hier kun je meer vinden over X. etc.'
+      showInstructionStage:
+        description: 'wheter or not to dispay the instruction stage of a procces'
+        type: bool
+        example: 'false'
       submitText:
         description: 'The text displayed at the submit stage.'
         type: string
         example: 'Na het indienen van dit verzoek zal uw verzoek binnen een week afgehandeld worden.'
+      showSubmitStage:
+        description: 'wheter or not to dispay the submit stage of a procces'
+        type: bool
+        example: 'false'
       submittedText:
         description: 'The text displayed at the submitted stage.'
         type: string
         example: 'Uw verzoek zal binnen een week afgehandeld worden.'
+      showSubmittedStage:
+        description: 'wheter or not to dispay the submitted stage of a procces'
+        type: bool
+        example: 'false'
       properties: []
       documents: []
       dateCreated:
@@ -7023,14 +7176,26 @@ definitions:
         description: 'The text displayed at the instruction stage.'
         type: string
         example: 'Dit proces is bedoelt om X te doen. Hier kun je meer vinden over X. etc.'
+      showInstructionStage:
+        description: 'wheter or not to dispay the instruction stage of a procces'
+        type: bool
+        example: 'false'
       submitText:
         description: 'The text displayed at the submit stage.'
         type: string
         example: 'Na het indienen van dit verzoek zal uw verzoek binnen een week afgehandeld worden.'
+      showSubmitStage:
+        description: 'wheter or not to dispay the submit stage of a procces'
+        type: bool
+        example: 'false'
       submittedText:
         description: 'The text displayed at the submitted stage.'
         type: string
         example: 'Uw verzoek zal binnen een week afgehandeld worden.'
+      showSubmittedStage:
+        description: 'wheter or not to dispay the submitted stage of a procces'
+        type: bool
+        example: 'false'
       properties: []
       documents: []
       stages:
@@ -7302,12 +7467,12 @@ definitions:
         description: 'The moment this request was created'
         type: string
         format: date-time
-        example: '2020-09-03 12:36:32'
+        example: '2020-09-22 08:12:35'
       dateModified:
         description: 'The moment this request last Modified'
         type: string
         format: date-time
-        example: '2020-09-03 12:36:32'
+        example: '2020-09-22 08:12:35'
     required: []
   AuditTrail-write:
     properties:
@@ -7355,12 +7520,12 @@ definitions:
         description: 'The moment this request was created'
         type: string
         format: date-time
-        example: '2020-09-03 12:36:32'
+        example: '2020-09-22 08:12:35'
       dateModified:
         description: 'The moment this request last Modified'
         type: string
         format: date-time
-        example: '2020-09-03 12:36:32'
+        example: '2020-09-22 08:12:35'
     required: []
   ChangeLog-write:
     properties:
