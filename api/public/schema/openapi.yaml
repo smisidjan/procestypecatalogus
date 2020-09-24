@@ -12,7 +12,7 @@ info:
     - Docker Image: [online](https://hub.docker.com/repository/docker/conduction/ptc-php) 
     - Datamodel: [postman](/schema/ptc.postman_collection.json) / [oas](/schema/openapi.yaml) / [pdf](/schema/datamodel.pdf) / [modelio (zip)](/schema/Datamodel_Modelio.zip) 
     
-    'Naast deze JSON rest API is er ook een [graphql](/graphql) interface beschikbaar.'         
+    Naast deze JSON rest API is er ook een [graphql](/graphql) interface beschikbaar.         
     
 paths:
   /audit_trails:
@@ -2029,12 +2029,6 @@ paths:
                   $ref: '#/components/schemas/ProcessType-read'
       parameters:
         -
-          name: requireLogin
-          in: query
-          required: false
-          schema:
-            type: boolean
-        -
           name: showInstructionStage
           in: query
           required: false
@@ -2107,7 +2101,7 @@ paths:
               - asc
               - desc
         -
-          name: 'order[requireLogin]'
+          name: 'order[login]'
           in: query
           required: false
           schema:
@@ -2386,19 +2380,19 @@ paths:
           style: form
           explode: true
         -
-          name: requireLogin
+          name: login
           in: query
           required: false
           schema:
-            type: boolean
+            type: string
         -
-          name: 'requireLogin[]'
+          name: 'login[]'
           in: query
           required: false
           schema:
             type: array
             items:
-              type: boolean
+              type: string
           style: form
           explode: true
         -
@@ -6183,10 +6177,9 @@ components:
           externalDocs:
             url: 'http://schema.org/url'
           type: string
-        requireLogin:
-          description: 'If being logged in for process is required.'
-          type: boolean
-          nullable: true
+        login:
+          description: 'Whether or not to require a login. *none* means never require a user to login, user wil not be presented with the option to login, *optional* means the request presented with the option to login but not requered to do so, *onSubmit* means the user can not post the procces to the vrc without loggin in, *always* means that the user can not start the procces without loging in.'
+          type: string
         audience:
           description: 'The audience this processType is intended for'
           type: array
@@ -6293,10 +6286,9 @@ components:
           anyOf:
             -
               $ref: '#/components/schemas/ProcessType-write'
-        requireLogin:
-          description: 'If being logged in for process is required.'
-          type: boolean
-          nullable: true
+        login:
+          description: 'Whether or not to require a login. *none* means never require a user to login, user wil not be presented with the option to login, *optional* means the request presented with the option to login but not requered to do so, *onSubmit* means the user can not post the procces to the vrc without loggin in, *always* means that the user can not start the procces without loging in.'
+          type: string
         audience:
           description: 'The audience this processType is intended for'
           type: array
@@ -6397,10 +6389,9 @@ components:
           externalDocs:
             url: 'http://schema.org/url'
           type: string
-        requireLogin:
-          description: 'If being logged in for process is required.'
-          type: boolean
-          nullable: true
+        login:
+          description: 'Whether or not to require a login. *none* means never require a user to login, user wil not be presented with the option to login, *optional* means the request presented with the option to login but not requered to do so, *onSubmit* means the user can not post the procces to the vrc without loggin in, *always* means that the user can not start the procces without loging in.'
+          type: string
         audience:
           description: 'The audience this processType is intended for'
           type: array
@@ -6516,10 +6507,9 @@ components:
           anyOf:
             -
               $ref: '#/components/schemas/ProcessType:jsonld-write'
-        requireLogin:
-          description: 'If being logged in for process is required.'
-          type: boolean
-          nullable: true
+        login:
+          description: 'Whether or not to require a login. *none* means never require a user to login, user wil not be presented with the option to login, *optional* means the request presented with the option to login but not requered to do so, *onSubmit* means the user can not post the procces to the vrc without loggin in, *always* means that the user can not start the procces without loging in.'
+          type: string
         audience:
           description: 'The audience this processType is intended for'
           type: array
@@ -7069,10 +7059,11 @@ definitions:
         example: 'http://rtc.zaakonline.nl/9bd169ef-bc8c-4422-86ce-a0e7679ab67a'
         format: url
         maxLength: 255
-      requireLogin:
-        description: 'If being logged in for process is required.'
-        type: bool
-        example: 'false'
+      login:
+        description: 'Whether or not to require a login. *none* means never require a user to login, user wil not be presented with the option to login, *optional* means the request presented with the option to login but not requered to do so, *onSubmit* means the user can not post the procces to the vrc without loggin in, *always* means that the user can not start the procces without loging in.'
+        type: string
+        example: optional
+        maxLength: 10
       audience:
         description: 'The audience this processType is intended for'
         type: string
@@ -7153,10 +7144,11 @@ definitions:
         example: 'http://rtc.zaakonline.nl/9bd169ef-bc8c-4422-86ce-a0e7679ab67a'
         format: url
         maxLength: 255
-      requireLogin:
-        description: 'If being logged in for process is required.'
-        type: bool
-        example: 'false'
+      login:
+        description: 'Whether or not to require a login. *none* means never require a user to login, user wil not be presented with the option to login, *optional* means the request presented with the option to login but not requered to do so, *onSubmit* means the user can not post the procces to the vrc without loggin in, *always* means that the user can not start the procces without loging in.'
+        type: string
+        example: optional
+        maxLength: 10
       audience:
         description: 'The audience this processType is intended for'
         type: string
@@ -7467,12 +7459,12 @@ definitions:
         description: 'The moment this request was created'
         type: string
         format: date-time
-        example: '2020-09-22 08:12:35'
+        example: '2020-09-24 08:40:57'
       dateModified:
         description: 'The moment this request last Modified'
         type: string
         format: date-time
-        example: '2020-09-22 08:12:35'
+        example: '2020-09-24 08:40:57'
     required: []
   AuditTrail-write:
     properties:
@@ -7520,12 +7512,12 @@ definitions:
         description: 'The moment this request was created'
         type: string
         format: date-time
-        example: '2020-09-22 08:12:35'
+        example: '2020-09-24 08:40:57'
       dateModified:
         description: 'The moment this request last Modified'
         type: string
         format: date-time
-        example: '2020-09-22 08:12:35'
+        example: '2020-09-24 08:40:57'
     required: []
   ChangeLog-write:
     properties:

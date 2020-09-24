@@ -47,7 +47,7 @@ class CheckinFixtures extends Fixture
         $processType->setSubmittedText(file_get_contents(dirname(__FILE__).'/Resources/chin/onboarding/submitted.html.twig', 'r'));
         $processType->setSourceOrganization($this->commonGroundService->cleanUrl(['component'=>'wrc', 'type'=>'organizations', 'id'=>'4d1eded3-fbdf-438f-9536-8747dd8ab591']));
         $processType->setRequestType($this->commonGroundService->cleanUrl(['component'=>'vtc', 'type'=>'request_types', 'id'=>'c328e6b4-77f6-4c58-8544-4128452acc80']));
-        $processType->setRequireLogin(false);
+        $processType->setLogin('none');
         $processType->setShowInstructionStage(false);
         $processType->setShowSubmitStage(false);
         $processType->setShowSubmittedStage(false);
@@ -122,7 +122,7 @@ class CheckinFixtures extends Fixture
         $processType->setDescription('Via dit process kunt een GGD aanvraag voor bezoekers gegevens aan ons doorgeven zodat wij deze gegevens bij de GGD kunnen aanleveren');
         $processType->setSourceOrganization($this->commonGroundService->cleanUrl(['component'=>'wrc', 'type'=>'organizations', 'id'=>'4d1eded3-fbdf-438f-9536-8747dd8ab591']));
         $processType->setRequestType($this->commonGroundService->cleanUrl(['component'=>'vtc', 'type'=>'request_types', 'id'=>'b816e7d8-f7e3-4fd4-9e6f-5c5b29072b94']));
-        $processType->setRequireLogin(true);
+        $processType->setLogin('none');
         $processType->setShowInstructionStage(false);
         $processType->setShowSubmitStage(false);
         $processType->setShowSubmittedStage(false);
@@ -172,7 +172,7 @@ class CheckinFixtures extends Fixture
         $processType->setDescription('Als u positief getest bent voor covid-19 zal de GGD bij u gegevens opvragen ivm een contact onderzoek. U kunt deze gegevens hier downloaden');
         $processType->setSourceOrganization($this->commonGroundService->cleanUrl(['component'=>'wrc', 'type'=>'organizations', 'id'=>'4d1eded3-fbdf-438f-9536-8747dd8ab591']));
         $processType->setRequestType($this->commonGroundService->cleanUrl(['component'=>'vtc', 'type'=>'request_types', 'id'=>'39fe2fed-b5dc-42ce-9f9e-64101351b566']));
-        $processType->setRequireLogin(false);
+        $processType->setLogin('none');
         $processType->setShowInstructionStage(false);
         $processType->setShowSubmitStage(false);
         $processType->setShowSubmittedStage(false);
@@ -212,7 +212,7 @@ class CheckinFixtures extends Fixture
         $processType->setDescription('Door dit proces te doorlopen kunt u contact opnemen met Conduction');
         $processType->setSourceOrganization($this->commonGroundService->cleanUrl(['component'=>'wrc', 'type'=>'organizations', 'id'=>'4d1eded3-fbdf-438f-9536-8747dd8ab591']));
         $processType->setRequestType($this->commonGroundService->cleanUrl(['component'=>'vtc', 'type'=>'request_types', 'id'=>'16b09e78-bca7-426d-b035-abfa101a9259']));
-        $processType->setRequireLogin(false);
+        $processType->setLogin('none');
         $processType->setShowInstructionStage(false);
         $processType->setShowSubmitStage(false);
         $processType->setShowSubmittedStage(false);
@@ -264,7 +264,7 @@ class CheckinFixtures extends Fixture
         $processType->setDescription('Door dit proces te doorlopen kunt u uw idee opsturen naar Conduction');
         $processType->setSourceOrganization($this->commonGroundService->cleanUrl(['component'=>'wrc', 'type'=>'organizations', 'id'=>'4d1eded3-fbdf-438f-9536-8747dd8ab591']));
         $processType->setRequestType($this->commonGroundService->cleanUrl(['component'=>'vtc', 'type'=>'request_types', 'id'=>'d92f1462-6a69-449f-8491-e6038af5ca82']));
-        $processType->setRequireLogin(false);
+        $processType->setLogin('none');
         $processType->setShowInstructionStage(false);
         $processType->setShowSubmitStage(false);
         $processType->setShowSubmittedStage(false);
