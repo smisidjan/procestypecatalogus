@@ -80,11 +80,10 @@ class CheckinFixtures extends Fixture
 
         $section = new Section();
         $section->setStage($stage);
-        $section->setName('Onderneming');
-        $section->setDescription('Wat zijn de gegevens van uw onderneming');
+        $section->setName('Koningklijke horeca nederland');
+        $section->setDescription('Als u lid bent van koningklijke horeca nederland kunt u hier uw lidmaarschats nummer opvoeren voor korting');
         $section->setProperties([
-            $this->commonGroundService->cleanUrl(['component'=>'vtc', 'type'=>'properties', 'id'=>'587babac-f23a-4fb0-8df8-ccd083a079cc']),
-            $this->commonGroundService->cleanUrl(['component'=>'vtc', 'type'=>'properties', 'id'=>'41122a46-4788-4ba1-aba9-b48f7f640ef8']),
+            $this->commonGroundService->cleanUrl(['component'=>'vtc', 'type'=>'properties', 'id'=>'587babac-f23a-4fb0-8df8-ccd083a079cc'])
         ]);
 
         $stage->addSection($section);
