@@ -60,7 +60,6 @@ class CheckinFixtures extends Fixture
 
         $stage = new Stage();
         $stage->setName('Gegevens');
-        $stage->setDescription('Wat zijn de gegevens van u en uw ondernemening?');
         $stage->setIcon('fas fa-user');
         $stage->setSlug('gegevens');
         $stage->setProcess($processType);
