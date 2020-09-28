@@ -314,6 +314,17 @@ class ProcessType
     private $showSubmittedStage = true;
 
     /**
+     * @var bool wheter or not to display the back button to processes
+     *
+     * @example false
+     *
+     * @Assert\Type("bool")
+     * @Groups({"read", "write"})
+     * @ORM\Column(type="boolean", nullable=true)
+     */
+    private $showBackButton = true;
+
+    /**
      * @param array|string[] The request properties that are used for this process
      *
      * @Gedmo\Versioned
@@ -507,6 +518,18 @@ class ProcessType
     public function setShowInstructionStage(?bool $showInstructionStage): self
     {
         $this->showInstructionStage = $showInstructionStage;
+
+        return $this;
+    }
+
+    public function getShowBackButton(): ?bool
+    {
+        return $this->showBackButton;
+    }
+
+    public function setShowBackButton(?bool $showBackButton): self
+    {
+        $this->showBackButton = $showBackButton;
 
         return $this;
     }
