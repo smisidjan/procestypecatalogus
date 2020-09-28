@@ -203,7 +203,7 @@ class ProcessType
      * @Groups({"read","write"})
      * @ORM\Column(type="string", length=10, options={"default" : "optional"})
      */
-    private $login = "optional";
+    private $login = 'optional';
 
     /**
      * @var string The audience this processType is intended for

@@ -83,7 +83,7 @@ class CheckinFixtures extends Fixture
         $section->setName('Koningklijke horeca nederland');
         $section->setDescription('Als u lid bent van koningklijke horeca nederland kunt u hier uw lidmaarschats nummer opvoeren voor korting');
         $section->setProperties([
-            $this->commonGroundService->cleanUrl(['component'=>'vtc', 'type'=>'properties', 'id'=>'587babac-f23a-4fb0-8df8-ccd083a079cc'])
+            $this->commonGroundService->cleanUrl(['component'=>'vtc', 'type'=>'properties', 'id'=>'587babac-f23a-4fb0-8df8-ccd083a079cc']),
         ]);
 
         $stage->addSection($section);
