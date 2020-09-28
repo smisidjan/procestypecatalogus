@@ -28,7 +28,7 @@ class CheckinFixtures extends Fixture
             // If build all fixtures is true we build all the fixtures
             !$this->params->get('app_build_all_fixtures') &&
             // Specific domain names
-            $this->params->get('app_domain') != 'zuiddrecht.nl' && strpos($this->params->get('app_domain'), 'zuiddrecht.nl') == false &&
+            $this->params->get('app_domain') != 'checking.nu' && strpos($this->params->get('app_domain'), 'checking.nu') == false &&
             $this->params->get('app_domain') != 'zuid-drecht.nl' && strpos($this->params->get('app_domain'), 'zuid-drecht.nl') == false
         ) {
             return false;
@@ -47,6 +47,11 @@ class CheckinFixtures extends Fixture
         $processType->setSubmittedText(file_get_contents(dirname(__FILE__).'/Resources/chin/onboarding/submitted.html.twig', 'r'));
         $processType->setSourceOrganization($this->commonGroundService->cleanUrl(['component'=>'wrc', 'type'=>'organizations', 'id'=>'4d1eded3-fbdf-438f-9536-8747dd8ab591']));
         $processType->setRequestType($this->commonGroundService->cleanUrl(['component'=>'vtc', 'type'=>'request_types', 'id'=>'c328e6b4-77f6-4c58-8544-4128452acc80']));
+        $processType->setLogin('none');
+        $processType->setShowInstructionStage(false);
+        $processType->setShowSubmitStage(false);
+        $processType->setShowSubmittedStage(false);
+        $processType->setSubmitText(false);
         $manager->persist($processType);
         $processType->setId($id);
         $manager->persist($processType);
@@ -55,7 +60,6 @@ class CheckinFixtures extends Fixture
 
         $stage = new Stage();
         $stage->setName('Gegevens');
-        $stage->setDescription('Wat zijn de gegevens van u en uw ondernemening?');
         $stage->setIcon('fas fa-user');
         $stage->setSlug('gegevens');
         $stage->setProcess($processType);
@@ -75,11 +79,10 @@ class CheckinFixtures extends Fixture
 
         $section = new Section();
         $section->setStage($stage);
-        $section->setName('Onderneming');
-        $section->setDescription('Wat zijn de gegevens van uw onderneming');
+        $section->setName('Koningklijke horeca nederland');
+        $section->setDescription('Als u lid bent van koningklijke horeca nederland kunt u hier uw lidmaarschats nummer opvoeren voor korting');
         $section->setProperties([
-            $this->commonGroundService->cleanUrl(['component'=>'vtc', 'type'=>'properties', 'id'=>'587babac-f23a-4fb0-8df8-ccd083a079cc']),
-            $this->commonGroundService->cleanUrl(['component'=>'vtc', 'type'=>'properties', 'id'=>'41122a46-4788-4ba1-aba9-b48f7f640ef8']),
+            $this->commonGroundService->cleanUrl(['component'=>'vtc', 'type'=>'properties', 'id'=>'587babac-f23a-4fb0-8df8-ccd083a079cc'])
         ]);
 
         $stage->addSection($section);
@@ -115,11 +118,12 @@ class CheckinFixtures extends Fixture
         $processType->setName('Aanvraag GGD');
         $processType->setIcon('fa fa-user');
         $processType->setDescription('Via dit process kunt een GGD aanvraag voor bezoekers gegevens aan ons doorgeven zodat wij deze gegevens bij de GGD kunnen aanleveren');
-        $processType->setInstructionText(file_get_contents(dirname(__FILE__).'/Resources/chin/onboarding/instruction.html.twig', 'r'));
-        $processType->setSubmitText(file_get_contents(dirname(__FILE__).'/Resources/chin/onboarding/submit.html.twig', 'r'));
-        $processType->setSubmittedText(file_get_contents(dirname(__FILE__).'/Resources/chin/onboarding/submitted.html.twig', 'r'));
         $processType->setSourceOrganization($this->commonGroundService->cleanUrl(['component'=>'wrc', 'type'=>'organizations', 'id'=>'4d1eded3-fbdf-438f-9536-8747dd8ab591']));
-        $processType->setRequestType($this->commonGroundService->cleanUrl(['component'=>'vtc', 'type'=>'request_types', 'id'=>'c328e6b4-77f6-4c58-8544-4128452acc80']));
+        $processType->setRequestType($this->commonGroundService->cleanUrl(['component'=>'vtc', 'type'=>'request_types', 'id'=>'b816e7d8-f7e3-4fd4-9e6f-5c5b29072b94']));
+        $processType->setLogin('none');
+        $processType->setShowInstructionStage(false);
+        $processType->setShowSubmitStage(false);
+        $processType->setShowSubmittedStage(false);
         $manager->persist($processType);
         $processType->setId($id);
         $manager->persist($processType);
@@ -129,8 +133,8 @@ class CheckinFixtures extends Fixture
         $stage = new Stage();
         $stage->setName('Gemeentenlijke Gezondheids Dienst');
         $stage->setDescription('Om gegevens te verstrekken aan de GGD hebben wij twee zaken van u nodig, de gegevens van de GGD en een explicitie opdracht om deze gegevens te verstrekken');
-        $stage->setIcon('fas fa-money-check');
-        $stage->setSlug('gegevens');
+        $stage->setIcon('fa fa-user');
+        $stage->setSlug('gegevens-ggd');
         $stage->setProcess($processType);
 
         $section = new Section();
@@ -152,6 +156,10 @@ class CheckinFixtures extends Fixture
         ]);
         $stage->addSection($section);
 
+        $processType->addStage($stage);
+        $manager->persist($processType);
+        $manager->flush();
+
         /*
        *  Opvragen gegevens door gebruiker (Checkin)
        */
@@ -160,11 +168,12 @@ class CheckinFixtures extends Fixture
         $processType->setName('Gegevens opvragen');
         $processType->setIcon('fa fa-user');
         $processType->setDescription('Als u positief getest bent voor covid-19 zal de GGD bij u gegevens opvragen ivm een contact onderzoek. U kunt deze gegevens hier downloaden');
-        $processType->setInstructionText(file_get_contents(dirname(__FILE__).'/Resources/chin/onboarding/instruction.html.twig', 'r'));
-        $processType->setSubmitText(file_get_contents(dirname(__FILE__).'/Resources/chin/onboarding/submit.html.twig', 'r'));
-        $processType->setSubmittedText(file_get_contents(dirname(__FILE__).'/Resources/chin/onboarding/submitted.html.twig', 'r'));
         $processType->setSourceOrganization($this->commonGroundService->cleanUrl(['component'=>'wrc', 'type'=>'organizations', 'id'=>'4d1eded3-fbdf-438f-9536-8747dd8ab591']));
-        $processType->setRequestType($this->commonGroundService->cleanUrl(['component'=>'vtc', 'type'=>'request_types', 'id'=>'c328e6b4-77f6-4c58-8544-4128452acc80']));
+        $processType->setRequestType($this->commonGroundService->cleanUrl(['component'=>'vtc', 'type'=>'request_types', 'id'=>'39fe2fed-b5dc-42ce-9f9e-64101351b566']));
+        $processType->setLogin('none');
+        $processType->setShowInstructionStage(false);
+        $processType->setShowSubmitStage(false);
+        $processType->setShowSubmittedStage(false);
         $manager->persist($processType);
         $processType->setId($id);
         $manager->persist($processType);
@@ -174,8 +183,8 @@ class CheckinFixtures extends Fixture
         $stage = new Stage();
         $stage->setName('Gegevens');
         $stage->setDescription('Waar moeten wij uw gevens naartoe verzenden?');
-        $stage->setIcon('fas fa-money-check');
-        $stage->setSlug('gegevens');
+        $stage->setIcon('fa fa-user');
+        $stage->setSlug('gegevens-gebruiker');
         $stage->setProcess($processType);
 
         $section = new Section();
@@ -186,5 +195,114 @@ class CheckinFixtures extends Fixture
             $this->commonGroundService->cleanUrl(['component'=>'vtc', 'type'=>'properties', 'id'=>'bf268ea7-4f08-4730-a5eb-fa6df870a24d']),
         ]);
         $stage->addSection($section);
+
+        $processType->addStage($stage);
+        $manager->persist($processType);
+        $manager->flush();
+
+        /*
+       *  Contact Formulier (Checkin)
+       */
+        $id = Uuid::fromString('0465a588-b82a-436c-b9a5-2528c3608ec0');
+        $processType = new ProcessType();
+        $processType->setName('Contact formulier');
+        $processType->setIcon('fas fa-clipboard-list');
+        $processType->setDescription('Door dit proces te doorlopen kunt u contact opnemen met Conduction');
+        $processType->setSourceOrganization($this->commonGroundService->cleanUrl(['component'=>'wrc', 'type'=>'organizations', 'id'=>'4d1eded3-fbdf-438f-9536-8747dd8ab591']));
+        $processType->setRequestType($this->commonGroundService->cleanUrl(['component'=>'vtc', 'type'=>'request_types', 'id'=>'16b09e78-bca7-426d-b035-abfa101a9259']));
+        $processType->setLogin('none');
+        $processType->setShowInstructionStage(false);
+        $processType->setShowSubmitStage(false);
+        $processType->setShowSubmittedStage(false);
+        $manager->persist($processType);
+        $processType->setId($id);
+        $manager->persist($processType);
+        $manager->flush();
+        $processType = $manager->getRepository('App:ProcessType')->findOneBy(['id'=> $id]);
+
+        $stage = new Stage();
+        $stage->setName('Formulier');
+        $stage->setDescription('Waarvoor wilt u contact opnemen? En wat zijn uw contact gegevens?');
+        $stage->setIcon('fas fa-clipboard-list');
+        $stage->setSlug('contactformulier');
+        $stage->setProcess($processType);
+
+        $section = new Section();
+        $section->setStage($stage);
+        $section->setName('Contact formulier');
+        $section->setProperties([
+            $this->commonGroundService->cleanUrl(['component'=>'vtc', 'type'=>'properties', 'id'=>'0586ea46-640f-43aa-af50-04c76268f912']),
+            $this->commonGroundService->cleanUrl(['component'=>'vtc', 'type'=>'properties', 'id'=>'20064385-f73b-401c-bfe3-2ec2b1fa6411']),
+        ]);
+        $stage->addSection($section);
+
+        $processType->addStage($stage);
+        $manager->persist($processType);
+        $manager->flush();
+
+        $section = new Section();
+        $section->setStage($stage);
+        $section->setName('Uw contact gegevens');
+        $section->setProperties([
+            $this->commonGroundService->cleanUrl(['component'=>'vtc', 'type'=>'properties', 'id'=>'54c7cfd5-bd6b-491e-a84e-047b26b4eebf']),
+        ]);
+        $stage->addSection($section);
+
+        $processType->addStage($stage);
+        $manager->persist($processType);
+        $manager->flush();
+
+        /*
+       *  Idee Formulier (Checkin)
+       */
+        $id = Uuid::fromString('1e814be2-1a60-4869-9386-053826de19c4');
+        $processType = new ProcessType();
+        $processType->setName('Idee formulier');
+        $processType->setIcon('fas fa-clipboard-list');
+        $processType->setDescription('Door dit proces te doorlopen kunt u uw idee opsturen naar Conduction');
+        $processType->setSourceOrganization($this->commonGroundService->cleanUrl(['component'=>'wrc', 'type'=>'organizations', 'id'=>'4d1eded3-fbdf-438f-9536-8747dd8ab591']));
+        $processType->setRequestType($this->commonGroundService->cleanUrl(['component'=>'vtc', 'type'=>'request_types', 'id'=>'d92f1462-6a69-449f-8491-e6038af5ca82']));
+        $processType->setLogin('none');
+        $processType->setShowInstructionStage(false);
+        $processType->setShowSubmitStage(false);
+        $processType->setShowSubmittedStage(false);
+        $manager->persist($processType);
+        $processType->setId($id);
+        $manager->persist($processType);
+        $manager->flush();
+        $processType = $manager->getRepository('App:ProcessType')->findOneBy(['id'=> $id]);
+
+        $stage = new Stage();
+        $stage->setName('Formulier');
+        $stage->setDescription('Wat is uw idee? En wat zijn uw contact gegevens?');
+        $stage->setIcon('fas fa-clipboard-list');
+        $stage->setSlug('ideeformulier');
+        $stage->setProcess($processType);
+
+        $section = new Section();
+        $section->setStage($stage);
+        $section->setName('Idee formulier');
+        $section->setProperties([
+            $this->commonGroundService->cleanUrl(['component'=>'vtc', 'type'=>'properties', 'id'=>'f7a04eea-8a00-46b1-bbe8-9ffd04fcb9c0']),
+            $this->commonGroundService->cleanUrl(['component'=>'vtc', 'type'=>'properties', 'id'=>'8dfc477e-dd31-43bb-8325-eac600a1f228']),
+            $this->commonGroundService->cleanUrl(['component'=>'vtc', 'type'=>'properties', 'id'=>'c8b4a8bf-f19c-4bd6-9e3f-3e7771cbf1b5']),
+        ]);
+        $stage->addSection($section);
+
+        $processType->addStage($stage);
+        $manager->persist($processType);
+        $manager->flush();
+
+        $section = new Section();
+        $section->setStage($stage);
+        $section->setName('Uw contact gegevens');
+        $section->setProperties([
+            $this->commonGroundService->cleanUrl(['component'=>'vtc', 'type'=>'properties', 'id'=>'c342f6c8-2cd6-4e11-96ae-20a26260fdf4']),
+        ]);
+        $stage->addSection($section);
+
+        $processType->addStage($stage);
+        $manager->persist($processType);
+        $manager->flush();
     }
 }

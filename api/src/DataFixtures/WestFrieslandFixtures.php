@@ -42,7 +42,7 @@ class WestFrieslandFixtures extends Fixture
         $id = Uuid::fromString('a8b8ce49-d5db-4270-9e42-4b47902fc817');
         $processType = new ProcessType();
         $processType->setIcon('fas fa-monument');
-        $processType->setRequireLogin(true);
+        $processType->setLogin('always');
         $processType->setAudience('organization');
         $processType->setSourceOrganization($this->commonGroundService->cleanUrl(['component'=>'wrc', 'type'=>'organizations', 'id'=>'d280c4d3-6310-46db-9934-5285ec7d0d5e']));
         $processType->setName('Aanvragen begrafenis');
@@ -57,7 +57,7 @@ class WestFrieslandFixtures extends Fixture
         $stage = new Stage();
         $stage->setName('Gemeente');
         $stage->setOrderNumber(1);
-        $stage->setIcon('fal fa-headstone');
+
         $stage->setSlug('gemeente');
         $stage->setDescription('De gemeente waarin de begrafenis plaats moet vinden');
         $stage->setSlug('gemeente');
@@ -74,7 +74,6 @@ class WestFrieslandFixtures extends Fixture
         $stage = new Stage();
         $stage->setName('Begraafplaats');
         $stage->setOrderNumber(2);
-        $stage->setIcon('fal fa-headstone');
         $stage->setSlug('begraafplaats');
         $stage->setDescription('De gegevens van de begrafenis');
         $stage->setSlug('begraafplaats');
@@ -91,7 +90,6 @@ class WestFrieslandFixtures extends Fixture
         $stage = new Stage();
         $stage->setName('Grafsoort');
         $stage->setOrderNumber(3);
-        $stage->setIcon('fal fa-headstone');
         $stage->setSlug('grafsoort');
         $stage->setDescription('Het soort graf waarin de overledene wordt begraven');
         $stage->setSlug('grafsoort');
@@ -125,7 +123,6 @@ class WestFrieslandFixtures extends Fixture
         $stage->setName('Bestaand graf');
         $stage->setOrderNumber(4);
         $stage->setDescription('Moet de overledene in een bestaand of een nieuw graf worden begraven?');
-        $stage->setIcon('fal fa-headstone');
         $stage->setSlug('bestaand-graf');
 
         $condition = new Condition();
@@ -149,7 +146,6 @@ class WestFrieslandFixtures extends Fixture
         $stage->setName('Datum');
         $stage->setOrderNumber(5);
         $stage->setDescription('Wanneer gaat het afscheid plaatsvinden?');
-        $stage->setIcon('fal fa-calendar');
         $stage->setSlug('datum');
 
         $section = new Section();
@@ -165,7 +161,6 @@ class WestFrieslandFixtures extends Fixture
         $stage = new Stage();
         $stage->setName('Artikelen');
         $stage->setOrderNumber(6);
-        $stage->setIcon('fal fa-map-tasks');
         $stage->setSlug('artikelen');
         $stage->setDescription('Selecteer hier de gewenste artikelen voor de begrafenis.');
 
@@ -183,7 +178,6 @@ class WestFrieslandFixtures extends Fixture
         //$property->setId('');
         $stage->setName('Overledene');
         $stage->setOrderNumber(7);
-        $stage->setIcon('fal fa-users');
         $stage->setSlug('overledene');
         $stage->setDescription('Wie wordt er begraven?');
 
@@ -205,7 +199,6 @@ class WestFrieslandFixtures extends Fixture
         $stage = new Stage();
         $stage->setName('Aanvrager / Rechthebbende');
         $stage->setOrderNumber(8);
-        $stage->setIcon('fal fa-users');
         $stage->setSlug('aanvrager-rechthebbende');
         $stage->setDescription('Wie treed op als aanvrager/rechthebbende?');
 
@@ -222,7 +215,6 @@ class WestFrieslandFixtures extends Fixture
         $stage = new Stage();
         $stage->setName('Contactpersoon');
         $stage->setOrderNumber(9);
-        $stage->setIcon('fal fa-users');
         $stage->setSlug('contactpersoon');
         $stage->setDescription('Wie treed op als contactpersoon?');
 
@@ -231,9 +223,24 @@ class WestFrieslandFixtures extends Fixture
         $section->setDescription('Wie treed er op als contactpersoon?');
         $section->setProperties([
             $this->commonGroundService->cleanUrl(['component'=>'vtc', 'type'=>'properties', 'id'=>'8110dc29-7b27-448e-8853-a8126c984ccb']),
-            $this->commonGroundService->cleanUrl(['component'=>'vtc', 'type'=>'properties', 'id'=>'baf2d8a5-250a-44f8-9a05-55af004d5d4f']),
         ]);
         //$section->setProperties(["https://vtc.westfriesland.commonground.nu/properties/8110dc29-7b27-448e-8853-a8126c984ccb"]);
+        $stage->addSection($section);
+
+        $section = new Section();
+        $section->setName('Factuuradres');
+        $section->setDescription('Wie moet de factuur ontvangen?');
+        $section->setProperties([
+            $this->commonGroundService->cleanUrl(['component'=>'vtc', 'type'=>'properties', 'id'=>'baf2d8a5-250a-44f8-9a05-55af004d5d4f']),
+        ]);
+
+        $condition = new Condition();
+        $condition->setOperation('!=');
+        $condition->setProperty('properties.gemeente');
+        $condition->setValue($this->commonGroundService->cleanUrl(['component'=>'wrc', 'type'=>'organizations', 'id'=>'d736013f-ad6d-4885-b816-ce72ac3e1384']));
+
+        $section->addCondition($condition);
+
         $stage->addSection($section);
 
         // Add the stage to the procces type
@@ -242,7 +249,6 @@ class WestFrieslandFixtures extends Fixture
         $stage = new Stage();
         $stage->setName('Aanvullende informatie');
         $stage->setOrderNumber(10);
-        $stage->setIcon('fal fa-info-circle');
         $stage->setSlug('aanvullende-informatie');
 
         $section = new Section();
@@ -272,7 +278,7 @@ class WestFrieslandFixtures extends Fixture
         $id = Uuid::fromString('7216b69d-e245-488e-af8f-0969241926e7');
         $processType = new ProcessType();
         $processType->setIcon('far fa-edit');
-        $processType->setRequireLogin(true);
+        $processType->setLogin("always");
         $processType->setAudience('organization');
         $processType->setSourceOrganization($this->commonGroundService->cleanUrl(['component'=>'wrc', 'type'=>'organizations', 'id'=>'d280c4d3-6310-46db-9934-5285ec7d0d5e']));
         $processType->setName('Wijziging');
@@ -286,13 +292,11 @@ class WestFrieslandFixtures extends Fixture
 
         $stage = new Stage();
         $stage->setName('Aanvrager/Rechthebbende');
-        $stage->setIcon('fal fa-users');
         $stage->setSlug('aanvrager/rechthebbende');
         $stage->setDescription('Wie treed op als aanvrager/rechthebbende?');
 
         $stage = new Stage();
         $stage->setName('gegevens');
-        $stage->setIcon('fal fa-users');
         $stage->setSlug('gegevens');
         $stage->setDescription('Wat zijn de gegevens van het bezwaar');
 
@@ -320,7 +324,7 @@ class WestFrieslandFixtures extends Fixture
         $id = Uuid::fromString('2a95ba3e-a3f9-4fdf-8a6d-005d96aad405');
         $processType = new ProcessType();
         $processType->setIcon('far fa-hand-paper');
-        $processType->setRequireLogin(true);
+        $processType->setLogin("always");
         $processType->setAudience('organization');
         $processType->setSourceOrganization($this->commonGroundService->cleanUrl(['component'=>'wrc', 'type'=>'organizations', 'id'=>'d280c4d3-6310-46db-9934-5285ec7d0d5e']));
         $processType->setName('Bezwaar');
@@ -334,7 +338,6 @@ class WestFrieslandFixtures extends Fixture
 
         $stage = new Stage();
         $stage->setName('gegevens');
-        $stage->setIcon('fal fa-users');
         $stage->setSlug('gegevens');
         $stage->setDescription('Wat zijn de gegevens van het bezwaar');
 

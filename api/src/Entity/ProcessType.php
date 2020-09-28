@@ -190,15 +190,20 @@ class ProcessType
     private $extendedBy;
 
     /**
-     * @var bool If being logged in for process is required.
+     * @var string Whether or not to require a login. *none* means never require a user to login, user wil not be presented with the option to login, *optional* means the request presented with the option to login but not requered to do so, *onSubmit* means the user can not post the procces to the vrc without loggin in, *always* means that the user can not start the procces without loging in.
      *
-     * @example false
+     * @example optional
      *
-     * @Assert\Type("bool")
-     * @Groups({"read", "write"})
-     * @ORM\Column(type="boolean", nullable=true)
+     * @Gedmo\Versioned
+     * @Assert\Choice({"none","optional","always","onSubmit"})
+     * @Assert\Length(
+     *      max = 10
+     * )
+     *
+     * @Groups({"read","write"})
+     * @ORM\Column(type="string", length=10, options={"default" : "optional"})
      */
-    private $requireLogin = false;
+    private $login = "optional";
 
     /**
      * @var string The audience this processType is intended for
@@ -254,6 +259,17 @@ class ProcessType
     private $instructionText;
 
     /**
+     * @var bool wheter or not to dispay the instruction stage of a procces
+     *
+     * @example false
+     *
+     * @Assert\Type("bool")
+     * @Groups({"read", "write"})
+     * @ORM\Column(type="boolean", nullable=true)
+     */
+    private $showInstructionStage = true;
+
+    /**
      * @var string The text displayed at the submit stage.
      *
      * @example Na het indienen van dit verzoek zal uw verzoek binnen een week afgehandeld worden.
@@ -265,6 +281,17 @@ class ProcessType
     private $submitText;
 
     /**
+     * @var bool wheter or not to dispay the submit stage of a procces
+     *
+     * @example false
+     *
+     * @Assert\Type("bool")
+     * @Groups({"read", "write"})
+     * @ORM\Column(type="boolean", nullable=true)
+     */
+    private $showSubmitStage = true;
+
+    /**
      * @var string The text displayed at the submitted stage.
      *
      * @example Uw verzoek zal binnen een week afgehandeld worden.
@@ -274,6 +301,17 @@ class ProcessType
      * @ORM\Column(type="text", nullable=true)
      */
     private $submittedText;
+
+    /**
+     * @var bool wheter or not to dispay the submitted stage of a procces
+     *
+     * @example false
+     *
+     * @Assert\Type("bool")
+     * @Groups({"read", "write"})
+     * @ORM\Column(type="boolean", nullable=true)
+     */
+    private $showSubmittedStage = true;
 
     /**
      * @param array|string[] The request properties that are used for this process
@@ -389,14 +427,14 @@ class ProcessType
         return $this;
     }
 
-    public function getRequireLogin(): ?bool
+    public function getLogin(): ?string
     {
-        return $this->requireLogin;
+        return $this->login;
     }
 
-    public function setRequireLogin(?bool $requireLogin): self
+    public function setLogin(string $login): self
     {
-        $this->requireLogin = $requireLogin;
+        $this->login = $login;
 
         return $this;
     }
@@ -461,6 +499,18 @@ class ProcessType
         return $this;
     }
 
+    public function getShowInstructionStage(): ?bool
+    {
+        return $this->showInstructionStage;
+    }
+
+    public function setShowInstructionStage(?bool $showInstructionStage): self
+    {
+        $this->showInstructionStage = $showInstructionStage;
+
+        return $this;
+    }
+
     public function getSubmitText(): ?string
     {
         return $this->submitText;
@@ -473,6 +523,18 @@ class ProcessType
         return $this;
     }
 
+    public function getShowSubmitStage(): ?bool
+    {
+        return $this->showSubmitStage;
+    }
+
+    public function setShowSubmitStage(?bool $showSubmitStage): self
+    {
+        $this->showSubmitStage = $showSubmitStage;
+
+        return $this;
+    }
+
     public function getSubmittedText(): ?string
     {
         return $this->submittedText;
@@ -481,6 +543,18 @@ class ProcessType
     public function setSubmittedText(string $SubmittedText): self
     {
         $this->submittedText = $SubmittedText;
+
+        return $this;
+    }
+
+    public function getShowSubmittedStage(): ?bool
+    {
+        return $this->showSubmittedStage;
+    }
+
+    public function setShowSubmittedStage(?bool $showSubmittedStage): self
+    {
+        $this->showSubmittedStage = $showSubmittedStage;
 
         return $this;
     }
