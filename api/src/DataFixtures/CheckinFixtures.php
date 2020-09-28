@@ -112,7 +112,7 @@ class CheckinFixtures extends Fixture
         $manager->flush();
 
         /*
-         *  Deelname verzoek horeca ondernemer (Checkin)
+         *  Deelname verzoek ondernemer (Checkin)
          */
         $id = Uuid::fromString('3c296ef7-7b40-4ee8-b7ab-411f48dca4da');
         $processType = new ProcessType();
@@ -169,6 +169,7 @@ class CheckinFixtures extends Fixture
         $section->setDescription('Omdat we voor u gaan optreden als gegevens verwerker is het belangrijk dat we een aantal dingen goed regelen');
         $section->setProperties([
             $this->commonGroundService->cleanUrl(['component'=>'vtc', 'type'=>'properties', 'id'=>'fa79e0cd-2fcd-44bf-84e3-01e9253bdd7b']),
+            $this->commonGroundService->cleanUrl(['component'=>'vtc', 'type'=>'properties', 'id'=>'1356dc18-1dba-4ff8-9c69-df181425842c']),
             $this->commonGroundService->cleanUrl(['component'=>'vtc', 'type'=>'properties', 'id'=>'ce876e7e-8157-4468-b4ae-f72e04eabb74']),
         ]);
 
