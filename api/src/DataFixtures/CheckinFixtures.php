@@ -125,6 +125,7 @@ class CheckinFixtures extends Fixture
         $processType->setSourceOrganization($this->commonGroundService->cleanUrl(['component'=>'wrc', 'type'=>'organizations', 'id'=>'4d1eded3-fbdf-438f-9536-8747dd8ab591']));
         $processType->setRequestType($this->commonGroundService->cleanUrl(['component'=>'vtc', 'type'=>'request_types', 'id'=>'c328e6b4-77f6-4c58-8544-4128452acc80']));
         $processType->setLogin('none');
+        $processType->setRetractable(false);
         $processType->setShowInstructionStage(true);
         $processType->setShowSubmitStage(true);
         $processType->setShowSubmittedStage(true);
@@ -148,6 +149,9 @@ class CheckinFixtures extends Fixture
         $section->setProperties([
             $this->commonGroundService->cleanUrl(['component'=>'vtc', 'type'=>'properties', 'id'=>'55dde78d-4a14-43c6-a0ff-d33b7b5f8bae']),
             $this->commonGroundService->cleanUrl(['component'=>'vtc', 'type'=>'properties', 'id'=>'f063f230-446d-468d-891d-0652e3ed9cad']),
+            $this->commonGroundService->cleanUrl(['component'=>'vtc', 'type'=>'properties', 'id'=>'6030339b-c807-47d9-bb69-118a5aded1d5']),
+            $this->commonGroundService->cleanUrl(['component'=>'vtc', 'type'=>'properties', 'id'=>'db597628-8cf4-493b-8488-131a7351a949']),
+
         ]);
         $stage->addSection($section);
 
