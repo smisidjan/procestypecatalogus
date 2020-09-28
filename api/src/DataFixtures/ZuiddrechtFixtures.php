@@ -570,5 +570,59 @@ class ZuiddrechtFixtures extends Fixture
         $processType->addStage($stage);
         $manager->persist($processType);
         $manager->flush();
+
+        /*
+         *  Chatbot Fixtures
+         */
+
+        /*
+         *  Vermissingsformulier reisdocument
+         */
+        $id = Uuid::fromString('473fbb0e-7e73-47e4-bef7-564d25e17799');
+        $processType = new ProcessType();
+        $processType->setName('Vermissingsformulier reisdocument');
+        $processType->setIcon('fas fa-id-card');
+        $processType->setDescription('Via dit formulier kunt u bij ons aangeven wanneer u uw reisdocument verloren bent');
+        $processType->setSourceOrganization($this->commonGroundService->cleanUrl(['component' => 'vtc', 'type' => 'request_types', 'id' => '4d1eded3-fbdf-438f-9536-8747dd8ab591']));
+        $processType->setRequestType($this->commonGroundService->cleanUrl(['component' => 'vtc', 'type' => 'request_types', 'id' => '4695d430-6cc2-4499-add4-a5e45ee84761']));
+        $manager->persist($processType);
+        $processType->setId($id);
+        $manager->persist($processType);
+        $manager->flush();
+        $processType = $manager->getRepository('App:ProcessType')->findOneBy(['id' => $id]);
+
+        $stage = new Stage();
+        $stage->setName('Het verloren document');
+        $stage->setIcon('fas fa-users');
+        $stage->setSlug('verlorendocument');
+        $stage->setDescription('Welk document bent u verloren?');
+
+        $section = new Section();
+        $section->setName('Keuze verloren document');
+        $section->setDescription('Kies hier uw verloren document');
+        $section->setProperties([
+            $this->commonGroundService->cleanUrl(['component' => 'vtc', 'type' => 'properties', 'id' => '1d92bc85-7e4c-4468-9588-44b7de598d8c']),
+        ]);
+        $stage->addSection($section);
+
+        $processType->addStage($stage);
+
+        $stage = new Stage();
+        $stage->setName('Uw persoons gegevens');
+        $stage->setIcon('fas fa-users');
+        $stage->setSlug('document-gegevens');
+        $stage->setDescription('De gegevens gekoppeld aan dit reisdocument');
+
+        $section = new Section();
+        $section->setName('Persoons Gegevens');
+        $section->setDescription('Uw Gegevens');
+        $section->setProperties([
+            $this->commonGroundService->cleanUrl(['component' => 'vtc', 'type' => 'properties', 'id' => 'f37dad7b-d7f4-4493-b9ba-814b0b0b2a8d']),
+        ]);
+        $stage->addSection($section);
+
+        $processType->addStage($stage);
+        $manager->persist($processType);
+        $manager->flush();
     }
 }
