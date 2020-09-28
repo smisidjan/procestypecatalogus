@@ -203,7 +203,7 @@ class ProcessType
      * @Groups({"read","write"})
      * @ORM\Column(type="string", length=10, options={"default" : "optional"})
      */
-    private $login = "optional";
+    private $login = 'optional';
 
     /**
      * @var string The audience this processType is intended for
@@ -312,6 +312,28 @@ class ProcessType
      * @ORM\Column(type="boolean", nullable=true)
      */
     private $showSubmittedStage = true;
+
+    /**
+     * @var bool wheter or not to display the back button to processes
+     *
+     * @example false
+     *
+     * @Assert\Type("bool")
+     * @Groups({"read", "write"})
+     * @ORM\Column(type="boolean", nullable=true)
+     */
+    private $showBackButton = true;
+
+    /**
+     * @var bool whether or not to requests from this process are retractable
+     *
+     * @example false
+     *
+     * @Assert\Type("bool")
+     * @Groups({"read", "write"})
+     * @ORM\Column(type="boolean", nullable=true)
+     */
+    private $retractable = true;
 
     /**
      * @param array|string[] The request properties that are used for this process
@@ -507,6 +529,30 @@ class ProcessType
     public function setShowInstructionStage(?bool $showInstructionStage): self
     {
         $this->showInstructionStage = $showInstructionStage;
+
+        return $this;
+    }
+
+    public function getShowBackButton(): ?bool
+    {
+        return $this->showBackButton;
+    }
+
+    public function setShowBackButton(?bool $showBackButton): self
+    {
+        $this->showBackButton = $showBackButton;
+
+        return $this;
+    }
+
+    public function getRetractable(): ?bool
+    {
+        return $this->retractable;
+    }
+
+    public function setRetractable(?bool $retractable): self
+    {
+        $this->retractable = $retractable;
 
         return $this;
     }
