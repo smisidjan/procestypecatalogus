@@ -41,7 +41,7 @@ class CheckinFixtures extends Fixture
         $processType = new ProcessType();
         $processType->setName('Deelnemen aan het checking platform');
         $processType->setIcon('fa fa-user');
-        $processType->setDescription('<p>Welkom, om deel te nemen aan de pilot moeten we een account voor u aanmaken. Hier hebben we een aantal gegevens nodig. Nadat u deze hebt opgegeven maken wij een account voor u aan, en kunt u aan de slag.</p> <p>U ontvangt hiervoor twee separate e-mails, &eacute;&eacute;n met uw wachtwoord en &eacute;&eacute;n met de overige accountgegevens.</p>');
+        $processType->setDescription('Om als horeca gebruik te kunnen maken van de checking functionaliteit moet u deelnemen aan het platform, en een abonement afsluiten.');
         $processType->setInstructionText(file_get_contents(dirname(__FILE__).'/Resources/chin/onboarding/instruction.html.twig', 'r'));
         $processType->setSubmitText(file_get_contents(dirname(__FILE__).'/Resources/chin/onboarding/submit.html.twig', 'r'));
         $processType->setSubmittedText(file_get_contents(dirname(__FILE__).'/Resources/chin/onboarding/submitted.html.twig', 'r'));
@@ -91,7 +91,7 @@ class CheckinFixtures extends Fixture
         $section = new Section();
         $section->setStage($stage);
         $section->setName('Abonnement');
-        $section->setDescription('Om deel te kunnen nemen aan dit platform heeft u een abonement nodig, dat kost €25 per maand (excl btw) en moet vooraf worden gefactureerd en betaald. Daarnaast zijn er aditionele kosten voor het gebruik van IDIN en is er een fair use policy van 1500 checkins per maand. Meer details daarover vind u hier <a href=""></a>.</p><p>De eerste maand is echter een proef periode en (binnen de gestelde voorwaarde van het platform) gratis. Om na deze maand gebruik te kunnen maken van het platform kunt u via de ondernemings pagina een abonement afsluiten');
+        $section->setDescription('<p>Om deel te kunnen nemen aan dit platform heeft u normaal gesproken een abonnement nodig. De kosten hiervoor zijn opgebouwd met een vast bedrag van &euro;25 per maand (excl btw) en kosten per check in van &euro;0.40 per check in deze worden achteraf betaald. <b>Voor de twee weken pilot is dit gratis.</b></p><p> We gaan uit van een &ldquo;Fair-use&rdquo; door de deelnemers van dit platform. Dat betekent dat als iemand overmatig gebruik gaat maken hiervoor gaat betalen. De grens ligt bij 1500 check ins per maand. Kom je hier overheen dan zal er een opslag gelden van &euro;0.05 per check in worden gerekend.</p>');
         $section->setProperties([]);
 
         $stage->addSection($section);
