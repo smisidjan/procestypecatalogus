@@ -145,7 +145,7 @@ class CheckinFixtures extends Fixture
         $section = new Section();
         $section->setStage($stage);
         $section->setName('Uw gegevens');
-        $section->setDescription('Wat zijn uw contactgegevens? U kunt <a target="_blank" href="https://www.kvk.nl/zoeken/">hier</a> klikken om uw KVK nummer te vinden.');
+        $section->setDescription('Wat zijn uw contactgegevens?');
         $section->setProperties([
             $this->commonGroundService->cleanUrl(['component'=>'vtc', 'type'=>'properties', 'id'=>'55dde78d-4a14-43c6-a0ff-d33b7b5f8bae']),
             $this->commonGroundService->cleanUrl(['component'=>'vtc', 'type'=>'properties', 'id'=>'f063f230-446d-468d-891d-0652e3ed9cad']),
@@ -162,7 +162,7 @@ class CheckinFixtures extends Fixture
         $section = new Section();
         $section->setStage($stage);
         $section->setName('Abonnement');
-        $section->setDescription('Om deel te kunnen nemen aan dit platform heeft u een abonnement nodig, dit kost €25 per maand (excl btw) en moet vooraf worden betaald. We gaan uit van een “Fair-use” door de deelnemers van dit platform. Dat betekent dat als iemand overmatig gebruik gaat maken hiervoor gaat betalen. De grens ligt bij 500 check ins per maand. Kom je hier overheen dan zal er een opslag gelden van €0.05 per check in worden gerekend. De eerste week is echter een proef periode en (binnen de gestelde voorwaarde van het platform) gratis. Na deze week zal het abonnement ingaan.');
+        $section->setDescription('Om deel te kunnen nemen aan dit platform heeft u een abonnement nodig, dit kost €25 per maand (excl btw) en moet vooraf worden betaald. We gaan uit van een “Fair-use” door de deelnemers van dit platform. Dat betekent dat als iemand overmatig gebruik gaat maken hiervoor gaat betalen. De grens ligt bij 500 check ins per maand. Kom je hier overheen dan zal er een opslag gelden van €0.05 per check in worden gerekend. <br> De eerste week is echter een proef periode en (binnen de gestelde voorwaarde van het platform) gratis. Na deze week zal het abonnement ingaan.');
         $section->setProperties([]);
 
         $stage->addSection($section);
