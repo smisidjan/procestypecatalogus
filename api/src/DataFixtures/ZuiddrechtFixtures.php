@@ -793,5 +793,58 @@ kind te reizen naar:');
         $stage2->setProcess($processType);
         $manager->persist($stage2);*/
 
+
+        /*
+         *  BRP-uittreksel aanvragen
+         */
+        $id = Uuid::fromString('fab5e59c-db92-43eb-9d99-5dcc0ece069d');
+        $processType = new ProcessType();
+        $processType->setName('BRP-uittreksel aanvragen');
+        $processType->setIcon('fas fa-file-alt');
+        $processType->setDescription('Via dit formulier kunt u bij ons een BRP-uittreksel aanvragen');
+        $processType->setSourceOrganization($this->commonGroundService->cleanUrl(['component' => 'vtc', 'type' => 'request_types', 'id' => '4d1eded3-fbdf-438f-9536-8747dd8ab591']));
+        $processType->setRequestType($this->commonGroundService->cleanUrl(['component' => 'vtc', 'type' => 'request_types', 'id' => '9aa0fcf5-ad95-4e2d-b272-d36656e72a82']));
+        $manager->persist($processType);
+        $processType->setId($id);
+        $manager->persist($processType);
+        $manager->flush();
+        $processType = $manager->getRepository('App:ProcessType')->findOneBy(['id' => $id]);
+
+        $stage = new Stage();
+        $stage->setName('Uw persoons gegevens');
+        $stage->setIcon('fas fa-users');
+        $stage->setSlug('aanvrager-gegevens');
+        $stage->setDescription('De gegevens van de aanvrager');
+
+        $section = new Section();
+        $section->setName('Persoons Gegevens van de aanvrager');
+        $section->setDescription('Uw Gegevens');
+        $section->setProperties([
+            $this->commonGroundService->cleanUrl(['component' => 'vtc', 'type' => 'properties', 'id' => 'fce828db-1110-4ee7-a828-291517b6bad7']),
+            $this->commonGroundService->cleanUrl(['component' => 'vtc', 'type' => 'properties', 'id' => '3c1c8517-03c2-43f1-9ef4-86136ee3aecd']),
+            $this->commonGroundService->cleanUrl(['component' => 'vtc', 'type' => 'properties', 'id' => '1d21a50d-dd29-4051-80cd-970d6e793f15']),
+
+        ]);
+        $stage->addSection($section);
+
+        $processType->addStage($stage);
+
+        $stage = new Stage();
+        $stage->setName('Opties voor BRP-uittreksel');
+        $stage->setIcon('fas fa-users');
+        $stage->setSlug('opties-brpuittreksel');
+        $stage->setDescription('Welke optie van de BRP-uittreksel wilt u?');
+
+        $section = new Section();
+        $section->setName('Keuze opties BRP-uittreksel');
+        $section->setDescription('Kies hier de gewensde optie');
+        $section->setProperties([
+            $this->commonGroundService->cleanUrl(['component' => 'vtc', 'type' => 'properties', 'id' => 'fb77df2e-d33e-4956-8aa4-5bb2ba5e75c3']),
+        ]);
+        $stage->addSection($section);
+
+        $processType->addStage($stage);
+        $manager->persist($processType);
+        $manager->flush();
     }
 }
