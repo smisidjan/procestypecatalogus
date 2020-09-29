@@ -39,9 +39,9 @@ class CheckinFixtures extends Fixture
          */
         $id = Uuid::fromString('fdb7186c-0ce9-4050-bd6d-cf83b0c162eb');
         $processType = new ProcessType();
-        $processType->setName('Deelnemen aan het checking platform als horeca');
+        $processType->setName('Deelnemen aan het checking platform');
         $processType->setIcon('fa fa-user');
-        $processType->setDescription('Om als horeca gebruik te kunnen maken van de checking functionaliteit moet u deelnemen aan het platform, en een abonement afsluiten.');
+        $processType->setDescription('<p>Welkom, om deel te nemen aan de pilot moeten we een account voor u aanmaken. Hier hebben we een aantal gegevens nodig. Nadat u deze hebt opgegeven maken wij een account voor u aan, en kunt u aan de slag.</p> <p>U ontvangt hiervoor twee separate e-mails, &eacute;&eacute;n met uw wachtwoord en &eacute;&eacute;n met de overige accountgegevens.</p>');
         $processType->setInstructionText(file_get_contents(dirname(__FILE__).'/Resources/chin/onboarding/instruction.html.twig', 'r'));
         $processType->setSubmitText(file_get_contents(dirname(__FILE__).'/Resources/chin/onboarding/submit.html.twig', 'r'));
         $processType->setSubmittedText(file_get_contents(dirname(__FILE__).'/Resources/chin/onboarding/submitted.html.twig', 'r'));
