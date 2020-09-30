@@ -155,6 +155,7 @@ class CheckinFixtures extends Fixture
         $id = Uuid::fromString('235a2857-7284-41bb-9f97-55cb99dc747d');
         $section = new Section();
         $section->setStage($stage);
+        $section->setOrderNumber(1);
         $section->setName('Uw gegevens');
         $section->setDescription('Wat zijn uw contactgegevens?');
         $section->setProperties([
@@ -166,6 +167,7 @@ class CheckinFixtures extends Fixture
         $section->setId($id);
         $manager->persist($section);
         $manager->flush();
+
         $section = $manager->getRepository('App:Section')->findOneBy(['id'=> $id]);
         $stage->addSection($section);
 
@@ -177,6 +179,7 @@ class CheckinFixtures extends Fixture
         $section = new Section();
         $section->setStage($stage);
         $section->setName('Abonnement');
+        $section->setOrderNumber(2);
         $section->setDescription('Om deel te kunnen nemen aan dit platform heeft u een abonnement nodig, dit kost €25 per maand (excl btw) en moet vooraf worden betaald. We gaan uit van een “Fair-use” door de deelnemers van dit platform. Dat betekent dat als iemand overmatig gebruik gaat maken hiervoor gaat betalen. De grens ligt bij 500 check ins per maand. Kom je hier overheen dan zal er een opslag gelden van €0.05 per check in worden gerekend. <br> De eerste week is echter een proef periode en (binnen de gestelde voorwaarde van het platform) gratis. Na deze week zal het abonnement ingaan.');
         $section->setProperties([]);
         $manager->persist($section);
@@ -190,6 +193,7 @@ class CheckinFixtures extends Fixture
         $section = new Section();
         $section->setStage($stage);
         $section->setName('Voorwaarden');
+        $section->setOrderNumber(3);
         $section->setDescription('Omdat we voor u gaan optreden als gegevens verwerker is het belangrijk dat we een aantal dingen goed regelen');
         $section->setProperties([
             $this->commonGroundService->cleanUrl(['component'=>'vtc', 'type'=>'properties', 'id'=>'fa79e0cd-2fcd-44bf-84e3-01e9253bdd7b']),
