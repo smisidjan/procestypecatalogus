@@ -230,6 +230,7 @@ class CheckinFixtures extends Fixture
         $manager->flush();
         $processType = $manager->getRepository('App:ProcessType')->findOneBy(['id'=> $id]);
 
+        $id = Uuid::fromString('3a63f733-acb6-407a-bf10-c1d5f4dfffc9');
         $stage = new Stage();
         $stage->setName('Gemeentenlijke Gezondheids Dienst');
         $stage->setDescription('Om gegevens te verstrekken aan de GGD hebben wij twee zaken van u nodig, de gegevens van de GGD en een explicitie opdracht om deze gegevens te verstrekken');
@@ -242,6 +243,7 @@ class CheckinFixtures extends Fixture
         $manager->flush();
         $stage = $manager->getRepository('App:Stage')->findOneBy(['id'=> $id]);
 
+        $id = Uuid::fromString('bf2bfb33-3dd1-4742-9735-26e1837cccbd');
         $section = new Section();
         $section->setStage($stage);
         $section->setName('Context van de aanvraag');
@@ -257,6 +259,7 @@ class CheckinFixtures extends Fixture
         $section = $manager->getRepository('App:Section')->findOneBy(['id'=> $id]);
         $stage->addSection($section);
 
+        $id = Uuid::fromString('9c1e4467-ca51-496a-909c-d84acae72ff2');
         $section = new Section();
         $section->setStage($stage);
         $section->setName('Opdracht bevestiging');
