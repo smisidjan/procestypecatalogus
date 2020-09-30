@@ -43,15 +43,14 @@ class CheckinFixtures extends Fixture
         $processType->setIcon('fa fa-user');
         $processType->setDescription('Om als horeca gebruik te kunnen maken van de checking functionaliteit moet u deelnemen aan het platform, en een abonement afsluiten.');
         $processType->setInstructionText(file_get_contents(dirname(__FILE__).'/Resources/chin/onboarding/instruction.html.twig', 'r'));
-        $processType->setSubmitText(file_get_contents(dirname(__FILE__).'/Resources/chin/onboarding/submit.html.twig', 'r'));
+        $processType->setSubmitText(file_get_contents(dirname(__FILE__).'/Resources/chin/onboarding/submit_organization.html.twig', 'r'));
         $processType->setSubmittedText(file_get_contents(dirname(__FILE__).'/Resources/chin/onboarding/submitted.html.twig', 'r'));
         $processType->setSourceOrganization($this->commonGroundService->cleanUrl(['component'=>'wrc', 'type'=>'organizations', 'id'=>'4d1eded3-fbdf-438f-9536-8747dd8ab591']));
         $processType->setRequestType($this->commonGroundService->cleanUrl(['component'=>'vtc', 'type'=>'request_types', 'id'=>'c328e6b4-77f6-4c58-8544-4128452acc80']));
         $processType->setLogin('none');
-        $processType->setShowInstructionStage(false);
-        $processType->setShowSubmitStage(false);
-        $processType->setShowSubmittedStage(false);
-        $processType->setSubmitText(false);
+        $processType->setShowInstructionStage(true);
+        $processType->setShowSubmitStage(true);
+        $processType->setShowSubmittedStage(true);
         $processType->setShowBackButton(false);
         $manager->persist($processType);
         $processType->setId($id);
@@ -156,19 +155,19 @@ class CheckinFixtures extends Fixture
         $id = Uuid::fromString('235a2857-7284-41bb-9f97-55cb99dc747d');
         $section = new Section();
         $section->setStage($stage);
+        $section->setOrderNumber(1);
         $section->setName('Uw gegevens');
         $section->setDescription('Wat zijn uw contactgegevens?');
         $section->setProperties([
             $this->commonGroundService->cleanUrl(['component'=>'vtc', 'type'=>'properties', 'id'=>'55dde78d-4a14-43c6-a0ff-d33b7b5f8bae']),
             $this->commonGroundService->cleanUrl(['component'=>'vtc', 'type'=>'properties', 'id'=>'f063f230-446d-468d-891d-0652e3ed9cad']),
             $this->commonGroundService->cleanUrl(['component'=>'vtc', 'type'=>'properties', 'id'=>'6030339b-c807-47d9-bb69-118a5aded1d5']),
-            $this->commonGroundService->cleanUrl(['component'=>'vtc', 'type'=>'properties', 'id'=>'db597628-8cf4-493b-8488-131a7351a949']),
-
         ]);
         $manager->persist($section);
         $section->setId($id);
         $manager->persist($section);
         $manager->flush();
+
         $section = $manager->getRepository('App:Section')->findOneBy(['id'=> $id]);
         $stage->addSection($section);
 
@@ -180,6 +179,7 @@ class CheckinFixtures extends Fixture
         $section = new Section();
         $section->setStage($stage);
         $section->setName('Abonnement');
+        $section->setOrderNumber(2);
         $section->setDescription('Om deel te kunnen nemen aan dit platform heeft u een abonnement nodig, dit kost €25 per maand (excl btw) en moet vooraf worden betaald. We gaan uit van een “Fair-use” door de deelnemers van dit platform. Dat betekent dat als iemand overmatig gebruik gaat maken hiervoor gaat betalen. De grens ligt bij 500 check ins per maand. Kom je hier overheen dan zal er een opslag gelden van €0.05 per check in worden gerekend. <br> De eerste week is echter een proef periode en (binnen de gestelde voorwaarde van het platform) gratis. Na deze week zal het abonnement ingaan.');
         $section->setProperties([]);
         $manager->persist($section);
@@ -193,6 +193,7 @@ class CheckinFixtures extends Fixture
         $section = new Section();
         $section->setStage($stage);
         $section->setName('Voorwaarden');
+        $section->setOrderNumber(3);
         $section->setDescription('Omdat we voor u gaan optreden als gegevens verwerker is het belangrijk dat we een aantal dingen goed regelen');
         $section->setProperties([
             $this->commonGroundService->cleanUrl(['component'=>'vtc', 'type'=>'properties', 'id'=>'fa79e0cd-2fcd-44bf-84e3-01e9253bdd7b']),
