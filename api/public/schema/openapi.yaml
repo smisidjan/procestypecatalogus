@@ -2047,6 +2047,18 @@ paths:
           schema:
             type: boolean
         -
+          name: showBackButton
+          in: query
+          required: false
+          schema:
+            type: boolean
+        -
+          name: retractable
+          in: query
+          required: false
+          schema:
+            type: boolean
+        -
           name: 'order[id]'
           in: query
           required: false
@@ -2192,6 +2204,24 @@ paths:
               - desc
         -
           name: 'order[showSubmittedStage]'
+          in: query
+          required: false
+          schema:
+            type: string
+            enum:
+              - asc
+              - desc
+        -
+          name: 'order[showBackButton]'
+          in: query
+          required: false
+          schema:
+            type: string
+            enum:
+              - asc
+              - desc
+        -
+          name: 'order[retractable]'
           in: query
           required: false
           schema:
@@ -2547,6 +2577,38 @@ paths:
             type: boolean
         -
           name: 'showSubmittedStage[]'
+          in: query
+          required: false
+          schema:
+            type: array
+            items:
+              type: boolean
+          style: form
+          explode: true
+        -
+          name: showBackButton
+          in: query
+          required: false
+          schema:
+            type: boolean
+        -
+          name: 'showBackButton[]'
+          in: query
+          required: false
+          schema:
+            type: array
+            items:
+              type: boolean
+          style: form
+          explode: true
+        -
+          name: retractable
+          in: query
+          required: false
+          schema:
+            type: boolean
+        -
+          name: 'retractable[]'
           in: query
           required: false
           schema:
@@ -6224,6 +6286,14 @@ components:
           description: 'wheter or not to dispay the submitted stage of a procces'
           type: boolean
           nullable: true
+        showBackButton:
+          description: 'wheter or not to display the back button to processes'
+          type: boolean
+          nullable: true
+        retractable:
+          description: 'whether or not to requests from this process are retractable'
+          type: boolean
+          nullable: true
         properties:
           type: array
           items:
@@ -6333,6 +6403,14 @@ components:
           description: 'wheter or not to dispay the submitted stage of a procces'
           type: boolean
           nullable: true
+        showBackButton:
+          description: 'wheter or not to display the back button to processes'
+          type: boolean
+          nullable: true
+        retractable:
+          description: 'whether or not to requests from this process are retractable'
+          type: boolean
+          nullable: true
         properties:
           type: array
           items:
@@ -6434,6 +6512,14 @@ components:
           nullable: true
         showSubmittedStage:
           description: 'wheter or not to dispay the submitted stage of a procces'
+          type: boolean
+          nullable: true
+        showBackButton:
+          description: 'wheter or not to display the back button to processes'
+          type: boolean
+          nullable: true
+        retractable:
+          description: 'whether or not to requests from this process are retractable'
           type: boolean
           nullable: true
         properties:
@@ -6552,6 +6638,14 @@ components:
           nullable: true
         showSubmittedStage:
           description: 'wheter or not to dispay the submitted stage of a procces'
+          type: boolean
+          nullable: true
+        showBackButton:
+          description: 'wheter or not to display the back button to processes'
+          type: boolean
+          nullable: true
+        retractable:
+          description: 'whether or not to requests from this process are retractable'
           type: boolean
           nullable: true
         properties:
@@ -7103,6 +7197,14 @@ definitions:
         description: 'wheter or not to dispay the submitted stage of a procces'
         type: bool
         example: 'false'
+      showBackButton:
+        description: 'wheter or not to display the back button to processes'
+        type: bool
+        example: 'false'
+      retractable:
+        description: 'whether or not to requests from this process are retractable'
+        type: bool
+        example: 'false'
       properties: []
       documents: []
       dateCreated:
@@ -7186,6 +7288,14 @@ definitions:
         example: 'Uw verzoek zal binnen een week afgehandeld worden.'
       showSubmittedStage:
         description: 'wheter or not to dispay the submitted stage of a procces'
+        type: bool
+        example: 'false'
+      showBackButton:
+        description: 'wheter or not to display the back button to processes'
+        type: bool
+        example: 'false'
+      retractable:
+        description: 'whether or not to requests from this process are retractable'
         type: bool
         example: 'false'
       properties: []
@@ -7459,12 +7569,12 @@ definitions:
         description: 'The moment this request was created'
         type: string
         format: date-time
-        example: '2020-09-24 08:40:57'
+        example: '2020-09-30 05:13:37'
       dateModified:
         description: 'The moment this request last Modified'
         type: string
         format: date-time
-        example: '2020-09-24 08:40:57'
+        example: '2020-09-30 05:13:37'
     required: []
   AuditTrail-write:
     properties:
@@ -7512,12 +7622,12 @@ definitions:
         description: 'The moment this request was created'
         type: string
         format: date-time
-        example: '2020-09-24 08:40:57'
+        example: '2020-09-30 05:13:37'
       dateModified:
         description: 'The moment this request last Modified'
         type: string
         format: date-time
-        example: '2020-09-24 08:40:57'
+        example: '2020-09-30 05:13:37'
     required: []
   ChangeLog-write:
     properties:

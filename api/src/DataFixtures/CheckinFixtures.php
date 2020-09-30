@@ -39,7 +39,7 @@ class CheckinFixtures extends Fixture
          */
         $id = Uuid::fromString('fdb7186c-0ce9-4050-bd6d-cf83b0c162eb');
         $processType = new ProcessType();
-        $processType->setName('Deelnemen aan het checking platform als horeca');
+        $processType->setName('Deelnemen aan het checking platform');
         $processType->setIcon('fa fa-user');
         $processType->setDescription('Om als horeca gebruik te kunnen maken van de checking functionaliteit moet u deelnemen aan het platform, en een abonement afsluiten.');
         $processType->setInstructionText(file_get_contents(dirname(__FILE__).'/Resources/chin/onboarding/instruction.html.twig', 'r'));
@@ -59,12 +59,14 @@ class CheckinFixtures extends Fixture
         $manager->flush();
         $processType = $manager->getRepository('App:ProcessType')->findOneBy(['id'=> $id]);
 
+        $id = Uuid::fromString('534d2c62-848d-422a-a26f-ac86f4e17209');
         $stage = new Stage();
         $stage->setName('Gegevens');
         $stage->setIcon('fas fa-user');
         $stage->setSlug('gegevens');
         $stage->setProcess($processType);
 
+        $id = Uuid::fromString('1ed3dced-62ac-4452-ad1c-c84b0e1d35e9');
         $section = new Section();
         $section->setStage($stage);
         $section->setName('Uw gegevens');
@@ -78,6 +80,7 @@ class CheckinFixtures extends Fixture
         $manager->persist($processType);
         $manager->flush();
 
+        $id = Uuid::fromString('2ac1b90b-4ba5-4ce9-9813-ab477ce1579a');
         $section = new Section();
         $section->setStage($stage);
         $section->setName('Koningklijke horeca nederland');
@@ -88,14 +91,16 @@ class CheckinFixtures extends Fixture
 
         $stage->addSection($section);
 
+        $id = Uuid::fromString('f5a39aec-b62a-44df-ba36-ebf1b52dd8be');
         $section = new Section();
         $section->setStage($stage);
         $section->setName('Abonnement');
-        $section->setDescription('Om deel te kunnen nemen aan dit platform heeft u een abonement nodig, dat kost €25 per maand (excl btw) en moet vooraf worden gefactureerd en betaald. Daarnaast zijn er aditionele kosten voor het gebruik van IDIN en is er een fair use policy van 1500 checkins per maand. Meer details daarover vind u hier <a href=""></a>.</p><p>De eerste maand is echter een proef periode en (binnen de gestelde voorwaarde van het platform) gratis. Om na deze maand gebruik te kunnen maken van het platform kunt u via de ondernemings pagina een abonement afsluiten');
+        $section->setDescription('<p>Om deel te kunnen nemen aan dit platform heeft u normaal gesproken een abonnement nodig. De kosten hiervoor zijn opgebouwd met een vast bedrag van &euro;25 per maand (excl btw) en kosten per check in van &euro;0.40 per check in deze worden achteraf betaald. <b>Voor de twee weken pilot is dit gratis.</b></p><p> We gaan uit van een &ldquo;Fair-use&rdquo; door de deelnemers van dit platform. Dat betekent dat als iemand overmatig gebruik gaat maken hiervoor gaat betalen. De grens ligt bij 1500 check ins per maand. Kom je hier overheen dan zal er een opslag gelden van &euro;0.05 per check in worden gerekend.</p>');
         $section->setProperties([]);
 
         $stage->addSection($section);
 
+        $id = Uuid::fromString('701dfa2d-dae7-4db8-b26d-9eeeaadf7681');
         $section = new Section();
         $section->setStage($stage);
         $section->setName('Voorwaarden');
@@ -136,12 +141,19 @@ class CheckinFixtures extends Fixture
         $manager->flush();
         $processType = $manager->getRepository('App:ProcessType')->findOneBy(['id'=> $id]);
 
+        $id = Uuid::fromString('1738a679-b8c4-4111-86cb-cd1bf6fda3b1');
         $stage = new Stage();
         $stage->setName('Gegevens');
         $stage->setIcon('fas fa-user');
         $stage->setSlug('gegevens');
         $stage->setProcess($processType);
+        $manager->persist($stage);
+        $stage->setId($id);
+        $manager->persist($stage);
+        $manager->flush();
+        $stage = $manager->getRepository('App:Stage')->findOneBy(['id'=> $id]);
 
+        $id = Uuid::fromString('235a2857-7284-41bb-9f97-55cb99dc747d');
         $section = new Section();
         $section->setStage($stage);
         $section->setName('Uw gegevens');
@@ -153,20 +165,31 @@ class CheckinFixtures extends Fixture
             $this->commonGroundService->cleanUrl(['component'=>'vtc', 'type'=>'properties', 'id'=>'db597628-8cf4-493b-8488-131a7351a949']),
 
         ]);
+        $manager->persist($section);
+        $section->setId($id);
+        $manager->persist($section);
+        $manager->flush();
+        $section = $manager->getRepository('App:Section')->findOneBy(['id'=> $id]);
         $stage->addSection($section);
 
         $processType->addStage($stage);
         $manager->persist($processType);
         $manager->flush();
 
+        $id = Uuid::fromString('6b1e0921-e51b-4f8b-baca-ee4c71d92c95');
         $section = new Section();
         $section->setStage($stage);
         $section->setName('Abonnement');
         $section->setDescription('Om deel te kunnen nemen aan dit platform heeft u een abonnement nodig, dit kost €25 per maand (excl btw) en moet vooraf worden betaald. We gaan uit van een “Fair-use” door de deelnemers van dit platform. Dat betekent dat als iemand overmatig gebruik gaat maken hiervoor gaat betalen. De grens ligt bij 500 check ins per maand. Kom je hier overheen dan zal er een opslag gelden van €0.05 per check in worden gerekend. <br> De eerste week is echter een proef periode en (binnen de gestelde voorwaarde van het platform) gratis. Na deze week zal het abonnement ingaan.');
         $section->setProperties([]);
-
+        $manager->persist($section);
+        $section->setId($id);
+        $manager->persist($section);
+        $manager->flush();
+        $section = $manager->getRepository('App:Section')->findOneBy(['id'=> $id]);
         $stage->addSection($section);
 
+        $id = Uuid::fromString('d7cbe4e2-2522-45b8-be78-e3a3e658f6df');
         $section = new Section();
         $section->setStage($stage);
         $section->setName('Voorwaarden');
@@ -176,7 +199,11 @@ class CheckinFixtures extends Fixture
             $this->commonGroundService->cleanUrl(['component'=>'vtc', 'type'=>'properties', 'id'=>'1356dc18-1dba-4ff8-9c69-df181425842c']),
             $this->commonGroundService->cleanUrl(['component'=>'vtc', 'type'=>'properties', 'id'=>'ce876e7e-8157-4468-b4ae-f72e04eabb74']),
         ]);
-
+        $manager->persist($section);
+        $section->setId($id);
+        $manager->persist($section);
+        $manager->flush();
+        $section = $manager->getRepository('App:Section')->findOneBy(['id'=> $id]);
         $stage->addSection($section);
 
         $processType->addStage($stage);
@@ -203,13 +230,20 @@ class CheckinFixtures extends Fixture
         $manager->flush();
         $processType = $manager->getRepository('App:ProcessType')->findOneBy(['id'=> $id]);
 
+        $id = Uuid::fromString('3a63f733-acb6-407a-bf10-c1d5f4dfffc9');
         $stage = new Stage();
         $stage->setName('Gemeentenlijke Gezondheids Dienst');
         $stage->setDescription('Om gegevens te verstrekken aan de GGD hebben wij twee zaken van u nodig, de gegevens van de GGD en een explicitie opdracht om deze gegevens te verstrekken');
         $stage->setIcon('fa fa-user');
         $stage->setSlug('gegevens-ggd');
         $stage->setProcess($processType);
+        $manager->persist($stage);
+        $stage->setId($id);
+        $manager->persist($stage);
+        $manager->flush();
+        $stage = $manager->getRepository('App:Stage')->findOneBy(['id'=> $id]);
 
+        $id = Uuid::fromString('bf2bfb33-3dd1-4742-9735-26e1837cccbd');
         $section = new Section();
         $section->setStage($stage);
         $section->setName('Context van de aanvraag');
@@ -218,8 +252,14 @@ class CheckinFixtures extends Fixture
             $this->commonGroundService->cleanUrl(['component'=>'vtc', 'type'=>'properties', 'id'=>'7e536da6-cd5b-4141-9ef8-0c14fe5a238a']),
             $this->commonGroundService->cleanUrl(['component'=>'vtc', 'type'=>'properties', 'id'=>'0e282256-ca2e-494c-8ebc-66839ec7534d']),
         ]);
+        $manager->persist($section);
+        $section->setId($id);
+        $manager->persist($section);
+        $manager->flush();
+        $section = $manager->getRepository('App:Section')->findOneBy(['id'=> $id]);
         $stage->addSection($section);
 
+        $id = Uuid::fromString('9c1e4467-ca51-496a-909c-d84acae72ff2');
         $section = new Section();
         $section->setStage($stage);
         $section->setName('Opdracht bevestiging');
@@ -227,6 +267,11 @@ class CheckinFixtures extends Fixture
             $this->commonGroundService->cleanUrl(['component'=>'vtc', 'type'=>'properties', 'id'=>'6035561c-8d93-40c2-82bb-1ddbf22b84cc']),
             $this->commonGroundService->cleanUrl(['component'=>'vtc', 'type'=>'properties', 'id'=>'86ef664f-7ab4-43d7-8bea-8eece272d4ef']),
         ]);
+        $manager->persist($section);
+        $section->setId($id);
+        $manager->persist($section);
+        $manager->flush();
+        $section = $manager->getRepository('App:Section')->findOneBy(['id'=> $id]);
         $stage->addSection($section);
 
         $processType->addStage($stage);
