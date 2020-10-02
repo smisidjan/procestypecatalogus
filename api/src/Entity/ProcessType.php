@@ -190,15 +190,20 @@ class ProcessType
     private $extendedBy;
 
     /**
-     * @var bool If being logged in for process is required.
+     * @var string Whether or not to require a login. *none* means never require a user to login, user wil not be presented with the option to login, *optional* means the request presented with the option to login but not requered to do so, *onSubmit* means the user can not post the procces to the vrc without loggin in, *always* means that the user can not start the procces without loging in.
      *
-     * @example false
+     * @example optional
      *
-     * @Assert\Type("bool")
-     * @Groups({"read", "write"})
-     * @ORM\Column(type="boolean", nullable=true)
+     * @Gedmo\Versioned
+     * @Assert\Choice({"none","optional","always","onSubmit"})
+     * @Assert\Length(
+     *      max = 10
+     * )
+     *
+     * @Groups({"read","write"})
+     * @ORM\Column(type="string", length=10, options={"default" : "optional"})
      */
-    private $requireLogin = false;
+    private $login = 'optional';
 
     /**
      * @var string The audience this processType is intended for
@@ -307,6 +312,28 @@ class ProcessType
      * @ORM\Column(type="boolean", nullable=true)
      */
     private $showSubmittedStage = true;
+
+    /**
+     * @var bool wheter or not to display the back button to processes
+     *
+     * @example false
+     *
+     * @Assert\Type("bool")
+     * @Groups({"read", "write"})
+     * @ORM\Column(type="boolean", nullable=true)
+     */
+    private $showBackButton = true;
+
+    /**
+     * @var bool whether or not to requests from this process are retractable
+     *
+     * @example false
+     *
+     * @Assert\Type("bool")
+     * @Groups({"read", "write"})
+     * @ORM\Column(type="boolean", nullable=true)
+     */
+    private $retractable = true;
 
     /**
      * @param array|string[] The request properties that are used for this process
@@ -422,14 +449,14 @@ class ProcessType
         return $this;
     }
 
-    public function getRequireLogin(): ?bool
+    public function getLogin(): ?string
     {
-        return $this->requireLogin;
+        return $this->login;
     }
 
-    public function setRequireLogin(?bool $requireLogin): self
+    public function setLogin(string $login): self
     {
-        $this->requireLogin = $requireLogin;
+        $this->login = $login;
 
         return $this;
     }
@@ -502,6 +529,30 @@ class ProcessType
     public function setShowInstructionStage(?bool $showInstructionStage): self
     {
         $this->showInstructionStage = $showInstructionStage;
+
+        return $this;
+    }
+
+    public function getShowBackButton(): ?bool
+    {
+        return $this->showBackButton;
+    }
+
+    public function setShowBackButton(?bool $showBackButton): self
+    {
+        $this->showBackButton = $showBackButton;
+
+        return $this;
+    }
+
+    public function getRetractable(): ?bool
+    {
+        return $this->retractable;
+    }
+
+    public function setRetractable(?bool $retractable): self
+    {
+        $this->retractable = $retractable;
 
         return $this;
     }

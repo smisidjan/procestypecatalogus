@@ -12,7 +12,7 @@ info:
     - Docker Image: [online](https://hub.docker.com/repository/docker/conduction/ptc-php) 
     - Datamodel: [postman](/schema/ptc.postman_collection.json) / [oas](/schema/openapi.yaml) / [pdf](/schema/datamodel.pdf) / [modelio (zip)](/schema/Datamodel_Modelio.zip) 
     
-    'Naast deze JSON rest API is er ook een [graphql](/graphql) interface beschikbaar.'         
+    Naast deze JSON rest API is er ook een [graphql](/graphql) interface beschikbaar.         
     
 paths:
   /audit_trails:
@@ -2029,12 +2029,6 @@ paths:
                   $ref: '#/components/schemas/ProcessType-read'
       parameters:
         -
-          name: requireLogin
-          in: query
-          required: false
-          schema:
-            type: boolean
-        -
           name: showInstructionStage
           in: query
           required: false
@@ -2048,6 +2042,18 @@ paths:
             type: boolean
         -
           name: showSubmittedStage
+          in: query
+          required: false
+          schema:
+            type: boolean
+        -
+          name: showBackButton
+          in: query
+          required: false
+          schema:
+            type: boolean
+        -
+          name: retractable
           in: query
           required: false
           schema:
@@ -2107,7 +2113,7 @@ paths:
               - asc
               - desc
         -
-          name: 'order[requireLogin]'
+          name: 'order[login]'
           in: query
           required: false
           schema:
@@ -2198,6 +2204,24 @@ paths:
               - desc
         -
           name: 'order[showSubmittedStage]'
+          in: query
+          required: false
+          schema:
+            type: string
+            enum:
+              - asc
+              - desc
+        -
+          name: 'order[showBackButton]'
+          in: query
+          required: false
+          schema:
+            type: string
+            enum:
+              - asc
+              - desc
+        -
+          name: 'order[retractable]'
           in: query
           required: false
           schema:
@@ -2386,19 +2410,19 @@ paths:
           style: form
           explode: true
         -
-          name: requireLogin
+          name: login
           in: query
           required: false
           schema:
-            type: boolean
+            type: string
         -
-          name: 'requireLogin[]'
+          name: 'login[]'
           in: query
           required: false
           schema:
             type: array
             items:
-              type: boolean
+              type: string
           style: form
           explode: true
         -
@@ -2553,6 +2577,38 @@ paths:
             type: boolean
         -
           name: 'showSubmittedStage[]'
+          in: query
+          required: false
+          schema:
+            type: array
+            items:
+              type: boolean
+          style: form
+          explode: true
+        -
+          name: showBackButton
+          in: query
+          required: false
+          schema:
+            type: boolean
+        -
+          name: 'showBackButton[]'
+          in: query
+          required: false
+          schema:
+            type: array
+            items:
+              type: boolean
+          style: form
+          explode: true
+        -
+          name: retractable
+          in: query
+          required: false
+          schema:
+            type: boolean
+        -
+          name: 'retractable[]'
           in: query
           required: false
           schema:
@@ -6183,10 +6239,9 @@ components:
           externalDocs:
             url: 'http://schema.org/url'
           type: string
-        requireLogin:
-          description: 'If being logged in for process is required.'
-          type: boolean
-          nullable: true
+        login:
+          description: 'Whether or not to require a login. *none* means never require a user to login, user wil not be presented with the option to login, *optional* means the request presented with the option to login but not requered to do so, *onSubmit* means the user can not post the procces to the vrc without loggin in, *always* means that the user can not start the procces without loging in.'
+          type: string
         audience:
           description: 'The audience this processType is intended for'
           type: array
@@ -6229,6 +6284,14 @@ components:
           nullable: true
         showSubmittedStage:
           description: 'wheter or not to dispay the submitted stage of a procces'
+          type: boolean
+          nullable: true
+        showBackButton:
+          description: 'wheter or not to display the back button to processes'
+          type: boolean
+          nullable: true
+        retractable:
+          description: 'whether or not to requests from this process are retractable'
           type: boolean
           nullable: true
         properties:
@@ -6293,10 +6356,9 @@ components:
           anyOf:
             -
               $ref: '#/components/schemas/ProcessType-write'
-        requireLogin:
-          description: 'If being logged in for process is required.'
-          type: boolean
-          nullable: true
+        login:
+          description: 'Whether or not to require a login. *none* means never require a user to login, user wil not be presented with the option to login, *optional* means the request presented with the option to login but not requered to do so, *onSubmit* means the user can not post the procces to the vrc without loggin in, *always* means that the user can not start the procces without loging in.'
+          type: string
         audience:
           description: 'The audience this processType is intended for'
           type: array
@@ -6339,6 +6401,14 @@ components:
           nullable: true
         showSubmittedStage:
           description: 'wheter or not to dispay the submitted stage of a procces'
+          type: boolean
+          nullable: true
+        showBackButton:
+          description: 'wheter or not to display the back button to processes'
+          type: boolean
+          nullable: true
+        retractable:
+          description: 'whether or not to requests from this process are retractable'
           type: boolean
           nullable: true
         properties:
@@ -6397,10 +6467,9 @@ components:
           externalDocs:
             url: 'http://schema.org/url'
           type: string
-        requireLogin:
-          description: 'If being logged in for process is required.'
-          type: boolean
-          nullable: true
+        login:
+          description: 'Whether or not to require a login. *none* means never require a user to login, user wil not be presented with the option to login, *optional* means the request presented with the option to login but not requered to do so, *onSubmit* means the user can not post the procces to the vrc without loggin in, *always* means that the user can not start the procces without loging in.'
+          type: string
         audience:
           description: 'The audience this processType is intended for'
           type: array
@@ -6443,6 +6512,14 @@ components:
           nullable: true
         showSubmittedStage:
           description: 'wheter or not to dispay the submitted stage of a procces'
+          type: boolean
+          nullable: true
+        showBackButton:
+          description: 'wheter or not to display the back button to processes'
+          type: boolean
+          nullable: true
+        retractable:
+          description: 'whether or not to requests from this process are retractable'
           type: boolean
           nullable: true
         properties:
@@ -6516,10 +6593,9 @@ components:
           anyOf:
             -
               $ref: '#/components/schemas/ProcessType:jsonld-write'
-        requireLogin:
-          description: 'If being logged in for process is required.'
-          type: boolean
-          nullable: true
+        login:
+          description: 'Whether or not to require a login. *none* means never require a user to login, user wil not be presented with the option to login, *optional* means the request presented with the option to login but not requered to do so, *onSubmit* means the user can not post the procces to the vrc without loggin in, *always* means that the user can not start the procces without loging in.'
+          type: string
         audience:
           description: 'The audience this processType is intended for'
           type: array
@@ -6562,6 +6638,14 @@ components:
           nullable: true
         showSubmittedStage:
           description: 'wheter or not to dispay the submitted stage of a procces'
+          type: boolean
+          nullable: true
+        showBackButton:
+          description: 'wheter or not to display the back button to processes'
+          type: boolean
+          nullable: true
+        retractable:
+          description: 'whether or not to requests from this process are retractable'
           type: boolean
           nullable: true
         properties:
@@ -7069,10 +7153,11 @@ definitions:
         example: 'http://rtc.zaakonline.nl/9bd169ef-bc8c-4422-86ce-a0e7679ab67a'
         format: url
         maxLength: 255
-      requireLogin:
-        description: 'If being logged in for process is required.'
-        type: bool
-        example: 'false'
+      login:
+        description: 'Whether or not to require a login. *none* means never require a user to login, user wil not be presented with the option to login, *optional* means the request presented with the option to login but not requered to do so, *onSubmit* means the user can not post the procces to the vrc without loggin in, *always* means that the user can not start the procces without loging in.'
+        type: string
+        example: optional
+        maxLength: 10
       audience:
         description: 'The audience this processType is intended for'
         type: string
@@ -7110,6 +7195,14 @@ definitions:
         example: 'Uw verzoek zal binnen een week afgehandeld worden.'
       showSubmittedStage:
         description: 'wheter or not to dispay the submitted stage of a procces'
+        type: bool
+        example: 'false'
+      showBackButton:
+        description: 'wheter or not to display the back button to processes'
+        type: bool
+        example: 'false'
+      retractable:
+        description: 'whether or not to requests from this process are retractable'
         type: bool
         example: 'false'
       properties: []
@@ -7153,10 +7246,11 @@ definitions:
         example: 'http://rtc.zaakonline.nl/9bd169ef-bc8c-4422-86ce-a0e7679ab67a'
         format: url
         maxLength: 255
-      requireLogin:
-        description: 'If being logged in for process is required.'
-        type: bool
-        example: 'false'
+      login:
+        description: 'Whether or not to require a login. *none* means never require a user to login, user wil not be presented with the option to login, *optional* means the request presented with the option to login but not requered to do so, *onSubmit* means the user can not post the procces to the vrc without loggin in, *always* means that the user can not start the procces without loging in.'
+        type: string
+        example: optional
+        maxLength: 10
       audience:
         description: 'The audience this processType is intended for'
         type: string
@@ -7194,6 +7288,14 @@ definitions:
         example: 'Uw verzoek zal binnen een week afgehandeld worden.'
       showSubmittedStage:
         description: 'wheter or not to dispay the submitted stage of a procces'
+        type: bool
+        example: 'false'
+      showBackButton:
+        description: 'wheter or not to display the back button to processes'
+        type: bool
+        example: 'false'
+      retractable:
+        description: 'whether or not to requests from this process are retractable'
         type: bool
         example: 'false'
       properties: []
@@ -7467,12 +7569,12 @@ definitions:
         description: 'The moment this request was created'
         type: string
         format: date-time
-        example: '2020-09-22 08:12:35'
+        example: '2020-09-30 05:13:37'
       dateModified:
         description: 'The moment this request last Modified'
         type: string
         format: date-time
-        example: '2020-09-22 08:12:35'
+        example: '2020-09-30 05:13:37'
     required: []
   AuditTrail-write:
     properties:
@@ -7520,12 +7622,12 @@ definitions:
         description: 'The moment this request was created'
         type: string
         format: date-time
-        example: '2020-09-22 08:12:35'
+        example: '2020-09-30 05:13:37'
       dateModified:
         description: 'The moment this request last Modified'
         type: string
         format: date-time
-        example: '2020-09-22 08:12:35'
+        example: '2020-09-30 05:13:37'
     required: []
   ChangeLog-write:
     properties:

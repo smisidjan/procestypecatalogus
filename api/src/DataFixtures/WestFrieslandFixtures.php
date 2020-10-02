@@ -42,7 +42,7 @@ class WestFrieslandFixtures extends Fixture
         $id = Uuid::fromString('a8b8ce49-d5db-4270-9e42-4b47902fc817');
         $processType = new ProcessType();
         $processType->setIcon('fas fa-monument');
-        $processType->setRequireLogin(true);
+        $processType->setLogin('always');
         $processType->setAudience('organization');
         $processType->setSourceOrganization($this->commonGroundService->cleanUrl(['component'=>'wrc', 'type'=>'organizations', 'id'=>'d280c4d3-6310-46db-9934-5285ec7d0d5e']));
         $processType->setName('Aanvragen begrafenis');
@@ -278,7 +278,7 @@ class WestFrieslandFixtures extends Fixture
         $id = Uuid::fromString('7216b69d-e245-488e-af8f-0969241926e7');
         $processType = new ProcessType();
         $processType->setIcon('far fa-edit');
-        $processType->setRequireLogin(true);
+        $processType->setLogin('always');
         $processType->setAudience('organization');
         $processType->setSourceOrganization($this->commonGroundService->cleanUrl(['component'=>'wrc', 'type'=>'organizations', 'id'=>'d280c4d3-6310-46db-9934-5285ec7d0d5e']));
         $processType->setName('Wijziging');
@@ -324,7 +324,7 @@ class WestFrieslandFixtures extends Fixture
         $id = Uuid::fromString('2a95ba3e-a3f9-4fdf-8a6d-005d96aad405');
         $processType = new ProcessType();
         $processType->setIcon('far fa-hand-paper');
-        $processType->setRequireLogin(true);
+        $processType->setLogin('always');
         $processType->setAudience('organization');
         $processType->setSourceOrganization($this->commonGroundService->cleanUrl(['component'=>'wrc', 'type'=>'organizations', 'id'=>'d280c4d3-6310-46db-9934-5285ec7d0d5e']));
         $processType->setName('Bezwaar');
