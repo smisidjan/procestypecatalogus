@@ -5742,6 +5742,1096 @@ paths:
           description: 'Resource not found'
       produces:
         - application/health+json
+  /templates:
+    get:
+      tags:
+        - Template
+      operationId: getTemplateCollection
+      summary: 'Retrieves the collection of Template resources.'
+      responses:
+        200:
+          description: 'Template collection response'
+          content:
+            application/ld+json:
+              schema:
+                type: object
+                properties:
+                  'hydra:member': { type: array, items: { $ref: '#/components/schemas/Template:jsonld-read' } }
+                  'hydra:totalItems': { type: integer, minimum: 0 }
+                  'hydra:view': { type: object, properties: { '@id': { type: string, format: iri-reference }, '@type': { type: string }, 'hydra:first': { type: string, format: iri-reference }, 'hydra:last': { type: string, format: iri-reference }, 'hydra:next': { type: string, format: iri-reference } } }
+                  'hydra:search': { type: object, properties: { '@type': { type: string }, 'hydra:template': { type: string }, 'hydra:variableRepresentation': { type: string }, 'hydra:mapping': { type: array, items: { type: object, properties: { '@type': { type: string }, variable: { type: string }, property: { type: string }, required: { type: boolean } } } } } }
+                required:
+                  - 'hydra:member'
+            application/json+ld:
+              schema:
+                type: object
+                properties:
+                  'hydra:member': { type: array, items: { $ref: '#/components/schemas/Template:jsonld-read' } }
+                  'hydra:totalItems': { type: integer, minimum: 0 }
+                  'hydra:view': { type: object, properties: { '@id': { type: string, format: iri-reference }, '@type': { type: string }, 'hydra:first': { type: string, format: iri-reference }, 'hydra:last': { type: string, format: iri-reference }, 'hydra:next': { type: string, format: iri-reference } } }
+                  'hydra:search': { type: object, properties: { '@type': { type: string }, 'hydra:template': { type: string }, 'hydra:variableRepresentation': { type: string }, 'hydra:mapping': { type: array, items: { type: object, properties: { '@type': { type: string }, variable: { type: string }, property: { type: string }, required: { type: boolean } } } } } }
+                required:
+                  - 'hydra:member'
+            application/hal+json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Template-read'
+            application/json+hal:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Template-read'
+            application/vnd.api+json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Template-read'
+            application/json+vnd.api:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Template-read'
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Template-read'
+            application/health+json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Template-read'
+            application/json+health:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Template-read'
+            application/xml:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Template-read'
+            application/x-yaml:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Template-read'
+            text/csv:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Template-read'
+            text/html:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Template-read'
+      parameters:
+        -
+          name: 'order[id]'
+          in: query
+          required: false
+          schema:
+            type: string
+            enum:
+              - asc
+              - desc
+        -
+          name: 'order[name]'
+          in: query
+          required: false
+          schema:
+            type: string
+            enum:
+              - asc
+              - desc
+        -
+          name: 'order[description]'
+          in: query
+          required: false
+          schema:
+            type: string
+            enum:
+              - asc
+              - desc
+        -
+          name: 'order[uri]'
+          in: query
+          required: false
+          schema:
+            type: string
+            enum:
+              - asc
+              - desc
+        -
+          name: 'order[type]'
+          in: query
+          required: false
+          schema:
+            type: string
+            enum:
+              - asc
+              - desc
+        -
+          name: 'order[dateCreated]'
+          in: query
+          required: false
+          schema:
+            type: string
+            enum:
+              - asc
+              - desc
+        -
+          name: 'order[dateModified]'
+          in: query
+          required: false
+          schema:
+            type: string
+            enum:
+              - asc
+              - desc
+        -
+          name: 'dateCreated[before]'
+          in: query
+          required: false
+          schema:
+            type: string
+        -
+          name: 'dateCreated[strictly_before]'
+          in: query
+          required: false
+          schema:
+            type: string
+        -
+          name: 'dateCreated[after]'
+          in: query
+          required: false
+          schema:
+            type: string
+        -
+          name: 'dateCreated[strictly_after]'
+          in: query
+          required: false
+          schema:
+            type: string
+        -
+          name: 'dateModified[before]'
+          in: query
+          required: false
+          schema:
+            type: string
+        -
+          name: 'dateModified[strictly_before]'
+          in: query
+          required: false
+          schema:
+            type: string
+        -
+          name: 'dateModified[after]'
+          in: query
+          required: false
+          schema:
+            type: string
+        -
+          name: 'dateModified[strictly_after]'
+          in: query
+          required: false
+          schema:
+            type: string
+        -
+          name: id
+          in: query
+          required: false
+          schema:
+            type: string
+        -
+          name: 'id[]'
+          in: query
+          required: false
+          schema:
+            type: array
+            items:
+              type: string
+          style: form
+          explode: true
+        -
+          name: name
+          in: query
+          required: false
+          schema:
+            type: string
+        -
+          name: 'name[]'
+          in: query
+          required: false
+          schema:
+            type: array
+            items:
+              type: string
+          style: form
+          explode: true
+        -
+          name: description
+          in: query
+          required: false
+          schema:
+            type: string
+        -
+          name: 'description[]'
+          in: query
+          required: false
+          schema:
+            type: array
+            items:
+              type: string
+          style: form
+          explode: true
+        -
+          name: uri
+          in: query
+          required: false
+          schema:
+            type: string
+        -
+          name: 'uri[]'
+          in: query
+          required: false
+          schema:
+            type: array
+            items:
+              type: string
+          style: form
+          explode: true
+        -
+          name: type
+          in: query
+          required: false
+          schema:
+            type: string
+        -
+          name: 'type[]'
+          in: query
+          required: false
+          schema:
+            type: array
+            items:
+              type: string
+          style: form
+          explode: true
+        -
+          name: dateCreated
+          in: query
+          required: false
+          schema:
+            type: string
+        -
+          name: 'dateCreated[]'
+          in: query
+          required: false
+          schema:
+            type: string
+        -
+          name: dateModified
+          in: query
+          required: false
+          schema:
+            type: string
+        -
+          name: 'dateModified[]'
+          in: query
+          required: false
+          schema:
+            type: string
+        -
+          name: page
+          in: query
+          required: false
+          description: 'The collection page number'
+          schema:
+            type: integer
+            default: 1
+        -
+          name: limit
+          in: query
+          required: false
+          description: 'The number of items per page'
+          schema:
+            type: integer
+            default: 30
+            minimum: 0
+        -
+          name: Authorization
+          description: 'The JWT of the entity performing the request'
+          in: header
+        -
+          name: API-Version
+          description: 'The version of the API conform [Landelijke API-strategie.](https://geonovum.github.io/KP-APIs/#versioning)'
+          example: 1.0.1
+          in: header
+        -
+          name: X-NLX-Logrecord-ID
+          description: 'A  globally unique id of the request, which makes a request traceable throughout the network.'
+          in: header
+        -
+          name: X-NLX-Request-Process-Id
+          description: 'A process id for purpose registration (doelbinding)'
+          in: header
+        -
+          name: X-NLX-Request-Data-Elements
+          description: 'A list of requested data elements'
+          in: header
+        -
+          name: X-NLX-Request-Data-Subject
+          description: 'A key-value list of data subjects related to this request. e.g. `bsn=12345678, kenteken=ab-12-fg`'
+          in: header
+        -
+          name: X-NLX-Audit-Clarification
+          description: 'A clarification as to why a request has been made  (doelbinding)'
+          in: header
+        -
+          name: Link
+          description: 'A [websub](https://www.w3.org/TR/websub/#discovery) header like <https://hub.example.com/>; rel="hub"'
+          in: header
+        -
+          name: 'extend[]'
+          required: false
+          description: 'An array of nested objects to include in the return object'
+          in: query
+          schema:
+            type: array
+        -
+          name: 'fields[]'
+          required: false
+          description: 'An array of fields to return in output, wil return all fields is not supplied'
+          in: query
+          schema:
+            type: array
+        -
+          name: validOn
+          required: false
+          description: 'Returns object as valid on a given date time'
+          schema:
+            type: string
+            format: date-time
+          in: query
+        -
+          name: validFrom
+          required: false
+          description: 'Returns objects valid from a given date time'
+          schema:
+            type: string
+            format: date-time
+          in: query
+        -
+          name: validUntil
+          required: false
+          description: 'Returns objects valid until a given date time'
+          schema:
+            type: string
+            format: date-time
+          in: query
+      produces:
+        - application/health+json
+    post:
+      tags:
+        - Template
+      operationId: postTemplateCollection
+      summary: 'Creates a Template resource.'
+      responses:
+        201:
+          description: 'Template resource created'
+          content:
+            application/ld+json:
+              schema:
+                $ref: '#/components/schemas/Template:jsonld-read'
+            application/json+ld:
+              schema:
+                $ref: '#/components/schemas/Template:jsonld-read'
+            application/hal+json:
+              schema:
+                $ref: '#/components/schemas/Template-read'
+            application/json+hal:
+              schema:
+                $ref: '#/components/schemas/Template-read'
+            application/vnd.api+json:
+              schema:
+                $ref: '#/components/schemas/Template-read'
+            application/json+vnd.api:
+              schema:
+                $ref: '#/components/schemas/Template-read'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Template-read'
+            application/health+json:
+              schema:
+                $ref: '#/components/schemas/Template-read'
+            application/json+health:
+              schema:
+                $ref: '#/components/schemas/Template-read'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/Template-read'
+            application/x-yaml:
+              schema:
+                $ref: '#/components/schemas/Template-read'
+            text/csv:
+              schema:
+                $ref: '#/components/schemas/Template-read'
+            text/html:
+              schema:
+                $ref: '#/components/schemas/Template-read'
+          links:
+            GetTemplateItem:
+              parameters:
+                id: '$response.body#/id'
+              operationId: getTemplateItem
+              description: 'The `id` value returned in the response can be used as the `id` parameter in `GET /templates/{id}`.'
+        400:
+          description: 'Invalid input'
+        404:
+          description: 'Resource not found'
+      requestBody:
+        content:
+          application/ld+json:
+            schema:
+              $ref: '#/components/schemas/Template:jsonld-write'
+          application/json+ld:
+            schema:
+              $ref: '#/components/schemas/Template:jsonld-write'
+          application/hal+json:
+            schema:
+              $ref: '#/components/schemas/Template-write'
+          application/json+hal:
+            schema:
+              $ref: '#/components/schemas/Template-write'
+          application/vnd.api+json:
+            schema:
+              $ref: '#/components/schemas/Template-write'
+          application/json+vnd.api:
+            schema:
+              $ref: '#/components/schemas/Template-write'
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Template-write'
+          application/health+json:
+            schema:
+              $ref: '#/components/schemas/Template-write'
+          application/json+health:
+            schema:
+              $ref: '#/components/schemas/Template-write'
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/Template-write'
+          application/x-yaml:
+            schema:
+              $ref: '#/components/schemas/Template-write'
+          text/csv:
+            schema:
+              $ref: '#/components/schemas/Template-write'
+          text/html:
+            schema:
+              $ref: '#/components/schemas/Template-write'
+        description: 'The new Template resource'
+      parameters:
+        -
+          name: Authorization
+          description: 'The JWT of the entity performing the request'
+          in: header
+        -
+          name: API-Version
+          description: 'The version of the API conform [Landelijke API-strategie.](https://geonovum.github.io/KP-APIs/#versioning)'
+          example: 1.0.1
+          in: header
+        -
+          name: X-NLX-Logrecord-ID
+          description: 'A  globally unique id of the request, which makes a request traceable throughout the network.'
+          in: header
+        -
+          name: X-NLX-Request-Process-Id
+          description: 'A process id for purpose registration (doelbinding)'
+          in: header
+        -
+          name: X-NLX-Request-Data-Elements
+          description: 'A list of requested data elements'
+          in: header
+        -
+          name: X-NLX-Request-Data-Subject
+          description: 'A key-value list of data subjects related to this request. e.g. `bsn=12345678, kenteken=ab-12-fg`'
+          in: header
+        -
+          name: X-NLX-Audit-Clarification
+          description: 'A clarification as to why a request has been made  (doelbinding)'
+          in: header
+  '/templates/{id}':
+    get:
+      tags:
+        - Template
+      operationId: getTemplateItem
+      summary: 'Retrieves a Template resource.'
+      parameters:
+        -
+          name: id
+          in: path
+          required: true
+          schema:
+            type: string
+        -
+          name: Authorization
+          description: 'The JWT of the entity performing the request'
+          in: header
+        -
+          name: API-Version
+          description: 'The version of the API conform [Landelijke API-strategie.](https://geonovum.github.io/KP-APIs/#versioning)'
+          example: 1.0.1
+          in: header
+        -
+          name: X-NLX-Logrecord-ID
+          description: 'A  globally unique id of the request, which makes a request traceable throughout the network.'
+          in: header
+        -
+          name: X-NLX-Request-Process-Id
+          description: 'A process id for purpose registration (doelbinding)'
+          in: header
+        -
+          name: X-NLX-Request-Data-Elements
+          description: 'A list of requested data elements'
+          in: header
+        -
+          name: X-NLX-Request-Data-Subject
+          description: 'A key-value list of data subjects related to this request. e.g. `bsn=12345678, kenteken=ab-12-fg`'
+          in: header
+        -
+          name: X-NLX-Audit-Clarification
+          description: 'A clarification as to why a request has been made  (doelbinding)'
+          in: header
+        -
+          name: Link
+          description: 'A [websub](https://www.w3.org/TR/websub/#discovery) header like <https://hub.example.com/>; rel="hub"'
+          in: header
+        -
+          name: 'extend[]'
+          required: false
+          description: 'An array of nested objects to include in the return object'
+          in: query
+          schema:
+            type: array
+        -
+          name: 'fields[]'
+          required: false
+          description: 'An array of fields to return in output, wil return all fields is not supplied'
+          in: query
+          schema:
+            type: array
+        -
+          name: validOn
+          required: false
+          description: 'Returns object as valid on a given date time'
+          schema:
+            type: string
+            format: date-time
+          in: query
+        -
+          name: validFrom
+          required: false
+          description: 'Returns objects valid from a given date time'
+          schema:
+            type: string
+            format: date-time
+          in: query
+        -
+          name: validUntil
+          required: false
+          description: 'Returns objects valid until a given date time'
+          schema:
+            type: string
+            format: date-time
+          in: query
+      responses:
+        200:
+          description: 'Template resource response'
+          content:
+            application/ld+json:
+              schema:
+                $ref: '#/components/schemas/Template:jsonld-read'
+            application/json+ld:
+              schema:
+                $ref: '#/components/schemas/Template:jsonld-read'
+            application/hal+json:
+              schema:
+                $ref: '#/components/schemas/Template-read'
+            application/json+hal:
+              schema:
+                $ref: '#/components/schemas/Template-read'
+            application/vnd.api+json:
+              schema:
+                $ref: '#/components/schemas/Template-read'
+            application/json+vnd.api:
+              schema:
+                $ref: '#/components/schemas/Template-read'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Template-read'
+            application/health+json:
+              schema:
+                $ref: '#/components/schemas/Template-read'
+            application/json+health:
+              schema:
+                $ref: '#/components/schemas/Template-read'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/Template-read'
+            application/x-yaml:
+              schema:
+                $ref: '#/components/schemas/Template-read'
+            text/csv:
+              schema:
+                $ref: '#/components/schemas/Template-read'
+            text/html:
+              schema:
+                $ref: '#/components/schemas/Template-read'
+        404:
+          description: 'Resource not found'
+      produces:
+        - application/health+json
+    put:
+      tags:
+        - Template
+      operationId: putTemplateItem
+      summary: 'Replaces the Template resource.'
+      parameters:
+        -
+          name: id
+          in: path
+          required: true
+          schema:
+            type: string
+        -
+          name: Authorization
+          description: 'The JWT of the entity performing the request'
+          in: header
+        -
+          name: API-Version
+          description: 'The version of the API conform [Landelijke API-strategie.](https://geonovum.github.io/KP-APIs/#versioning)'
+          example: 1.0.1
+          in: header
+        -
+          name: X-NLX-Logrecord-ID
+          description: 'A  globally unique id of the request, which makes a request traceable throughout the network.'
+          in: header
+        -
+          name: X-NLX-Request-Process-Id
+          description: 'A process id for purpose registration (doelbinding)'
+          in: header
+        -
+          name: X-NLX-Request-Data-Elements
+          description: 'A list of requested data elements'
+          in: header
+        -
+          name: X-NLX-Request-Data-Subject
+          description: 'A key-value list of data subjects related to this request. e.g. `bsn=12345678, kenteken=ab-12-fg`'
+          in: header
+        -
+          name: X-NLX-Audit-Clarification
+          description: 'A clarification as to why a request has been made  (doelbinding)'
+          in: header
+      responses:
+        200:
+          description: 'Template resource updated'
+          content:
+            application/ld+json:
+              schema:
+                $ref: '#/components/schemas/Template:jsonld-read'
+            application/json+ld:
+              schema:
+                $ref: '#/components/schemas/Template:jsonld-read'
+            application/hal+json:
+              schema:
+                $ref: '#/components/schemas/Template-read'
+            application/json+hal:
+              schema:
+                $ref: '#/components/schemas/Template-read'
+            application/vnd.api+json:
+              schema:
+                $ref: '#/components/schemas/Template-read'
+            application/json+vnd.api:
+              schema:
+                $ref: '#/components/schemas/Template-read'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Template-read'
+            application/health+json:
+              schema:
+                $ref: '#/components/schemas/Template-read'
+            application/json+health:
+              schema:
+                $ref: '#/components/schemas/Template-read'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/Template-read'
+            application/x-yaml:
+              schema:
+                $ref: '#/components/schemas/Template-read'
+            text/csv:
+              schema:
+                $ref: '#/components/schemas/Template-read'
+            text/html:
+              schema:
+                $ref: '#/components/schemas/Template-read'
+        400:
+          description: 'Invalid input'
+        404:
+          description: 'Resource not found'
+      requestBody:
+        content:
+          application/ld+json:
+            schema:
+              $ref: '#/components/schemas/Template:jsonld-write'
+          application/json+ld:
+            schema:
+              $ref: '#/components/schemas/Template:jsonld-write'
+          application/hal+json:
+            schema:
+              $ref: '#/components/schemas/Template-write'
+          application/json+hal:
+            schema:
+              $ref: '#/components/schemas/Template-write'
+          application/vnd.api+json:
+            schema:
+              $ref: '#/components/schemas/Template-write'
+          application/json+vnd.api:
+            schema:
+              $ref: '#/components/schemas/Template-write'
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Template-write'
+          application/health+json:
+            schema:
+              $ref: '#/components/schemas/Template-write'
+          application/json+health:
+            schema:
+              $ref: '#/components/schemas/Template-write'
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/Template-write'
+          application/x-yaml:
+            schema:
+              $ref: '#/components/schemas/Template-write'
+          text/csv:
+            schema:
+              $ref: '#/components/schemas/Template-write'
+          text/html:
+            schema:
+              $ref: '#/components/schemas/Template-write'
+        description: 'The updated Template resource'
+    delete:
+      tags:
+        - Template
+      operationId: deleteTemplateItem
+      summary: 'Removes the Template resource.'
+      responses:
+        204:
+          description: 'Template resource deleted'
+        404:
+          description: 'Resource not found'
+      parameters:
+        -
+          name: id
+          in: path
+          required: true
+          schema:
+            type: string
+        -
+          name: Authorization
+          description: 'The JWT of the entity performing the request'
+          in: header
+        -
+          name: API-Version
+          description: 'The version of the API conform [Landelijke API-strategie.](https://geonovum.github.io/KP-APIs/#versioning)'
+          example: 1.0.1
+          in: header
+        -
+          name: X-NLX-Logrecord-ID
+          description: 'A  globally unique id of the request, which makes a request traceable throughout the network.'
+          in: header
+        -
+          name: X-NLX-Request-Process-Id
+          description: 'A process id for purpose registration (doelbinding)'
+          in: header
+        -
+          name: X-NLX-Request-Data-Elements
+          description: 'A list of requested data elements'
+          in: header
+        -
+          name: X-NLX-Request-Data-Subject
+          description: 'A key-value list of data subjects related to this request. e.g. `bsn=12345678, kenteken=ab-12-fg`'
+          in: header
+        -
+          name: X-NLX-Audit-Clarification
+          description: 'A clarification as to why a request has been made  (doelbinding)'
+          in: header
+  '/templates/{id}/audit_trail':
+    get:
+      tags:
+        - Template
+      operationId: get_audit_trailTemplateItem
+      summary: 'Retrieves a Template resource.'
+      parameters:
+        -
+          name: id
+          in: path
+          required: true
+          schema:
+            type: string
+        -
+          name: Authorization
+          description: 'The JWT of the entity performing the request'
+          in: header
+        -
+          name: API-Version
+          description: 'The version of the API conform [Landelijke API-strategie.](https://geonovum.github.io/KP-APIs/#versioning)'
+          example: 1.0.1
+          in: header
+        -
+          name: X-NLX-Logrecord-ID
+          description: 'A  globally unique id of the request, which makes a request traceable throughout the network.'
+          in: header
+        -
+          name: X-NLX-Request-Process-Id
+          description: 'A process id for purpose registration (doelbinding)'
+          in: header
+        -
+          name: X-NLX-Request-Data-Elements
+          description: 'A list of requested data elements'
+          in: header
+        -
+          name: X-NLX-Request-Data-Subject
+          description: 'A key-value list of data subjects related to this request. e.g. `bsn=12345678, kenteken=ab-12-fg`'
+          in: header
+        -
+          name: X-NLX-Audit-Clarification
+          description: 'A clarification as to why a request has been made  (doelbinding)'
+          in: header
+        -
+          name: Link
+          description: 'A [websub](https://www.w3.org/TR/websub/#discovery) header like <https://hub.example.com/>; rel="hub"'
+          in: header
+        -
+          name: 'extend[]'
+          required: false
+          description: 'An array of nested objects to include in the return object'
+          in: query
+          schema:
+            type: array
+        -
+          name: 'fields[]'
+          required: false
+          description: 'An array of fields to return in output, wil return all fields is not supplied'
+          in: query
+          schema:
+            type: array
+        -
+          name: validOn
+          required: false
+          description: 'Returns object as valid on a given date time'
+          schema:
+            type: string
+            format: date-time
+          in: query
+        -
+          name: validFrom
+          required: false
+          description: 'Returns objects valid from a given date time'
+          schema:
+            type: string
+            format: date-time
+          in: query
+        -
+          name: validUntil
+          required: false
+          description: 'Returns objects valid until a given date time'
+          schema:
+            type: string
+            format: date-time
+          in: query
+      responses:
+        200:
+          description: 'Template resource response'
+          content:
+            application/ld+json:
+              schema:
+                $ref: '#/components/schemas/Template:jsonld-read'
+            application/json+ld:
+              schema:
+                $ref: '#/components/schemas/Template:jsonld-read'
+            application/hal+json:
+              schema:
+                $ref: '#/components/schemas/Template-read'
+            application/json+hal:
+              schema:
+                $ref: '#/components/schemas/Template-read'
+            application/vnd.api+json:
+              schema:
+                $ref: '#/components/schemas/Template-read'
+            application/json+vnd.api:
+              schema:
+                $ref: '#/components/schemas/Template-read'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Template-read'
+            application/health+json:
+              schema:
+                $ref: '#/components/schemas/Template-read'
+            application/json+health:
+              schema:
+                $ref: '#/components/schemas/Template-read'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/Template-read'
+            application/x-yaml:
+              schema:
+                $ref: '#/components/schemas/Template-read'
+            text/csv:
+              schema:
+                $ref: '#/components/schemas/Template-read'
+            text/html:
+              schema:
+                $ref: '#/components/schemas/Template-read'
+        404:
+          description: 'Resource not found'
+      produces:
+        - application/health+json
+  '/templates/{id}/change_log':
+    get:
+      tags:
+        - Template
+      operationId: get_change_logsTemplateItem
+      summary: 'Retrieves a Template resource.'
+      parameters:
+        -
+          name: id
+          in: path
+          required: true
+          schema:
+            type: string
+        -
+          name: Authorization
+          description: 'The JWT of the entity performing the request'
+          in: header
+        -
+          name: API-Version
+          description: 'The version of the API conform [Landelijke API-strategie.](https://geonovum.github.io/KP-APIs/#versioning)'
+          example: 1.0.1
+          in: header
+        -
+          name: X-NLX-Logrecord-ID
+          description: 'A  globally unique id of the request, which makes a request traceable throughout the network.'
+          in: header
+        -
+          name: X-NLX-Request-Process-Id
+          description: 'A process id for purpose registration (doelbinding)'
+          in: header
+        -
+          name: X-NLX-Request-Data-Elements
+          description: 'A list of requested data elements'
+          in: header
+        -
+          name: X-NLX-Request-Data-Subject
+          description: 'A key-value list of data subjects related to this request. e.g. `bsn=12345678, kenteken=ab-12-fg`'
+          in: header
+        -
+          name: X-NLX-Audit-Clarification
+          description: 'A clarification as to why a request has been made  (doelbinding)'
+          in: header
+        -
+          name: Link
+          description: 'A [websub](https://www.w3.org/TR/websub/#discovery) header like <https://hub.example.com/>; rel="hub"'
+          in: header
+        -
+          name: 'extend[]'
+          required: false
+          description: 'An array of nested objects to include in the return object'
+          in: query
+          schema:
+            type: array
+        -
+          name: 'fields[]'
+          required: false
+          description: 'An array of fields to return in output, wil return all fields is not supplied'
+          in: query
+          schema:
+            type: array
+        -
+          name: validOn
+          required: false
+          description: 'Returns object as valid on a given date time'
+          schema:
+            type: string
+            format: date-time
+          in: query
+        -
+          name: validFrom
+          required: false
+          description: 'Returns objects valid from a given date time'
+          schema:
+            type: string
+            format: date-time
+          in: query
+        -
+          name: validUntil
+          required: false
+          description: 'Returns objects valid until a given date time'
+          schema:
+            type: string
+            format: date-time
+          in: query
+      responses:
+        200:
+          description: 'Template resource response'
+          content:
+            application/ld+json:
+              schema:
+                $ref: '#/components/schemas/Template:jsonld-read'
+            application/json+ld:
+              schema:
+                $ref: '#/components/schemas/Template:jsonld-read'
+            application/hal+json:
+              schema:
+                $ref: '#/components/schemas/Template-read'
+            application/json+hal:
+              schema:
+                $ref: '#/components/schemas/Template-read'
+            application/vnd.api+json:
+              schema:
+                $ref: '#/components/schemas/Template-read'
+            application/json+vnd.api:
+              schema:
+                $ref: '#/components/schemas/Template-read'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Template-read'
+            application/health+json:
+              schema:
+                $ref: '#/components/schemas/Template-read'
+            application/json+health:
+              schema:
+                $ref: '#/components/schemas/Template-read'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/Template-read'
+            application/x-yaml:
+              schema:
+                $ref: '#/components/schemas/Template-read'
+            text/csv:
+              schema:
+                $ref: '#/components/schemas/Template-read'
+            text/html:
+              schema:
+                $ref: '#/components/schemas/Template-read'
+        404:
+          description: 'Resource not found'
+      produces:
+        - application/health+json
 components:
   schemas:
     AuditTrail-read:
@@ -6314,6 +7404,10 @@ components:
           type: string
           format: date-time
           nullable: true
+        templates:
+          type: array
+          items:
+            $ref: '#/components/schemas/Template-read'
       required:
         - name
         - sourceOrganization
@@ -6421,6 +7515,10 @@ components:
           items:
             type: string
           nullable: true
+        templates:
+          type: array
+          items:
+            $ref: '#/components/schemas/Template-write'
     'ProcessType:jsonld-read':
       type: object
       description: 'A process.'
@@ -6542,6 +7640,10 @@ components:
           type: string
           format: date-time
           nullable: true
+        templates:
+          type: array
+          items:
+            $ref: '#/components/schemas/Template:jsonld-read'
       required:
         - name
         - sourceOrganization
@@ -6658,6 +7760,10 @@ components:
           items:
             type: string
           nullable: true
+        templates:
+          type: array
+          items:
+            $ref: '#/components/schemas/Template:jsonld-write'
     Section-read:
       type: object
       description: ''
@@ -7120,6 +8226,642 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/Condition:jsonld-write'
+    Template-read:
+      type: object
+      description: ''
+      properties:
+        id:
+          readOnly: true
+          description: 'The UUID identifier of this resource'
+          externalDocs:
+            url: 'http://schema.org/identifier'
+          type: string
+          format: uuid
+        name:
+          description: 'Name of the template'
+          type: string
+        description:
+          description: 'Description of the template'
+          type: string
+          nullable: true
+        uri:
+          description: 'The uri of the template in WRC'
+          externalDocs:
+            url: 'http://schema.org/url'
+          type: string
+        type:
+          description: 'Type of document you want to receive'
+          type: string
+        processType:
+          nullable: true
+          anyOf:
+            -
+              $ref: '#/components/schemas/processType-read'
+        dateCreated:
+          description: 'The moment this request was created'
+          type: string
+          format: date-time
+          nullable: true
+        dateModified:
+          description: 'The moment this request last Modified'
+          type: string
+          format: date-time
+          nullable: true
+      required:
+        - name
+        - uri
+        - type
+    Template-write:
+      type: object
+      description: ''
+      required:
+        - name
+        - uri
+        - type
+      properties:
+        name:
+          description: 'Name of the template'
+          type: string
+        description:
+          description: 'Description of the template'
+          type: string
+          nullable: true
+        uri:
+          description: 'The uri of the template in WRC'
+          externalDocs:
+            url: 'http://schema.org/url'
+          type: string
+        type:
+          description: 'Type of document you want to receive'
+          type: string
+        processType:
+          nullable: true
+          anyOf:
+            -
+              $ref: '#/components/schemas/processType-write'
+    'Template:jsonld-read':
+      type: object
+      description: ''
+      properties:
+        '@context':
+          readOnly: true
+          type: string
+        '@id':
+          readOnly: true
+          type: string
+        '@type':
+          readOnly: true
+          type: string
+        id:
+          readOnly: true
+          description: 'The UUID identifier of this resource'
+          externalDocs:
+            url: 'http://schema.org/identifier'
+          type: string
+          format: uuid
+        name:
+          description: 'Name of the template'
+          type: string
+        description:
+          description: 'Description of the template'
+          type: string
+          nullable: true
+        uri:
+          description: 'The uri of the template in WRC'
+          externalDocs:
+            url: 'http://schema.org/url'
+          type: string
+        type:
+          description: 'Type of document you want to receive'
+          type: string
+        processType:
+          nullable: true
+          anyOf:
+            -
+              $ref: '#/components/schemas/processType:jsonld-read'
+        dateCreated:
+          description: 'The moment this request was created'
+          type: string
+          format: date-time
+          nullable: true
+        dateModified:
+          description: 'The moment this request last Modified'
+          type: string
+          format: date-time
+          nullable: true
+      required:
+        - name
+        - uri
+        - type
+    'Template:jsonld-write':
+      type: object
+      description: ''
+      required:
+        - name
+        - uri
+        - type
+      properties:
+        '@context':
+          readOnly: true
+          type: string
+        '@id':
+          readOnly: true
+          type: string
+        '@type':
+          readOnly: true
+          type: string
+        name:
+          description: 'Name of the template'
+          type: string
+        description:
+          description: 'Description of the template'
+          type: string
+          nullable: true
+        uri:
+          description: 'The uri of the template in WRC'
+          externalDocs:
+            url: 'http://schema.org/url'
+          type: string
+        type:
+          description: 'Type of document you want to receive'
+          type: string
+        processType:
+          nullable: true
+          anyOf:
+            -
+              $ref: '#/components/schemas/processType:jsonld-write'
+    processType-read:
+      type: object
+      description: 'A process.'
+      properties:
+        id:
+          readOnly: true
+          description: 'The UUID identifier of this object'
+          externalDocs:
+            url: 'http://schema.org/identifier'
+          type: string
+          format: uuid
+        name:
+          description: 'The name of this process'
+          type: string
+        description:
+          description: 'An short description of this process'
+          type: string
+          nullable: true
+        icon:
+          description: 'The icon of this property'
+          type: string
+          nullable: true
+        sourceOrganization:
+          description: 'A specific commonground organisation that is being reviewd, e.g a single product'
+          externalDocs:
+            url: 'http://schema.org/url'
+          type: string
+        stages:
+          description: 'The stages of this process'
+          type: array
+          items:
+            $ref: '#/components/schemas/Stage-read'
+        requestType:
+          description: 'The request that is used for this process'
+          externalDocs:
+            url: 'http://schema.org/url'
+          type: string
+        login:
+          description: 'Whether or not to require a login. *none* means never require a user to login, user wil not be presented with the option to login, *optional* means the request presented with the option to login but not requered to do so, *onSubmit* means the user can not post the procces to the vrc without loggin in, *always* means that the user can not start the procces without loging in.'
+          type: string
+        audience:
+          description: 'The audience this processType is intended for'
+          type: array
+          items:
+            type: string
+          nullable: true
+        deposit:
+          description: 'The deposit requered for this process'
+          type: string
+          nullable: true
+        depositCurrency:
+          description: 'The currency of the deposit price in an [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) format'
+          externalDocs:
+            url: 'http://schema.org/priceCurrency'
+          type: string
+          nullable: true
+        depositPercentage:
+          description: 'The deposit percentage requered for this proces'
+          type: integer
+          nullable: true
+        instructionText:
+          description: 'The text displayed at the instruction stage.'
+          type: string
+          nullable: true
+        showInstructionStage:
+          description: 'wheter or not to dispay the instruction stage of a procces'
+          type: boolean
+          nullable: true
+        submitText:
+          description: 'The text displayed at the submit stage.'
+          type: string
+          nullable: true
+        showSubmitStage:
+          description: 'wheter or not to dispay the submit stage of a procces'
+          type: boolean
+          nullable: true
+        submittedText:
+          description: 'The text displayed at the submitted stage.'
+          type: string
+          nullable: true
+        showSubmittedStage:
+          description: 'wheter or not to dispay the submitted stage of a procces'
+          type: boolean
+          nullable: true
+        showBackButton:
+          description: 'wheter or not to display the back button to processes'
+          type: boolean
+          nullable: true
+        retractable:
+          description: 'whether or not to requests from this process are retractable'
+          type: boolean
+          nullable: true
+        properties:
+          type: array
+          items:
+            type: string
+          nullable: true
+        documents:
+          type: array
+          items:
+            type: string
+          nullable: true
+        dateCreated:
+          description: 'The moment this request was created'
+          type: string
+          format: date-time
+          nullable: true
+        dateModified:
+          description: 'The moment this request last Modified'
+          type: string
+          format: date-time
+          nullable: true
+        templates:
+          type: array
+          items:
+            $ref: '#/components/schemas/Template-read'
+      required:
+        - name
+        - sourceOrganization
+    processType-write:
+      type: object
+      description: 'A process.'
+      required:
+        - name
+        - sourceOrganization
+      properties:
+        name:
+          description: 'The name of this process'
+          type: string
+        description:
+          description: 'An short description of this process'
+          type: string
+          nullable: true
+        icon:
+          description: 'The icon of this property'
+          type: string
+          nullable: true
+        sourceOrganization:
+          description: 'A specific commonground organisation that is being reviewd, e.g a single product'
+          externalDocs:
+            url: 'http://schema.org/url'
+          type: string
+        stages:
+          description: 'The stages of this process'
+          type: array
+          items:
+            $ref: '#/components/schemas/Stage-write'
+        requestType:
+          description: 'The request that is used for this process'
+          externalDocs:
+            url: 'http://schema.org/url'
+          type: string
+        extends:
+          description: 'The process that this process extends'
+          nullable: true
+          anyOf:
+            -
+              $ref: '#/components/schemas/ProcessType-write'
+        login:
+          description: 'Whether or not to require a login. *none* means never require a user to login, user wil not be presented with the option to login, *optional* means the request presented with the option to login but not requered to do so, *onSubmit* means the user can not post the procces to the vrc without loggin in, *always* means that the user can not start the procces without loging in.'
+          type: string
+        audience:
+          description: 'The audience this processType is intended for'
+          type: array
+          items:
+            type: string
+          nullable: true
+        deposit:
+          description: 'The deposit requered for this process'
+          type: string
+          nullable: true
+        depositCurrency:
+          description: 'The currency of the deposit price in an [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) format'
+          externalDocs:
+            url: 'http://schema.org/priceCurrency'
+          type: string
+          nullable: true
+        depositPercentage:
+          description: 'The deposit percentage requered for this proces'
+          type: integer
+          nullable: true
+        instructionText:
+          description: 'The text displayed at the instruction stage.'
+          type: string
+          nullable: true
+        showInstructionStage:
+          description: 'wheter or not to dispay the instruction stage of a procces'
+          type: boolean
+          nullable: true
+        submitText:
+          description: 'The text displayed at the submit stage.'
+          type: string
+          nullable: true
+        showSubmitStage:
+          description: 'wheter or not to dispay the submit stage of a procces'
+          type: boolean
+          nullable: true
+        submittedText:
+          description: 'The text displayed at the submitted stage.'
+          type: string
+          nullable: true
+        showSubmittedStage:
+          description: 'wheter or not to dispay the submitted stage of a procces'
+          type: boolean
+          nullable: true
+        showBackButton:
+          description: 'wheter or not to display the back button to processes'
+          type: boolean
+          nullable: true
+        retractable:
+          description: 'whether or not to requests from this process are retractable'
+          type: boolean
+          nullable: true
+        properties:
+          type: array
+          items:
+            type: string
+          nullable: true
+        documents:
+          type: array
+          items:
+            type: string
+          nullable: true
+        templates:
+          type: array
+          items:
+            $ref: '#/components/schemas/Template-write'
+    'processType:jsonld-read':
+      type: object
+      description: 'A process.'
+      properties:
+        '@context':
+          readOnly: true
+          type: string
+        '@id':
+          readOnly: true
+          type: string
+        '@type':
+          readOnly: true
+          type: string
+        id:
+          readOnly: true
+          description: 'The UUID identifier of this object'
+          externalDocs:
+            url: 'http://schema.org/identifier'
+          type: string
+          format: uuid
+        name:
+          description: 'The name of this process'
+          type: string
+        description:
+          description: 'An short description of this process'
+          type: string
+          nullable: true
+        icon:
+          description: 'The icon of this property'
+          type: string
+          nullable: true
+        sourceOrganization:
+          description: 'A specific commonground organisation that is being reviewd, e.g a single product'
+          externalDocs:
+            url: 'http://schema.org/url'
+          type: string
+        stages:
+          description: 'The stages of this process'
+          type: array
+          items:
+            $ref: '#/components/schemas/Stage:jsonld-read'
+        requestType:
+          description: 'The request that is used for this process'
+          externalDocs:
+            url: 'http://schema.org/url'
+          type: string
+        login:
+          description: 'Whether or not to require a login. *none* means never require a user to login, user wil not be presented with the option to login, *optional* means the request presented with the option to login but not requered to do so, *onSubmit* means the user can not post the procces to the vrc without loggin in, *always* means that the user can not start the procces without loging in.'
+          type: string
+        audience:
+          description: 'The audience this processType is intended for'
+          type: array
+          items:
+            type: string
+          nullable: true
+        deposit:
+          description: 'The deposit requered for this process'
+          type: string
+          nullable: true
+        depositCurrency:
+          description: 'The currency of the deposit price in an [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) format'
+          externalDocs:
+            url: 'http://schema.org/priceCurrency'
+          type: string
+          nullable: true
+        depositPercentage:
+          description: 'The deposit percentage requered for this proces'
+          type: integer
+          nullable: true
+        instructionText:
+          description: 'The text displayed at the instruction stage.'
+          type: string
+          nullable: true
+        showInstructionStage:
+          description: 'wheter or not to dispay the instruction stage of a procces'
+          type: boolean
+          nullable: true
+        submitText:
+          description: 'The text displayed at the submit stage.'
+          type: string
+          nullable: true
+        showSubmitStage:
+          description: 'wheter or not to dispay the submit stage of a procces'
+          type: boolean
+          nullable: true
+        submittedText:
+          description: 'The text displayed at the submitted stage.'
+          type: string
+          nullable: true
+        showSubmittedStage:
+          description: 'wheter or not to dispay the submitted stage of a procces'
+          type: boolean
+          nullable: true
+        showBackButton:
+          description: 'wheter or not to display the back button to processes'
+          type: boolean
+          nullable: true
+        retractable:
+          description: 'whether or not to requests from this process are retractable'
+          type: boolean
+          nullable: true
+        properties:
+          type: array
+          items:
+            type: string
+          nullable: true
+        documents:
+          type: array
+          items:
+            type: string
+          nullable: true
+        dateCreated:
+          description: 'The moment this request was created'
+          type: string
+          format: date-time
+          nullable: true
+        dateModified:
+          description: 'The moment this request last Modified'
+          type: string
+          format: date-time
+          nullable: true
+        templates:
+          type: array
+          items:
+            $ref: '#/components/schemas/Template:jsonld-read'
+      required:
+        - name
+        - sourceOrganization
+    'processType:jsonld-write':
+      type: object
+      description: 'A process.'
+      required:
+        - name
+        - sourceOrganization
+      properties:
+        '@context':
+          readOnly: true
+          type: string
+        '@id':
+          readOnly: true
+          type: string
+        '@type':
+          readOnly: true
+          type: string
+        name:
+          description: 'The name of this process'
+          type: string
+        description:
+          description: 'An short description of this process'
+          type: string
+          nullable: true
+        icon:
+          description: 'The icon of this property'
+          type: string
+          nullable: true
+        sourceOrganization:
+          description: 'A specific commonground organisation that is being reviewd, e.g a single product'
+          externalDocs:
+            url: 'http://schema.org/url'
+          type: string
+        stages:
+          description: 'The stages of this process'
+          type: array
+          items:
+            $ref: '#/components/schemas/Stage:jsonld-write'
+        requestType:
+          description: 'The request that is used for this process'
+          externalDocs:
+            url: 'http://schema.org/url'
+          type: string
+        extends:
+          description: 'The process that this process extends'
+          nullable: true
+          anyOf:
+            -
+              $ref: '#/components/schemas/ProcessType:jsonld-write'
+        login:
+          description: 'Whether or not to require a login. *none* means never require a user to login, user wil not be presented with the option to login, *optional* means the request presented with the option to login but not requered to do so, *onSubmit* means the user can not post the procces to the vrc without loggin in, *always* means that the user can not start the procces without loging in.'
+          type: string
+        audience:
+          description: 'The audience this processType is intended for'
+          type: array
+          items:
+            type: string
+          nullable: true
+        deposit:
+          description: 'The deposit requered for this process'
+          type: string
+          nullable: true
+        depositCurrency:
+          description: 'The currency of the deposit price in an [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) format'
+          externalDocs:
+            url: 'http://schema.org/priceCurrency'
+          type: string
+          nullable: true
+        depositPercentage:
+          description: 'The deposit percentage requered for this proces'
+          type: integer
+          nullable: true
+        instructionText:
+          description: 'The text displayed at the instruction stage.'
+          type: string
+          nullable: true
+        showInstructionStage:
+          description: 'wheter or not to dispay the instruction stage of a procces'
+          type: boolean
+          nullable: true
+        submitText:
+          description: 'The text displayed at the submit stage.'
+          type: string
+          nullable: true
+        showSubmitStage:
+          description: 'wheter or not to dispay the submit stage of a procces'
+          type: boolean
+          nullable: true
+        submittedText:
+          description: 'The text displayed at the submitted stage.'
+          type: string
+          nullable: true
+        showSubmittedStage:
+          description: 'wheter or not to dispay the submitted stage of a procces'
+          type: boolean
+          nullable: true
+        showBackButton:
+          description: 'wheter or not to display the back button to processes'
+          type: boolean
+          nullable: true
+        retractable:
+          description: 'whether or not to requests from this process are retractable'
+          type: boolean
+          nullable: true
+        properties:
+          type: array
+          items:
+            type: string
+          nullable: true
+        documents:
+          type: array
+          items:
+            type: string
+          nullable: true
+        templates:
+          type: array
+          items:
+            $ref: '#/components/schemas/Template:jsonld-write'
 definitions:
   ProcessType-read:
     properties:
@@ -7216,6 +8958,7 @@ definitions:
       stages:
         description: 'The stages of this process'
         type: array
+      templates: []
     required:
       - name
       - sourceOrganization
@@ -7306,6 +9049,7 @@ definitions:
       extends:
         description: 'The process that this process extends'
         type: object
+      templates: []
     required:
       - name
       - sourceOrganization
@@ -7465,6 +9209,73 @@ definitions:
     required:
       - name
       - orderNumber
+  Template-read:
+    properties:
+      id:
+        description: 'The UUID identifier of this resource'
+        type: string
+        example: e2984465-190a-4562-829e-a8cca81aa35d
+        format: uuid
+      name:
+        description: 'Name of the template'
+        type: string
+        example: 'Person info Document'
+        maxLength: 255
+      description:
+        description: 'Description of the template'
+        type: string
+        example: 'This document is about a person'
+        maxLength: 255
+      uri:
+        description: 'The uri of the template in WRC'
+        type: string
+        example: 'https://wrc.dev.zuid-drecht.nl/templates/6d38b11f-2edb-4a4e-894a-5b4677da2c53'
+        maxLength: 255
+        format: url
+      type:
+        description: 'Type of document you want to receive'
+        type: string
+        example: pdf
+        maxLength: 255
+      dateCreated:
+        description: 'The moment this request was created'
+        type: \DateTime
+      dateModified:
+        description: 'The moment this request last Modified'
+        type: \DateTime
+      processType: []
+    required:
+      - name
+      - uri
+      - type
+  Template-write:
+    properties:
+      name:
+        description: 'Name of the template'
+        type: string
+        example: 'Person info Document'
+        maxLength: 255
+      description:
+        description: 'Description of the template'
+        type: string
+        example: 'This document is about a person'
+        maxLength: 255
+      uri:
+        description: 'The uri of the template in WRC'
+        type: string
+        example: 'https://wrc.dev.zuid-drecht.nl/templates/6d38b11f-2edb-4a4e-894a-5b4677da2c53'
+        maxLength: 255
+        format: url
+      type:
+        description: 'Type of document you want to receive'
+        type: string
+        example: pdf
+        maxLength: 255
+      processType: []
+    required:
+      - name
+      - uri
+      - type
   AuditTrail-read:
     properties:
       id:
@@ -7569,12 +9380,12 @@ definitions:
         description: 'The moment this request was created'
         type: string
         format: date-time
-        example: '2020-10-13 13:35:34'
+        example: '2020-10-13 14:24:49'
       dateModified:
         description: 'The moment this request last Modified'
         type: string
         format: date-time
-        example: '2020-10-13 13:35:34'
+        example: '2020-10-13 14:24:49'
     required: []
   AuditTrail-write:
     properties:
@@ -7622,12 +9433,12 @@ definitions:
         description: 'The moment this request was created'
         type: string
         format: date-time
-        example: '2020-10-13 13:35:34'
+        example: '2020-10-13 14:24:49'
       dateModified:
         description: 'The moment this request last Modified'
         type: string
         format: date-time
-        example: '2020-10-13 13:35:34'
+        example: '2020-10-13 14:24:49'
     required: []
   ChangeLog-write:
     properties:
@@ -7654,6 +9465,12 @@ tags:
     name: Stage
     description: |
       A single stage within a process.
+      
+      
+  -
+    name: Template
+    description: |
+      
       
       
   -
