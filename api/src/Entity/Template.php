@@ -138,6 +138,45 @@ class Template
     private $processType;
 
     /**
+     * @var string show the template only on this status
+     *
+     * @example submitted
+     *
+     * @Gedmo\Versioned
+     * @Assert\NotNull
+     * @Assert\Length(
+     *     max = 255
+     * )
+     * @Groups({"read","write"})
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $status;
+
+    /**
+     * @var string The audience this template is intended for
+     *
+     * @Groups({"read","write"})
+     * @ORM\Column(type="json", nullable=true)
+     */
+    private $audience;
+
+    /**
+     * @var string what stage we want to show this template on
+     *
+     * @example Person info Document
+     *
+     * @Gedmo\Versioned
+     * @Assert\Url
+     * @Assert\NotNull
+     * @Assert\Length(
+     *     max = 255
+     * )
+     * @Groups({"read","write"})
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $stage;
+
+    /**
      * @var DateTime The moment this request was created
      *
      * @Groups({"read"})
@@ -209,6 +248,42 @@ class Template
     public function setType(string $type): self
     {
         $this->type = $type;
+
+        return $this;
+    }
+
+    public function getStatus(): ?string
+    {
+        return $this->status;
+    }
+
+    public function setStatus(string $status): self
+    {
+        $this->status = $status;
+
+        return $this;
+    }
+
+    public function getAudience()
+    {
+        return $this->audience;
+    }
+
+    public function setAudience($audience): self
+    {
+        $this->audience = $audience;
+
+        return $this;
+    }
+
+    public function getStage(): ?string
+    {
+        return $this->stage;
+    }
+
+    public function setStage(string $stage): self
+    {
+        $this->stage = $stage;
 
         return $this;
     }
