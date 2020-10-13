@@ -804,6 +804,7 @@ class ProcessType
 
         return $this;
     }
+
     /**
      * @return Collection|Template[]
      */
