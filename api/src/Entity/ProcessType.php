@@ -371,10 +371,17 @@ class ProcessType
      */
     private $dateModified;
 
+    /**
+     * @Groups({"read","write"})
+     * @ORM\OneToMany(targetEntity="App\Entity\Template", mappedBy="requestType", cascade={"persist"})
+     */
+    private $templates;
+
     public function __construct()
     {
         $this->stages = new ArrayCollection();
         $this->extendedBy = new ArrayCollection();
+        $this->templates = new ArrayCollection();
     }
 
     public function getId()
@@ -794,6 +801,36 @@ class ProcessType
     public function setDateModified(\DateTimeInterface $dateModified): self
     {
         $this->dateModified = $dateModified;
+
+        return $this;
+    }
+    /**
+     * @return Collection|Template[]
+     */
+    public function getTemplates(): Collection
+    {
+        return $this->templates;
+    }
+
+    public function addTemplate(Template $template): self
+    {
+        if (!$this->templates->contains($template)) {
+            $this->templates[] = $template;
+            $template->setProcessType($this);
+        }
+
+        return $this;
+    }
+
+    public function removeTemplate(Template $template): self
+    {
+        if ($this->templates->contains($template)) {
+            $this->templates->removeElement($template);
+            // set the owning side to null (unless already changed)
+            if ($template->getProcessType() === $this) {
+                $template->setProcessType(null);
+            }
+        }
 
         return $this;
     }
