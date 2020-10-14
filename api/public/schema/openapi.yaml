@@ -5874,6 +5874,33 @@ paths:
               - asc
               - desc
         -
+          name: 'order[status]'
+          in: query
+          required: false
+          schema:
+            type: string
+            enum:
+              - asc
+              - desc
+        -
+          name: 'order[audience]'
+          in: query
+          required: false
+          schema:
+            type: string
+            enum:
+              - asc
+              - desc
+        -
+          name: 'order[stage]'
+          in: query
+          required: false
+          schema:
+            type: string
+            enum:
+              - asc
+              - desc
+        -
           name: 'order[dateCreated]'
           in: query
           required: false
@@ -6011,6 +6038,54 @@ paths:
             type: string
         -
           name: 'type[]'
+          in: query
+          required: false
+          schema:
+            type: array
+            items:
+              type: string
+          style: form
+          explode: true
+        -
+          name: status
+          in: query
+          required: false
+          schema:
+            type: string
+        -
+          name: 'status[]'
+          in: query
+          required: false
+          schema:
+            type: array
+            items:
+              type: string
+          style: form
+          explode: true
+        -
+          name: audience
+          in: query
+          required: false
+          schema:
+            type: string
+        -
+          name: 'audience[]'
+          in: query
+          required: false
+          schema:
+            type: array
+            items:
+              type: string
+          style: form
+          explode: true
+        -
+          name: stage
+          in: query
+          required: false
+          schema:
+            type: string
+        -
+          name: 'stage[]'
           in: query
           required: false
           schema:
@@ -8257,6 +8332,19 @@ components:
           anyOf:
             -
               $ref: '#/components/schemas/processType-read'
+        status:
+          description: 'show the template only on this status'
+          type: string
+          nullable: true
+        audience:
+          description: 'The audience this template is intended for'
+          type: string
+        stage:
+          description: 'what stage we want to show this template on'
+          externalDocs:
+            url: 'http://schema.org/url'
+          type: string
+          nullable: true
         dateCreated:
           description: 'The moment this request was created'
           type: string
@@ -8271,6 +8359,8 @@ components:
         - name
         - uri
         - type
+        - status
+        - stage
     Template-write:
       type: object
       description: ''
@@ -8278,6 +8368,8 @@ components:
         - name
         - uri
         - type
+        - status
+        - stage
       properties:
         name:
           description: 'Name of the template'
@@ -8299,6 +8391,19 @@ components:
           anyOf:
             -
               $ref: '#/components/schemas/processType-write'
+        status:
+          description: 'show the template only on this status'
+          type: string
+          nullable: true
+        audience:
+          description: 'The audience this template is intended for'
+          type: string
+        stage:
+          description: 'what stage we want to show this template on'
+          externalDocs:
+            url: 'http://schema.org/url'
+          type: string
+          nullable: true
     'Template:jsonld-read':
       type: object
       description: ''
@@ -8339,6 +8444,19 @@ components:
           anyOf:
             -
               $ref: '#/components/schemas/processType:jsonld-read'
+        status:
+          description: 'show the template only on this status'
+          type: string
+          nullable: true
+        audience:
+          description: 'The audience this template is intended for'
+          type: string
+        stage:
+          description: 'what stage we want to show this template on'
+          externalDocs:
+            url: 'http://schema.org/url'
+          type: string
+          nullable: true
         dateCreated:
           description: 'The moment this request was created'
           type: string
@@ -8353,6 +8471,8 @@ components:
         - name
         - uri
         - type
+        - status
+        - stage
     'Template:jsonld-write':
       type: object
       description: ''
@@ -8360,6 +8480,8 @@ components:
         - name
         - uri
         - type
+        - status
+        - stage
       properties:
         '@context':
           readOnly: true
@@ -8390,6 +8512,19 @@ components:
           anyOf:
             -
               $ref: '#/components/schemas/processType:jsonld-write'
+        status:
+          description: 'show the template only on this status'
+          type: string
+          nullable: true
+        audience:
+          description: 'The audience this template is intended for'
+          type: string
+        stage:
+          description: 'what stage we want to show this template on'
+          externalDocs:
+            url: 'http://schema.org/url'
+          type: string
+          nullable: true
     processType-read:
       type: object
       description: 'A process.'
@@ -9237,6 +9372,20 @@ definitions:
         type: string
         example: pdf
         maxLength: 255
+      status:
+        description: 'show the template only on this status'
+        type: string
+        example: submitted
+        maxLength: 255
+      audience:
+        description: 'The audience this template is intended for'
+        type: string
+      stage:
+        description: 'what stage we want to show this template on'
+        type: string
+        example: 'Person info Document'
+        format: url
+        maxLength: 255
       dateCreated:
         description: 'The moment this request was created'
         type: \DateTime
@@ -9248,6 +9397,8 @@ definitions:
       - name
       - uri
       - type
+      - status
+      - stage
   Template-write:
     properties:
       name:
@@ -9271,11 +9422,27 @@ definitions:
         type: string
         example: pdf
         maxLength: 255
+      status:
+        description: 'show the template only on this status'
+        type: string
+        example: submitted
+        maxLength: 255
+      audience:
+        description: 'The audience this template is intended for'
+        type: string
+      stage:
+        description: 'what stage we want to show this template on'
+        type: string
+        example: 'Person info Document'
+        format: url
+        maxLength: 255
       processType: []
     required:
       - name
       - uri
       - type
+      - status
+      - stage
   AuditTrail-read:
     properties:
       id:
@@ -9380,12 +9547,12 @@ definitions:
         description: 'The moment this request was created'
         type: string
         format: date-time
-        example: '2020-10-13 14:24:49'
+        example: '2020-10-14 07:05:35'
       dateModified:
         description: 'The moment this request last Modified'
         type: string
         format: date-time
-        example: '2020-10-13 14:24:49'
+        example: '2020-10-14 07:05:35'
     required: []
   AuditTrail-write:
     properties:
@@ -9433,12 +9600,12 @@ definitions:
         description: 'The moment this request was created'
         type: string
         format: date-time
-        example: '2020-10-13 14:24:49'
+        example: '2020-10-14 07:05:35'
       dateModified:
         description: 'The moment this request last Modified'
         type: string
         format: date-time
-        example: '2020-10-13 14:24:49'
+        example: '2020-10-14 07:05:35'
     required: []
   ChangeLog-write:
     properties:

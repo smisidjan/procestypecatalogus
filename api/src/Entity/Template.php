@@ -194,10 +194,6 @@ class Template
      */
     private $dateModified;
 
-    public function __construct()
-    {
-        $this->requestTypes = new ArrayCollection();
-    }
 
     public function getId(): Uuid
     {

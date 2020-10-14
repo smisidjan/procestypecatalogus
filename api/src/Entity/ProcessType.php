@@ -373,7 +373,7 @@ class ProcessType
 
     /**
      * @Groups({"read","write"})
-     * @ORM\OneToMany(targetEntity="App\Entity\Template", mappedBy="requestType", cascade={"persist"})
+     * @ORM\OneToMany(targetEntity="App\Entity\Template", mappedBy="processType", cascade={"persist"})
      */
     private $templates;
 
