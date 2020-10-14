@@ -38,7 +38,7 @@ use Symfony\Component\Validator\Constraints as Assert;
  *          "put",
  *          "delete",
  *          "get_change_logs"={
- *              "path"="/process_types/{id}/change_log",
+ *              "path"="/process_typesprocess_typesprocess_typesprocess_typesprocess_typesprocess_types saadasdadasdprocess_types/{id}/change_log",
  *              "method"="get",
  *              "swagger_context" = {
  *                  "summary"="Changelogs",
