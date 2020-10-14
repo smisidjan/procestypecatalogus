@@ -54,6 +54,15 @@ class WestFrieslandFixtures extends Fixture
         $manager->flush();
         $processType = $manager->getRepository('App:ProcessType')->findOneBy(['id'=> $id]);
 
+        $template = new \App\Entity\Template();
+        $template->setName('Ontvangs bevestiging');
+        $template->setDescription('Ontvangs bevestiging voor verzoeken');
+        $template->setType('pdf');
+        $template->setUri($this->commonGroundService->cleanUrl(['component'=>'wrc', 'type'=>'templates', 'id'=>'7a3d7d9a-269f-4699-a622-2ad0114d8e86']));
+        $template->setProcessType($processType);
+        $manager->persist($template);
+        $manager->flush();
+
         $stage = new Stage();
         $stage->setName('Gemeente');
         $stage->setOrderNumber(1);
