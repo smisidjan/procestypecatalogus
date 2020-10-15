@@ -50,6 +50,15 @@ class ZuiddrechtFixtures extends Fixture
         $manager->flush();
         $processType = $manager->getRepository('App:ProcessType')->findOneBy(['id' => $id]);
 
+        $template = new \App\Entity\Template();
+        $template->setName('Ontvangs bevestiging');
+        $template->setDescription('Ontvangs bevestiging voor verzoeken');
+        $template->setType('pdf');
+        $template->setUri($this->commonGroundService->cleanUrl(['component'=>'wrc', 'type'=>'templates', 'id'=>'bf8aff0a-ab65-4761-923b-890785c5d2fb']));
+        $template->setProcessType($processType);
+        $manager->persist($template);
+        $manager->flush();
+
         $stage = new Stage();
         $stage->setName('Is er een eigen parkeergelegenheid bij uw woning?');
         $stage->setDescription('Is er een eigen parkeergelegenheid bij uw woning?');
