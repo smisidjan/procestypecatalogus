@@ -6,7 +6,7 @@ use ApiPlatform\Core\EventListener\EventPriorities;
 use App\Service\ProcessService;
 use Symfony\Component\DependencyInjection\ParameterBag\ParameterBagInterface;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
-use Symfony\Component\HttpKernel\Event\GetResponseForControllerResultEvent;
+use Symfony\Component\HttpKernel\Event\ViewEvent;
 use Symfony\Component\HttpKernel\KernelEvents;
 use Symfony\Component\Serializer\SerializerInterface;
 
@@ -30,7 +30,7 @@ class ProcessSubscriber implements EventSubscriberInterface
         ];
     }
 
-    public function getProcess(GetResponseForControllerResultEvent $event)
+    public function getProcess(ViewEvent $event)
     {
         $processType = $event->getControllerResult();
         $route = $event->getRequest()->get('_route');
