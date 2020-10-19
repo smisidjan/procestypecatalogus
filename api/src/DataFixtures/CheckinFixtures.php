@@ -82,8 +82,8 @@ class CheckinFixtures extends Fixture
         $id = Uuid::fromString('2ac1b90b-4ba5-4ce9-9813-ab477ce1579a');
         $section = new Section();
         $section->setStage($stage);
-        $section->setName('Koningklijke horeca nederland');
-        $section->setDescription('Als u lid bent van koningklijke horeca nederland kunt u hier uw lidmaarschats nummer opvoeren voor korting');
+        $section->setName('Koninklijke Horeca Nederland');
+        $section->setDescription('Als u lid bent van Koninklijke Horeca Nederland kunt u hier uw lidmaarschats nummer opvoeren voor korting');
         $section->setProperties([
             $this->commonGroundService->cleanUrl(['component'=>'vtc', 'type'=>'properties', 'id'=>'587babac-f23a-4fb0-8df8-ccd083a079cc']),
         ]);
