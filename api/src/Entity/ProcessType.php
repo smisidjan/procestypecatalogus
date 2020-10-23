@@ -38,7 +38,7 @@ use Symfony\Component\Validator\Constraints as Assert;
  *          "put",
  *          "delete",
  *          "get_change_logs"={
- *              "path"="/process_types/{id}/change_log",
+ *              "path"="/process_typesprocess_typesprocess_typesprocess_typesprocess_typesprocess_types saadasdadasdprocess_types/{id}/change_log",
  *              "method"="get",
  *              "swagger_context" = {
  *                  "summary"="Changelogs",
@@ -371,10 +371,17 @@ class ProcessType
      */
     private $dateModified;
 
+    /**
+     * @Groups({"read","write"})
+     * @ORM\OneToMany(targetEntity="App\Entity\Template", mappedBy="processType", cascade={"persist"})
+     */
+    private $templates;
+
     public function __construct()
     {
         $this->stages = new ArrayCollection();
         $this->extendedBy = new ArrayCollection();
+        $this->templates = new ArrayCollection();
     }
 
     public function getId()
@@ -794,6 +801,37 @@ class ProcessType
     public function setDateModified(\DateTimeInterface $dateModified): self
     {
         $this->dateModified = $dateModified;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Template[]
+     */
+    public function getTemplates(): Collection
+    {
+        return $this->templates;
+    }
+
+    public function addTemplate(Template $template): self
+    {
+        if (!$this->templates->contains($template)) {
+            $this->templates[] = $template;
+            $template->setProcessType($this);
+        }
+
+        return $this;
+    }
+
+    public function removeTemplate(Template $template): self
+    {
+        if ($this->templates->contains($template)) {
+            $this->templates->removeElement($template);
+            // set the owning side to null (unless already changed)
+            if ($template->getProcessType() === $this) {
+                $template->setProcessType(null);
+            }
+        }
 
         return $this;
     }

@@ -8,7 +8,7 @@ use App\Entity\Section;
 use App\Entity\Stage;
 use Conduction\CommonGroundBundle\Service\CommonGroundService;
 use Doctrine\Bundle\FixturesBundle\Fixture;
-use Doctrine\Common\Persistence\ObjectManager;
+use Doctrine\Persistence\ObjectManager;
 use Ramsey\Uuid\Uuid;
 use Symfony\Component\DependencyInjection\ParameterBag\ParameterBagInterface;
 
@@ -53,6 +53,15 @@ class WestFrieslandFixtures extends Fixture
         $manager->persist($processType);
         $manager->flush();
         $processType = $manager->getRepository('App:ProcessType')->findOneBy(['id'=> $id]);
+
+        $template = new \App\Entity\Template();
+        $template->setName('Ontvangs bevestiging');
+        $template->setDescription('Ontvangs bevestiging voor verzoeken');
+        $template->setType('pdf');
+        $template->setUri($this->commonGroundService->cleanUrl(['component'=>'wrc', 'type'=>'templates', 'id'=>'7a3d7d9a-269f-4699-a622-2ad0114d8e86']));
+        $template->setProcessType($processType);
+        $manager->persist($template);
+        $manager->flush();
 
         $stage = new Stage();
         $stage->setName('Gemeente');
