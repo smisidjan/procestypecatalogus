@@ -805,10 +805,9 @@ kind te reizen naar:');
         $stage2->setProcess($processType);
         $manager->persist($stage2);*/
 
-
         /*
          *  BRP-uittreksel aanvragen
-         
+
         $id = Uuid::fromString('fab5e59c-db92-43eb-9d99-5dcc0ece069d');
         $processType = new ProcessType();
         $processType->setName('BRP-uittreksel aanvragen');
