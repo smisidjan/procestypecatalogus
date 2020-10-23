@@ -579,5 +579,284 @@ class ZuiddrechtFixtures extends Fixture
         $processType->addStage($stage);
         $manager->persist($processType);
         $manager->flush();
+
+        /*
+         *  Chatbot Fixtures
+         */
+
+                /*
+                 *  Vermissingsformulier reisdocument
+                 */
+
+        /*
+         * WIP
+$id = Uuid::fromString('473fbb0e-7e73-47e4-bef7-564d25e17799');
+$processType = new ProcessType();
+$processType->setName('Vermissingsformulier reisdocument');
+$processType->setIcon('fas fa-id-card');
+$processType->setDescription('Via dit formulier kunt u bij ons aangeven wanneer u uw reisdocument verloren bent');
+$processType->setSourceOrganization($this->commonGroundService->cleanUrl(['component' => 'vtc', 'type' => 'request_types', 'id' => '4d1eded3-fbdf-438f-9536-8747dd8ab591']));
+$processType->setRequestType($this->commonGroundService->cleanUrl(['component' => 'vtc', 'type' => 'request_types', 'id' => '4695d430-6cc2-4499-add4-a5e45ee84761']));
+$manager->persist($processType);
+$processType->setId($id);
+$manager->persist($processType);
+$manager->flush();
+$processType = $manager->getRepository('App:ProcessType')->findOneBy(['id' => $id]);
+
+$stage = new Stage();
+$stage->setName('Het verloren document');
+$stage->setIcon('fas fa-users');
+$stage->setSlug('verloren-document');
+$stage->setDescription('Welk document bent u verloren?');
+
+$section = new Section();
+$section->setName('Keuze verloren document');
+$section->setDescription('Kies hier uw verloren document');
+$section->setProperties([
+    $this->commonGroundService->cleanUrl(['component' => 'vtc', 'type' => 'properties', 'id' => '1d92bc85-7e4c-4468-9588-44b7de598d8c']),
+]);
+$stage->addSection($section);
+
+$processType->addStage($stage);
+
+$stage = new Stage();
+$stage->setName('Uw persoons gegevens');
+$stage->setIcon('fas fa-users');
+$stage->setSlug('document-gegevens');
+$stage->setDescription('De gegevens gekoppeld aan dit reisdocument');
+
+$section = new Section();
+$section->setName('Persoons Gegevens');
+$section->setDescription('Uw Gegevens');
+$section->setProperties([
+    $this->commonGroundService->cleanUrl(['component' => 'vtc', 'type' => 'properties', 'id' => 'f37dad7b-d7f4-4493-b9ba-814b0b0b2a8d']),
+]);
+$stage->addSection($section);
+
+$processType->addStage($stage);
+$manager->persist($processType);
+$manager->flush();
+
+/*
+ *  Toestemmingsformulier voor reisdocument kind
+
+        $id = Uuid::fromString('b2a1fba8-1fa3-44e9-aed5-fb42a6cdc1cd');
+        $processType = new ProcessType();
+        $processType->setName('Toestemmingsformulier voor reisdocument kind');
+        $processType->setIcon('fas fa-id-card');
+        $processType->setDescription('Via dit formulier kunt u bij ons toestemming geven voor een reisdocument van een kind');
+        $processType->setSourceOrganization($this->commonGroundService->cleanUrl(['component' => 'vtc', 'type' => 'request_types', 'id' => '4d1eded3-fbdf-438f-9536-8747dd8ab591']));
+        $processType->setRequestType($this->commonGroundService->cleanUrl(['component' => 'vtc', 'type' => 'request_types', 'id' => '2d353bec-54a2-4a3b-81f3-cee6e5a06c99']));
+        $manager->persist($processType);
+        $processType->setId($id);
+        $manager->persist($processType);
+        $manager->flush();
+        $processType = $manager->getRepository('App:ProcessType')->findOneBy(['id' => $id]);
+
+        $stage = new Stage();
+        $stage->setName('Reisinformatie');
+        $stage->setIcon('fas fa-users');
+        $stage->setSlug('reis-informatie');
+        $stage->setDescription('Ik/wij geef/geven de begeleidende persoon/personen toestemming om met bovengenoemd minderjarig
+kind te reizen naar:');
+
+        $section = new Section();
+        $section->setName('Gegevens van de beoogde reis en verblijf');
+        $section->setDescription('Vul hier de accomodatie en reisgegevens in');
+        $section->setProperties([
+            $this->commonGroundService->cleanUrl(['component' => 'vtc', 'type' => 'properties', 'id' => '3daf4dbb-d8e2-4ced-a51e-0f6bf293e410']),
+            $this->commonGroundService->cleanUrl(['component' => 'vtc', 'type' => 'properties', 'id' => '2942fcd0-84f8-444e-ad12-b668b9c17f8f']),
+            $this->commonGroundService->cleanUrl(['component' => 'vtc', 'type' => 'properties', 'id' => '878be633-f3af-4b4a-a885-a35f54bd49cc']),
+            $this->commonGroundService->cleanUrl(['component' => 'vtc', 'type' => 'properties', 'id' => '0964c49a-f640-4e2c-a5b8-21060f59d258']),
+            $this->commonGroundService->cleanUrl(['component' => 'vtc', 'type' => 'properties', 'id' => 'c36b3fed-afed-4e04-80c1-c11d1a04ce7c']),
+            $this->commonGroundService->cleanUrl(['component' => 'vtc', 'type' => 'properties', 'id' => '9411c48c-587c-4b86-b56d-d3241daa9cd5']),
+            $this->commonGroundService->cleanUrl(['component' => 'vtc', 'type' => 'properties', 'id' => '82246844-9a3c-4b35-96d4-e0a843992d3e']),
+            $this->commonGroundService->cleanUrl(['component' => 'vtc', 'type' => 'properties', 'id' => 'c07374e9-404c-42fa-a62d-e27072a01cd9']),
+        ]);
+        $stage->addSection($section);
+
+        $processType->addStage($stage);
+        $manager->persist($processType);
+        $manager->flush();
+
+        /*
+         *  Emigreren naar het buitenland
+
+        $id = Uuid::fromString('ebaf13d3-b2f1-4a8a-ad6c-23e99c8831b2');
+        $processType = new ProcessType();
+        $processType->setIcon('fal fa-truck-moving');
+        $processType->setSourceOrganization('0000');
+        $processType->setName('Emigreren');
+        $processType->setDescription('Het doorgeven van een Emigratie aan een gemeente');
+        $processType->setRequestType("{$this->commonGroundService->getComponent('vtc')['location']}/request_types/0567df58-aca0-44f7-9efa-3b4585e03fc5");
+        $manager->persist($processType);
+        $processType->setId($id);
+        $manager->persist($processType);
+        $manager->flush();
+        $processType = $manager->getRepository('App:ProcessType')->findOneBy(['id'=> $id]);
+
+        $stage1 = new Stage();
+        $stage1->setName('Gegevens');
+        $stage1->setIcon('fal fa-map-marked');
+        $stage1->setSlug('gegevens');
+        $stage1->setDescription('De gegevens van de Emigratie');
+        $stage1->setProcess($processType);
+        $manager->persist($stage1);
+
+        $section1 = new Section();
+        $section1->setStage($stage1);
+        $section1->setName('Datum');
+        $section1->setDescription('Wat is de Emigratie datum?');
+        $section1->setProperties(["{$this->commonGroundService->getComponent('vtc')['location']}/properties/fc470862-7bf3-41e9-9b98-5f3a7ae9b3bd"]);
+        $manager->persist($section1);
+
+        $section2 = new Section();
+        $section2->setStage($stage1);
+        $section2->setName('Adres');
+        $section2->setDescription('Waarheen Emigreerd u?');
+        $section->setProperties([
+            $this->commonGroundService->cleanUrl(['component' => 'vtc', 'type' => 'properties', 'id' => '222d82c9-e281-4cd6-9f5b-b6feaa4e86f3']),
+            $this->commonGroundService->cleanUrl(['component' => 'vtc', 'type' => 'properties', 'id' => '1ee404c5-003d-422c-a061-fd89bc4c47ea']),
+            $this->commonGroundService->cleanUrl(['component' => 'vtc', 'type' => 'properties', 'id' => 'a0d53f41-5f19-4d5c-b8f0-284e83d78e68']),
+            $this->commonGroundService->cleanUrl(['component' => 'vtc', 'type' => 'properties', 'id' => '75eefbc2-b628-42f3-9c96-4a7ba10dbc28']),
+            $this->commonGroundService->cleanUrl(['component' => 'vtc', 'type' => 'properties', 'id' => '72c1bd35-f385-4a88-8bb1-0fcd628b2f4c']),
+        ]);
+        $manager->persist($section2);
+
+        $stage2 = new Stage();
+        $stage2->setName('Emigrerende');
+        $stage2->setDescription('De gegevens van de emigrerende');
+        $stage2->setIcon('fal fa-users');
+        $stage2->setSlug('emigrerende');
+        $stage2->setProcess($processType);
+        $manager->persist($stage2);
+
+        $section1 = new Section();
+        $section1->setStage($stage2);
+        $section1->setName('emigrerende');
+        $section1->setDescription('Wie emigreren er mee?');
+        $section1->setProperties(["{$this->commonGroundService->getComponent('vtc')['location']}/properties/1972409b-1262-43c8-ba31-833ab283d171"]);
+        $manager->persist($section1);
+
+        //		$stage2= new Stage();
+        //		$stage2->setPrevious($stage1);
+        //		$stage2->setName('Adress');
+        //		$stage2->setIcon('fal fa-map-marked');
+        //		$stage2->setSlug('adress');
+        //		$stage2->setType('string');
+        //		$stage2->setDescription('Wat is het nieuwe adres?');
+        //		$stage2->setProcess($processType);
+        //		$manager->persist($stage2);
+//
+        //		$stage3= new Stage();
+        //		$stage3->setPrevious($stage2);
+        //		//$property->setId('');
+        //		$stage3->setName('Wie');
+        //		$stage3->setIcon('fal fa-users');
+        //		$stage3->setSlug('verhuizenden');
+        //		$stage3->setType('array');
+        //		$stage3->setDescription('Wie gaan er verhuizen?');
+        //		$stage3->setProcess($processType);
+        //		$manager->persist($stage3);
+
+        $stage4 = new Stage();
+        $stage4->setName('Indienen');
+        $stage4->setIcon('fal fa-paper-plane');
+        $stage4->setSlug('indienen');
+        $stage4->setDescription('Dien uw aanvraag in');
+        $stage4->setProcess($processType);
+        $manager->persist($stage4);
+
+        $manager->flush();
+
+        /*$id = Uuid::fromString('9d76fb58-0711-4437-acc4-9f4d9d403cdf');
+        $processType = new ProcessType();
+        $processType->setName('Emigratie');
+        $processType->setIcon('fal fa-truck-moving');
+        $processType->setDescription('Het doorgeven van een emigratie aan de gemeente \'s-Hertogenbosch');
+        $processType->setSourceOrganization('001709124');
+        $processType->setRequestType('https://vtc.zaakonline.nl/requestType/9d76fb58-0711-4437-acc4-9f4d9d403cdf');
+        $processType->setExtends($processType);
+        $manager->persist($processType);
+        $processType->setId($id);
+        $manager->persist($processType);
+        $manager->flush();
+        $processType = $manager->getRepository('App:ProcessType')->findOneBy(['id'=> $id]);
+
+        $stage1 = new Stage();
+        $stage1->setStart(true);
+        //$verhuizenNL->setId('');
+        $stage1->setName('Email');
+        $stage1->setIcon('fal fa-envelope');
+        $stage1->setSlug('email');
+        $stage1->setDescription('Het e-mail addres dat wordt gebruikt om contact op te nemen (indien nodig) over deze emigratie');
+        //		$stage1->setType('string');
+        $stage1->setProcess($processType);
+        $manager->persist($stage1);
+
+        $stage2 = new Stage();
+        $stage2->setPrevious($stage1);
+        //$verhuizenNL->setId('');
+        $stage2->setName('Telefoon');
+        $stage2->setIcon('fal fa-phone');
+        $stage2->setSlug('telefoon');
+        $stage2->setDescription('Het telefoon nummer dat wordt gebruikt om contact op te nemen (indien nodig) over deze emigratie');
+        //		$stage2->setType('string');
+        $stage2->setProcess($processType);
+        $manager->persist($stage2);*/
+
+        /*
+         *  BRP-uittreksel aanvragen
+
+        $id = Uuid::fromString('fab5e59c-db92-43eb-9d99-5dcc0ece069d');
+        $processType = new ProcessType();
+        $processType->setName('BRP-uittreksel aanvragen');
+        $processType->setIcon('fas fa-file-alt');
+        $processType->setDescription('Via dit formulier kunt u bij ons een BRP-uittreksel aanvragen');
+        $processType->setSourceOrganization($this->commonGroundService->cleanUrl(['component' => 'vtc', 'type' => 'request_types', 'id' => '4d1eded3-fbdf-438f-9536-8747dd8ab591']));
+        $processType->setRequestType($this->commonGroundService->cleanUrl(['component' => 'vtc', 'type' => 'request_types', 'id' => '9aa0fcf5-ad95-4e2d-b272-d36656e72a82']));
+        $manager->persist($processType);
+        $processType->setId($id);
+        $manager->persist($processType);
+        $manager->flush();
+        $processType = $manager->getRepository('App:ProcessType')->findOneBy(['id' => $id]);
+
+        $stage = new Stage();
+        $stage->setName('Uw persoons gegevens');
+        $stage->setIcon('fas fa-users');
+        $stage->setSlug('aanvrager-gegevens');
+        $stage->setDescription('De gegevens van de aanvrager');
+
+        $section = new Section();
+        $section->setName('Persoons Gegevens van de aanvrager');
+        $section->setDescription('Uw Gegevens');
+        $section->setProperties([
+            $this->commonGroundService->cleanUrl(['component' => 'vtc', 'type' => 'properties', 'id' => 'fce828db-1110-4ee7-a828-291517b6bad7']),
+            $this->commonGroundService->cleanUrl(['component' => 'vtc', 'type' => 'properties', 'id' => '3c1c8517-03c2-43f1-9ef4-86136ee3aecd']),
+            $this->commonGroundService->cleanUrl(['component' => 'vtc', 'type' => 'properties', 'id' => '1d21a50d-dd29-4051-80cd-970d6e793f15']),
+
+        ]);
+        $stage->addSection($section);
+
+        $processType->addStage($stage);
+
+        $stage = new Stage();
+        $stage->setName('Opties voor BRP-uittreksel');
+        $stage->setIcon('fas fa-users');
+        $stage->setSlug('opties-brpuittreksel');
+        $stage->setDescription('Welke optie van de BRP-uittreksel wilt u?');
+
+        $section = new Section();
+        $section->setName('Keuze opties BRP-uittreksel');
+        $section->setDescription('Kies hier de gewensde optie');
+        $section->setProperties([
+            $this->commonGroundService->cleanUrl(['component' => 'vtc', 'type' => 'properties', 'id' => 'fb77df2e-d33e-4956-8aa4-5bb2ba5e75c3']),
+        ]);
+        $stage->addSection($section);
+
+        $processType->addStage($stage);
+        $manager->persist($processType);
+        $manager->flush();
+        */
     }
 }
