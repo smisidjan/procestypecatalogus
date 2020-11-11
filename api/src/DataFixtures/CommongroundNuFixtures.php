@@ -2,14 +2,12 @@
 
 namespace App\DataFixtures;
 
-use App\Entity\Condition;
 use App\Entity\ProcessType;
 use App\Entity\Section;
 use App\Entity\Stage;
 use Conduction\CommonGroundBundle\Service\CommonGroundService;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Persistence\ObjectManager;
-use Ramsey\Uuid\Uuid;
 use Symfony\Component\DependencyInjection\ParameterBag\ParameterBagInterface;
 
 class CommongroundNuFixtures extends Fixture
