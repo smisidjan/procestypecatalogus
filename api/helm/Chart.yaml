@@ -5,3 +5,8 @@ name: ptc
 version: 0.1.0
 home: ptc.zuid-drecht.nl
 icon: ptc.zuid-drecht.nl
+dependencies:
+    - name: postgresql
+      repository: https://charts.bitnami.com/bitnami
+      version: 10.1.1
+      condition: postgresql.enabled
