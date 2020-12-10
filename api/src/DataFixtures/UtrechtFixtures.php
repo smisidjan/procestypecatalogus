@@ -152,8 +152,8 @@ class UtrechtFixtures extends Fixture
         $stage = new Stage();
         $stage->setName('Overige gegevens');
         $stage->setIcon('fal fa-users');
-        $stage->setSlug('Er zijn natuurlijk ook een aantal andere vragen waarvan we van u een antwoord moeten weten');
-        $stage->setDescription('Wie treed op als belanghebbende?');
+        $stage->setSlug('overige');
+        $stage->setDescription('Er zijn natuurlijk ook een aantal andere vragen waarvan we van u een antwoord moeten weten');
         $stage->setProcess($processType);
 
         $section = new Section();
