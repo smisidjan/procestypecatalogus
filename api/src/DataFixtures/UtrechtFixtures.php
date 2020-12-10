@@ -115,8 +115,7 @@ class UtrechtFixtures extends Fixture
         $stage = new Stage();
         $stage->setName('Wanneer wilt u trouwen?');
         $stage->setIcon('fal fa-users');
-        $stage->setSlug('Jullie moeten kiezen wanneer je bij de Gemeente de plechtigheid wil laten voltrekken. De beschikbare
-                    data zijn afhankelijk van het type ceremonie (gratis, eenvoudig of ceremonieel) en optioneel de ambtenaar of locatie');
+        $stage->setSlug('datum');
         $stage->setDescription('Wie treed op als belanghebbende?');
         $stage->setProcess($processType);
 
