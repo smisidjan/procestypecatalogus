@@ -66,7 +66,7 @@ class UtrechtFixtures extends Fixture
         $section->setName('Soort Ceremonie');
         $section->setDescription('Als jullie gaan trouwen zijn moet je kiezen tussen gratis, eenvoudig en ceremonieel trouwen. Dit
                     bepaalt hoeveel keuze je hebt bij het kiezen van je locatie, trouwdatum en trouwambtenaren.');
-        $section->setProperties([$this->commonGroundService->cleanUrl(['component' => 'vtc', 'type' => 'properties', 'id' => '8357401c-0551-4f75-891f-a0c7f4b72d41'])]);
+        $section->setProperties([$this->commonGroundService->cleanUrl(['component' => 'vtc', 'type' => 'properties', 'id' => '1a87072e-efcd-4cc3-b364-d4c0775617fd'])]);
         $stage->addSection($section);
 
         $section = new Section();
