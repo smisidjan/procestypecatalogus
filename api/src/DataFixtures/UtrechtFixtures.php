@@ -59,20 +59,20 @@ class UtrechtFixtures extends Fixture
                     afsluiten. Als je nog niet weet welke keuze je moet maken kan je op de site van de <a
                         href="https://www.rijksoverheid.nl/onderwerpen/trouwen-samenlevingscontract-en-geregistreerd-partnerschap/vraag-en-antwoord/wat-is-het-verschil-tussen-een-huwelijk-geregistreerd-partnerschap-en-samenlevingscontract">Rijksoverheid</a>
                     lezen waar je rekening mee moet houden.');
-        $section->setProperties([$this->commonGroundService->cleanUrl(['component' => 'vtc', 'type' => 'properties', 'id' => 'db69ce35-4ae1-4aac-936f-bdb5d4d1ff18'])]);
+        $section->setProperties([$this->commonGroundService->cleanUrl(['component' => 'vtc', 'type' => 'properties', 'id' => '87505278-75bb-44a7-8593-cc1a9a7cc767'])]);
         $stage->addSection($section);
 
         $section = new Section();
         $section->setName('Soort Ceremonie');
         $section->setDescription('Als jullie gaan trouwen zijn moet je kiezen tussen gratis, eenvoudig en ceremonieel trouwen. Dit
                     bepaalt hoeveel keuze je hebt bij het kiezen van je locatie, trouwdatum en trouwambtenaren.');
-        $section->setProperties([$this->commonGroundService->cleanUrl(['component' => 'vtc', 'type' => 'properties', 'id' => 'db69ce35-4ae1-4aac-936f-bdb5d4d1ff18'])]);
+        $section->setProperties([$this->commonGroundService->cleanUrl(['component' => 'vtc', 'type' => 'properties', 'id' => '8357401c-0551-4f75-891f-a0c7f4b72d41'])]);
         $stage->addSection($section);
 
         $section = new Section();
         $section->setName('Partner');
         $section->setDescription('Met wie wilt u trouwen');
-        $section->setProperties([$this->commonGroundService->cleanUrl(['component' => 'vtc', 'type' => 'properties', 'id' => 'db69ce35-4ae1-4aac-936f-bdb5d4d1ff18'])]);
+        $section->setProperties([$this->commonGroundService->cleanUrl(['component' => 'vtc', 'type' => 'properties', 'id' => '8357401c-0551-4f75-891f-a0c7f4b72d41'])]);
         $stage->addSection($section);
 
         $processType->addStage($stage);
@@ -90,13 +90,13 @@ class UtrechtFixtures extends Fixture
                     mogelijkheid biedt om een trouwambtenaar te kiezen, is het nodig dat jullie aangeven welke
                     trouwambtenaar jullie willen voor jullie ceremonie. Je kan hier ook lezen wat je moet doen om een
                     vriend of vriendin ambtenaar voor een dag te laten zijn.');
-        $section->setProperties([$this->commonGroundService->cleanUrl(['component' => 'vtc', 'type' => 'properties', 'id' => 'db69ce35-4ae1-4aac-936f-bdb5d4d1ff18'])]);
+        $section->setProperties([$this->commonGroundService->cleanUrl(['component' => 'vtc', 'type' => 'properties', 'id' => 'bf0def7c-0fcf-4418-b960-fa3a8e66e6c1'])]);
         $stage->addSection($section);
 
         $section = new Section();
         $section->setName('Locatie');
         $section->setDescription('De keuze in trouwlocatie is afhankelijk van het type huwelijk (gratis, eenvoudig of ceremonieel). Als het type huwelijk de mogelijkheid biedt om een locatie te kiezen, is het nodig dat jullie aangeven  waar jullie het huwelijk willen laten voltrekken.');
-        $section->setProperties([$this->commonGroundService->cleanUrl(['component' => 'vtc', 'type' => 'properties', 'id' => 'db69ce35-4ae1-4aac-936f-bdb5d4d1ff18'])]);
+        $section->setProperties([$this->commonGroundService->cleanUrl(['component' => 'vtc', 'type' => 'properties', 'id' => '5908ddf4-a221-405f-a981-02b76aeeae58'])]);
 
         $stage->addSection($section);
 
@@ -111,7 +111,7 @@ class UtrechtFixtures extends Fixture
         $section->setName('Datum');
         $section->setDescription('Jullie moeten kiezen wanneer je bij de Gemeente de plechtigheid wil laten voltrekken. De beschikbare
                     data zijn afhankelijk van het type ceremonie (gratis, eenvoudig of ceremonieel) en optioneel de ambtenaar of locatie.');
-        $section->setProperties([$this->commonGroundService->cleanUrl(['component' => 'vtc', 'type' => 'properties', 'id' => 'db69ce35-4ae1-4aac-936f-bdb5d4d1ff18'])]);
+        $section->setProperties([$this->commonGroundService->cleanUrl(['component' => 'vtc', 'type' => 'properties', 'id' => 'c253faeb-9a17-4db5-b1dc-f9f7b87847df'])]);
         $stage->addSection($section);
 
         $processType->addStage($stage);
@@ -125,7 +125,7 @@ class UtrechtFixtures extends Fixture
         $section = new Section();
         $section->setName('Getuigen');
         $section->setDescription('Trouwen of partnerschap');
-        $section->setProperties([$this->commonGroundService->cleanUrl(['component' => 'vtc', 'type' => 'properties', 'id' => 'db69ce35-4ae1-4aac-936f-bdb5d4d1ff18'])]);
+        $section->setProperties([$this->commonGroundService->cleanUrl(['component' => 'vtc', 'type' => 'properties', 'id' => '02d72f6c-cacb-4f41-a54f-f735c6dab1f6'])]);
         $stage->addSection($section);
 
         $processType->addStage($stage);
@@ -137,46 +137,40 @@ class UtrechtFixtures extends Fixture
         $stage->setDescription('Wie treed op als belanghebbende?');
 
         $section = new Section();
-        $section->setName('Contact gegevens');
-        $section->setDescription('Trouwen of partnerschap');
-        $section->setProperties([$this->commonGroundService->cleanUrl(['component' => 'vtc', 'type' => 'properties', 'id' => 'db69ce35-4ae1-4aac-936f-bdb5d4d1ff18'])]);
-        $stage->addSection($section);
-
-        $section = new Section();
         $section->setName('Naamsgebruik');
-        $section->setDescription('Trouwen of partnerschap');
-        $section->setProperties([$this->commonGroundService->cleanUrl(['component' => 'vtc', 'type' => 'properties', 'id' => '/db69ce35-4ae1-4aac-936f-bdb5d4d1ff18'])]);
+        $section->setDescription('Welke naam wenst u te gebruiken');
+        $section->setProperties([$this->commonGroundService->cleanUrl(['component' => 'vtc', 'type' => 'properties', 'id' => 'ebbeed6e-2023-4b71-a6c7-31fcaa4fe3a6'])]);
         $stage->addSection($section);
 
         $section = new Section();
         $section->setName('Taal');
-        $section->setDescription('Trouwen of partnerschap');
-        $section->setProperties([$this->commonGroundService->cleanUrl(['component' => 'vtc', 'type' => 'properties', 'id' => 'db69ce35-4ae1-4aac-936f-bdb5d4d1ff18'])]);
+        $section->setDescription('taal van de plechtigheid');
+        $section->setProperties([$this->commonGroundService->cleanUrl(['component' => 'vtc', 'type' => 'properties', 'id' => 'fcdbd0db-4cf2-48e1-aef4-16291ebb4b35'])]);
         $stage->addSection($section);
 
         $section = new Section();
         $section->setName('Extras');
         $section->setDescription('Het is mogelijk om extra opties te kiezen om je ceremonie extra feestelijk te maken, zoals
                     bijvoorbeeld een trouwboekje als aandenken aan het huwelijk.');
-        $section->setProperties([$this->commonGroundService->cleanUrl(['component' => 'vtc', 'type' => 'properties', 'id' => 'db69ce35-4ae1-4aac-936f-bdb5d4d1ff18'])]);
+        $section->setProperties([$this->commonGroundService->cleanUrl(['component' => 'vtc', 'type' => 'properties', 'id' => 'd29869c0-39ce-4691-a059-249e5ae0da9f'])]);
         $stage->addSection($section);
 
         $section = new Section();
         $section->setName('Opmerkingen');
         $section->setDescription('Trouwen of partnerschap');
-        $section->setProperties([$this->commonGroundService->cleanUrl(['component' => 'vtc', 'type' => 'properties', 'id' => 'db69ce35-4ae1-4aac-936f-bdb5d4d1ff18'])]);
+        $section->setProperties([$this->commonGroundService->cleanUrl(['component' => 'vtc', 'type' => 'properties', 'id' => '025f4395-b90f-434f-91a4-a19bcf9de83d'])]);
         $stage->addSection($section);
 
         $section = new Section();
         $section->setName('Melding voorgenomen huwelijk');
         $section->setDescription('Voordat je gaat trouwen of een geregistreerd partnerschap aangaat is het wettelijk verplicht een melding voorgenomen huwelijk te gaan doen. Dit moet minimaal 14 dagen voordat de ceremonie voltrokken wordt.');
-        $section->setProperties([$this->commonGroundService->cleanUrl(['component' => 'vtc', 'type' => 'properties', 'id' => 'db69ce35-4ae1-4aac-936f-bdb5d4d1ff18'])]);
+        $section->setProperties([$this->commonGroundService->cleanUrl(['component' => 'vtc', 'type' => 'properties', 'id' => '05db9c53-cf96-47d9-926f-0dac80cd3d61'])]);
         $stage->addSection($section);
 
         $section = new Section();
         $section->setName('Betaling');
-        $section->setDescription('Tenzij je voor een gratis huwelijk hebt gekozen moet je betalen voor je huwelijk. De kosten zijn ');
-        $section->setProperties([$this->commonGroundService->cleanUrl(['component' => 'vtc', 'type' => 'properties', 'id' => 'db69ce35-4ae1-4aac-936f-bdb5d4d1ff18'])]);
+        $section->setDescription('Tenzij je voor een gratis huwelijk hebt gekozen moet je betalen voor je huwelijk.');
+        $section->setProperties([$this->commonGroundService->cleanUrl(['component' => 'vtc', 'type' => 'properties', 'id' => '0c601e21-43df-4910-afb3-54e93b60aaa5'])]);
         $stage->addSection($section);
 
         $processType->addStage($stage);
