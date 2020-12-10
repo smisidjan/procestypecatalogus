@@ -170,7 +170,7 @@ class UtrechtFixtures extends Fixture
         $section = new Section();
         $section->setName('Betaling');
         $section->setDescription('Tenzij je voor een gratis huwelijk hebt gekozen moet je betalen voor je huwelijk.');
-        $section->setProperties([$this->commonGroundService->cleanUrl(['component' => 'vtc', 'type' => 'properties', 'id' => '0c601e21-43df-4910-afb3-54e93b60aaa5'])]);
+        $section->setProperties([$this->commonGroundService->cleanUrl(['component' => 'vtc', 'type' => 'properties', 'id' => 'f6231405-373e-4477-9026-265db00601e1'])]);
         $stage->addSection($section);
 
         $processType->addStage($stage);
