@@ -82,8 +82,8 @@ class CheckinFixtures extends Fixture
         $id = Uuid::fromString('2ac1b90b-4ba5-4ce9-9813-ab477ce1579a');
         $section = new Section();
         $section->setStage($stage);
-        $section->setName('Koningklijke horeca nederland');
-        $section->setDescription('Als u lid bent van koningklijke horeca nederland kunt u hier uw lidmaarschats nummer opvoeren voor korting');
+        $section->setName('Koninklijke Horeca Nederland');
+        $section->setDescription('Als u lid bent van Koninklijke Horeca Nederland kunt u hier uw lidmaatschapsnummer opvoeren voor korting');
         $section->setProperties([
             $this->commonGroundService->cleanUrl(['component'=>'vtc', 'type'=>'properties', 'id'=>'587babac-f23a-4fb0-8df8-ccd083a079cc']),
         ]);
@@ -94,7 +94,7 @@ class CheckinFixtures extends Fixture
         $section = new Section();
         $section->setStage($stage);
         $section->setName('Abonnement');
-        $section->setDescription('<p>Om deel te kunnen nemen aan dit platform heeft u normaal gesproken een abonnement nodig. De kosten hiervoor zijn opgebouwd met een vast bedrag van &euro;25 per maand (excl btw) en kosten per check in van &euro;0.40 per check in deze worden achteraf betaald. <b>Voor de twee weken pilot is dit gratis.</b></p><p> We gaan uit van een &ldquo;Fair-use&rdquo; door de deelnemers van dit platform. Dat betekent dat als iemand overmatig gebruik gaat maken hiervoor gaat betalen. De grens ligt bij 1500 check ins per maand. Kom je hier overheen dan zal er een opslag gelden van &euro;0.05 per check in worden gerekend.</p>');
+        $section->setDescription('<p>Om deel te kunnen nemen aan dit platform heeft u normaal gesproken een abonnement nodig. De kosten hiervoor zijn opgebouwd met een vast bedrag van &euro;25 per maand (excl btw) en kosten per check in van &euro;0.40 per check in deze worden achteraf betaald. <b>Wanneer de pilot start is deze 2 weken gratis. </b></p><p> We gaan uit van een &ldquo;Fair-use&rdquo; door de deelnemers van dit platform. Dat betekent dat als iemand overmatig gebruik gaat maken hiervoor gaat betalen. De grens ligt bij 1500 check ins per maand. Kom je hier overheen dan zal er een opslag gelden van &euro;0.05 per check in worden gerekend.</p>');
         $section->setProperties([]);
 
         $stage->addSection($section);
