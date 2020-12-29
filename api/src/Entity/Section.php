@@ -169,7 +169,6 @@ class Section
     /**
      * @var int The place in the order where the section should be rendered
      *
-     * @Assert\NotNull
      * @Groups({"read","write"})
      * @ORM\Column(type="integer")
      */
