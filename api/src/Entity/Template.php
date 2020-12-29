@@ -114,7 +114,7 @@ class Template
     private $uri;
 
     /**
-     * @var string Type of document you want to receive
+     * @var string Type of document you want to receive. Options: "pdf", "word", "excel", "png"
      *
      * @example pdf
      *
@@ -130,6 +130,8 @@ class Template
     private $type;
 
     /**
+     * @var array ProcessType this template belongs to
+     *
      * @Groups({"read","write"})
      * @ORM\ManyToOne(targetEntity="App\Entity\processType", inversedBy="templates")
      * @MaxDepth(1)
@@ -142,7 +144,6 @@ class Template
      * @example submitted
      *
      * @Gedmo\Versioned
-     * @Assert\NotNull
      * @Assert\Length(
      *     max = 255
      * )
@@ -160,18 +161,12 @@ class Template
     private $audience;
 
     /**
-     * @var string what stage we want to show this template on
+     * @var array What stage you want to show this template on
      *
-     * @example Person info Document
-     *
-     * @Gedmo\Versioned
-     * @Assert\Url
-     * @Assert\NotNull
-     * @Assert\Length(
-     *     max = 255
-     * )
+     * @ORM\Column(nullable=true)
      * @Groups({"read","write"})
-     * @ORM\Column(type="string", length=255, nullable=true)
+     * @ORM\ManyToOne(targetEntity="App\Entity\Stage", inversedBy="templates")
+     * @MaxDepth(1)
      */
     private $stage;
 
@@ -270,12 +265,12 @@ class Template
         return $this;
     }
 
-    public function getStage(): ?string
+    public function getStage(): ?Stage
     {
         return $this->stage;
     }
 
-    public function setStage(string $stage): self
+    public function setStage(?Stage $stage): self
     {
         $this->stage = $stage;
 
