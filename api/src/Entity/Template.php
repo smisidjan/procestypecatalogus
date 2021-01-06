@@ -9,6 +9,7 @@ use ApiPlatform\Core\Bridge\Doctrine\Orm\Filter\DateFilter;
 use ApiPlatform\Core\Bridge\Doctrine\Orm\Filter\OrderFilter;
 use ApiPlatform\Core\Bridge\Doctrine\Orm\Filter\SearchFilter;
 use App\Repository\TemplateRepository;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Gedmo\Mapping\Annotation as Gedmo;
 use Ramsey\Uuid\Uuid;
@@ -161,14 +162,13 @@ class Template
     private $audience;
 
     /**
-     * @var array What stage you want to show this template on
+     * @var Stage What stage you want to show this template on
      *
-     * @ORM\Column(nullable=true)
      * @Groups({"read","write"})
      * @ORM\ManyToOne(targetEntity="App\Entity\Stage", inversedBy="templates")
      * @MaxDepth(1)
      */
-    private $stage;
+    private ?Stage $stage;
 
     /**
      * @var DateTime The moment this request was created

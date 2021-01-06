@@ -507,7 +507,7 @@ class Stage
         return $this->getSections()->matching($criteria)->last();
     }
 
-    public function getNextSection($stage)
+    public function getNextSection($section)
     {
         $criteria = Criteria::create()
             ->andWhere(Criteria::expr()->gt('orderNumber', $section->getOrderNumber()));
