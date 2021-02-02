@@ -5,7 +5,7 @@ entries:
       category: Database
     apiVersion: v2
     appVersion: 11.10.0
-    created: "2020-12-29T10:50:13.5511942Z"
+    created: "2021-02-02T09:18:05.7302254Z"
     dependencies:
     - name: common
       repository: https://charts.bitnami.com/bitnami
@@ -37,14 +37,14 @@ entries:
   ptc:
   - apiVersion: v1
     appVersion: V1.0
-    created: "2020-12-29T10:50:13.5399161Z"
+    created: "2021-02-02T09:18:05.7149348Z"
     description: Naast deze JSON rest API is er ook een [graphql](/graphql) interface
       beschikbaar.
-    digest: 4bcffcb1bbefaa92097b2c4b123adc4cc9b03957f9b27b0d6a4148a4ca2e9e70
+    digest: d51443faaccc545032726b2f83ab2783ee63488138a6c673f7ed11930500abdf
     home: ptc.zuid-drecht.nl
     icon: ptc.zuid-drecht.nl
     name: ptc
     urls:
     - ptc-0.1.0.tgz
     version: 0.1.0
-generated: "2020-12-29T10:50:13.485341Z"
+generated: "2021-02-02T09:18:05.6861029Z"
