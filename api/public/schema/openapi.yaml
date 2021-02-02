@@ -12,7 +12,7 @@ info:
     - Docker Image: [online](https://hub.docker.com/repository/docker/conduction/ptc-php) 
     - Datamodel: [postman](schema/ptc.postman_collection.json) / [oas](schema/openapi.yaml) / [pdf](schema/datamodel.pdf) / [modelio (zip)](schema/Datamodel_Modelio.zip) 
     
-    'Naast deze JSON rest API is er ook een [graphql](/graphql) interface beschikbaar.'         
+    Naast deze JSON rest API is er ook een [graphql](/graphql) interface beschikbaar.         
     
 paths:
   /audit_trails:
@@ -1942,6 +1942,981 @@ paths:
             schema:
               $ref: '#/components/schemas/ChangeLog-write'
         description: 'The updated ChangeLog resource'
+  /conditions:
+    get:
+      tags:
+        - Condition
+      operationId: getConditionCollection
+      summary: 'Retrieves the collection of Condition resources.'
+      responses:
+        200:
+          description: 'Condition collection response'
+          content:
+            application/ld+json:
+              schema:
+                type: object
+                properties:
+                  'hydra:member': { type: array, items: { $ref: '#/components/schemas/Condition:jsonld-read' } }
+                  'hydra:totalItems': { type: integer, minimum: 0 }
+                  'hydra:view': { type: object, properties: { '@id': { type: string, format: iri-reference }, '@type': { type: string }, 'hydra:first': { type: string, format: iri-reference }, 'hydra:last': { type: string, format: iri-reference }, 'hydra:next': { type: string, format: iri-reference } } }
+                  'hydra:search': { type: object, properties: { '@type': { type: string }, 'hydra:template': { type: string }, 'hydra:variableRepresentation': { type: string }, 'hydra:mapping': { type: array, items: { type: object, properties: { '@type': { type: string }, variable: { type: string }, property: { type: string }, required: { type: boolean } } } } } }
+                required:
+                  - 'hydra:member'
+            application/json+ld:
+              schema:
+                type: object
+                properties:
+                  'hydra:member': { type: array, items: { $ref: '#/components/schemas/Condition:jsonld-read' } }
+                  'hydra:totalItems': { type: integer, minimum: 0 }
+                  'hydra:view': { type: object, properties: { '@id': { type: string, format: iri-reference }, '@type': { type: string }, 'hydra:first': { type: string, format: iri-reference }, 'hydra:last': { type: string, format: iri-reference }, 'hydra:next': { type: string, format: iri-reference } } }
+                  'hydra:search': { type: object, properties: { '@type': { type: string }, 'hydra:template': { type: string }, 'hydra:variableRepresentation': { type: string }, 'hydra:mapping': { type: array, items: { type: object, properties: { '@type': { type: string }, variable: { type: string }, property: { type: string }, required: { type: boolean } } } } } }
+                required:
+                  - 'hydra:member'
+            application/hal+json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Condition-read'
+            application/json+hal:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Condition-read'
+            application/vnd.api+json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Condition-read'
+            application/json+vnd.api:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Condition-read'
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Condition-read'
+            application/health+json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Condition-read'
+            application/json+health:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Condition-read'
+            application/xml:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Condition-read'
+            application/x-yaml:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Condition-read'
+            text/csv:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Condition-read'
+            text/html:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Condition-read'
+      parameters:
+        -
+          name: 'order[id]'
+          in: query
+          required: false
+          schema:
+            type: string
+            enum:
+              - asc
+              - desc
+        -
+          name: 'order[property]'
+          in: query
+          required: false
+          schema:
+            type: string
+            enum:
+              - asc
+              - desc
+        -
+          name: 'order[operation]'
+          in: query
+          required: false
+          schema:
+            type: string
+            enum:
+              - asc
+              - desc
+        -
+          name: 'order[value]'
+          in: query
+          required: false
+          schema:
+            type: string
+            enum:
+              - asc
+              - desc
+        -
+          name: id
+          in: query
+          required: false
+          schema:
+            type: string
+        -
+          name: 'id[]'
+          in: query
+          required: false
+          schema:
+            type: array
+            items:
+              type: string
+          style: form
+          explode: true
+        -
+          name: property
+          in: query
+          required: false
+          schema:
+            type: string
+        -
+          name: 'property[]'
+          in: query
+          required: false
+          schema:
+            type: array
+            items:
+              type: string
+          style: form
+          explode: true
+        -
+          name: operation
+          in: query
+          required: false
+          schema:
+            type: string
+        -
+          name: 'operation[]'
+          in: query
+          required: false
+          schema:
+            type: array
+            items:
+              type: string
+          style: form
+          explode: true
+        -
+          name: value
+          in: query
+          required: false
+          schema:
+            type: string
+        -
+          name: 'value[]'
+          in: query
+          required: false
+          schema:
+            type: array
+            items:
+              type: string
+          style: form
+          explode: true
+        -
+          name: page
+          in: query
+          required: false
+          description: 'The collection page number'
+          schema:
+            type: integer
+            default: 1
+        -
+          name: limit
+          in: query
+          required: false
+          description: 'The number of items per page'
+          schema:
+            type: integer
+            default: 30
+            minimum: 0
+        -
+          name: Authorization
+          description: 'The JWT of the entity performing the request'
+          in: header
+        -
+          name: API-Version
+          description: 'The version of the API conform [Landelijke API-strategie.](https://geonovum.github.io/KP-APIs/#versioning)'
+          example: 1.0.1
+          in: header
+        -
+          name: X-NLX-Logrecord-ID
+          description: 'A  globally unique id of the request, which makes a request traceable throughout the network.'
+          in: header
+        -
+          name: X-NLX-Request-Process-Id
+          description: 'A process id for purpose registration (doelbinding)'
+          in: header
+        -
+          name: X-NLX-Request-Data-Elements
+          description: 'A list of requested data elements'
+          in: header
+        -
+          name: X-NLX-Request-Data-Subject
+          description: 'A key-value list of data subjects related to this request. e.g. `bsn=12345678, kenteken=ab-12-fg`'
+          in: header
+        -
+          name: X-NLX-Audit-Clarification
+          description: 'A clarification as to why a request has been made  (doelbinding)'
+          in: header
+        -
+          name: Link
+          description: 'A [websub](https://www.w3.org/TR/websub/#discovery) header like <https://hub.example.com/>; rel="hub"'
+          in: header
+        -
+          name: 'extend[]'
+          required: false
+          description: 'An array of nested objects to include in the return object'
+          in: query
+          schema:
+            type: array
+        -
+          name: 'fields[]'
+          required: false
+          description: 'An array of fields to return in output, wil return all fields is not supplied'
+          in: query
+          schema:
+            type: array
+        -
+          name: validOn
+          required: false
+          description: 'Returns object as valid on a given date time'
+          schema:
+            type: string
+            format: date-time
+          in: query
+        -
+          name: validFrom
+          required: false
+          description: 'Returns objects valid from a given date time'
+          schema:
+            type: string
+            format: date-time
+          in: query
+        -
+          name: validUntil
+          required: false
+          description: 'Returns objects valid until a given date time'
+          schema:
+            type: string
+            format: date-time
+          in: query
+      produces:
+        - application/health+json
+    post:
+      tags:
+        - Condition
+      operationId: postConditionCollection
+      summary: 'Creates a Condition resource.'
+      responses:
+        201:
+          description: 'Condition resource created'
+          content:
+            application/ld+json:
+              schema:
+                $ref: '#/components/schemas/Condition:jsonld-read'
+            application/json+ld:
+              schema:
+                $ref: '#/components/schemas/Condition:jsonld-read'
+            application/hal+json:
+              schema:
+                $ref: '#/components/schemas/Condition-read'
+            application/json+hal:
+              schema:
+                $ref: '#/components/schemas/Condition-read'
+            application/vnd.api+json:
+              schema:
+                $ref: '#/components/schemas/Condition-read'
+            application/json+vnd.api:
+              schema:
+                $ref: '#/components/schemas/Condition-read'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Condition-read'
+            application/health+json:
+              schema:
+                $ref: '#/components/schemas/Condition-read'
+            application/json+health:
+              schema:
+                $ref: '#/components/schemas/Condition-read'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/Condition-read'
+            application/x-yaml:
+              schema:
+                $ref: '#/components/schemas/Condition-read'
+            text/csv:
+              schema:
+                $ref: '#/components/schemas/Condition-read'
+            text/html:
+              schema:
+                $ref: '#/components/schemas/Condition-read'
+          links:
+            GetConditionItem:
+              parameters:
+                id: '$response.body#/id'
+              operationId: getConditionItem
+              description: 'The `id` value returned in the response can be used as the `id` parameter in `GET /conditions/{id}`.'
+        400:
+          description: 'Invalid input'
+        404:
+          description: 'Resource not found'
+      requestBody:
+        content:
+          application/ld+json:
+            schema:
+              $ref: '#/components/schemas/Condition:jsonld-write'
+          application/json+ld:
+            schema:
+              $ref: '#/components/schemas/Condition:jsonld-write'
+          application/hal+json:
+            schema:
+              $ref: '#/components/schemas/Condition-write'
+          application/json+hal:
+            schema:
+              $ref: '#/components/schemas/Condition-write'
+          application/vnd.api+json:
+            schema:
+              $ref: '#/components/schemas/Condition-write'
+          application/json+vnd.api:
+            schema:
+              $ref: '#/components/schemas/Condition-write'
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Condition-write'
+          application/health+json:
+            schema:
+              $ref: '#/components/schemas/Condition-write'
+          application/json+health:
+            schema:
+              $ref: '#/components/schemas/Condition-write'
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/Condition-write'
+          application/x-yaml:
+            schema:
+              $ref: '#/components/schemas/Condition-write'
+          text/csv:
+            schema:
+              $ref: '#/components/schemas/Condition-write'
+          text/html:
+            schema:
+              $ref: '#/components/schemas/Condition-write'
+        description: 'The new Condition resource'
+      parameters:
+        -
+          name: Authorization
+          description: 'The JWT of the entity performing the request'
+          in: header
+        -
+          name: API-Version
+          description: 'The version of the API conform [Landelijke API-strategie.](https://geonovum.github.io/KP-APIs/#versioning)'
+          example: 1.0.1
+          in: header
+        -
+          name: X-NLX-Logrecord-ID
+          description: 'A  globally unique id of the request, which makes a request traceable throughout the network.'
+          in: header
+        -
+          name: X-NLX-Request-Process-Id
+          description: 'A process id for purpose registration (doelbinding)'
+          in: header
+        -
+          name: X-NLX-Request-Data-Elements
+          description: 'A list of requested data elements'
+          in: header
+        -
+          name: X-NLX-Request-Data-Subject
+          description: 'A key-value list of data subjects related to this request. e.g. `bsn=12345678, kenteken=ab-12-fg`'
+          in: header
+        -
+          name: X-NLX-Audit-Clarification
+          description: 'A clarification as to why a request has been made  (doelbinding)'
+          in: header
+  '/conditions/{id}':
+    get:
+      tags:
+        - Condition
+      operationId: getConditionItem
+      summary: 'Retrieves a Condition resource.'
+      parameters:
+        -
+          name: id
+          in: path
+          required: true
+          schema:
+            type: string
+        -
+          name: Authorization
+          description: 'The JWT of the entity performing the request'
+          in: header
+        -
+          name: API-Version
+          description: 'The version of the API conform [Landelijke API-strategie.](https://geonovum.github.io/KP-APIs/#versioning)'
+          example: 1.0.1
+          in: header
+        -
+          name: X-NLX-Logrecord-ID
+          description: 'A  globally unique id of the request, which makes a request traceable throughout the network.'
+          in: header
+        -
+          name: X-NLX-Request-Process-Id
+          description: 'A process id for purpose registration (doelbinding)'
+          in: header
+        -
+          name: X-NLX-Request-Data-Elements
+          description: 'A list of requested data elements'
+          in: header
+        -
+          name: X-NLX-Request-Data-Subject
+          description: 'A key-value list of data subjects related to this request. e.g. `bsn=12345678, kenteken=ab-12-fg`'
+          in: header
+        -
+          name: X-NLX-Audit-Clarification
+          description: 'A clarification as to why a request has been made  (doelbinding)'
+          in: header
+        -
+          name: Link
+          description: 'A [websub](https://www.w3.org/TR/websub/#discovery) header like <https://hub.example.com/>; rel="hub"'
+          in: header
+        -
+          name: 'extend[]'
+          required: false
+          description: 'An array of nested objects to include in the return object'
+          in: query
+          schema:
+            type: array
+        -
+          name: 'fields[]'
+          required: false
+          description: 'An array of fields to return in output, wil return all fields is not supplied'
+          in: query
+          schema:
+            type: array
+        -
+          name: validOn
+          required: false
+          description: 'Returns object as valid on a given date time'
+          schema:
+            type: string
+            format: date-time
+          in: query
+        -
+          name: validFrom
+          required: false
+          description: 'Returns objects valid from a given date time'
+          schema:
+            type: string
+            format: date-time
+          in: query
+        -
+          name: validUntil
+          required: false
+          description: 'Returns objects valid until a given date time'
+          schema:
+            type: string
+            format: date-time
+          in: query
+      responses:
+        200:
+          description: 'Condition resource response'
+          content:
+            application/ld+json:
+              schema:
+                $ref: '#/components/schemas/Condition:jsonld-read'
+            application/json+ld:
+              schema:
+                $ref: '#/components/schemas/Condition:jsonld-read'
+            application/hal+json:
+              schema:
+                $ref: '#/components/schemas/Condition-read'
+            application/json+hal:
+              schema:
+                $ref: '#/components/schemas/Condition-read'
+            application/vnd.api+json:
+              schema:
+                $ref: '#/components/schemas/Condition-read'
+            application/json+vnd.api:
+              schema:
+                $ref: '#/components/schemas/Condition-read'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Condition-read'
+            application/health+json:
+              schema:
+                $ref: '#/components/schemas/Condition-read'
+            application/json+health:
+              schema:
+                $ref: '#/components/schemas/Condition-read'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/Condition-read'
+            application/x-yaml:
+              schema:
+                $ref: '#/components/schemas/Condition-read'
+            text/csv:
+              schema:
+                $ref: '#/components/schemas/Condition-read'
+            text/html:
+              schema:
+                $ref: '#/components/schemas/Condition-read'
+        404:
+          description: 'Resource not found'
+      produces:
+        - application/health+json
+    put:
+      tags:
+        - Condition
+      operationId: putConditionItem
+      summary: 'Replaces the Condition resource.'
+      parameters:
+        -
+          name: id
+          in: path
+          required: true
+          schema:
+            type: string
+        -
+          name: Authorization
+          description: 'The JWT of the entity performing the request'
+          in: header
+        -
+          name: API-Version
+          description: 'The version of the API conform [Landelijke API-strategie.](https://geonovum.github.io/KP-APIs/#versioning)'
+          example: 1.0.1
+          in: header
+        -
+          name: X-NLX-Logrecord-ID
+          description: 'A  globally unique id of the request, which makes a request traceable throughout the network.'
+          in: header
+        -
+          name: X-NLX-Request-Process-Id
+          description: 'A process id for purpose registration (doelbinding)'
+          in: header
+        -
+          name: X-NLX-Request-Data-Elements
+          description: 'A list of requested data elements'
+          in: header
+        -
+          name: X-NLX-Request-Data-Subject
+          description: 'A key-value list of data subjects related to this request. e.g. `bsn=12345678, kenteken=ab-12-fg`'
+          in: header
+        -
+          name: X-NLX-Audit-Clarification
+          description: 'A clarification as to why a request has been made  (doelbinding)'
+          in: header
+      responses:
+        200:
+          description: 'Condition resource updated'
+          content:
+            application/ld+json:
+              schema:
+                $ref: '#/components/schemas/Condition:jsonld-read'
+            application/json+ld:
+              schema:
+                $ref: '#/components/schemas/Condition:jsonld-read'
+            application/hal+json:
+              schema:
+                $ref: '#/components/schemas/Condition-read'
+            application/json+hal:
+              schema:
+                $ref: '#/components/schemas/Condition-read'
+            application/vnd.api+json:
+              schema:
+                $ref: '#/components/schemas/Condition-read'
+            application/json+vnd.api:
+              schema:
+                $ref: '#/components/schemas/Condition-read'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Condition-read'
+            application/health+json:
+              schema:
+                $ref: '#/components/schemas/Condition-read'
+            application/json+health:
+              schema:
+                $ref: '#/components/schemas/Condition-read'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/Condition-read'
+            application/x-yaml:
+              schema:
+                $ref: '#/components/schemas/Condition-read'
+            text/csv:
+              schema:
+                $ref: '#/components/schemas/Condition-read'
+            text/html:
+              schema:
+                $ref: '#/components/schemas/Condition-read'
+        400:
+          description: 'Invalid input'
+        404:
+          description: 'Resource not found'
+      requestBody:
+        content:
+          application/ld+json:
+            schema:
+              $ref: '#/components/schemas/Condition:jsonld-write'
+          application/json+ld:
+            schema:
+              $ref: '#/components/schemas/Condition:jsonld-write'
+          application/hal+json:
+            schema:
+              $ref: '#/components/schemas/Condition-write'
+          application/json+hal:
+            schema:
+              $ref: '#/components/schemas/Condition-write'
+          application/vnd.api+json:
+            schema:
+              $ref: '#/components/schemas/Condition-write'
+          application/json+vnd.api:
+            schema:
+              $ref: '#/components/schemas/Condition-write'
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Condition-write'
+          application/health+json:
+            schema:
+              $ref: '#/components/schemas/Condition-write'
+          application/json+health:
+            schema:
+              $ref: '#/components/schemas/Condition-write'
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/Condition-write'
+          application/x-yaml:
+            schema:
+              $ref: '#/components/schemas/Condition-write'
+          text/csv:
+            schema:
+              $ref: '#/components/schemas/Condition-write'
+          text/html:
+            schema:
+              $ref: '#/components/schemas/Condition-write'
+        description: 'The updated Condition resource'
+    delete:
+      tags:
+        - Condition
+      operationId: deleteConditionItem
+      summary: 'Removes the Condition resource.'
+      responses:
+        204:
+          description: 'Condition resource deleted'
+        404:
+          description: 'Resource not found'
+      parameters:
+        -
+          name: id
+          in: path
+          required: true
+          schema:
+            type: string
+        -
+          name: Authorization
+          description: 'The JWT of the entity performing the request'
+          in: header
+        -
+          name: API-Version
+          description: 'The version of the API conform [Landelijke API-strategie.](https://geonovum.github.io/KP-APIs/#versioning)'
+          example: 1.0.1
+          in: header
+        -
+          name: X-NLX-Logrecord-ID
+          description: 'A  globally unique id of the request, which makes a request traceable throughout the network.'
+          in: header
+        -
+          name: X-NLX-Request-Process-Id
+          description: 'A process id for purpose registration (doelbinding)'
+          in: header
+        -
+          name: X-NLX-Request-Data-Elements
+          description: 'A list of requested data elements'
+          in: header
+        -
+          name: X-NLX-Request-Data-Subject
+          description: 'A key-value list of data subjects related to this request. e.g. `bsn=12345678, kenteken=ab-12-fg`'
+          in: header
+        -
+          name: X-NLX-Audit-Clarification
+          description: 'A clarification as to why a request has been made  (doelbinding)'
+          in: header
+  '/conditions/{id}/audit_trail':
+    get:
+      tags:
+        - Condition
+      operationId: get_audit_trailConditionItem
+      summary: 'Retrieves a Condition resource.'
+      parameters:
+        -
+          name: id
+          in: path
+          required: true
+          schema:
+            type: string
+        -
+          name: Authorization
+          description: 'The JWT of the entity performing the request'
+          in: header
+        -
+          name: API-Version
+          description: 'The version of the API conform [Landelijke API-strategie.](https://geonovum.github.io/KP-APIs/#versioning)'
+          example: 1.0.1
+          in: header
+        -
+          name: X-NLX-Logrecord-ID
+          description: 'A  globally unique id of the request, which makes a request traceable throughout the network.'
+          in: header
+        -
+          name: X-NLX-Request-Process-Id
+          description: 'A process id for purpose registration (doelbinding)'
+          in: header
+        -
+          name: X-NLX-Request-Data-Elements
+          description: 'A list of requested data elements'
+          in: header
+        -
+          name: X-NLX-Request-Data-Subject
+          description: 'A key-value list of data subjects related to this request. e.g. `bsn=12345678, kenteken=ab-12-fg`'
+          in: header
+        -
+          name: X-NLX-Audit-Clarification
+          description: 'A clarification as to why a request has been made  (doelbinding)'
+          in: header
+        -
+          name: Link
+          description: 'A [websub](https://www.w3.org/TR/websub/#discovery) header like <https://hub.example.com/>; rel="hub"'
+          in: header
+        -
+          name: 'extend[]'
+          required: false
+          description: 'An array of nested objects to include in the return object'
+          in: query
+          schema:
+            type: array
+        -
+          name: 'fields[]'
+          required: false
+          description: 'An array of fields to return in output, wil return all fields is not supplied'
+          in: query
+          schema:
+            type: array
+        -
+          name: validOn
+          required: false
+          description: 'Returns object as valid on a given date time'
+          schema:
+            type: string
+            format: date-time
+          in: query
+        -
+          name: validFrom
+          required: false
+          description: 'Returns objects valid from a given date time'
+          schema:
+            type: string
+            format: date-time
+          in: query
+        -
+          name: validUntil
+          required: false
+          description: 'Returns objects valid until a given date time'
+          schema:
+            type: string
+            format: date-time
+          in: query
+      responses:
+        200:
+          description: 'Condition resource response'
+          content:
+            application/ld+json:
+              schema:
+                $ref: '#/components/schemas/Condition:jsonld-read'
+            application/json+ld:
+              schema:
+                $ref: '#/components/schemas/Condition:jsonld-read'
+            application/hal+json:
+              schema:
+                $ref: '#/components/schemas/Condition-read'
+            application/json+hal:
+              schema:
+                $ref: '#/components/schemas/Condition-read'
+            application/vnd.api+json:
+              schema:
+                $ref: '#/components/schemas/Condition-read'
+            application/json+vnd.api:
+              schema:
+                $ref: '#/components/schemas/Condition-read'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Condition-read'
+            application/health+json:
+              schema:
+                $ref: '#/components/schemas/Condition-read'
+            application/json+health:
+              schema:
+                $ref: '#/components/schemas/Condition-read'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/Condition-read'
+            application/x-yaml:
+              schema:
+                $ref: '#/components/schemas/Condition-read'
+            text/csv:
+              schema:
+                $ref: '#/components/schemas/Condition-read'
+            text/html:
+              schema:
+                $ref: '#/components/schemas/Condition-read'
+        404:
+          description: 'Resource not found'
+      produces:
+        - application/health+json
+  '/conditions/{id}/change_log':
+    get:
+      tags:
+        - Condition
+      operationId: get_change_logsConditionItem
+      summary: 'Retrieves a Condition resource.'
+      parameters:
+        -
+          name: id
+          in: path
+          required: true
+          schema:
+            type: string
+        -
+          name: Authorization
+          description: 'The JWT of the entity performing the request'
+          in: header
+        -
+          name: API-Version
+          description: 'The version of the API conform [Landelijke API-strategie.](https://geonovum.github.io/KP-APIs/#versioning)'
+          example: 1.0.1
+          in: header
+        -
+          name: X-NLX-Logrecord-ID
+          description: 'A  globally unique id of the request, which makes a request traceable throughout the network.'
+          in: header
+        -
+          name: X-NLX-Request-Process-Id
+          description: 'A process id for purpose registration (doelbinding)'
+          in: header
+        -
+          name: X-NLX-Request-Data-Elements
+          description: 'A list of requested data elements'
+          in: header
+        -
+          name: X-NLX-Request-Data-Subject
+          description: 'A key-value list of data subjects related to this request. e.g. `bsn=12345678, kenteken=ab-12-fg`'
+          in: header
+        -
+          name: X-NLX-Audit-Clarification
+          description: 'A clarification as to why a request has been made  (doelbinding)'
+          in: header
+        -
+          name: Link
+          description: 'A [websub](https://www.w3.org/TR/websub/#discovery) header like <https://hub.example.com/>; rel="hub"'
+          in: header
+        -
+          name: 'extend[]'
+          required: false
+          description: 'An array of nested objects to include in the return object'
+          in: query
+          schema:
+            type: array
+        -
+          name: 'fields[]'
+          required: false
+          description: 'An array of fields to return in output, wil return all fields is not supplied'
+          in: query
+          schema:
+            type: array
+        -
+          name: validOn
+          required: false
+          description: 'Returns object as valid on a given date time'
+          schema:
+            type: string
+            format: date-time
+          in: query
+        -
+          name: validFrom
+          required: false
+          description: 'Returns objects valid from a given date time'
+          schema:
+            type: string
+            format: date-time
+          in: query
+        -
+          name: validUntil
+          required: false
+          description: 'Returns objects valid until a given date time'
+          schema:
+            type: string
+            format: date-time
+          in: query
+      responses:
+        200:
+          description: 'Condition resource response'
+          content:
+            application/ld+json:
+              schema:
+                $ref: '#/components/schemas/Condition:jsonld-read'
+            application/json+ld:
+              schema:
+                $ref: '#/components/schemas/Condition:jsonld-read'
+            application/hal+json:
+              schema:
+                $ref: '#/components/schemas/Condition-read'
+            application/json+hal:
+              schema:
+                $ref: '#/components/schemas/Condition-read'
+            application/vnd.api+json:
+              schema:
+                $ref: '#/components/schemas/Condition-read'
+            application/json+vnd.api:
+              schema:
+                $ref: '#/components/schemas/Condition-read'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Condition-read'
+            application/health+json:
+              schema:
+                $ref: '#/components/schemas/Condition-read'
+            application/json+health:
+              schema:
+                $ref: '#/components/schemas/Condition-read'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/Condition-read'
+            application/x-yaml:
+              schema:
+                $ref: '#/components/schemas/Condition-read'
+            text/csv:
+              schema:
+                $ref: '#/components/schemas/Condition-read'
+            text/html:
+              schema:
+                $ref: '#/components/schemas/Condition-read'
+        404:
+          description: 'Resource not found'
+      produces:
+        - application/health+json
   /process_types:
     get:
       tags:
@@ -2069,6 +3044,15 @@ paths:
               - desc
         -
           name: 'order[name]'
+          in: query
+          required: false
+          schema:
+            type: string
+            enum:
+              - asc
+              - desc
+        -
+          name: 'order[subtitle]'
           in: query
           required: false
           schema:
@@ -2337,6 +3321,22 @@ paths:
             type: string
         -
           name: 'name[]'
+          in: query
+          required: false
+          schema:
+            type: array
+            items:
+              type: string
+          style: form
+          explode: true
+        -
+          name: subtitle
+          in: query
+          required: false
+          schema:
+            type: string
+        -
+          name: 'subtitle[]'
           in: query
           required: false
           schema:
@@ -3331,7 +4331,7 @@ paths:
           description: 'Resource not found'
       produces:
         - application/health+json
-  '/process_typesprocess_typesprocess_typesprocess_typesprocess_typesprocess_types saadasdadasdprocess_types/{id}/change_log':
+  '/process_types/{id}/change_log':
     get:
       tags:
         - ProcessType
@@ -7301,6 +8301,7 @@ components:
           type: string
     Condition-read:
       type: object
+      description: ''
       properties:
         id:
           readOnly: true
@@ -7320,6 +8321,7 @@ components:
           type: string
     Condition-write:
       type: object
+      description: ''
       properties:
         property:
           description: 'The property that is to be checked'
@@ -7332,6 +8334,7 @@ components:
           type: string
     'Condition:jsonld-read':
       type: object
+      description: ''
       properties:
         '@context':
           readOnly: true
@@ -7360,6 +8363,7 @@ components:
           type: string
     'Condition:jsonld-write':
       type: object
+      description: ''
       properties:
         '@context':
           readOnly: true
@@ -7393,6 +8397,10 @@ components:
         name:
           description: 'The name of this process'
           type: string
+        subtitle:
+          description: 'subtitle of the process type'
+          type: string
+          nullable: true
         description:
           description: 'An short description of this process'
           type: string
@@ -7402,7 +8410,7 @@ components:
           type: string
           nullable: true
         sourceOrganization:
-          description: 'A specific commonground organisation that is being reviewd, e.g a single product'
+          description: 'A specific commonground organisation from WRC'
           externalDocs:
             url: 'http://schema.org/url'
           type: string
@@ -7412,7 +8420,7 @@ components:
           items:
             $ref: '#/components/schemas/Stage-read'
         requestType:
-          description: 'The request that is used for this process'
+          description: 'The request type that is used for this process'
           externalDocs:
             url: 'http://schema.org/url'
           type: string
@@ -7426,7 +8434,7 @@ components:
             type: string
           nullable: true
         deposit:
-          description: 'The deposit requered for this process'
+          description: 'The deposit required for this process'
           type: string
           nullable: true
         depositCurrency:
@@ -7436,7 +8444,7 @@ components:
           type: string
           nullable: true
         depositPercentage:
-          description: 'The deposit percentage requered for this proces'
+          description: 'The deposit percentage required for this process'
           type: integer
           nullable: true
         instructionText:
@@ -7444,7 +8452,7 @@ components:
           type: string
           nullable: true
         showInstructionStage:
-          description: 'wheter or not to dispay the instruction stage of a procces'
+          description: 'whether or not to display the instruction stage of a process'
           type: boolean
           nullable: true
         submitText:
@@ -7452,7 +8460,7 @@ components:
           type: string
           nullable: true
         showSubmitStage:
-          description: 'wheter or not to dispay the submit stage of a procces'
+          description: 'whether or not to display the submit stage of a process'
           type: boolean
           nullable: true
         submittedText:
@@ -7460,11 +8468,11 @@ components:
           type: string
           nullable: true
         showSubmittedStage:
-          description: 'wheter or not to dispay the submitted stage of a procces'
+          description: 'whether or not to display the submitted stage of a process'
           type: boolean
           nullable: true
         showBackButton:
-          description: 'wheter or not to display the back button to processes'
+          description: 'whether or not to display the back button to processes'
           type: boolean
           nullable: true
         retractable:
@@ -7472,11 +8480,13 @@ components:
           type: boolean
           nullable: true
         properties:
+          description: 'The request properties that are used for this process'
           type: array
           items:
             type: string
           nullable: true
         documents:
+          description: 'The documents that are required for this proces'
           type: array
           items:
             type: string
@@ -7508,6 +8518,10 @@ components:
         name:
           description: 'The name of this process'
           type: string
+        subtitle:
+          description: 'subtitle of the process type'
+          type: string
+          nullable: true
         description:
           description: 'An short description of this process'
           type: string
@@ -7517,7 +8531,7 @@ components:
           type: string
           nullable: true
         sourceOrganization:
-          description: 'A specific commonground organisation that is being reviewd, e.g a single product'
+          description: 'A specific commonground organisation from WRC'
           externalDocs:
             url: 'http://schema.org/url'
           type: string
@@ -7527,7 +8541,7 @@ components:
           items:
             $ref: '#/components/schemas/Stage-write'
         requestType:
-          description: 'The request that is used for this process'
+          description: 'The request type that is used for this process'
           externalDocs:
             url: 'http://schema.org/url'
           type: string
@@ -7547,7 +8561,7 @@ components:
             type: string
           nullable: true
         deposit:
-          description: 'The deposit requered for this process'
+          description: 'The deposit required for this process'
           type: string
           nullable: true
         depositCurrency:
@@ -7557,7 +8571,7 @@ components:
           type: string
           nullable: true
         depositPercentage:
-          description: 'The deposit percentage requered for this proces'
+          description: 'The deposit percentage required for this process'
           type: integer
           nullable: true
         instructionText:
@@ -7565,7 +8579,7 @@ components:
           type: string
           nullable: true
         showInstructionStage:
-          description: 'wheter or not to dispay the instruction stage of a procces'
+          description: 'whether or not to display the instruction stage of a process'
           type: boolean
           nullable: true
         submitText:
@@ -7573,7 +8587,7 @@ components:
           type: string
           nullable: true
         showSubmitStage:
-          description: 'wheter or not to dispay the submit stage of a procces'
+          description: 'whether or not to display the submit stage of a process'
           type: boolean
           nullable: true
         submittedText:
@@ -7581,11 +8595,11 @@ components:
           type: string
           nullable: true
         showSubmittedStage:
-          description: 'wheter or not to dispay the submitted stage of a procces'
+          description: 'whether or not to display the submitted stage of a process'
           type: boolean
           nullable: true
         showBackButton:
-          description: 'wheter or not to display the back button to processes'
+          description: 'whether or not to display the back button to processes'
           type: boolean
           nullable: true
         retractable:
@@ -7593,11 +8607,13 @@ components:
           type: boolean
           nullable: true
         properties:
+          description: 'The request properties that are used for this process'
           type: array
           items:
             type: string
           nullable: true
         documents:
+          description: 'The documents that are required for this proces'
           type: array
           items:
             type: string
@@ -7629,6 +8645,10 @@ components:
         name:
           description: 'The name of this process'
           type: string
+        subtitle:
+          description: 'subtitle of the process type'
+          type: string
+          nullable: true
         description:
           description: 'An short description of this process'
           type: string
@@ -7638,7 +8658,7 @@ components:
           type: string
           nullable: true
         sourceOrganization:
-          description: 'A specific commonground organisation that is being reviewd, e.g a single product'
+          description: 'A specific commonground organisation from WRC'
           externalDocs:
             url: 'http://schema.org/url'
           type: string
@@ -7648,7 +8668,7 @@ components:
           items:
             $ref: '#/components/schemas/Stage:jsonld-read'
         requestType:
-          description: 'The request that is used for this process'
+          description: 'The request type that is used for this process'
           externalDocs:
             url: 'http://schema.org/url'
           type: string
@@ -7662,7 +8682,7 @@ components:
             type: string
           nullable: true
         deposit:
-          description: 'The deposit requered for this process'
+          description: 'The deposit required for this process'
           type: string
           nullable: true
         depositCurrency:
@@ -7672,7 +8692,7 @@ components:
           type: string
           nullable: true
         depositPercentage:
-          description: 'The deposit percentage requered for this proces'
+          description: 'The deposit percentage required for this process'
           type: integer
           nullable: true
         instructionText:
@@ -7680,7 +8700,7 @@ components:
           type: string
           nullable: true
         showInstructionStage:
-          description: 'wheter or not to dispay the instruction stage of a procces'
+          description: 'whether or not to display the instruction stage of a process'
           type: boolean
           nullable: true
         submitText:
@@ -7688,7 +8708,7 @@ components:
           type: string
           nullable: true
         showSubmitStage:
-          description: 'wheter or not to dispay the submit stage of a procces'
+          description: 'whether or not to display the submit stage of a process'
           type: boolean
           nullable: true
         submittedText:
@@ -7696,11 +8716,11 @@ components:
           type: string
           nullable: true
         showSubmittedStage:
-          description: 'wheter or not to dispay the submitted stage of a procces'
+          description: 'whether or not to display the submitted stage of a process'
           type: boolean
           nullable: true
         showBackButton:
-          description: 'wheter or not to display the back button to processes'
+          description: 'whether or not to display the back button to processes'
           type: boolean
           nullable: true
         retractable:
@@ -7708,11 +8728,13 @@ components:
           type: boolean
           nullable: true
         properties:
+          description: 'The request properties that are used for this process'
           type: array
           items:
             type: string
           nullable: true
         documents:
+          description: 'The documents that are required for this proces'
           type: array
           items:
             type: string
@@ -7753,6 +8775,10 @@ components:
         name:
           description: 'The name of this process'
           type: string
+        subtitle:
+          description: 'subtitle of the process type'
+          type: string
+          nullable: true
         description:
           description: 'An short description of this process'
           type: string
@@ -7762,7 +8788,7 @@ components:
           type: string
           nullable: true
         sourceOrganization:
-          description: 'A specific commonground organisation that is being reviewd, e.g a single product'
+          description: 'A specific commonground organisation from WRC'
           externalDocs:
             url: 'http://schema.org/url'
           type: string
@@ -7772,7 +8798,7 @@ components:
           items:
             $ref: '#/components/schemas/Stage:jsonld-write'
         requestType:
-          description: 'The request that is used for this process'
+          description: 'The request type that is used for this process'
           externalDocs:
             url: 'http://schema.org/url'
           type: string
@@ -7792,7 +8818,7 @@ components:
             type: string
           nullable: true
         deposit:
-          description: 'The deposit requered for this process'
+          description: 'The deposit required for this process'
           type: string
           nullable: true
         depositCurrency:
@@ -7802,7 +8828,7 @@ components:
           type: string
           nullable: true
         depositPercentage:
-          description: 'The deposit percentage requered for this proces'
+          description: 'The deposit percentage required for this process'
           type: integer
           nullable: true
         instructionText:
@@ -7810,7 +8836,7 @@ components:
           type: string
           nullable: true
         showInstructionStage:
-          description: 'wheter or not to dispay the instruction stage of a procces'
+          description: 'whether or not to display the instruction stage of a process'
           type: boolean
           nullable: true
         submitText:
@@ -7818,7 +8844,7 @@ components:
           type: string
           nullable: true
         showSubmitStage:
-          description: 'wheter or not to dispay the submit stage of a procces'
+          description: 'whether or not to display the submit stage of a process'
           type: boolean
           nullable: true
         submittedText:
@@ -7826,11 +8852,11 @@ components:
           type: string
           nullable: true
         showSubmittedStage:
-          description: 'wheter or not to dispay the submitted stage of a procces'
+          description: 'whether or not to display the submitted stage of a process'
           type: boolean
           nullable: true
         showBackButton:
-          description: 'wheter or not to display the back button to processes'
+          description: 'whether or not to display the back button to processes'
           type: boolean
           nullable: true
         retractable:
@@ -7838,11 +8864,13 @@ components:
           type: boolean
           nullable: true
         properties:
+          description: 'The request properties that are used for this process'
           type: array
           items:
             type: string
           nullable: true
         documents:
+          description: 'The documents that are required for this proces'
           type: array
           items:
             type: string
@@ -7906,13 +8934,11 @@ components:
             $ref: '#/components/schemas/Condition-read'
       required:
         - name
-        - orderNumber
     Section-write:
       type: object
       description: ''
       required:
         - name
-        - orderNumber
       properties:
         name:
           description: 'the name of this Section'
@@ -8010,13 +9036,11 @@ components:
             $ref: '#/components/schemas/Condition:jsonld-read'
       required:
         - name
-        - orderNumber
     'Section:jsonld-write':
       type: object
       description: ''
       required:
         - name
-        - orderNumber
       properties:
         '@context':
           readOnly: true
@@ -8103,12 +9127,12 @@ components:
           nullable: true
         start:
           readOnly: true
-          description: 'Whether or not this proerty is the starting point of a process'
-          type: string
+          description: 'Whether or not this property is the starting point of a process'
+          type: boolean
         end:
           readOnly: true
-          description: 'Whether or not this proerty is the last point of a process'
-          type: string
+          description: 'Whether or not this property is the last point of a process'
+          type: boolean
         dateCreated:
           description: 'The moment this request was created'
           type: string
@@ -8132,21 +9156,28 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/Condition-read'
+        templates:
+          description: 'The templates linked to this stage'
+          type: array
+          items:
+            $ref: '#/components/schemas/Template-read'
       required:
         - name
         - process
-        - orderNumber
     Stage-write:
       type: object
       description: 'A single stage within a process.'
       required:
         - name
         - process
-        - orderNumber
       properties:
         name:
           description: 'The name of this stage'
           type: string
+        description:
+          description: 'An short description of this stage'
+          type: string
+          nullable: true
         icon:
           description: 'The icon of this property'
           type: string
@@ -8177,6 +9208,11 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/Condition-write'
+        templates:
+          description: 'The templates linked to this stage'
+          type: array
+          items:
+            $ref: '#/components/schemas/Template-write'
     'Stage:jsonld-read':
       type: object
       description: 'A single stage within a process.'
@@ -8230,12 +9266,12 @@ components:
           nullable: true
         start:
           readOnly: true
-          description: 'Whether or not this proerty is the starting point of a process'
-          type: string
+          description: 'Whether or not this property is the starting point of a process'
+          type: boolean
         end:
           readOnly: true
-          description: 'Whether or not this proerty is the last point of a process'
-          type: string
+          description: 'Whether or not this property is the last point of a process'
+          type: boolean
         dateCreated:
           description: 'The moment this request was created'
           type: string
@@ -8259,17 +9295,20 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/Condition:jsonld-read'
+        templates:
+          description: 'The templates linked to this stage'
+          type: array
+          items:
+            $ref: '#/components/schemas/Template:jsonld-read'
       required:
         - name
         - process
-        - orderNumber
     'Stage:jsonld-write':
       type: object
       description: 'A single stage within a process.'
       required:
         - name
         - process
-        - orderNumber
       properties:
         '@context':
           readOnly: true
@@ -8283,6 +9322,10 @@ components:
         name:
           description: 'The name of this stage'
           type: string
+        description:
+          description: 'An short description of this stage'
+          type: string
+          nullable: true
         icon:
           description: 'The icon of this property'
           type: string
@@ -8313,6 +9356,11 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/Condition:jsonld-write'
+        templates:
+          description: 'The templates linked to this stage'
+          type: array
+          items:
+            $ref: '#/components/schemas/Template:jsonld-write'
     Template-read:
       type: object
       description: ''
@@ -8337,9 +9385,10 @@ components:
             url: 'http://schema.org/url'
           type: string
         type:
-          description: 'Type of document you want to receive'
+          description: 'Type of document you want to receive. Options: "pdf", "word", "excel", "png"'
           type: string
         processType:
+          description: 'ProcessType this template belongs to'
           nullable: true
           anyOf:
             -
@@ -8352,9 +9401,7 @@ components:
           description: 'The audience this template is intended for'
           type: string
         stage:
-          description: 'what stage we want to show this template on'
-          externalDocs:
-            url: 'http://schema.org/url'
+          description: 'What stage you want to show this template on'
           type: string
           nullable: true
         dateCreated:
@@ -8371,8 +9418,6 @@ components:
         - name
         - uri
         - type
-        - status
-        - stage
     Template-write:
       type: object
       description: ''
@@ -8380,8 +9425,6 @@ components:
         - name
         - uri
         - type
-        - status
-        - stage
       properties:
         name:
           description: 'Name of the template'
@@ -8396,9 +9439,10 @@ components:
             url: 'http://schema.org/url'
           type: string
         type:
-          description: 'Type of document you want to receive'
+          description: 'Type of document you want to receive. Options: "pdf", "word", "excel", "png"'
           type: string
         processType:
+          description: 'ProcessType this template belongs to'
           nullable: true
           anyOf:
             -
@@ -8411,9 +9455,7 @@ components:
           description: 'The audience this template is intended for'
           type: string
         stage:
-          description: 'what stage we want to show this template on'
-          externalDocs:
-            url: 'http://schema.org/url'
+          description: 'What stage you want to show this template on'
           type: string
           nullable: true
     'Template:jsonld-read':
@@ -8449,9 +9491,10 @@ components:
             url: 'http://schema.org/url'
           type: string
         type:
-          description: 'Type of document you want to receive'
+          description: 'Type of document you want to receive. Options: "pdf", "word", "excel", "png"'
           type: string
         processType:
+          description: 'ProcessType this template belongs to'
           nullable: true
           anyOf:
             -
@@ -8464,9 +9507,7 @@ components:
           description: 'The audience this template is intended for'
           type: string
         stage:
-          description: 'what stage we want to show this template on'
-          externalDocs:
-            url: 'http://schema.org/url'
+          description: 'What stage you want to show this template on'
           type: string
           nullable: true
         dateCreated:
@@ -8483,8 +9524,6 @@ components:
         - name
         - uri
         - type
-        - status
-        - stage
     'Template:jsonld-write':
       type: object
       description: ''
@@ -8492,8 +9531,6 @@ components:
         - name
         - uri
         - type
-        - status
-        - stage
       properties:
         '@context':
           readOnly: true
@@ -8517,9 +9554,10 @@ components:
             url: 'http://schema.org/url'
           type: string
         type:
-          description: 'Type of document you want to receive'
+          description: 'Type of document you want to receive. Options: "pdf", "word", "excel", "png"'
           type: string
         processType:
+          description: 'ProcessType this template belongs to'
           nullable: true
           anyOf:
             -
@@ -8532,9 +9570,7 @@ components:
           description: 'The audience this template is intended for'
           type: string
         stage:
-          description: 'what stage we want to show this template on'
-          externalDocs:
-            url: 'http://schema.org/url'
+          description: 'What stage you want to show this template on'
           type: string
           nullable: true
     processType-read:
@@ -8551,6 +9587,10 @@ components:
         name:
           description: 'The name of this process'
           type: string
+        subtitle:
+          description: 'subtitle of the process type'
+          type: string
+          nullable: true
         description:
           description: 'An short description of this process'
           type: string
@@ -8560,7 +9600,7 @@ components:
           type: string
           nullable: true
         sourceOrganization:
-          description: 'A specific commonground organisation that is being reviewd, e.g a single product'
+          description: 'A specific commonground organisation from WRC'
           externalDocs:
             url: 'http://schema.org/url'
           type: string
@@ -8570,7 +9610,7 @@ components:
           items:
             $ref: '#/components/schemas/Stage-read'
         requestType:
-          description: 'The request that is used for this process'
+          description: 'The request type that is used for this process'
           externalDocs:
             url: 'http://schema.org/url'
           type: string
@@ -8584,7 +9624,7 @@ components:
             type: string
           nullable: true
         deposit:
-          description: 'The deposit requered for this process'
+          description: 'The deposit required for this process'
           type: string
           nullable: true
         depositCurrency:
@@ -8594,7 +9634,7 @@ components:
           type: string
           nullable: true
         depositPercentage:
-          description: 'The deposit percentage requered for this proces'
+          description: 'The deposit percentage required for this process'
           type: integer
           nullable: true
         instructionText:
@@ -8602,7 +9642,7 @@ components:
           type: string
           nullable: true
         showInstructionStage:
-          description: 'wheter or not to dispay the instruction stage of a procces'
+          description: 'whether or not to display the instruction stage of a process'
           type: boolean
           nullable: true
         submitText:
@@ -8610,7 +9650,7 @@ components:
           type: string
           nullable: true
         showSubmitStage:
-          description: 'wheter or not to dispay the submit stage of a procces'
+          description: 'whether or not to display the submit stage of a process'
           type: boolean
           nullable: true
         submittedText:
@@ -8618,11 +9658,11 @@ components:
           type: string
           nullable: true
         showSubmittedStage:
-          description: 'wheter or not to dispay the submitted stage of a procces'
+          description: 'whether or not to display the submitted stage of a process'
           type: boolean
           nullable: true
         showBackButton:
-          description: 'wheter or not to display the back button to processes'
+          description: 'whether or not to display the back button to processes'
           type: boolean
           nullable: true
         retractable:
@@ -8630,11 +9670,13 @@ components:
           type: boolean
           nullable: true
         properties:
+          description: 'The request properties that are used for this process'
           type: array
           items:
             type: string
           nullable: true
         documents:
+          description: 'The documents that are required for this proces'
           type: array
           items:
             type: string
@@ -8666,6 +9708,10 @@ components:
         name:
           description: 'The name of this process'
           type: string
+        subtitle:
+          description: 'subtitle of the process type'
+          type: string
+          nullable: true
         description:
           description: 'An short description of this process'
           type: string
@@ -8675,7 +9721,7 @@ components:
           type: string
           nullable: true
         sourceOrganization:
-          description: 'A specific commonground organisation that is being reviewd, e.g a single product'
+          description: 'A specific commonground organisation from WRC'
           externalDocs:
             url: 'http://schema.org/url'
           type: string
@@ -8685,7 +9731,7 @@ components:
           items:
             $ref: '#/components/schemas/Stage-write'
         requestType:
-          description: 'The request that is used for this process'
+          description: 'The request type that is used for this process'
           externalDocs:
             url: 'http://schema.org/url'
           type: string
@@ -8705,7 +9751,7 @@ components:
             type: string
           nullable: true
         deposit:
-          description: 'The deposit requered for this process'
+          description: 'The deposit required for this process'
           type: string
           nullable: true
         depositCurrency:
@@ -8715,7 +9761,7 @@ components:
           type: string
           nullable: true
         depositPercentage:
-          description: 'The deposit percentage requered for this proces'
+          description: 'The deposit percentage required for this process'
           type: integer
           nullable: true
         instructionText:
@@ -8723,7 +9769,7 @@ components:
           type: string
           nullable: true
         showInstructionStage:
-          description: 'wheter or not to dispay the instruction stage of a procces'
+          description: 'whether or not to display the instruction stage of a process'
           type: boolean
           nullable: true
         submitText:
@@ -8731,7 +9777,7 @@ components:
           type: string
           nullable: true
         showSubmitStage:
-          description: 'wheter or not to dispay the submit stage of a procces'
+          description: 'whether or not to display the submit stage of a process'
           type: boolean
           nullable: true
         submittedText:
@@ -8739,11 +9785,11 @@ components:
           type: string
           nullable: true
         showSubmittedStage:
-          description: 'wheter or not to dispay the submitted stage of a procces'
+          description: 'whether or not to display the submitted stage of a process'
           type: boolean
           nullable: true
         showBackButton:
-          description: 'wheter or not to display the back button to processes'
+          description: 'whether or not to display the back button to processes'
           type: boolean
           nullable: true
         retractable:
@@ -8751,11 +9797,13 @@ components:
           type: boolean
           nullable: true
         properties:
+          description: 'The request properties that are used for this process'
           type: array
           items:
             type: string
           nullable: true
         documents:
+          description: 'The documents that are required for this proces'
           type: array
           items:
             type: string
@@ -8787,6 +9835,10 @@ components:
         name:
           description: 'The name of this process'
           type: string
+        subtitle:
+          description: 'subtitle of the process type'
+          type: string
+          nullable: true
         description:
           description: 'An short description of this process'
           type: string
@@ -8796,7 +9848,7 @@ components:
           type: string
           nullable: true
         sourceOrganization:
-          description: 'A specific commonground organisation that is being reviewd, e.g a single product'
+          description: 'A specific commonground organisation from WRC'
           externalDocs:
             url: 'http://schema.org/url'
           type: string
@@ -8806,7 +9858,7 @@ components:
           items:
             $ref: '#/components/schemas/Stage:jsonld-read'
         requestType:
-          description: 'The request that is used for this process'
+          description: 'The request type that is used for this process'
           externalDocs:
             url: 'http://schema.org/url'
           type: string
@@ -8820,7 +9872,7 @@ components:
             type: string
           nullable: true
         deposit:
-          description: 'The deposit requered for this process'
+          description: 'The deposit required for this process'
           type: string
           nullable: true
         depositCurrency:
@@ -8830,7 +9882,7 @@ components:
           type: string
           nullable: true
         depositPercentage:
-          description: 'The deposit percentage requered for this proces'
+          description: 'The deposit percentage required for this process'
           type: integer
           nullable: true
         instructionText:
@@ -8838,7 +9890,7 @@ components:
           type: string
           nullable: true
         showInstructionStage:
-          description: 'wheter or not to dispay the instruction stage of a procces'
+          description: 'whether or not to display the instruction stage of a process'
           type: boolean
           nullable: true
         submitText:
@@ -8846,7 +9898,7 @@ components:
           type: string
           nullable: true
         showSubmitStage:
-          description: 'wheter or not to dispay the submit stage of a procces'
+          description: 'whether or not to display the submit stage of a process'
           type: boolean
           nullable: true
         submittedText:
@@ -8854,11 +9906,11 @@ components:
           type: string
           nullable: true
         showSubmittedStage:
-          description: 'wheter or not to dispay the submitted stage of a procces'
+          description: 'whether or not to display the submitted stage of a process'
           type: boolean
           nullable: true
         showBackButton:
-          description: 'wheter or not to display the back button to processes'
+          description: 'whether or not to display the back button to processes'
           type: boolean
           nullable: true
         retractable:
@@ -8866,11 +9918,13 @@ components:
           type: boolean
           nullable: true
         properties:
+          description: 'The request properties that are used for this process'
           type: array
           items:
             type: string
           nullable: true
         documents:
+          description: 'The documents that are required for this proces'
           type: array
           items:
             type: string
@@ -8911,6 +9965,10 @@ components:
         name:
           description: 'The name of this process'
           type: string
+        subtitle:
+          description: 'subtitle of the process type'
+          type: string
+          nullable: true
         description:
           description: 'An short description of this process'
           type: string
@@ -8920,7 +9978,7 @@ components:
           type: string
           nullable: true
         sourceOrganization:
-          description: 'A specific commonground organisation that is being reviewd, e.g a single product'
+          description: 'A specific commonground organisation from WRC'
           externalDocs:
             url: 'http://schema.org/url'
           type: string
@@ -8930,7 +9988,7 @@ components:
           items:
             $ref: '#/components/schemas/Stage:jsonld-write'
         requestType:
-          description: 'The request that is used for this process'
+          description: 'The request type that is used for this process'
           externalDocs:
             url: 'http://schema.org/url'
           type: string
@@ -8950,7 +10008,7 @@ components:
             type: string
           nullable: true
         deposit:
-          description: 'The deposit requered for this process'
+          description: 'The deposit required for this process'
           type: string
           nullable: true
         depositCurrency:
@@ -8960,7 +10018,7 @@ components:
           type: string
           nullable: true
         depositPercentage:
-          description: 'The deposit percentage requered for this proces'
+          description: 'The deposit percentage required for this process'
           type: integer
           nullable: true
         instructionText:
@@ -8968,7 +10026,7 @@ components:
           type: string
           nullable: true
         showInstructionStage:
-          description: 'wheter or not to dispay the instruction stage of a procces'
+          description: 'whether or not to display the instruction stage of a process'
           type: boolean
           nullable: true
         submitText:
@@ -8976,7 +10034,7 @@ components:
           type: string
           nullable: true
         showSubmitStage:
-          description: 'wheter or not to dispay the submit stage of a procces'
+          description: 'whether or not to display the submit stage of a process'
           type: boolean
           nullable: true
         submittedText:
@@ -8984,11 +10042,11 @@ components:
           type: string
           nullable: true
         showSubmittedStage:
-          description: 'wheter or not to dispay the submitted stage of a procces'
+          description: 'whether or not to display the submitted stage of a process'
           type: boolean
           nullable: true
         showBackButton:
-          description: 'wheter or not to display the back button to processes'
+          description: 'whether or not to display the back button to processes'
           type: boolean
           nullable: true
         retractable:
@@ -8996,11 +10054,13 @@ components:
           type: boolean
           nullable: true
         properties:
+          description: 'The request properties that are used for this process'
           type: array
           items:
             type: string
           nullable: true
         documents:
+          description: 'The documents that are required for this proces'
           type: array
           items:
             type: string
@@ -9010,6 +10070,35 @@ components:
           items:
             $ref: '#/components/schemas/Template:jsonld-write'
 definitions:
+  Condition-read:
+    properties:
+      id:
+        description: 'The UUID identifier of this resource'
+        type: string
+        example: e2984465-190a-4562-829e-a8cca81aa35d
+        format: uuid
+      property:
+        description: 'The property that is to be checked'
+        type: string
+      operation:
+        description: 'The operation to be checked'
+        type: string
+      value:
+        description: 'The value the property should have'
+        type: string
+    required: []
+  Condition-write:
+    properties:
+      property:
+        description: 'The property that is to be checked'
+        type: string
+      operation:
+        description: 'The operation to be checked'
+        type: string
+      value:
+        description: 'The value the property should have'
+        type: string
+    required: []
   ProcessType-read:
     properties:
       id:
@@ -9022,6 +10111,11 @@ definitions:
         type: string
         example: 'My process'
         maxLength: 255
+      subtitle:
+        description: 'subtitle of the process type'
+        type: string
+        example: 'This is the best process ever'
+        maxLength: 255
       description:
         description: 'An short description of this process'
         type: string
@@ -9030,14 +10124,14 @@ definitions:
       icon:
         description: 'The icon of this property'
         type: string
-        example: 'My Property'
+        example: 'fas fa-house'
       sourceOrganization:
-        description: 'A specific commonground organisation that is being reviewd, e.g a single product'
+        description: 'A specific commonground organisation from WRC'
         type: string
         example: 'https://wrc.zaakonline.nl/organisations/16353702-4614-42ff-92af-7dd11c8eef9f'
         format: url
       requestType:
-        description: 'The request that is used for this process'
+        description: 'The request type that is used for this process'
         type: string
         example: 'http://rtc.zaakonline.nl/9bd169ef-bc8c-4422-86ce-a0e7679ab67a'
         format: url
@@ -9051,7 +10145,7 @@ definitions:
         description: 'The audience this processType is intended for'
         type: string
       deposit:
-        description: 'The deposit requered for this process'
+        description: 'The deposit required for this process'
         type: string
         example: '50.00'
       depositCurrency:
@@ -9059,7 +10153,7 @@ definitions:
         type: string
         example: EUR
       depositPercentage:
-        description: 'The deposit percentage requered for this proces'
+        description: 'The deposit percentage required for this process'
         type: int
         example: '25'
       instructionText:
@@ -9067,7 +10161,7 @@ definitions:
         type: string
         example: 'Dit proces is bedoelt om X te doen. Hier kun je meer vinden over X. etc.'
       showInstructionStage:
-        description: 'wheter or not to dispay the instruction stage of a procces'
+        description: 'whether or not to display the instruction stage of a process'
         type: bool
         example: 'false'
       submitText:
@@ -9075,7 +10169,7 @@ definitions:
         type: string
         example: 'Na het indienen van dit verzoek zal uw verzoek binnen een week afgehandeld worden.'
       showSubmitStage:
-        description: 'wheter or not to dispay the submit stage of a procces'
+        description: 'whether or not to display the submit stage of a process'
         type: bool
         example: 'false'
       submittedText:
@@ -9083,19 +10177,23 @@ definitions:
         type: string
         example: 'Uw verzoek zal binnen een week afgehandeld worden.'
       showSubmittedStage:
-        description: 'wheter or not to dispay the submitted stage of a procces'
+        description: 'whether or not to display the submitted stage of a process'
         type: bool
         example: 'false'
       showBackButton:
-        description: 'wheter or not to display the back button to processes'
+        description: 'whether or not to display the back button to processes'
         type: bool
         example: 'false'
       retractable:
         description: 'whether or not to requests from this process are retractable'
         type: bool
         example: 'false'
-      properties: []
-      documents: []
+      properties:
+        description: 'The request properties that are used for this process'
+        type: 'array|string[]'
+      documents:
+        description: 'The documents that are required for this proces'
+        type: 'array|string[]'
       dateCreated:
         description: 'The moment this request was created'
         type: \DateTime
@@ -9116,6 +10214,11 @@ definitions:
         type: string
         example: 'My process'
         maxLength: 255
+      subtitle:
+        description: 'subtitle of the process type'
+        type: string
+        example: 'This is the best process ever'
+        maxLength: 255
       description:
         description: 'An short description of this process'
         type: string
@@ -9124,14 +10227,14 @@ definitions:
       icon:
         description: 'The icon of this property'
         type: string
-        example: 'My Property'
+        example: 'fas fa-house'
       sourceOrganization:
-        description: 'A specific commonground organisation that is being reviewd, e.g a single product'
+        description: 'A specific commonground organisation from WRC'
         type: string
         example: 'https://wrc.zaakonline.nl/organisations/16353702-4614-42ff-92af-7dd11c8eef9f'
         format: url
       requestType:
-        description: 'The request that is used for this process'
+        description: 'The request type that is used for this process'
         type: string
         example: 'http://rtc.zaakonline.nl/9bd169ef-bc8c-4422-86ce-a0e7679ab67a'
         format: url
@@ -9145,7 +10248,7 @@ definitions:
         description: 'The audience this processType is intended for'
         type: string
       deposit:
-        description: 'The deposit requered for this process'
+        description: 'The deposit required for this process'
         type: string
         example: '50.00'
       depositCurrency:
@@ -9153,7 +10256,7 @@ definitions:
         type: string
         example: EUR
       depositPercentage:
-        description: 'The deposit percentage requered for this proces'
+        description: 'The deposit percentage required for this process'
         type: int
         example: '25'
       instructionText:
@@ -9161,7 +10264,7 @@ definitions:
         type: string
         example: 'Dit proces is bedoelt om X te doen. Hier kun je meer vinden over X. etc.'
       showInstructionStage:
-        description: 'wheter or not to dispay the instruction stage of a procces'
+        description: 'whether or not to display the instruction stage of a process'
         type: bool
         example: 'false'
       submitText:
@@ -9169,7 +10272,7 @@ definitions:
         type: string
         example: 'Na het indienen van dit verzoek zal uw verzoek binnen een week afgehandeld worden.'
       showSubmitStage:
-        description: 'wheter or not to dispay the submit stage of a procces'
+        description: 'whether or not to display the submit stage of a process'
         type: bool
         example: 'false'
       submittedText:
@@ -9177,19 +10280,23 @@ definitions:
         type: string
         example: 'Uw verzoek zal binnen een week afgehandeld worden.'
       showSubmittedStage:
-        description: 'wheter or not to dispay the submitted stage of a procces'
+        description: 'whether or not to display the submitted stage of a process'
         type: bool
         example: 'false'
       showBackButton:
-        description: 'wheter or not to display the back button to processes'
+        description: 'whether or not to display the back button to processes'
         type: bool
         example: 'false'
       retractable:
         description: 'whether or not to requests from this process are retractable'
         type: bool
         example: 'false'
-      properties: []
-      documents: []
+      properties:
+        description: 'The request properties that are used for this process'
+        type: 'array|string[]'
+      documents:
+        description: 'The documents that are required for this proces'
+        type: 'array|string[]'
       stages:
         description: 'The stages of this process'
         type: array
@@ -9237,7 +10344,6 @@ definitions:
         type: '\ArrayCollection|\Condition[]'
     required:
       - name
-      - orderNumber
   Section-write:
     properties:
       name:
@@ -9264,7 +10370,6 @@ definitions:
         type: '\ArrayCollection|\Condition[]'
     required:
       - name
-      - orderNumber
   Stage-read:
     properties:
       id:
@@ -9285,7 +10390,7 @@ definitions:
       icon:
         description: 'The icon of this property'
         type: string
-        example: 'My Property'
+        example: 'fas fa-home'
       options:
         description: 'The options or configuration for this stage'
         type: object
@@ -9318,9 +10423,11 @@ definitions:
       conditions:
         description: 'The conditions that have to be met for showing this section'
         type: '\ArrayCollection|\Condition[]'
+      templates:
+        description: 'The templates linked to this stage'
+        type: '\ArrayCollection|\Template[]'
     required:
       - name
-      - orderNumber
   Stage-write:
     properties:
       name:
@@ -9328,10 +10435,15 @@ definitions:
         type: string
         example: 'Stage 1'
         maxLength: 255
+      description:
+        description: 'An short description of this stage'
+        type: string
+        example: 'Please enter your email adres'
+        maxLength: 2550
       icon:
         description: 'The icon of this property'
         type: string
-        example: 'My Property'
+        example: 'fas fa-home'
       options:
         description: 'The options or configuration for this stage'
         type: object
@@ -9353,9 +10465,11 @@ definitions:
       conditions:
         description: 'The conditions that have to be met for showing this section'
         type: '\ArrayCollection|\Condition[]'
+      templates:
+        description: 'The templates linked to this stage'
+        type: '\ArrayCollection|\Template[]'
     required:
       - name
-      - orderNumber
   Template-read:
     properties:
       id:
@@ -9380,7 +10494,7 @@ definitions:
         maxLength: 255
         format: url
       type:
-        description: 'Type of document you want to receive'
+        description: 'Type of document you want to receive. Options: "pdf", "word", "excel", "png"'
         type: string
         example: pdf
         maxLength: 255
@@ -9393,24 +10507,21 @@ definitions:
         description: 'The audience this template is intended for'
         type: string
       stage:
-        description: 'what stage we want to show this template on'
-        type: string
-        example: 'Person info Document'
-        format: url
-        maxLength: 255
+        description: 'What stage you want to show this template on'
+        type: array
       dateCreated:
         description: 'The moment this request was created'
         type: \DateTime
       dateModified:
         description: 'The moment this request last Modified'
         type: \DateTime
-      processType: []
+      processType:
+        description: 'ProcessType this template belongs to'
+        type: array
     required:
       - name
       - uri
       - type
-      - status
-      - stage
   Template-write:
     properties:
       name:
@@ -9430,7 +10541,7 @@ definitions:
         maxLength: 255
         format: url
       type:
-        description: 'Type of document you want to receive'
+        description: 'Type of document you want to receive. Options: "pdf", "word", "excel", "png"'
         type: string
         example: pdf
         maxLength: 255
@@ -9443,18 +10554,15 @@ definitions:
         description: 'The audience this template is intended for'
         type: string
       stage:
-        description: 'what stage we want to show this template on'
-        type: string
-        example: 'Person info Document'
-        format: url
-        maxLength: 255
-      processType: []
+        description: 'What stage you want to show this template on'
+        type: array
+      processType:
+        description: 'ProcessType this template belongs to'
+        type: array
     required:
       - name
       - uri
       - type
-      - status
-      - stage
   AuditTrail-read:
     properties:
       id:
@@ -9559,12 +10667,12 @@ definitions:
         description: 'The moment this request was created'
         type: string
         format: date-time
-        example: '2020-12-09 14:07:56'
+        example: '2020-12-29 10:51:36'
       dateModified:
         description: 'The moment this request last Modified'
         type: string
         format: date-time
-        example: '2020-12-09 14:07:56'
+        example: '2020-12-29 10:51:36'
     required: []
   AuditTrail-write:
     properties:
@@ -9612,12 +10720,12 @@ definitions:
         description: 'The moment this request was created'
         type: string
         format: date-time
-        example: '2020-12-09 14:07:56'
+        example: '2020-12-29 10:51:36'
       dateModified:
         description: 'The moment this request last Modified'
         type: string
         format: date-time
-        example: '2020-12-09 14:07:56'
+        example: '2020-12-29 10:51:36'
     required: []
   ChangeLog-write:
     properties:
@@ -9628,6 +10736,12 @@ definitions:
         maxLength: 2555
     required: []
 tags:
+  -
+    name: Condition
+    description: |
+      
+      
+      
   -
     name: ProcessType
     description: |

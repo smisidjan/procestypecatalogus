@@ -104,7 +104,7 @@ class Stage
      * @Assert\Length(
      *      max = 2550
      * )
-     * @Groups({"read"})
+     * @Groups({"read", "write"})
      * @ORM\Column(type="text", nullable=true)
      */
     private $description;
@@ -112,7 +112,7 @@ class Stage
     /**
      * @var string The icon of this property
      *
-     * @example My Property
+     * @example fas fa-home
      *
      * @Gedmo\Versioned
      * @Groups({"read", "write"})
@@ -177,7 +177,7 @@ class Stage
     private $next;
 
     /**
-     * @param Stage $previous The previues stage from this one
+     * @param Stage $previous The previous stage from this one
      *
      * @MaxDepth(1)
      * @Groups({"read"})
@@ -205,7 +205,7 @@ class Stage
     private $slug;
 
     /**
-     * @var string Whether or not this proerty is the starting point of a process
+     * @var bool Whether or not this property is the starting point of a process
      *
      * @example true
      *
@@ -214,7 +214,7 @@ class Stage
     private $start = false;
 
     /**
-     * @var string Whether or not this proerty is the last point of a process
+     * @var bool Whether or not this property is the last point of a process
      *
      * @example true
      *
@@ -253,7 +253,6 @@ class Stage
     /**
      * @var int The place in the order where the stage should be rendered
      *
-     * @Assert\NotNull
      * @Groups({"read","write"})
      * @ORM\Column(type="integer")
      */
@@ -268,11 +267,21 @@ class Stage
      */
     private $conditions;
 
+    /**
+     * @var ArrayCollection|Template[] The templates linked to this stage
+     *
+     * @Groups({"read","write"})
+     * @MaxDepth(1)
+     * @ORM\OneToMany(targetEntity=Template::class, mappedBy="stage", cascade={"persist","remove"})
+     */
+    private $templates;
+
     public function __construct()
     {
         $this->documents = new ArrayCollection();
         $this->sections = new ArrayCollection();
         $this->conditions = new ArrayCollection();
+        $this->templates = new ArrayCollection();
     }
 
     public function getId()
@@ -498,7 +507,7 @@ class Stage
         return $this->getSections()->matching($criteria)->last();
     }
 
-    public function getNextSection($stage)
+    public function getNextSection($section)
     {
         $criteria = Criteria::create()
             ->andWhere(Criteria::expr()->gt('orderNumber', $section->getOrderNumber()));
@@ -562,6 +571,37 @@ class Stage
             // set the owning side to null (unless already changed)
             if ($condition->getStage() === $this) {
                 $condition->setStage(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Template[]
+     */
+    public function getTemplates(): Collection
+    {
+        return $this->templates;
+    }
+
+    public function addTemplate(Template $template): self
+    {
+        if (!$this->templates->contains($template)) {
+            $this->templates[] = $template;
+            $template->setStage($this);
+        }
+
+        return $this;
+    }
+
+    public function removeTemplate(Template $template): self
+    {
+        if ($this->templates->contains($template)) {
+            $this->templates->removeElement($template);
+            // set the owning side to null (unless already changed)
+            if ($template->getStage() === $this) {
+                $template->setStage(null);
             }
         }
 

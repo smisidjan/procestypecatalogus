@@ -9,6 +9,7 @@ use ApiPlatform\Core\Bridge\Doctrine\Orm\Filter\DateFilter;
 use ApiPlatform\Core\Bridge\Doctrine\Orm\Filter\OrderFilter;
 use ApiPlatform\Core\Bridge\Doctrine\Orm\Filter\SearchFilter;
 use App\Repository\TemplateRepository;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Gedmo\Mapping\Annotation as Gedmo;
 use Ramsey\Uuid\Uuid;
@@ -114,7 +115,7 @@ class Template
     private $uri;
 
     /**
-     * @var string Type of document you want to receive
+     * @var string Type of document you want to receive. Options: "pdf", "word", "excel", "png"
      *
      * @example pdf
      *
@@ -130,6 +131,8 @@ class Template
     private $type;
 
     /**
+     * @var array ProcessType this template belongs to
+     *
      * @Groups({"read","write"})
      * @ORM\ManyToOne(targetEntity="App\Entity\processType", inversedBy="templates")
      * @MaxDepth(1)
@@ -142,7 +145,6 @@ class Template
      * @example submitted
      *
      * @Gedmo\Versioned
-     * @Assert\NotNull
      * @Assert\Length(
      *     max = 255
      * )
@@ -160,20 +162,13 @@ class Template
     private $audience;
 
     /**
-     * @var string what stage we want to show this template on
+     * @var Stage What stage you want to show this template on
      *
-     * @example Person info Document
-     *
-     * @Gedmo\Versioned
-     * @Assert\Url
-     * @Assert\NotNull
-     * @Assert\Length(
-     *     max = 255
-     * )
      * @Groups({"read","write"})
-     * @ORM\Column(type="string", length=255, nullable=true)
+     * @ORM\ManyToOne(targetEntity="App\Entity\Stage", inversedBy="templates")
+     * @MaxDepth(1)
      */
-    private $stage;
+    private ?Stage $stage;
 
     /**
      * @var DateTime The moment this request was created
@@ -270,12 +265,12 @@ class Template
         return $this;
     }
 
-    public function getStage(): ?string
+    public function getStage(): ?Stage
     {
         return $this->stage;
     }
 
-    public function setStage(string $stage): self
+    public function setStage(?Stage $stage): self
     {
         $this->stage = $stage;
 

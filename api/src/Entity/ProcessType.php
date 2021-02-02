@@ -38,7 +38,7 @@ use Symfony\Component\Validator\Constraints as Assert;
  *          "put",
  *          "delete",
  *          "get_change_logs"={
- *              "path"="/process_typesprocess_typesprocess_typesprocess_typesprocess_typesprocess_types saadasdadasdprocess_types/{id}/change_log",
+ *              "path"="/process_types/{id}/change_log",
  *              "method"="get",
  *              "swagger_context" = {
  *                  "summary"="Changelogs",
@@ -95,16 +95,16 @@ class ProcessType
     private $name;
 
     /**
-     * @var string The subtitle of this process
-     * @example"An example process
+     * @var string subtitle of the process type
+     *
+     * @example This is the best process ever
      *
      * @Gedmo\Versioned
-     * @Assert\NotNull
      * @Assert\Length(
      *      max = 255
      * )
      * @Groups({"read", "write"})
-     * @ORM\Column(type="string", length=255)
+     * @ORM\Column(type="text", nullable=true)
      */
     private $subtitle;
 
@@ -125,7 +125,7 @@ class ProcessType
     /**
      * @var string The icon of this property
      *
-     * @example My Property
+     * @example fas fa-house
      *
      * @Gedmo\Versioned
      * @Groups({"read", "write"})
@@ -134,7 +134,7 @@ class ProcessType
     private $icon;
 
     /**
-     * @var string A specific commonground organisation that is being reviewd, e.g a single product
+     * @var string A specific commonground organisation from WRC
      *
      * @example https://wrc.zaakonline.nl/organisations/16353702-4614-42ff-92af-7dd11c8eef9f
      *
@@ -158,7 +158,7 @@ class ProcessType
     private $stages;
 
     /**
-     * @var string The request that is used for this process
+     * @var string The request type that is used for this process
      *
      * @example http://rtc.zaakonline.nl/9bd169ef-bc8c-4422-86ce-a0e7679ab67a
      *
@@ -182,7 +182,7 @@ class ProcessType
     private $extends;
 
     /**
-     * @var object The processs that extend this process
+     * @var object The process that extend this process
      *
      * @MaxDepth(1)
      * @ORM\OneToMany(targetEntity="App\Entity\ProcessType", mappedBy="extends")
@@ -214,7 +214,7 @@ class ProcessType
     private $audience;
 
     /**
-     * @var string The deposit requered for this process
+     * @var string The deposit required for this process
      *
      * @example 50.00
      *
@@ -237,7 +237,7 @@ class ProcessType
     private $depositCurrency;
 
     /**
-     * @var int The deposit percentage requered for this proces
+     * @var int The deposit percentage required for this process
      *
      * @example 25
      *
@@ -259,7 +259,7 @@ class ProcessType
     private $instructionText;
 
     /**
-     * @var bool wheter or not to dispay the instruction stage of a procces
+     * @var bool whether or not to display the instruction stage of a process
      *
      * @example false
      *
@@ -281,7 +281,7 @@ class ProcessType
     private $submitText;
 
     /**
-     * @var bool wheter or not to dispay the submit stage of a procces
+     * @var bool whether or not to display the submit stage of a process
      *
      * @example false
      *
@@ -303,7 +303,7 @@ class ProcessType
     private $submittedText;
 
     /**
-     * @var bool wheter or not to dispay the submitted stage of a procces
+     * @var bool whether or not to display the submitted stage of a process
      *
      * @example false
      *
@@ -314,7 +314,7 @@ class ProcessType
     private $showSubmittedStage = true;
 
     /**
-     * @var bool wheter or not to display the back button to processes
+     * @var bool whether or not to display the back button to processes
      *
      * @example false
      *
@@ -336,7 +336,7 @@ class ProcessType
     private $retractable = true;
 
     /**
-     * @param array|string[] The request properties that are used for this process
+     * @var array|string[] The request properties that are used for this process
      *
      * @Gedmo\Versioned
      * @Groups({"read", "write"})
@@ -345,7 +345,7 @@ class ProcessType
     private $properties = [];
 
     /**
-     * @param array|string[] The documents that are required for this proces
+     * @var array|string[] The documents that are required for this proces
      *
      * @Gedmo\Versioned
      * @Groups({"read", "write"})
@@ -437,7 +437,7 @@ class ProcessType
         return $this->subtitle;
     }
 
-    public function setSubtitle(string $subtitle): self
+    public function setSubtitle(?string $subtitle): self
     {
         $this->subtitle = $subtitle;
 
