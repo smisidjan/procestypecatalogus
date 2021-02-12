@@ -1,22 +1,90 @@
-Process Type Catalogus / PTC
-------
-De Proces Type Catalogus beschrijft de gebruikersreis, waarmee een verzoek tot stand komt. Of om het simpel te zeggen het neemt een verzoektype en deelt deze op in stappen en secties. Hierbij moet het eindresultaat van een proces een geldig verzoek zijn. Het is dus mogelijk om properties vanuit een verzoek niet uit te vragen (ofwel niet op te nemen in een stap of sectie),  mits deze property vanuit het verzoek type niet verplicht is.
+# Proces Type Catalogus
 
-Een verzoektype kan in principe door meerdere procestypen worden gebruikt, sterker nog de wens hiervoor vormt de basis voor het uit elkaar trekken van deze twee componenten. Een denkbeeldig voorbeeld hiervan zou zijn, als een gemeente aanvullende vragen heeft bij een verhuizing vanuit het buitenland. Deze aanvullende vragen zouden dan als niet verplicht kunnen worden opgenomen in het verzoektype. Vervolgens zouden het twee processen kunnen zijn: één voor verhuizingen binnen Nederland, waarbij de aanvullende vragen niet zijn opgenomen en één voor verhuizing van buiten Nederland waarbij deze vragen we worden gesteld. 
+Description
+----
+The Process Type Catalog describes the user journey through which a request is made. Or to put it simply, it takes a request type and divides it into steps and sections. The end result of a process must be a valid request. It is therefore possible not to request properties from a request (or not to be included in a step or section), provided this property is not required from the request type.
 
-Het is bijvoorbeeld ook goed denkbaar dat verschillende kanalen gebruik maken van verschillende processen die tot hetzelfde verzoek leiden (bijvoorbeeld een webformulier en chatbot). 
+A request type can in principle be used by several process types, in fact the desire for this forms the basis for separating these two components. An imaginary example of this would be if a municipality has additional questions when moving from abroad. These additional questions could then be included as not mandatory in the request type. Subsequently, it could be two processes: one for relocations within the Netherlands, where the additional questions are not included, and one for relocations from outside the Netherlands where we are asked these questions.
 
-In deze context is het wel belangrijk om te constateren dat de Proces Type Catalogus een gebruikers flow beschrijft voor het tot stand komen van een geldig verzoek, maar dat de Proces Type Catalogus op zich niet dwingend is.
+For example, it is also quite conceivable that different channels use different processes that lead to the same request (for example a web form and chatbot).
 
-Sterker nog het [VTC](https://github.com/ConductionNL/verzoektypecatalogus) en [VRC](https://github.com/ConductionNL/verzoekregistratiecomponent) ondersteunen het opstarten van (bijvoorbeeld Camunda) BPMN processen bij status wijzigingen, zoals het opstarten van een verzoek. Dat betekent dat een BPMN-engine ook in staat is om aan de hand van een verzoektype een verzoek te maken en te valideren, mét of zonder menselijke tussenkomst.
-## Credits
-This component was created by conduction (https://www.conduction.nl/team) for the municipality of ['s-Hertogenbosch](https://www.s-hertogenbosch.nl/). But based  on the [common ground proto component](https://github.com/ConductionNL/commonground-component). For more information on building your own common ground component please read the [tutorial](https://github.com/ConductionNL/commonground-component/blob/master/TUTORIAL.md).  
+In this context it is important to note that the Process Type Catalog describes a user flow for the establishment of a valid request, but that the Process Type Catalog in itself is not mandatory.
 
-[!['s-Hertogenbosch](https://raw.githubusercontent.com/ConductionNL/processes/master/resources/logo-s-hertogenbosch.svg?sanitize=true "'s-Hertogenbosch")](https://www.s-hertogenbosch.nl/)
-[![Conduction](https://raw.githubusercontent.com/ConductionNL/processes/master/resources/logo-conduction.svg?sanitize=true "Conduction")](https://www.conduction.nl/)
+Additional Information
+----
 
-## License
-Copyright &copy; [Gemeente 's-Hertogenbosch](https://www.s-hertogenbosch.nl/) 2019
+- [Contributing](CONTRIBUTING.md)
+- [ChangeLogs](CHANGELOG.md)
+- [RoadMap](ROADMAP.md)
+- [Security](SECURITY.md)
+- [Licence](LICENSE.md)
 
-[Licensed under the EUPL](LICENCE.md)
 
+Installation
+----
+We differentiate between two way's of installing this component, a local installation as part of the provided developers toolkit or an [helm](https://helm.sh/) installation on an development or production environment.
+
+#### Local installation
+First make sure you have [docker desktop](https://www.docker.com/products/docker-desktop) running on your computer. Then clone the repository to a directory on your local machine through a [git command](https://github.com/git-guides/git-clone) or [git kraken](https://www.gitkraken.com) (ui for git). If successful you can now navigate to the directory of your cloned repository in a command prompt and execute docker-compose up.
+```CLI
+$ docker-compose up
+```
+This will build the docker image and run the used containers and when seeing the log from the php container: "NOTICE: ready to handle connections", u are ready to view the documentation at localhost on your preferred browser.
+
+#### Instalation on Kubernetes or Haven
+As a haven compliant commonground component this component is installable on kubernetes trough helm. The helm files can be found in the api/helm folder. For installing this component trough helm simply open your (still) favorite command line interface and run
+```CLI
+$ helm install [name] ./api/helm --kubeconfig kubeconfig.yaml --namespace [name] --set settings.env=prod,settings.debug=0,settings.cache=1
+```
+For an in depth installation guide you can refer to the [installation guide](INSTALLATION.md), it also contains a short tutorial on getting your cluster ready to expose your installation to the world
+
+Standards
+----
+
+This component adheres to international, national and local standards (in that order), notable standards are:
+
+- Any applicable [W3C](https://www.w3.org) standard, including but not limited to [rest](https://www.w3.org/2001/sw/wiki/REST), [JSON-LD](https://www.w3.org/TR/json-ld11/) and [WEBSUB](https://www.w3.org/TR/websub/)
+- Any applicable [schema](https://schema.org/) standard
+- [OpenAPI Specification](https://github.com/OAI/OpenAPI-Specification/blob/master/versions/3.0.0.md)
+- [GAIA-X](https://www.data-infrastructure.eu/GAIAX/Navigation/EN/Home/home.html)
+- [Publiccode](https://docs.italia.it/italia/developers-italia/publiccodeyml-en/en/master/index.html), see the [publiccode](api/public/schema/publiccode.yaml) for further information
+- [Forum Stanaardisatie](https://www.forumstandaardisatie.nl/open-standaarden)
+- [NL API Strategie](https://docs.geostandaarden.nl/api/API-Strategie/)
+- [Common Ground Realisatieprincipes](https://componentencatalogus.commonground.nl/20190130_-_Common_Ground_-_Realisatieprincipes.pdf)
+- [Haven](https://haven.commonground.nl/docs/de-standaard)
+- [NLX](https://docs.nlx.io/understanding-the-basics/introduction)
+- [Standard for Public Code](https://standard.publiccode.net/), see the [compliancy scan](publiccode.md) for further information.
+
+This component is based on the following [schema.org](https://schema.org) sources:
+- [Address](https://schema.org/PostalAddress)
+- [Person](https://schema.org/Person)
+
+Developers toolkit and technical information
+----
+You can find the data model, OAS documentation and other helpfull developers material like a  postman collection under api/public/schema, development support is provided trough the [samenorganiseren slack channel](https://join.slack.com/t/samenorganiseren/shared_invite/zt-dex1d7sk-wy11sKYWCF0qQYjJHSMW5Q).
+
+Couple of quick tips when you start developing
+- If you not yet have setup the component locally read the Tutorial for setting up your local environment.
+- You can find the other components on [Github](https://github.com/ConductionNL).
+- Take a look at the [commonground componenten catalogus](https://componentencatalogus.commonground.nl/componenten?) to prevent development collitions.
+- Use [Commongroun.conduction.nl](https://commonground.conduction.nl/) for easy deployment of test environments to deploy your development to.
+- For information on how to work with the component you can refer to the tutorial [here](TUTORIAL.md).
+
+
+Contributing
+----
+First of al please read the [Contributing](CONTRIBUTING.md) guideline's ;)
+
+But most imporantly, welcome! We strife to keep an active community at [commonground.nl](https://commonground.nl/), please drop by and tell is what you are thinking about so that we can help you along.
+
+
+Credits
+----
+
+Information about the authors of this component can be found [here](AUTHORS.md)
+
+
+
+
+
+Copyright © [Utrecht](https://www.utrecht.nl/) 2019
